@@ -1,12 +1,13 @@
 // import logo from './logo.svg';
 import './App.css';
 import MyProfileCard from "./components/MyProfileCard";
+import MyProfileCardEdit from "./components/MyProfileCardEdit";
 
 function App() {
   return (
     <div className="App">
       <MyProfileCard/>
-
+      <MyProfileCardEdit/>
 
       {/*<header className="App-header">*/}
       {/*  <img src={logo} className="App-logo" alt="logo" />*/}
