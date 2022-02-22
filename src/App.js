@@ -1,6 +1,6 @@
 // import logo from './logo.svg';
 import './App.css';
-import MyProfileCard from "./components/MyProfileCard";
+import MyProfile from "./components/MyProfile";
 import Navbar from "./components/Navbar";
 import {BrowserRouter, Route, Routes} from "react-router-dom";
 
@@ -15,7 +15,7 @@ function App() {
             </Routes>
         </BrowserRouter>
 
-      <MyProfileCard/>
+      <MyProfile/>
     </div>
   );
 }
