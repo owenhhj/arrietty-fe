@@ -5,38 +5,46 @@ import {useState, useEffect} from "react";
 
 function MyProfile(props) {
   const [myProfileData, setMyProfileData] = useState(MyProfile.defaultProps.profileData)
+  const [pageShow, setPageShow] = useState(0)  // 0: show disp, 1: show edit
 
   useEffect(() => {
     fetch("http://localhost:3001/profile")
       .then(res => res.json())
       .then((res) => {
-        console.log("res", res)
         setMyProfileData(res.body)
       },
         (err) => {
-        console.log("err", err)
+        console.log("useEffect err", err)
         })
   }, [])
 
-  const callbackUpdate = (data) => {
-    console.log("callbackUpdate called with data:", data)
+  // handle data from children: disp & edit
+  function callbackHandler(data) {
+    if (data.action === "update") {
+      setMyProfileData(data.body)
+      setPageShow(0)
+    }
+    else if (data.action === "switch") {
+      setPageShow(1-pageShow)
+    }
+    else {
+      console.log("MyProfile cbHandler unknown action")
+      setPageShow(0)
+    }
   }
 
   return (
     <div className="MyProfile">
-      <h2>{props.title}</h2>
 
-      <MyProfileDisplay data={myProfileData} callback={callbackUpdate}/>
-
-      <MyProfileEdit/>
-      
+      <MyProfileDisplay data={myProfileData} callback={callbackHandler} show={pageShow === 0}/>
+      <MyProfileEdit data={myProfileData} callback={callbackHandler} show={pageShow === 1}/>
       
     </div>
   )
 }
 
 MyProfile.defaultProps = {
-  title: "My Profile (containing display & edit component)",
+  title: "MyProfile (display & edit)",
   profileData: {
     id: 1,
     netId: "abc1234",

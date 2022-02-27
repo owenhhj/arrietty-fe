@@ -1,45 +1,67 @@
-import {useState, useEffect} from "react"
+import {useState} from "react"
 
+function getYearOptions() {
+  let date = new Date()
+  let ans = []
+  for (let i=date.getFullYear()-2; i<date.getFullYear()+5; i++) {ans.push(i)}
+  return ans
+}
+
+function getMajorOptions() {
+  return ["Computer Science", "Data Science", "Other Majors"]
+}
 
 function MyProfileEdit(props) {
-  const date = new Date()
-  const editYearOptions = []
-  let i;
-  for (i=date.getFullYear()-2; i<date.getFullYear()+5; i++) {
-    editYearOptions.push(i)
-  }
-  const editMajorOptions = ["Computer Science", "Data Science", "Other Majors"]
+  const editYearOptions = getYearOptions()
+  const editMajorOptions = getMajorOptions()
 
   // 2-way bind input content to pass to parent
   const [profileDataEdit, setProfileDataEdit] = useState(props.profileDataEdit)
   const handleFormSubmit = (e) => {
-    console.log("handleFormSubmit called")
+    e.preventDefault()
+    if (e.target.name === "submit") {
+      const axios = require('axios')
+      axios.post("http://localhost:3001/profile-update", profileDataEdit)
+        .then((res) => {
+          if (res.data.responseStatus.status === "ok") {
+            props.callback({action: "update", body: profileDataEdit})
+          }
+        })
+        .catch((err) => {
+          console.log("Edit axios error:", err)
+        })
+    }
+    else {
+      props.callback({action: "switch"})
+    }
   }
 
+  // real-time bind keyboard input
   const handleFormChange = (e) => {
     e.preventDefault()
     setProfileDataEdit(values => ({
       ...values,
       [e.target.name]: e.target.value
-    }))
-  }
+    }))}
 
+  // parent decides to show disp/edit
+  if (!props.show) {
+    return null
+  }
   return (
     <div className="MyProfileEdit">
-      <h3>{props.title}</h3>
-      <p>{props.profileData.netid}</p>
-      <p>{props.profileData.name}</p>
+      <p>{props.profileData.netId}</p>
 
       {/* form to edit [name, year, major, bio] */}
-      <form onSubmit={handleFormSubmit}>
+      <form id="formEdit">
         <div>
-          <label htmlFor="editName">Name</label>
+          <label htmlFor="editUserName">Name</label>
           {/* TODO: see if placeholder works */}
-          <input type="text" id="editName" name="name" defaultValue={profileDataEdit.name} onChange={handleFormChange}/>
+          <input type="text" id="editUserName" name="userName" defaultValue={profileDataEdit.userName} onChange={handleFormChange}/>
         </div>
         <div>
-          <label htmlFor="editYear">Year</label>
-          <select id="editYear" name="year" defaultValue={profileDataEdit.year} onChange={handleFormChange}>
+          <label htmlFor="editSchoolYear">Year</label>
+          <select id="editSchoolYear" name="schoolYear" defaultValue={profileDataEdit.schoolYear} onChange={handleFormChange}>
             {editYearOptions.map((year) => (
               <option key={year} value={year}>{year}</option>
             ))}
@@ -57,34 +79,37 @@ function MyProfileEdit(props) {
           <label htmlFor="editBio">Bio</label>
           <input type="text" id="editBio" name="bio" defaultValue={profileDataEdit.bio} onChange={handleFormChange}/>
         </div>
-        <div>
-          {/* TODO: two form buttons? */}
-          <input type="submit" name="btnSubmit" value="Submit"/>
-          <input type="submit" name="btnCancel" value="Cancel"/>
-        </div>
       </form>
+      <div>
+        <input type="submit" name="submit" value="Submit" onClick={handleFormSubmit}/>
+        <input type="submit" name="cancel" value="Cancel" onClick={handleFormSubmit}/>
+      </div>
 
     </div>
   )
 }
 
 MyProfileEdit.defaultProps = {
-  title: "My Profile Edit",
   profileData: {
-    netid: "abc1234",
-    name: "myname",
-    year: "2022",
-    major: "Computer Science",
-    bio: "I'm a guy"
+    id: 1,
+    netId: "abc1234",
+    userName: "My Name",
+    schoolYear: "My Year",
+    major: "My Major",
+    bio: "My Bio",
+    numPosts: 0,
+    numNoti: 0
   },
   profileDataEdit: {
-    netid: "abc1234",
-    name: "myname",
-    year: "2022",
-    major: "Computer Science",
-    bio: "I'm a guy"
+    id: 1,
+    netId: "abc1234",
+    userName: "My Name",
+    schoolYear: "My Year",
+    major: "My Major",
+    bio: "My Bio",
+    numPosts: 0,
+    numNoti: 0
   }
 }
 
 export default MyProfileEdit
-

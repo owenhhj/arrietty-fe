@@ -1,5 +1,97 @@
 .MyProfile {
-    width: 30%;
-    border: 1px solid black;
+    width: 275px;
+    text-align: left;
+    border-radius: 10px;
+    box-shadow: 5px 5px 5px #888888;
+}
+
+.MyProfile * {
+    font-family: Arial, serif;
+    font-size: 15px;
+    color: #202020;
+}
+
+.MyProfileDisplay1 {
+    text-align: center;
+}
+
+.divAvatarStripe {
+    height: 60px;
+}
+
+.avatarStripe {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+.divAvatar {
+    height: 50px;
+    text-align: center;
+}
+
+.avatar {
+    height: 150%;
+    margin-top: -40px;
+    border-radius: 50%;
+}
+
+.MyProfileDisplay1Name {
+    color: black;
+    font-size: 22px;
+}
+
+.MyProfileDisplay1NetId {
+    font-size: 18px;
+    margin: 10px;
+}
+
+/* grey lines in between */
+.MyProfileDisplay2 {
+    border-top: 1px solid darkgrey;
+    border-bottom: 1px solid darkgrey;
+}
+
+.MyProfileDisplay2Text {
+    width: 225px;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.MyProfileDisplay2Text * {
+    margin: 10px;
+}
+
+.divEditIcon {
+    display: inline-block;
+    vertical-align: middle;
+    width: 25px;
+    height: 25px;
+    text-align: center;
+}
+
+.editIcon {
+    margin: 0;
+    height: 100%;
+}
+
+.fieldName {
+    margin: 0;
+    font-size: 16px;
+    color: black;
+    display: inline-block;
+    width: 50px;
+}
+
+.MyProfileDisplay3 {
+    text-align: center;
+}
+
+.MyProfileDisplay3 * {
+    vertical-align: middle;
+    display: inline-block;
+    margin: 8px 5px;
 }
 
