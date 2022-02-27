@@ -1,3 +1,4 @@
+import "./MyProfile.css"
 import {useState} from "react"
 
 function getYearOptions() {
@@ -50,37 +51,52 @@ function MyProfileEdit(props) {
   }
   return (
     <div className="MyProfileEdit">
-      <p>{props.profileData.netId}</p>
+      <div className="MyProfileEdit1">
+        <div className="divAvatarStripe">
+          <img className="avatarStripe" src="http://localhost:3001/static/avatar_stripe.jpg" alt=""/>
+        </div>
+        <div className="divAvatar">
+          <img className="avatar" src="http://localhost:3001/static/avatar.jpg" alt=""/>
+        </div>
+        <div className="MyProfileEdit1NetId">{props.data.netId}</div>
+      </div>
 
-      {/* form to edit [name, year, major, bio] */}
-      <form id="formEdit">
-        <div>
-          <label htmlFor="editUserName">Name</label>
-          {/* TODO: see if placeholder works */}
-          <input type="text" id="editUserName" name="userName" defaultValue={profileDataEdit.userName} onChange={handleFormChange}/>
-        </div>
-        <div>
-          <label htmlFor="editSchoolYear">Year</label>
-          <select id="editSchoolYear" name="schoolYear" defaultValue={profileDataEdit.schoolYear} onChange={handleFormChange}>
-            {editYearOptions.map((year) => (
-              <option key={year} value={year}>{year}</option>
-            ))}
-          </select>
-        </div>
-        <div>
-          <label htmlFor="editMajor">Major</label>
-          <select id="editMajor" name="major" defaultValue={profileDataEdit.major} onChange={handleFormChange}>
-            {editMajorOptions.map((major) => (
-              <option key={major} value={major}>{major}</option>
-            ))}
-          </select>
-        </div>
-        <div>
-          <label htmlFor="editBio">Bio</label>
-          <input type="text" id="editBio" name="bio" defaultValue={profileDataEdit.bio} onChange={handleFormChange}/>
-        </div>
-      </form>
-      <div>
+
+      <div className="MyProfileEdit2">
+        <form id="formEdit">
+          <div>
+            {/*<label htmlFor="editUserName">Name</label>*/}
+            <img className="avatar" src="http://localhost:3001/static/name.svg" alt=""/>
+            <input type="text" id="editUserName" name="userName" defaultValue={profileDataEdit.userName} onChange={handleFormChange}/>
+          </div>
+          <div>
+            {/*<label htmlFor="editSchoolYear">Year</label>*/}
+            <img className="avatar" src="http://localhost:3001/static/school.svg" alt=""/>
+            <select id="editSchoolYear" name="schoolYear" defaultValue={profileDataEdit.schoolYear} onChange={handleFormChange}>
+              {editYearOptions.map((year) => (
+                <option key={year} value={year}>{year}</option>
+              ))}
+            </select>
+          </div>
+          <div>
+            {/*<label htmlFor="editMajor">Major</label>*/}
+            <img className="avatar" src="http://localhost:3001/static/major.svg" alt=""/>
+            <select id="editMajor" name="major" defaultValue={profileDataEdit.major} onChange={handleFormChange}>
+              {editMajorOptions.map((major) => (
+                <option key={major} value={major}>{major}</option>
+              ))}
+            </select>
+          </div>
+          <div>
+            {/*<label htmlFor="editBio">Bio</label>*/}
+            <img className="avatar" src="http://localhost:3001/static/bio.svg" alt=""/>
+            <input type="text" id="editBio" name="bio" defaultValue={profileDataEdit.bio} onChange={handleFormChange}/>
+          </div>
+        </form>
+      </div>
+
+
+      <div className="MyProfileEdit3">
         <input type="submit" name="submit" value="Submit" onClick={handleFormSubmit}/>
         <input type="submit" name="cancel" value="Cancel" onClick={handleFormSubmit}/>
       </div>

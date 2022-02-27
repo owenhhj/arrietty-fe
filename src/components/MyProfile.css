@@ -36,6 +36,7 @@
     height: 150%;
     margin-top: -40px;
     border-radius: 50%;
+    border: 3px solid #16E7CF;
 }
 
 .MyProfileDisplay1Name {
@@ -48,7 +49,6 @@
     margin: 10px;
 }
 
-/* grey lines in between */
 .MyProfileDisplay2 {
     border-top: 1px solid darkgrey;
     border-bottom: 1px solid darkgrey;
@@ -94,4 +94,52 @@
     display: inline-block;
     margin: 8px 5px;
 }
+
+/* MyProfileEdit below */
+.MyProfileEdit1 {
+    text-align: center;
+    border-bottom: 1px solid darkgrey;
+}
+
+.MyProfileEdit1NetId {
+    font-size: 22px;
+    margin-bottom: 15px;
+}
+
+.MyProfileEdit2 {
+    margin-top: 10px;
+}
+
+.MyProfileEdit2 img {
+    display: inline-block;
+    vertical-align: middle;
+    margin: 10px 15px;
+}
+
+.MyProfileEdit2 input {
+    display: inline-block;
+    vertical-align: middle;
+    border: 1px solid #999999;
+    border-radius: 5px;
+    box-shadow: 1px 1px 1px #666666;
+    height: 25px;
+}
+
+.MyProfileEdit2 select {
+    display: inline-block;
+    vertical-align: middle;
+    border: 1px solid #999999;
+    border-radius: 5px;
+    box-shadow: 1px 1px 1px #666666;
+    height: 25px;
+}
+
+.MyProfileEdit3 {
+    text-align: center;
+}
+
+.MyProfileEdit3 * {
+    margin: 5px 5px 10px;
+}
+
 
