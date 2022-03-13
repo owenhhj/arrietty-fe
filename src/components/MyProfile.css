@@ -114,6 +114,8 @@
     display: inline-block;
     vertical-align: middle;
     margin: 10px 15px;
+    /*height: 150%;*/
+    /*margin-top: -40px;*/
 }
 
 .MyProfileEdit2 input {

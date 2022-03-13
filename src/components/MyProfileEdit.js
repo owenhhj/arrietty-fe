@@ -15,6 +15,7 @@ function getMajorOptions() {
 function MyProfileEdit(props) {
   const editYearOptions = getYearOptions()
   const editMajorOptions = getMajorOptions()
+  const ROOT = 'http://localhost:8000/'
 
   // 2-way bind input content to pass to parent
   const [profileDataEdit, setProfileDataEdit] = useState(props.profileDataEdit)
@@ -22,17 +23,14 @@ function MyProfileEdit(props) {
     e.preventDefault()
     if (e.target.name === "submit") {
       const axios = require('axios')
-      axios.post("http://localhost:3001/profile-update", profileDataEdit)
+      axios.post(ROOT+"profile-update", profileDataEdit)
         .then((res) => {
           if (res.data.responseStatus.status === "ok") {
             props.callback({action: "update", body: profileDataEdit})
-          }
-        })
+          }})
         .catch((err) => {
-          console.log("Edit axios error:", err)
-        })
-    }
-    else {
+          console.log("Edit axios error:", err)})
+    } else {
       props.callback({action: "switch"})
     }
   }
@@ -45,18 +43,14 @@ function MyProfileEdit(props) {
       [e.target.name]: e.target.value
     }))}
 
-  // parent decides to show disp/edit
-  if (!props.show) {
-    return null
-  }
   return (
     <div className="MyProfileEdit">
       <div className="MyProfileEdit1">
         <div className="divAvatarStripe">
-          <img className="avatarStripe" src="http://localhost:3001/static/avatar_stripe.jpg" alt=""/>
+          <img className="avatarStripe" src={`"${ROOT}static/avatar_stripe.jpg"`} alt=""/>
         </div>
         <div className="divAvatar">
-          <img className="avatar" src="http://localhost:3001/static/avatar.jpg" alt=""/>
+          <img className="avatar" src={`"${ROOT}static/avatar.jpg"`} alt=""/>
         </div>
         <div className="MyProfileEdit1NetId">{props.data.netId}</div>
       </div>
@@ -66,12 +60,12 @@ function MyProfileEdit(props) {
         <form id="formEdit">
           <div>
             {/*<label htmlFor="editUserName">Name</label>*/}
-            <img className="avatar" src="http://localhost:3001/static/name.svg" alt=""/>
+            <img src={`${ROOT}static/name.svg`} alt=""/>
             <input type="text" id="editUserName" name="userName" defaultValue={profileDataEdit.userName} onChange={handleFormChange}/>
           </div>
           <div>
             {/*<label htmlFor="editSchoolYear">Year</label>*/}
-            <img className="avatar" src="http://localhost:3001/static/school.svg" alt=""/>
+            <img src={`${ROOT}static/school.svg`} alt=""/>
             <select id="editSchoolYear" name="schoolYear" defaultValue={profileDataEdit.schoolYear} onChange={handleFormChange}>
               {editYearOptions.map((year) => (
                 <option key={year} value={year}>{year}</option>
@@ -80,7 +74,7 @@ function MyProfileEdit(props) {
           </div>
           <div>
             {/*<label htmlFor="editMajor">Major</label>*/}
-            <img className="avatar" src="http://localhost:3001/static/major.svg" alt=""/>
+            <img src={`${ROOT}static/major.svg`} alt=""/>
             <select id="editMajor" name="major" defaultValue={profileDataEdit.major} onChange={handleFormChange}>
               {editMajorOptions.map((major) => (
                 <option key={major} value={major}>{major}</option>
@@ -89,7 +83,7 @@ function MyProfileEdit(props) {
           </div>
           <div>
             {/*<label htmlFor="editBio">Bio</label>*/}
-            <img className="avatar" src="http://localhost:3001/static/bio.svg" alt=""/>
+            <img src={`${ROOT}static/bio.svg`} alt=""/>
             <input type="text" id="editBio" name="bio" defaultValue={profileDataEdit.bio} onChange={handleFormChange}/>
           </div>
         </form>

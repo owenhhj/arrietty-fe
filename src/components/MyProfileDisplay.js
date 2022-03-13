@@ -1,22 +1,21 @@
 import './MyProfile.css'
 
 function MyProfileDisplay(props) {
+  const ROOT = 'http://localhost:8000/'
+
   const handleCallback = (e) => {
     e.preventDefault()
     props.callback({action: "switch"})
   }
 
-  if (!props.show) {
-    return null
-  }
   return (
     <div className="MyProfileDisplay">
       <div className="MyProfileDisplay1">
         <div className="divAvatarStripe">
-          <img className="avatarStripe" src="http://localhost:3001/static/avatar_stripe.jpg" alt=""/>
+          <img className="avatarStripe" src={`${ROOT}static/avatar_stripe.jpg`} alt=""/>
         </div>
         <div className="divAvatar">
-          <img className="avatar" src="http://localhost:3001/static/avatar.jpg" alt=""/>
+          <img className="avatar" src={`${ROOT}static/avatar.jpg`} alt=""/>
         </div>
         <div className="MyProfileDisplay1Name">{props.data.userName}</div>
         <div className="MyProfileDisplay1NetId">{props.data.netId}</div>
@@ -29,14 +28,14 @@ function MyProfileDisplay(props) {
           <div><span className="fieldName">Bio:</span>{props.data.bio}</div>
         </div>
         <div className="divEditIcon">
-          <img className="editIcon" onClick={handleCallback} src="http://localhost:3001/static/pencil.svg" alt=""/>
+          <img className="editIcon" onClick={handleCallback} src={`${ROOT}static/pencil.svg`} alt=""/>
         </div>
       </div>
 
       <div className="MyProfileDisplay3">
-        <div><img src="http://localhost:3001/static/post.svg" alt=""/></div>
+        <div><img src={`${ROOT}static/post.svg`} alt=""/></div>
         <div>{props.data.numPosts}</div>
-        <div><img src="http://localhost:3001/static/noti.svg" alt=""/></div>
+        <div><img src={`${ROOT}static/noti.svg`} alt=""/></div>
         <div>{props.data.numNoti}</div>
       </div>
 
