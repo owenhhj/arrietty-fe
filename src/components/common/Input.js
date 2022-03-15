@@ -10,12 +10,14 @@ export default function Input(
         onChange,
         inputSize = "medium",
         prompt,
-        options
+        options,
+        children,
+        defaultValue
     }
 ){
     // 公共输入组件
 
-    const allowedTypes = ["text","select-search","price"]
+    const allowedTypes = ["text","select-search","price","select"]
     const inputSizes = ["large", "medium", "small"];
 
     const handleNormalInputChange = (event)=>{
@@ -56,7 +58,7 @@ export default function Input(
 
     }
 
-        if (type==="price"){
+    if (type==="price"){
         return (
         <div className="custom-input">
         <div className={"input-prompt"}>{prompt}</div>
@@ -67,6 +69,19 @@ export default function Input(
 
     }
 
+
+    if (type==="select"){
+        return (
+            <div className="custom-input">
+                <div className={"input-prompt"}>{prompt}</div>
+                <select className={`input-bracket input-bracket--${inputSize}`}  placeholder={placeholder} onChange={handleNormalInputChange} defaultValue={defaultValue}>
+                    {children}
+                </select>
+            </div>
+
+        );
+
+    }
 
 
 
