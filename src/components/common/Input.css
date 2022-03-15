@@ -1,0 +1,40 @@
+.custom-input {
+    height: 3.5rem;
+    width: auto;
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.input-prompt {
+    padding: 0.3rem 0.1rem;
+
+    font-size: 0.8rem;
+    font-family: 'Gothic A1', sans-serif;
+    font-weight: bold;
+
+}
+
+.input-bracket {
+    padding-left: 0.3rem;
+    border: 0.5px solid #BEBEBE;
+    border-radius: 5px;
+    outline: none;
+    box-sizing: border-box;
+}
+
+.input-bracket--large {
+    height: 50%;
+    width: 15rem;
+}
+
+.input-bracket--medium {
+    height: 50%;
+    width: 10rem;
+}
+
+.input-bracket--small {
+    height: 50%;
+    width: 5rem;
+}

@@ -1,7 +1,7 @@
 import './MyProfile.css'
+import Button from "./common/Button";
 
 function MyProfileDisplay(props) {
-  const ROOT = 'http://localhost:8000/'
 
   const handleCallback = (e) => {
     e.preventDefault()
@@ -12,48 +12,50 @@ function MyProfileDisplay(props) {
     <div className="MyProfileDisplay">
       <div className="MyProfileDisplay1">
         <div className="divAvatarStripe">
-          <img className="avatarStripe" src={`${ROOT}static/avatar_stripe.jpg`} alt=""/>
+          <img className="avatarStripe" src={`./avatar_stripe.jpg`} alt=""/>
         </div>
         <div className="divAvatar">
-          <img className="avatar" src={`${ROOT}static/avatar.jpg`} alt=""/>
+          <img className="avatar" src={props.data.avatarImageUrl==null?"./avatar":props.data.avatarImageUrl} alt=""/>
         </div>
-        <div className="MyProfileDisplay1Name">{props.data.userName}</div>
+        <div className="MyProfileDisplay1Name">{props.data.username}</div>
         <div className="MyProfileDisplay1NetId">{props.data.netId}</div>
       </div>
 
       <div className="MyProfileDisplay2">
         <div className="MyProfileDisplay2Text">
-          <div><span className="fieldName">Year:</span>{props.data.schoolYear}</div>
-          <div><span className="fieldName">Major:</span>{props.data.major}</div>
-          <div><span className="fieldName">Bio:</span>{props.data.bio}</div>
+          <div>
+            <span className="fieldName">School year:</span>
+            <span className={"field-value"}>{props.data.schoolYear}</span>
+          </div>
+          <div>
+            <span className="fieldName">Major:</span>
+            <span className={"field-value"}>{props.data.major}</span>
+          </div>
+          <div>
+            <span className="fieldName">Bio:</span>
+            <span className={"field-value"}>{props.data.bio}</span>
+          </div>
         </div>
         <div className="divEditIcon">
-          <img className="editIcon" onClick={handleCallback} src={`${ROOT}static/pencil.svg`} alt=""/>
+          <img className="editIcon" onClick={handleCallback} src={"./pencil-icon.svg"} alt=""/>
         </div>
       </div>
 
       <div className="MyProfileDisplay3">
-        <div><img src={`${ROOT}static/post.svg`} alt=""/></div>
+        <img src={"./profile-posts-icon.svg"} alt=""/>
         <div>{props.data.numPosts}</div>
-        <div><img src={`${ROOT}static/noti.svg`} alt=""/></div>
+        <div><img src={"./profile-notification-icon.svg"} alt=""/></div>
         <div>{props.data.numNoti}</div>
       </div>
+
+      <div className={"new-ad-btn"}>
+        <Button buttonStyle={"btn--primary"} buttonSize={"btn--medium"} text={"+ Add a new ad"}  />
+      </div>
+
 
     </div>
   )
 }
 
-MyProfileDisplay.defaultProps = {
-  data: {
-    id: 0,
-    netId: "DefaultNetId",
-    userName: "DefaultUserName",
-    schoolYear: "DefaultSchoolYear",
-    major: "DefaultMajor",
-    bio: "DefaultBio",
-    numPosts: 0,
-    numNoti: 0
-  }
-}
 
 export default MyProfileDisplay
