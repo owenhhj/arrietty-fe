@@ -1,0 +1,14 @@
+.AddNewAd {
+    height: 500px;
+    width: 500px;
+    border-color: black;
+    border-style: inset;
+}
+
+img {
+    max-height: 100px;
+    border-style: dashed;
+    border-color: #16E7CF;
+}
+
+
