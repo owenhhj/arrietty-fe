@@ -11,4 +11,29 @@ img {
     border-color: #16E7CF;
 }
 
+.DragContainer {
+    position: relative;
+}
+
+.PicDeleteBtn {
+    position: absolute;
+    opacity: 80%;
+    top: 0;
+    left: 0;
+    border-color: #A61F16;
+}
+
+/*.DragContainer:hover ~ .PicDeleteBtn {*/
+/*    opacity: 100%;*/
+/*    position: absolute;*/
+/*    top: 0;*/
+/*    right: 0;*/
+/*    border-color: #A61F16;*/
+/*}*/
+
+
+
+
+
+
 

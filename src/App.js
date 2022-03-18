@@ -3,6 +3,7 @@ import './App.css';
 import MyProfile from "./components/MyProfile";
 import Navbar from "./components/Navbar";
 import AddNewAd from "./components/AddNewAd";
+import AddNewAdParent from "./components/AddNewAdParent";
 import {BrowserRouter, Route, Routes} from "react-router-dom";
 import AdminTagInputWidget from "./components/admin/AdminTagInputWidget";
 import SelectSearch, {fuzzySearch} from "react-select-search";
@@ -48,7 +49,9 @@ function App() {
         </BrowserRouter>
 
         {/*<MyProfile/>*/}
-        <AddNewAd/>
+        {/*<AddNewAd/>*/}
+        <AddNewAdParent/>
+
         {/*<AdminTagInputWidget/>*/}
     </div>
   );
