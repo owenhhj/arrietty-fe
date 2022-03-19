@@ -8,14 +8,6 @@ function NewAdDragDropPic({
                           }) {
   const [ifHover, setIfHover] = useState(false);
 
-  const handleHoverTrue = () => {
-    setIfHover(true);
-  }
-
-  const handleHoverFalse = () => {
-    setIfHover(false);
-  }
-
   return (
     <div className="NewAdDragDropPic"
          onMouseEnter={()=>{setIfHover(true)}}
