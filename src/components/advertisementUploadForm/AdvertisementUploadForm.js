@@ -36,8 +36,7 @@ function AdvertisementUploadForm(){
         );
     }, [])
 
-<<<<<<< Updated upstream
-=======
+
     const getOtherTagOptions = (data)=>{
         let ret = [];
         for (let i=0; i<data.length; i++){
@@ -52,7 +51,6 @@ function AdvertisementUploadForm(){
     }
 
 
->>>>>>> Stashed changes
     const handleAdTypeChange = (state)=>{
         setAdType(state);
         formData = new FormData();
@@ -135,12 +133,11 @@ function AdvertisementUploadForm(){
                 </div>
                 <div className={"form-row"}>
                     <p className={"form-prompt"}>Upload photos</p>
-<<<<<<< Updated upstream
+
                     <NewAdDragDrop identifier={"images"} onChange={handleInputChange}/>
-=======
                     {/*TODO: drag and drop image upload*/}
                     <input type={"file"} onChange={(e)=>{formData.append("images", e.target.files[0])}} />
->>>>>>> Stashed changes
+
                 </div>
                 {adType==="textbook" &&
                     <div className={"form-row textbook-search"}>
