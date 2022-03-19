@@ -1,0 +1,35 @@
+.AddNewAd {
+    height: 500px;
+    width: 500px;
+    border-color: black;
+    border-style: inset;
+}
+
+img {
+    max-height: 100px;
+}
+
+.DragContainer {
+    position: relative;
+}
+
+/*absolute's parent must be relative*/
+.PicDeleteBtn {
+    position: absolute;
+    opacity: 80%;
+    top: 0;
+    left: 0;
+    border-color: #595959;
+}
+
+.NewAdDragDropPic {
+    position: relative;
+}
+
+
+
+
+
+
+
+
