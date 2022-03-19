@@ -2,16 +2,19 @@ import "./NewAdDragDrop.css"
 import NewAdDragDropPic from "./NewAdDragDropPic";
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import {useState} from 'react'
-import {dataFetch} from "./common/common";
 
 
 // TODO release RAM from createObjectURL after submission
 function NewAdDragDrop({
-  toParent  // to pass files to parent onChange
+  identifier = "images",
+  onChange  // to pass files to parent onChange
                   }) {
-  const grid = 6;
   const [picURLs, setPicURLs] = useState([]);
   let pic = [];  // current pic being added
+
+  const toParent = (v) => {
+    onChange(identifier, v);
+  }
 
   const picInputChange = (e) => {
     e.preventDefault();
@@ -25,10 +28,11 @@ function NewAdDragDrop({
         });
       }
     }
+    handlePicAdd();
   }
 
   const handlePicAdd = (e) => {
-    e.preventDefault();
+    // e.preventDefault();
     let legal = pic.length > 0;
     picURLs.forEach((uploaded) => {
       pic.forEach((newPic) => {
@@ -59,15 +63,15 @@ function NewAdDragDrop({
   const getItemStyle = (isDragging, draggableStyle) => ({
     userSelect: 'none',
     // padding: grid,
-    margin: `0 ${grid}px 0 0`,
-    background: isDragging ? 'lightgreen' : 'grey',
+    margin: `0 5px 0 0`,
+    // background: isDragging ? 'lightgreen' : 'grey',
     ...draggableStyle,
   })
 
   const getListStyle = isDraggingOver => ({
-    background: isDraggingOver ? 'lightblue' : 'lightgrey',
+    // background: isDraggingOver ? 'lightblue' : 'lightgrey',
     display: 'flex',
-    padding: grid,
+    // padding: grid,
     overflow: 'auto',
   })
 
@@ -91,39 +95,46 @@ function NewAdDragDrop({
   }
 
   return (
-    <div className="AddNewAd">
-      <h1>NewAdDragDrop Component Header</h1>
+    <div className="NewAdDragDrop">
 
-      <input type="file" onChange={picInputChange} multiple/>
-      <button onClick={handlePicAdd}>Add</button>
+      <div className={"DragDropRowContainer"}>
 
-      <DragDropContext onDragEnd={onDragEnd}>
-        <Droppable droppableId="droppable" direction="horizontal">
-          {(provided, snapshot) => (
-            <div ref={provided.innerRef} style={getListStyle(snapshot.isDraggingOver)} {...provided.droppableProps}>
+        <div className={"BtnAddPic"}>
+          <input id={"file-input"} type="file" onChange={picInputChange} multiple/>
+          <label htmlFor="file-input">
+            <img src="./add_black_48dp.svg" alt=""/>
+          </label>
+        </div>
 
-              {picURLs.map((item, index) => (
-                <Draggable key={index.toString()} draggableId={index.toString()} index={index}>
-                  {(provided, snapshot) => {return (
-                    <div ref={provided.innerRef} {...provided.draggableProps} {...provided.dragHandleProps}
-                      style={getItemStyle(
-                        snapshot.isDragging,
-                        provided.draggableProps.style)}
-                    >
-                      <NewAdDragDropPic
-                        pic={{'name': item.name, 'url': item.url, 'index': index.toString()}}
-                        toParent={handlePicDelete}
-                      />
+        <DragDropContext onDragEnd={onDragEnd}>
+          <Droppable droppableId="droppable" direction="horizontal">
+            {(provided, snapshot) => (
+              <div className={"DivDroppable"} ref={provided.innerRef} style={getListStyle(snapshot.isDraggingOver)} {...provided.droppableProps}>
+                {picURLs.map((item, index) => (
+                  <Draggable key={index.toString()} draggableId={index.toString()} index={index}>
+                    {(provided, snapshot) => {return (
+                      <div ref={provided.innerRef} {...provided.draggableProps} {...provided.dragHandleProps}
+                        style={getItemStyle(
+                          snapshot.isDragging,
+                          provided.draggableProps.style)}
+                      >
+                        <NewAdDragDropPic
+                          pic={{'name': item.name, 'url': item.url, 'index': index.toString()}}
+                          toParent={handlePicDelete}
+                        />
 
-                    </div>
-                  )}}
-                </Draggable>
-              ))}
-              {provided.placeholder}
-            </div>
-          )}
-        </Droppable>
-      </DragDropContext>
+                      </div>
+                    )}}
+                  </Draggable>
+                ))}
+                {provided.placeholder}
+              </div>
+            )}
+          </Droppable>
+        </DragDropContext>
+
+      </div>
+
     </div>
   )
 }

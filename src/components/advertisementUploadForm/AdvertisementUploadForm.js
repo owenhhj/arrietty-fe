@@ -5,7 +5,9 @@ import TextbookSearch from "./TextbookSearch";
 import Input from "../common/Input";
 import Button from "../common/Button";
 import AlertablePrompt from "./AlertablePrompt";
+import NewAdDragDrop from "./NewAdDragDrop";
 import {dataFetch} from "../common/common";
+
 
 function AdvertisementUploadForm(){
 
@@ -26,7 +28,6 @@ function AdvertisementUploadForm(){
         );
     }, [])
 
-
     const handleAdTypeChange = (state)=>{
         setAdType(state);
         formData = new FormData();
@@ -39,7 +40,6 @@ function AdvertisementUploadForm(){
         else if (identifier==="price"){
             setPricingInputAlerted(false);
         }
-
         formData.set(identifier,value);
     }
 
@@ -91,6 +91,7 @@ function AdvertisementUploadForm(){
                 </div>
                 <div className={"form-row"}>
                     <p className={"form-prompt"}>Upload photos</p>
+                    <NewAdDragDrop identifier={"images"} onChange={handleInputChange}/>
                 </div>
                 {adType==="textbook" &&
                     <div className={"form-row textbook-search"}>

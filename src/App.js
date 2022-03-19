@@ -2,8 +2,6 @@
 import './App.css';
 import MyProfile from "./components/MyProfile";
 import Navbar from "./components/Navbar";
-import NewAdDragDrop from "./components/NewAdDragDrop";
-import NewAdDragDropFakeParent from "./components/NewAdDragDropFakeParent";
 import {BrowserRouter, Route, Routes} from "react-router-dom";
 import AdminTagInputWidget from "./components/admin/AdminTagInputWidget";
 import SelectSearch, {fuzzySearch} from "react-select-search";
@@ -23,10 +21,6 @@ function App() {
         </BrowserRouter>
 
         {/*<MyProfile/>*/}
-        {/*<NewAdDragDrop/>*/}
-        <NewAdDragDropFakeParent/>
-
-        {/*<AdminTagInputWidget/>*/}
         {/*<AdminTagInputWidget/>*/}
         <AdvertisementUploadForm/>
     </div>
