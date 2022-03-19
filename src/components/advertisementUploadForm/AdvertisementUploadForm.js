@@ -13,9 +13,11 @@ function AdvertisementUploadForm(){
 
     const [adType, setAdType] = useState("textbook");
     const [textbookData, setTextbookData] = useState([]);
+    const [otherTagData, setOtherTagData] = useState([]);
     const [textbookInputAlerted, setTextbookInputAlerted] = useState(false);
     const [pricingInputAlerted, setPricingInputAlerted] = useState(false);
     const [pledgeInputAlerted, setPledgeInputAlerted] = useState(false);
+
     let formData = new FormData();
     let pledgeTicked = false;
 
@@ -26,8 +28,31 @@ function AdvertisementUploadForm(){
             setTextbookData,
             null
         );
+        dataFetch(
+            "https://localhost:8000/otherTag?id=",
+            {method:"GET"},
+            setOtherTagData,
+            null
+        );
     }, [])
 
+<<<<<<< Updated upstream
+=======
+    const getOtherTagOptions = (data)=>{
+        let ret = [];
+        for (let i=0; i<data.length; i++){
+            ret.push(
+                {
+                    name: data.name,
+                    value: data.id
+                }
+            );
+        }
+        return ret;
+    }
+
+
+>>>>>>> Stashed changes
     const handleAdTypeChange = (state)=>{
         setAdType(state);
         formData = new FormData();
@@ -56,6 +81,8 @@ function AdvertisementUploadForm(){
 
     const handleFormSubmit = ()=>{
         let okToSubmit = true;
+
+        // do field check before submission
         if(adType==="textbook" && (!formData.has("tagId") || formData.get("tagId")==null)){
             setTextbookInputAlerted(true);
             okToSubmit = false;
@@ -72,7 +99,24 @@ function AdvertisementUploadForm(){
         }
 
         if (okToSubmit){
-            //TODO: form submission
+            if(adType==="textbook"){
+                formData.set("isTextbook", "true");
+            }
+            else{
+                formData.set("isTextbook", null);
+
+            }
+
+            console.log(formData);
+            dataFetch(
+                "https://localhost:8000/advertisement?action=update",
+                {
+                    method: "POST",
+                    body:formData
+                },
+                (x)=>{alert("success")},
+                null
+            );
         }
 
     }
@@ -91,12 +135,23 @@ function AdvertisementUploadForm(){
                 </div>
                 <div className={"form-row"}>
                     <p className={"form-prompt"}>Upload photos</p>
+<<<<<<< Updated upstream
                     <NewAdDragDrop identifier={"images"} onChange={handleInputChange}/>
+=======
+                    {/*TODO: drag and drop image upload*/}
+                    <input type={"file"} onChange={(e)=>{formData.append("images", e.target.files[0])}} />
+>>>>>>> Stashed changes
                 </div>
                 {adType==="textbook" &&
                     <div className={"form-row textbook-search"}>
                         <AlertablePrompt promptText={"Select a textbook"} required={true} alertText={"Please select a textbook"} alerted={textbookInputAlerted}/>
                         <TextbookSearch textbookData={textbookData} onChange={handleInputChange} />
+                    </div>
+                }
+                {adType==="other" &&
+                    <div className={"form-row"}>
+                        <p className={"form-prompt"}>Select a tag if applicable</p>
+                        <Input type={"select-search"} identifier={"tagId"} options={getOtherTagOptions(otherTagData)} placeholder={"select a tag"} onChange={handleInputChange} />
                     </div>
                 }
                 <div className={"form-row"}>
