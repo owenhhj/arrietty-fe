@@ -1,9 +1,9 @@
-import AddNewAd from "./AddNewAd";
+import NewAdDragDrop from "./NewAdDragDrop";
 import {dataFetch} from "./common/common";
 
 
 // TODO pass a fake 'onChange' function between parent & child
-function AddNewAdParent(props) {
+function NewAdDragDropFakeParent(props) {
   let images = null;
   const onChangeHelper = (e) => {
     console.log('parent onChange called');
@@ -18,11 +18,11 @@ function AddNewAdParent(props) {
 
   return (
     <div>
-      <AddNewAd toParent={onChangeHelper}/>
+      <NewAdDragDrop toParent={onChangeHelper}/>
       <button onClick={handleSubmit}>SubmitParent</button>
     </div>
   );
 }
 
 
-export default AddNewAdParent;
+export default NewAdDragDropFakeParent;
