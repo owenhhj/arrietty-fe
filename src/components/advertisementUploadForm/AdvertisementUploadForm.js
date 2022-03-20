@@ -4,6 +4,7 @@ import AdTypeSwitch from "./AdTypeSwitch";
 import TextbookSearch from "./TextbookSearch";
 import Input from "../common/Input";
 import Button from "../common/Button";
+import GeneralNoti from "../common/GeneralNoti";
 import AlertablePrompt from "./AlertablePrompt";
 import NewAdDragDrop from "./NewAdDragDrop";
 import {dataFetch} from "../common/common";
@@ -99,10 +100,19 @@ function AdvertisementUploadForm(){
         }
     }
 
-
+    // TODO where to pass the msg & showNoti?
+    const [showNoti, setShowNoti] = useState([true, 'msg to display eawijrgorsdl kangoisjro eawijrgorsdl kangoisjro']);
+    const toggleNoti = (e) => {
+        e.preventDefault();
+        setShowNoti([false, '']);
+    }
 
     return (
         <div className={"advertisement-upload-form card"}>
+
+            {/*TODO test GeneralNoti here*/}
+            {showNoti[0] && <GeneralNoti msg={showNoti[1]} onClick={toggleNoti}/>}
+
             <div className={"advertisement-upload-form-container"}>
                 <div className={"form-row"}>
                     <p className={"form-title"}>Create a New Advertisement</p>
