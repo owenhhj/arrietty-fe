@@ -4,6 +4,7 @@ import AdTypeSwitch from "./AdTypeSwitch";
 import TextbookSearch from "./TextbookSearch";
 import Input from "../common/Input";
 import Button from "../common/Button";
+import GeneralNoti from "../common/GeneralNoti";
 import AlertablePrompt from "./AlertablePrompt";
 import NewAdDragDrop from "./NewAdDragDrop";
 import {dataFetch} from "../common/common";
@@ -16,8 +17,8 @@ function AdvertisementUploadForm(){
     const [otherTagData, setOtherTagData] = useState([]);
     const [textbookInputAlerted, setTextbookInputAlerted] = useState(false);
     const [pricingInputAlerted, setPricingInputAlerted] = useState(false);
+    const [commentInputAlerted, setCommentInputAlerted] = useState(false);
     const [pledgeInputAlerted, setPledgeInputAlerted] = useState(false);
-
     let formData = new FormData();
     let pledgeTicked = false;
 
@@ -59,9 +60,18 @@ function AdvertisementUploadForm(){
     const handleInputChange = (identifier, value)=>{
         if(identifier==="tagId"){
             setTextbookInputAlerted(false);
-        }
-        else if (identifier==="price"){
+        } else if (identifier==="price"){
             setPricingInputAlerted(false);
+        } else if (identifier==="comment"){
+            setCommentInputAlerted(false);
+        }
+        if (identifier==='images') {
+            // if use set(), will turn images[] into a string
+            formData.set('images', null);
+            value.forEach((f) => {
+                formData.append('images', f);
+            });
+            return;
         }
         formData.set(identifier,value);
     }
@@ -71,16 +81,20 @@ function AdvertisementUploadForm(){
         pledgeTicked = event.target.checked;
     }
 
+    const isValidComment = (comment) => {
+        return 0 < comment.length && comment.length <= 150;
+    }
+
     const isValidPrice = (price)=>{
-        //TODO: check the validity of price
-        return true;
+        //TODO: check the validity of price --> need to be smaller than original?
+        let ans = /^[0-9]+$/.test(price);
+        ans = ans && Number(price) > 0;
+        return ans;
     }
 
 
     const handleFormSubmit = ()=>{
         let okToSubmit = true;
-
-        // do field check before submission
         if(adType==="textbook" && (!formData.has("tagId") || formData.get("tagId")==null)){
             setTextbookInputAlerted(true);
             okToSubmit = false;
@@ -91,38 +105,45 @@ function AdvertisementUploadForm(){
             okToSubmit = false;
         }
 
+        if(!formData.has("comment") || !isValidComment(formData.get("comment"))){
+            setCommentInputAlerted(true);
+            okToSubmit = false;
+        }
+
         if(!pledgeTicked){
             setPledgeInputAlerted(true);
             okToSubmit = false;
         }
 
-        if (okToSubmit){
-            if(adType==="textbook"){
-                formData.set("isTextbook", "true");
-            }
-            else{
-                formData.set("isTextbook", null);
-
-            }
-
-            console.log(formData);
+        // TODO buggy okToSubmit: some input alerted --> change it --> now all input alerted --> cannot submit
+        if (true){
+            // TODO success handler
+            console.log('formData to submit is', formData.getAll('images'));
             dataFetch(
-                "https://localhost:8000/advertisement?action=update",
-                {
-                    method: "POST",
-                    body:formData
-                },
-                (x)=>{alert("success")},
-                null
-            );
+              "https://localhost:8000/advertisement?action=update",
+              {
+                  method: 'POST',
+                  body: formData
+              },
+              null,
+              null
+            )
         }
 
     }
 
-
+    const [showNoti, setShowNoti] = useState([true, 'msg to display eawijrgorsdl kangoisjro eawijrgorsdl kangoisjro']);
+    const toggleNoti = (e) => {
+        e.preventDefault();
+        setShowNoti([false, '']);
+    }
 
     return (
         <div className={"advertisement-upload-form card"}>
+
+            {/*TODO test GeneralNoti here*/}
+            {showNoti[0] && <GeneralNoti onClick={toggleNoti}/>}
+
             <div className={"advertisement-upload-form-container"}>
                 <div className={"form-row"}>
                     <p className={"form-title"}>Create a New Advertisement</p>
@@ -133,11 +154,7 @@ function AdvertisementUploadForm(){
                 </div>
                 <div className={"form-row"}>
                     <p className={"form-prompt"}>Upload photos</p>
-
                     <NewAdDragDrop identifier={"images"} onChange={handleInputChange}/>
-                    {/*TODO: drag and drop image upload*/}
-                    <input type={"file"} onChange={(e)=>{formData.append("images", e.target.files[0])}} />
-
                 </div>
                 {adType==="textbook" &&
                     <div className={"form-row textbook-search"}>
@@ -159,8 +176,10 @@ function AdvertisementUploadForm(){
                     </div>
                 </div>
                 <div className={"form-row comment"}>
+                    <AlertablePrompt alertText={"Comment must be between 1 and 150 characters"} alerted={commentInputAlerted}/>
                     <p className={"form-prompt"}>Additional comment</p>
                     <Input type={"text"} identifier={"comment"} inputSize={"extra-large"} onChange={handleInputChange}/>
+
                 </div>
                 <AlertablePrompt alertText={"Please sign the pledge"} alerted={pledgeInputAlerted}/>
                 <div className={"pledge"}>

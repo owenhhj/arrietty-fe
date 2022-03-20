@@ -51,7 +51,6 @@ function NewAdDragDrop({
     }
   }
 
-  // TODO bug: re-upload deleted file can be illegal
   // TODO bug: state is modified but dragndrop doesn't actually remove that pic
   const handlePicDelete = (e) => {
     e.preventDefault();
@@ -62,7 +61,6 @@ function NewAdDragDrop({
 
   const getItemStyle = (isDragging, draggableStyle) => ({
     userSelect: 'none',
-    // padding: grid,
     margin: `0 5px 0 0`,
     // background: isDragging ? 'lightgreen' : 'grey',
     ...draggableStyle,
@@ -71,7 +69,6 @@ function NewAdDragDrop({
   const getListStyle = isDraggingOver => ({
     // background: isDraggingOver ? 'lightblue' : 'lightgrey',
     display: 'flex',
-    // padding: grid,
     overflow: 'auto',
   })
 
