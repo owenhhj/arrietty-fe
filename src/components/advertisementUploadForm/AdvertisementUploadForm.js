@@ -21,6 +21,13 @@ function AdvertisementUploadForm(){
     let formData = new FormData();
     let pledgeTicked = false;
 
+    // TODO delete this
+    const fakeBook = {
+        'title': 'title', 'id': 'iddddddd',
+        'isbn': 'isbn', 'author': 'author', 'edition': 'edition', 'publisher': 'publisher',
+        'courseId': 'courseId', 'originalPrice': 'originalPrice'
+    };
+
     useEffect(() => {
         dataFetch(
             "https://localhost:8000/textbook?id=",
@@ -28,6 +35,7 @@ function AdvertisementUploadForm(){
             setTextbookData,
             null
         );
+        // setTextbookData([fakeBook]);  // TODO delete this
     }, [])
 
     const handleAdTypeChange = (state)=>{
@@ -43,6 +51,14 @@ function AdvertisementUploadForm(){
         } else if (identifier==="comment"){
             setCommentInputAlerted(false);
         }
+        if (identifier==='images') {
+            // if use set(), will turn images[] into a string
+            formData.set('images', null);
+            value.forEach((f) => {
+                formData.append('images', f);
+            });
+            return;
+        }
         formData.set(identifier,value);
     }
 
@@ -55,7 +71,6 @@ function AdvertisementUploadForm(){
         return 0 < comment.length && comment.length <= 150;
     }
 
-    // Uncaught Error: Expected `onInput` listener to be a function, instead got a value of `string` type.
     const isValidPrice = (price)=>{
         //TODO: check the validity of price --> need to be smaller than original?
         let ans = /^[0-9]+$/.test(price);
@@ -86,8 +101,10 @@ function AdvertisementUploadForm(){
             okToSubmit = false;
         }
 
-        if (okToSubmit){
-            //TODO: form submission
+        // TODO buggy okToSubmit: some input alerted --> change it --> now all input alerted --> cannot submit
+        if (true){
+            // TODO success handler
+            console.log('formData to submit is', formData.getAll('images'));
             dataFetch(
               "https://localhost:8000/advertisement?action=update",
               {
@@ -100,7 +117,6 @@ function AdvertisementUploadForm(){
         }
     }
 
-    // TODO where to pass the msg & showNoti?
     const [showNoti, setShowNoti] = useState([true, 'msg to display eawijrgorsdl kangoisjro eawijrgorsdl kangoisjro']);
     const toggleNoti = (e) => {
         e.preventDefault();

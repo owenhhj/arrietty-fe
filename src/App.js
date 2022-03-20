@@ -20,9 +20,9 @@ function App() {
             </Routes>
         </BrowserRouter>
 
-        <MyProfile/>
+        {/*<MyProfile/>*/}
         {/*<AdminTagInputWidget/>*/}
-        {/*<AdvertisementUploadForm/>*/}
+        <AdvertisementUploadForm/>
     </div>
   );
 }
