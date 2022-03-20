@@ -7,14 +7,12 @@
     left: 50%;
     transform: translate(-50%, -50%);
 
-    /*border-style: solid;*/
     border-radius: 5px;
     background-color: #F3F3F3;
     box-shadow: 5px 5px 5px #D6D6D6;
 
-    /*padding: 5px;*/
     word-wrap: normal;
-
+    text-align: center;
 }
 
 .GeneralNoti p {
