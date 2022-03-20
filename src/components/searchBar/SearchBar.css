@@ -1,0 +1,94 @@
+.search-bar-container {
+
+    width: 40rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+
+    background-color: #F3F3F3;
+
+}
+
+.search-bar {
+    height: 2.5rem;
+    width: 90%;
+    display: flex;
+
+    align-items: center;
+    border-radius: 5px;
+}
+
+.search-bar > svg {
+    height: 100%;
+    padding-right: 1rem;
+    background-color: white;
+    border-radius: 0 3px 3px 0;
+    cursor: pointer;
+}
+
+.ad-type-selector {
+    height: 100%;
+    width: 20%;
+
+    border: none;
+    outline: none;
+    border-radius: 3px 0 0 3px;
+    text-align: center;
+    font-family: "Gothic A1",sans-serif;
+    font-weight: bold;
+
+    color: white;
+    background-color: #36C0C9;
+    cursor: pointer;
+}
+
+.ad-type-selector > option {
+    color: black;
+    background-color: white;
+    font-size: 0.8rem;
+    font-weight: bold;
+}
+
+.search-bar-input {
+    height: 100%;
+    width:80%;
+    outline: none;
+    border: none;
+    padding-left: 1rem ;
+
+    font-family: "Roboto", sans-serif;
+    font-size: 1.1rem;
+    font-weight: normal;
+    color: black;
+}
+
+.filter-row {
+    height: 2.5rem;
+    width: 90%;
+    display: flex;
+    align-items: center;
+
+    margin-top: 0.5rem;
+    padding-left: 0.5rem;
+
+
+}
+
+.filter-prompt {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    margin-right: 1rem;
+}
+
+.filter-prompt > svg {
+    margin-right: 0.5rem;
+}
+
+.filter-btns {
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
