@@ -1,8 +1,8 @@
 .GeneralNoti {
     position: absolute;
-    width: 300px;
-    min-height: 100px;
-    z-index: 99;
+    min-width: 200px;
+    min-height: 50px;
+    z-index: 999;
     top: 40%;
     left: 50%;
     transform: translate(-50%, -50%);
@@ -12,7 +12,7 @@
     background-color: #F3F3F3;
     box-shadow: 5px 5px 5px #D6D6D6;
 
-    padding: 5px;
+    /*padding: 5px;*/
     word-wrap: normal;
 
 }
@@ -22,7 +22,7 @@
 }
 
 .GeneralNoti Button {
-    margin: 10px 0px 5px 0px;
+    margin: 5px 0px 10px 0px;
 }
 
 

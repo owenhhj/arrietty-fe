@@ -111,7 +111,7 @@ function AdvertisementUploadForm(){
         <div className={"advertisement-upload-form card"}>
 
             {/*TODO test GeneralNoti here*/}
-            {showNoti[0] && <GeneralNoti msg={showNoti[1]} onClick={toggleNoti}/>}
+            {showNoti[0] && <GeneralNoti onClick={toggleNoti}/>}
 
             <div className={"advertisement-upload-form-container"}>
                 <div className={"form-row"}>
