@@ -48,13 +48,21 @@ export default function Input(
     }
 
     if (type==="text"){
-        return (
-            <div className="custom-input">
-                {prompt && <div className={"input-prompt"}>{prompt}</div>}
-                <input className={`input-bracket input-bracket--${inputSize}`} type={type} placeholder={placeholder} onChange={handleNormalInputChange}/>
-            </div>
-
-        );
+        if (inputSize === "extra-large") {
+            return (
+                <div className="custom-input">
+                  {prompt && <div className={"input-prompt"}>{prompt}</div>}
+                  <textarea className={`input-bracket input-bracket--extra-large`} type={type} placeholder={placeholder} onChange={handleNormalInputChange}/>
+                </div>
+            );
+        } else {
+            return (
+                <div className="custom-input">
+                  {prompt && <div className={"input-prompt"}>{prompt}</div>}
+                  <input className={`input-bracket input-bracket--${inputSize}`} type={type} placeholder={placeholder} onChange={handleNormalInputChange}/>
+                </div>
+            );
+        }
 
     }
 
@@ -62,7 +70,8 @@ export default function Input(
         return (
         <div className="custom-input">
             {prompt && <div className={"input-prompt"}>{prompt}</div>}
-            <input className={`input-bracket input-bracket--${inputSize}`} type="number"  min="0" placeholder={placeholder} onInput="validity.valid||(value='');" onChange={handleNormalInputChange} />
+            {/*TODO this was in the input tag here: onInput="validity.valid||(value='');"*/}
+            <input className={`input-bracket input-bracket--${inputSize}`} type="number"  min="0" placeholder={placeholder} onChange={handleNormalInputChange} />
         </div>
 
         );

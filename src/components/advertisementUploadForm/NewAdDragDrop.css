@@ -18,11 +18,12 @@ img {
     width: 100px;
     margin-right: 5px;
     background-color: #D6D6D6;
+    border-radius: 5px;
 }
 
 .BtnAddPic img {
     position: absolute;
-    width: 100%;
+    width: 80%;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);

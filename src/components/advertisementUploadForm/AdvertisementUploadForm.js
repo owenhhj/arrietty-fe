@@ -15,6 +15,7 @@ function AdvertisementUploadForm(){
     const [textbookData, setTextbookData] = useState([]);
     const [textbookInputAlerted, setTextbookInputAlerted] = useState(false);
     const [pricingInputAlerted, setPricingInputAlerted] = useState(false);
+    const [commentInputAlerted, setCommentInputAlerted] = useState(false);
     const [pledgeInputAlerted, setPledgeInputAlerted] = useState(false);
     let formData = new FormData();
     let pledgeTicked = false;
@@ -36,9 +37,10 @@ function AdvertisementUploadForm(){
     const handleInputChange = (identifier, value)=>{
         if(identifier==="tagId"){
             setTextbookInputAlerted(false);
-        }
-        else if (identifier==="price"){
+        } else if (identifier==="price"){
             setPricingInputAlerted(false);
+        } else if (identifier==="comment"){
+            setCommentInputAlerted(false);
         }
         formData.set(identifier,value);
     }
@@ -48,9 +50,16 @@ function AdvertisementUploadForm(){
         pledgeTicked = event.target.checked;
     }
 
+    const isValidComment = (comment) => {
+        return 0 < comment.length && comment.length <= 150;
+    }
+
+    // Uncaught Error: Expected `onInput` listener to be a function, instead got a value of `string` type.
     const isValidPrice = (price)=>{
-        //TODO: check the validity of price
-        return true;
+        //TODO: check the validity of price --> need to be smaller than original?
+        let ans = /^[0-9]+$/.test(price);
+        ans = ans && Number(price) > 0;
+        return ans;
     }
 
 
@@ -66,6 +75,11 @@ function AdvertisementUploadForm(){
             okToSubmit = false;
         }
 
+        if(!formData.has("comment") || !isValidComment(formData.get("comment"))){
+            setCommentInputAlerted(true);
+            okToSubmit = false;
+        }
+
         if(!pledgeTicked){
             setPledgeInputAlerted(true);
             okToSubmit = false;
@@ -73,8 +87,16 @@ function AdvertisementUploadForm(){
 
         if (okToSubmit){
             //TODO: form submission
+            dataFetch(
+              "https://localhost:8000/advertisement?action=update",
+              {
+                  method: 'POST',
+                  body: formData
+              },
+              null,
+              null
+            )
         }
-
     }
 
 
@@ -107,8 +129,10 @@ function AdvertisementUploadForm(){
                     </div>
                 </div>
                 <div className={"form-row comment"}>
+                    <AlertablePrompt alertText={"Comment must be between 1 and 150 characters"} alerted={commentInputAlerted}/>
                     <p className={"form-prompt"}>Additional comment</p>
                     <Input type={"text"} identifier={"comment"} inputSize={"extra-large"} onChange={handleInputChange}/>
+
                 </div>
                 <AlertablePrompt alertText={"Please sign the pledge"} alerted={pledgeInputAlerted}/>
                 <div className={"pledge"}>
