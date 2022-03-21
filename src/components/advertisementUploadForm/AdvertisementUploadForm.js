@@ -14,19 +14,13 @@ function AdvertisementUploadForm(){
 
     const [adType, setAdType] = useState("textbook");
     const [textbookData, setTextbookData] = useState([]);
+    const [otherTagData, setOtherTagData] = useState([]);
     const [textbookInputAlerted, setTextbookInputAlerted] = useState(false);
     const [pricingInputAlerted, setPricingInputAlerted] = useState(false);
     const [commentInputAlerted, setCommentInputAlerted] = useState(false);
     const [pledgeInputAlerted, setPledgeInputAlerted] = useState(false);
     let formData = new FormData();
     let pledgeTicked = false;
-
-    // TODO delete this
-    const fakeBook = {
-        'title': 'title', 'id': 'iddddddd',
-        'isbn': 'isbn', 'author': 'author', 'edition': 'edition', 'publisher': 'publisher',
-        'courseId': 'courseId', 'originalPrice': 'originalPrice'
-    };
 
     useEffect(() => {
         dataFetch(
@@ -35,8 +29,28 @@ function AdvertisementUploadForm(){
             setTextbookData,
             null
         );
-        // setTextbookData([fakeBook]);  // TODO delete this
+        dataFetch(
+            "https://localhost:8000/otherTag?id=",
+            {method:"GET"},
+            setOtherTagData,
+            null
+        );
     }, [])
+
+
+    const getOtherTagOptions = (data)=>{
+        let ret = [];
+        for (let i=0; i<data.length; i++){
+            ret.push(
+                {
+                    name: data.name,
+                    value: data.id
+                }
+            );
+        }
+        return ret;
+    }
+
 
     const handleAdTypeChange = (state)=>{
         setAdType(state);
@@ -115,6 +129,7 @@ function AdvertisementUploadForm(){
               null
             )
         }
+
     }
 
     const [showNoti, setShowNoti] = useState([true, 'msg to display eawijrgorsdl kangoisjro eawijrgorsdl kangoisjro']);
@@ -145,6 +160,12 @@ function AdvertisementUploadForm(){
                     <div className={"form-row textbook-search"}>
                         <AlertablePrompt promptText={"Select a textbook"} required={true} alertText={"Please select a textbook"} alerted={textbookInputAlerted}/>
                         <TextbookSearch textbookData={textbookData} onChange={handleInputChange} />
+                    </div>
+                }
+                {adType==="other" &&
+                    <div className={"form-row"}>
+                        <p className={"form-prompt"}>Select a tag if applicable</p>
+                        <Input type={"select-search"} identifier={"tagId"} options={getOtherTagOptions(otherTagData)} placeholder={"select a tag"} onChange={handleInputChange} />
                     </div>
                 }
                 <div className={"form-row"}>
