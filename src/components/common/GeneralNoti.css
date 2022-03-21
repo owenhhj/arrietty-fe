@@ -1,0 +1,30 @@
+.GeneralNoti {
+    position: absolute;
+    min-width: 200px;
+    min-height: 50px;
+    z-index: 999;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    border-radius: 5px;
+    background-color: #F3F3F3;
+    box-shadow: 5px 5px 5px #D6D6D6;
+
+    word-wrap: normal;
+    text-align: center;
+}
+
+.GeneralNoti p {
+    margin: 10px 0px 5px 0px;
+}
+
+.GeneralNoti Button {
+    margin: 5px 0px 10px 0px;
+}
+
+
+
+
+
+

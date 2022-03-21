@@ -1,0 +1,100 @@
+.advertisement-upload-form {
+    height: auto;
+    width: 40rem;
+    display: flex;
+    justify-content: center;
+}
+
+
+.advertisement-upload-form-container {
+    height: auto;
+    width: 80%;
+}
+
+.form-title {
+    margin-top: 1.5rem;
+    margin-bottom: 0.5rem;
+    font-family: 'Gothic A1', sans-serif;
+    font-size: 1.5rem;
+    font-weight: 900;
+    color: #57068C;
+}
+
+.form-row {
+    height: auto;
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid #DADADA;
+}
+
+.form-prompt {
+    height: 1.25rem;
+    margin-top:0.5rem;
+    margin-bottom: 1rem;
+    font-size: 1.1rem;
+    font-family: "Gothic A1", sans-serif;
+    font-weight: 300;
+    color: #595959;
+    padding: 0;
+
+    display: inline-block;
+}
+
+
+.pricing-row {
+    height: 2rem;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.pricing-row > p{
+    margin-left: 1rem;
+    font-size: 1rem;
+    font-family: "Gothic A1", sans-serif;
+    font-weight: bold;
+    color: #595959;
+}
+
+.pledge {
+    height: 3rem;
+
+
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.pledge > p{
+    font-size: 1rem;
+    font-family: "Roboto", sans-serif;
+    font-weight: 400;
+    margin-left: 0.5rem;
+}
+
+.button-row {
+    width: 100%;
+
+    display: flex;
+    justify-content: center;
+    margin-top: 0.5rem;
+    margin-bottom: 1rem;
+
+}
+
+
+
+.cancel-btn {
+    height: 2rem;
+    width: 2rem;
+    position: absolute;
+    right: 1rem;
+    top: 1rem;
+    cursor: pointer;
+}

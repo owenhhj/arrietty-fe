@@ -1,5 +1,4 @@
 .custom-input {
-    height: 3.5rem;
     width: auto;
 
     display: flex;
@@ -24,17 +23,22 @@
     box-sizing: border-box;
 }
 
+.input-bracket--extra-large {
+    height: 4rem;
+    width: 25rem;
+}
+
 .input-bracket--large {
-    height: 50%;
+    height: 1.8rem;
     width: 15rem;
 }
 
 .input-bracket--medium {
-    height: 50%;
+    height: 1.8rem;
     width: 10rem;
 }
 
 .input-bracket--small {
-    height: 50%;
+    height: 1.8rem;
     width: 5rem;
 }

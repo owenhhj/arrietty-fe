@@ -2,6 +2,7 @@ import './MyProfile.css'
 import './common/common.css'
 import MyProfileDisplay from "./MyProfileDisplay";
 import MyProfileEdit from "./MyProfileEdit";
+import GeneralNoti from "./common/GeneralNoti";
 import {useState, useEffect} from "react";
 import {dataFetch} from "./common/common";
 
@@ -29,8 +30,15 @@ function MyProfile(props) {
     }
   }
 
+  const [showNoti, setShowNoti] = useState(true);
+  const handleNoti = (e) => {
+    e.preventDefault();
+    setShowNoti(false);
+  }
+
   return (
     <div className="MyProfile card">
+      {showNoti && <GeneralNoti onClick={handleNoti}/>}
       {pageShow === 0 && <MyProfileDisplay data={myProfileData} callback={callbackHandler}/>}
       {pageShow === 1 && <MyProfileEdit data={myProfileData} callback={callbackHandler}/>}
     </div>
