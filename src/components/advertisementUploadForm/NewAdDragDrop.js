@@ -31,8 +31,7 @@ function NewAdDragDrop({
     handlePicAdd();
   }
 
-  const handlePicAdd = (e) => {
-    // e.preventDefault();
+  const handlePicAdd = () => {
     let legal = pic.length > 0;
     picURLs.forEach((uploaded) => {
       pic.forEach((newPic) => {
@@ -51,25 +50,27 @@ function NewAdDragDrop({
     }
   }
 
-  // TODO bug: state is modified but dragndrop doesn't actually remove that pic
   const handlePicDelete = (e) => {
-    e.preventDefault();
-    picURLs.splice(Number(e.target.name), 1);
-    toParent(picURLs.map((item) => (item.file)));
-    setPicURLs(picURLs);
+    let tmpPicURLs = picURLs;
+    tmpPicURLs.splice(Number(e.target.name), 1);
+    toParent(tmpPicURLs.map((item) => (item.file)));
+    setPicURLs([...tmpPicURLs]);
   }
 
   const getItemStyle = (isDragging, draggableStyle) => ({
+    ...draggableStyle,
+    position: "static",
+    left: "auto !important",
+    top: "auto !important",
     userSelect: 'none',
     margin: `0 5px 0 0`,
-    // background: isDragging ? 'lightgreen' : 'grey',
-    ...draggableStyle,
   })
 
   const getListStyle = isDraggingOver => ({
-    // background: isDraggingOver ? 'lightblue' : 'lightgrey',
+
     display: 'flex',
     overflow: 'auto',
+
   })
 
   const reorder = (list, startIndex, endIndex) => {
@@ -108,7 +109,7 @@ function NewAdDragDrop({
             {(provided, snapshot) => (
               <div className={"DivDroppable"} ref={provided.innerRef} style={getListStyle(snapshot.isDraggingOver)} {...provided.droppableProps}>
                 {picURLs.map((item, index) => (
-                  <Draggable key={index.toString()} draggableId={index.toString()} index={index}>
+                  <Draggable key={index.toString()} draggableId={index.toString()} index={index} >
                     {(provided, snapshot) => {return (
                       <div ref={provided.innerRef} {...provided.draggableProps} {...provided.dragHandleProps}
                         style={getItemStyle(
