@@ -119,6 +119,7 @@ function AdvertisementUploadForm(){
         if (true){
             // TODO success handler
             console.log('formData to submit is', formData.getAll('images'));
+            formData.set("isTextbook",adType==="textbook"?"true":"false");
             dataFetch(
               "https://localhost:8000/advertisement?action=update",
               {
@@ -142,7 +143,7 @@ function AdvertisementUploadForm(){
         <div className={"advertisement-upload-form card"}>
 
             {/*TODO test GeneralNoti here*/}
-            {showNoti[0] && <GeneralNoti onClick={toggleNoti}/>}
+            {/*{showNoti[0] && <GeneralNoti onClick={toggleNoti}/>}*/}
 
             <div className={"advertisement-upload-form-container"}>
                 <div className={"form-row"}>
