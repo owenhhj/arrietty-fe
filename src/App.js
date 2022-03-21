@@ -9,6 +9,7 @@ import "./components/common/select-search.css"
 import FilterButton from "./components/searchBar/FilterButton";
 import PriceFilter from "./components/searchBar/PriceFilter";
 import SearchBar from "./components/searchBar/SearchBar";
+import AdListing from "./components/adDisplay/AdListing";
 
 function App() {
 
@@ -23,6 +24,7 @@ function App() {
         </BrowserRouter>
 
         <SearchBar/>
+        <AdListing />
 
     </div>
   );
