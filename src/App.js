@@ -10,6 +10,7 @@ import FilterButton from "./components/searchBar/FilterButton";
 import PriceFilter from "./components/searchBar/PriceFilter";
 import SearchBar from "./components/searchBar/SearchBar";
 import AdListing from "./components/adDisplay/AdListing";
+import AdvertisementUploadForm from "./components/advertisementUploadForm/AdvertisementUploadForm";
 
 function App() {
     const options = [
@@ -51,11 +52,11 @@ function App() {
         </BrowserRouter>
 
         <SearchBar/>
-        <AdListing />
+        {/*<AdListing />*/}
 
         {/*<MyProfile/>*/}
         {/*<AdminTagInputWidget/>*/}
-        <AdvertisementUploadForm/>
+        {/*<AdvertisementUploadForm/>*/}
     </div>
   );
 }

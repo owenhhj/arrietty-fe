@@ -2,6 +2,7 @@ import {useState} from "react";
 import PriceFilter from "./PriceFilter";
 import FilterButton from "./FilterButton";
 import "./SearchBar.css"
+import TagFilter from "./TagFilter";
 
 
 function SearchBar(){
@@ -17,6 +18,7 @@ function SearchBar(){
     }
 
     const priceFilterMenu = <PriceFilter maxPrice={maxPrice} minPrice={minPrice} order={priceOrder} callback={handlePriceFilter}/>
+    const tagFilterMenu = <TagFilter/>
 
     const handleAdTypeChange = (event)=>{
         console.log(event.target.value);
@@ -56,7 +58,7 @@ function SearchBar(){
                     </div>
                     <div className={"filter-btns"}>
                         <FilterButton buttonText={"price"} dropDownMenu={priceFilterMenu} />
-                        <FilterButton buttonText={"tag"} dropDownMenu={priceFilterMenu} />
+                        <FilterButton buttonText={"tag"} dropDownMenu={tagFilterMenu} />
 
                     </div>
                 </div>

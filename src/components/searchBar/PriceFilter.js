@@ -69,7 +69,7 @@ function PriceFilter(
                 <p>-</p>
                 <Input type={"price"} identifier={"maxPrice"} defaultValue={maxPrice} onChange={handlePriceRangeChange} inputSize={"small"}/>
             </div>
-            <div className={"button-row"}>
+            <div className={"price-filter-button-row"}>
                 <Button buttonStyle={"btn--primary"} text={"Done"} buttonSize={"btn--small"} onClick={handleDone}/>
                 <Button buttonStyle={"btn--normal"} text={"Clear"} buttonSize={"btn--small"} onClick={handleClear}/>
             </div>

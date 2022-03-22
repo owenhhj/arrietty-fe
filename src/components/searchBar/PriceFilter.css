@@ -1,14 +1,13 @@
 .price-filter {
-    height: 7rem;
     width: 12rem;
 
     font-family: "Gothic A1", sans-serif;
 
-    padding: 0.2rem 0.8rem;
+    padding: 0.2rem 0;
 }
 
 .price-order-filter {
-    height: 33%;
+    height: 2rem;
     width: 100%;
     display: flex;
     justify-content: center;
@@ -25,7 +24,7 @@
 }
 
 .price-range-filter {
-    height: 33%;
+    height: 3rem;
     width: 100%;
     display: flex;
     justify-content: space-around;
@@ -40,8 +39,8 @@
     color: #595959;
 }
 
-.button-row {
-    height: 33%;
+.price-filter-button-row {
+    height: 3rem;
     width: 100%;
     display: flex;
     justify-content: space-around;
