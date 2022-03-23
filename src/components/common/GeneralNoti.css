@@ -1,7 +1,7 @@
 .GeneralNoti {
     position: absolute;
-    min-width: 200px;
-    min-height: 50px;
+    /*min-width: 200px;*/
+    /*min-height: 50px;*/
     z-index: 999;
     top: 40%;
     left: 50%;
@@ -11,16 +11,29 @@
     background-color: #F3F3F3;
     box-shadow: 5px 5px 5px #D6D6D6;
 
-    word-wrap: normal;
-    text-align: center;
+    /*word-wrap: normal;*/
+    /*text-align: center;*/
 }
 
 .GeneralNoti p {
-    margin: 10px 0px 5px 0px;
+    display: inline-block;
+    float: left;
+    margin: 10px 5px 10px 10px;
 }
 
-.GeneralNoti Button {
-    margin: 5px 0px 10px 0px;
+.GeneralNoti img {
+    display: inline-block;
+    float: right;
+    height: 1.2rem;
+    margin: 10px 10px 10px 5px;
+}
+
+.img-green {
+    filter: invert(55%) sepia(6%) saturate(5426%) hue-rotate(84deg) brightness(95%) contrast(73%);
+}
+
+.img-red {
+    filter: invert(26%) sepia(35%) saturate(2932%) hue-rotate(335deg) brightness(92%) contrast(88%);
 }
 
 
