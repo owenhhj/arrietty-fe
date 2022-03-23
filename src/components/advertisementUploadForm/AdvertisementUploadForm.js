@@ -122,6 +122,7 @@ function AdvertisementUploadForm(){
         if (true){
             // TODO success handler
             console.log('formData to submit is', formData.getAll('images'));
+            formData.set("isTextbook",adType==="textbook"?"true":"false");
             dataFetch(
               "https://localhost:8000/advertisement?action=update",
               {
