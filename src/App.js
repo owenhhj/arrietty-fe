@@ -1,4 +1,4 @@
-// import logo from './logo.svg';
+import logo from './logo.svg';
 import './App.css';
 import MyProfile from "./components/MyProfile";
 import Navbar from "./components/Navbar";
@@ -22,7 +22,7 @@ function App() {
 
         {/*<MyProfile/>*/}
         {/*<AdminTagInputWidget/>*/}
-        <AdvertisementUploadForm/>
+        {/*<AdvertisementUploadForm/>*/}
 
     </div>
   );
