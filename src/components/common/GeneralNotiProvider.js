@@ -1,13 +1,24 @@
 import GeneralNoti from "./GeneralNoti";
 import {createContext, useContext, useReducer} from "react";
 
+// >>>>>>>>>>>>>>>>>>>> HOW TO USE
+// import {showGeneralNoti} from "./components/common/GeneralNotiProvider";
+// function CallerComponent() {
+//   const dispatch = showGeneralNoti();
+//   const handleShowNoti = (e) => {
+//     e.preventDefault();
+//     dispatch({action: "add", body: {msg: "ALERT!", good: true}});
+//   }
+// }
+// >>>>>>>>>>>>>>>>>>>> HOW TO USE
+
 const GeneralNotiContext = createContext();
 
 function GeneralNotiProvider({children}) {
   const[state, dispatch] = useReducer((state, action) => {
     switch (action.action) {
       case "add":
-        return [{...action.body.body}];  // why body.body
+        return [{...action.body.body}];
       default:
         return [];
     }
@@ -23,7 +34,6 @@ function GeneralNotiProvider({children}) {
 }
 
 export const showGeneralNoti = () => {
-  // TODO why eslint prohibits this
   // eslint-disable-next-line react-hooks/rules-of-hooks
   const dispatch = useContext(GeneralNotiContext);
   return (noti) => {
