@@ -7,14 +7,16 @@ function AdDisplayCardHoverMore({
   publisher='JinQiao',
   edition='3rd edition',
   originalPrice=100,
-  relatedCourse='MATHSHU-101'
+  relatedCourse='MATHSHU-101',
+  xPos=300,
+  yPos=400
                                 }) {
-
-
-
-
+  const position = {
+    top: xPos+'px',
+    left: yPos+'px'
+  }
   return (
-    <div className={'AdDisplayCardHoverMore'}>
+    <div className={'AdDisplayCardHoverMore'} style={position}>
       <div className={'fields-container'}>
         <p><span>Title: </span>{textbookTitle}</p>
         <p><span>ISBN: </span>{isbn}</p>
@@ -24,7 +26,6 @@ function AdDisplayCardHoverMore({
         <p><span>Price: </span>{originalPrice} RMB</p>
         <p><span>Related: </span>{relatedCourse}</p>
       </div>
-
     </div>
   );
 }

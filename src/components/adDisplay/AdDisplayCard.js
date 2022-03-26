@@ -1,5 +1,6 @@
 import './AdDisplayCard.css';
 import AdDisplayCardHoverMore from "./AdDisplayCardHoverMore";
+import {useState} from "react";
 
 function AdDisplayCard({
   adData={},
@@ -7,9 +8,26 @@ function AdDisplayCard({
     name: 'Yuechuan Zhang', netId: 'yz3919'
   }
                        }) {
+  const [hover, setHover] = useState(false);
+  const [hoverPos, setHoverPos] = useState({});
+
+  // todo
+  const handleHover = (e) => {
+    setHoverPos({
+      xPos: e.relatedTarget.pageX,
+      yPos: e.relatedTarget.pageY
+    })
+    setHover(true);
+    console.log(e);
+  }
+
+  const handleHoverLeave = () => {
+    setHover(false);
+  }
+
   return (
     <div>
-      <div className={'AdDisplayCard'}>
+      <div className={'AdDisplayCard'} onMouseEnter={handleHover} onMouseLeave={handleHoverLeave}>
 
         <div className={'col-1'}>
           <img src="./default_cover.jpg" alt=""/>
@@ -63,7 +81,7 @@ function AdDisplayCard({
 
       </div>
 
-      <AdDisplayCardHoverMore/>
+      {hover && <AdDisplayCardHoverMore {...hoverPos}/>}
 
     </div>
 

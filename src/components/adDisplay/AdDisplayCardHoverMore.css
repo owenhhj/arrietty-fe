@@ -1,7 +1,10 @@
 
 .AdDisplayCardHoverMore {
+    position: absolute;
+
     width: 200px;
     height: 200px;
+    opacity: 80%;
     border-radius: 10px;
     background-color: #DBDBDB;
     box-shadow: 3px 3px 3px #CCCCCC;
