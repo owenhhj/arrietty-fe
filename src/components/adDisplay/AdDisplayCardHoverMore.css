@@ -2,10 +2,37 @@
 .AdDisplayCardHoverMore {
     width: 200px;
     height: 200px;
-    border-style: solid;
-    border-color: #595959;
+    border-radius: 10px;
+    background-color: #DBDBDB;
+    box-shadow: 3px 3px 3px #CCCCCC;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
+.fields-container {
+    width: 90%;
+    height: 90%;
+    margin: 5% 5% 5% 5%;
+
+    text-align: left;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.AdDisplayCardHoverMore span {
+    margin: 0;
+    font-size: 0.7rem;
+    color: #666666;
+}
+
+.AdDisplayCardHoverMore p {
+    margin: 0;
+    font-size: 0.8rem;
+}
 
 
 
