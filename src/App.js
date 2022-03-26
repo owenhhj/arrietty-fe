@@ -10,6 +10,7 @@ import FilterButton from "./components/searchBar/FilterButton";
 import PriceFilter from "./components/searchBar/PriceFilter";
 import SearchBar from "./components/searchBar/SearchBar";
 import AdListing from "./components/adDisplay/AdListing";
+import AdDisplayCard from "./components/adDisplay/AdDisplayCard";
 import AdvertisementUploadForm from "./components/advertisementUploadForm/AdvertisementUploadForm";
 
 function App() {
@@ -44,15 +45,16 @@ function App() {
   return (
     <div className="App">
 
-        <BrowserRouter>
-            <Navbar/>
-            <Routes>
-                <Route  path="/" exact/>
-            </Routes>
-        </BrowserRouter>
+        {/*<BrowserRouter>*/}
+        {/*    <Navbar/>*/}
+        {/*    <Routes>*/}
+        {/*        <Route  path="/" exact/>*/}
+        {/*    </Routes>*/}
+        {/*</BrowserRouter>*/}
 
         <SearchBar/>
         {/*<AdListing />*/}
+        <AdDisplayCard/>
 
         {/*<MyProfile/>*/}
         {/*<AdminTagInputWidget/>*/}
