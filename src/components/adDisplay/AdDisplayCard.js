@@ -5,7 +5,7 @@ import {useState} from "react";
 function AdDisplayCard({
   adData={},
   contactInfo={
-    userName: 'Yuechuan Zhang', userNetId: 'yz3919', userAvatarImageId: './avatar.jpg'
+    username: 'Yuechuan Zhang', userNetId: 'yz3919', userAvatarImageId: './avatar.jpg'
   }
                        }) {
   const [tapped, setTapped] = useState(false);  // todo adData.tapped not in README
@@ -30,9 +30,7 @@ function AdDisplayCard({
   const handleTap = (e) => {
     e.preventDefault();
     if (tapped) {
-      // alert('Cannot withdraw tap');
-      // return;
-      setTapped(false);
+      alert('Cannot withdraw tap');  // todo use GeneralNoti, not merged yet
     } else {
       setTapped(true);
     }
@@ -43,29 +41,30 @@ function AdDisplayCard({
       <div className={'AdDisplayCard'} onMouseEnter={handleHover} onMouseLeave={handleHoverLeave} onMouseMove={handleMouseMove}>
 
         <div className={'col-1'}>
-          <img src="./default_cover.jpg" alt=""/>
+          <img src={adData.imageIds} alt=""/>
           {/* num of pics icon */}
         </div>
 
         <div className={'col-2'}>
           <div className={'col-2-ad-title'}>
-            <p>Show me your money</p>
+            <p>{adData.adTitle}</p>
           </div>
           <div className={'col-2-price'}>
-            <p className={'price-selling'}>1000RMB</p>
-            <p className={'price-original'}>100RMB</p>
+            <p className={'price-selling'}>{adData.price} RMB</p>
+            <p className={'price-original'}>{adData.originalPrice} RMB</p>
           </div>
           <div className={'col-2-hr'}>
-            <hr/>  {/*todo make this common comp?*/}
+            <hr/>
           </div>
           <div className={'col-2-comment'}>
-            <p>The book is basically useless. But, if you still have to buy, why not buy from me at a higher price?</p>
+            <p>{adData.comment}</p>
           </div>
         </div>
 
         <div className={'col-3'}>
           <div className={'col-3-tags-container'}>
             <div className={'col-3-tags'}>
+              {/*todo tag/time*/}
               <p className={'tag'}>Textbook</p>
               <p className={'last-mod'}>1 hour ago</p>
             </div>
@@ -85,7 +84,7 @@ function AdDisplayCard({
                     <img src={contactInfo.userAvatarImageId} alt=""/>
                   </div>
                   <div className={'owner-info'}>
-                    <p className={'owner-info-name'}>{contactInfo.userName}</p>
+                    <p className={'owner-info-name'}>{contactInfo.username}</p>
                     <p className={'owner-info-netId'}>{contactInfo.userNetId}@nyu.edu</p>
                   </div>
                 </div>
@@ -109,7 +108,7 @@ function AdDisplayCard({
 
       </div>
 
-      {hover && <AdDisplayCardHoverMore {...hoverPos}/>}
+      {hover && adData.adType==='textbook' && <AdDisplayCardHoverMore {...adData} {...hoverPos}/>}
 
     </div>
 

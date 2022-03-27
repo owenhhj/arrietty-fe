@@ -40,7 +40,6 @@
 .col-2 {
     width: 34%;
     height: 100%;
-
     text-align: left;
 }
 
@@ -51,7 +50,6 @@
 .col-2-ad-title p {
     margin: 0;
     font-size: 1.2rem;
-    letter-spacing: -0.05rem;
     font-weight: bold;
 }
 
@@ -162,8 +160,6 @@
 
 .col-3-unlocked {
     width: 80%;
-    /*border-style: solid;*/
-    /*border-color: #808080;*/
     display: flex;
     justify-content: space-evenly;
     align-items: center;
