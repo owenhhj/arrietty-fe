@@ -5,9 +5,10 @@ import {useState} from "react";
 function AdDisplayCard({
   adData={},
   contactInfo={
-    name: 'Yuechuan Zhang', netId: 'yz3919'
+    userName: 'Yuechuan Zhang', userNetId: 'yz3919', userAvatarImageId: './avatar.jpg'
   }
                        }) {
+  const [tapped, setTapped] = useState(false);  // todo adData.tapped not in README
   const [hover, setHover] = useState(false);
   const [hoverPos, setHoverPos] = useState({});
 
@@ -24,6 +25,17 @@ function AdDisplayCard({
 
   const handleHoverLeave = () => {
     setHover(false);
+  }
+
+  const handleTap = (e) => {
+    e.preventDefault();
+    if (tapped) {
+      // alert('Cannot withdraw tap');
+      // return;
+      setTapped(false);
+    } else {
+      setTapped(true);
+    }
   }
 
   return (
@@ -58,15 +70,30 @@ function AdDisplayCard({
               <p className={'last-mod'}>1 hour ago</p>
             </div>
           </div>
-          <div className={'col-3-to-unlock-container'}>
-            <div className={'col-3-to-unlock'}>
-              <img src="./lock_black_48dp.svg" alt=""/>
-              <p>Tap to unlock user info</p>
+          {!tapped &&
+            <div className={'col-3-to-unlock-container'}>
+              <div className={'col-3-to-unlock'}>
+                <img src="./lock_black_48dp.svg" alt=""/>
+                <p>Tap to unlock user info</p>
+              </div>
             </div>
-          </div>
+          }
+          {tapped &&
+              <div className={'col-3-to-unlock-container'}>
+                <div className={'col-3-unlocked'}>
+                  <div className={'owner-avatar'}>
+                    <img src={contactInfo.userAvatarImageId} alt=""/>
+                  </div>
+                  <div className={'owner-info'}>
+                    <p className={'owner-info-name'}>{contactInfo.userName}</p>
+                    <p className={'owner-info-netId'}>{contactInfo.userNetId}@nyu.edu</p>
+                  </div>
+                </div>
+              </div>
+          }
           <div className={'col-3-buttons-container'}>
             <div className={'col-3-buttons'}>
-              <div className={'btn-tap'}>
+              <div className={'btn-tap'} onClick={handleTap}>
                 <img src="./touch_app_black_48dp.svg" alt=""/>
                 <p>Tap</p>
               </div>
@@ -90,6 +117,17 @@ function AdDisplayCard({
 }
 
 export default AdDisplayCard;
+
+export function TapToUnlock() {
+  return (
+      <div className={'col-3-to-unlock-container'}>
+        <div className={'col-3-to-unlock'}>
+          <img src="./lock_black_48dp.svg" alt=""/>
+          <p>Tap to unlock user info</p>
+        </div>
+      </div>
+  );
+}
 
 
 

@@ -9,7 +9,7 @@
     border-radius: 10px;
     box-shadow: 5px 5px 5px #BBBBBB;
 
-    margin: 10px 0px 10px 0px;
+    margin: 5px 0px 5px 0px;
 
     display: flex;
     justify-content: space-between;
@@ -114,7 +114,7 @@
 
 .col-3-tags p {
     width: fit-content;
-    padding: 0.2rem 0.6rem 0.2rem 0.6rem;
+    padding: 0rem 0.6rem 0rem 0.6rem;
     margin: 0;
     display: flex;
     flex-direction: column;
@@ -130,7 +130,7 @@
 
 .col-3-to-unlock-container {
     height: 30%;
-    margin: 0% 0 0% 0;
+    margin: 0;
     display: flex;
     justify-content: center;
 }
@@ -156,6 +156,39 @@
     display: inline-block;
     margin: 0;
     font-size: 1rem;
+}
+
+/**/
+
+.col-3-unlocked {
+    width: 80%;
+    /*border-style: solid;*/
+    /*border-color: #808080;*/
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.owner-avatar img {
+    height: 2.8rem;
+    width: 2.8rem;
+    border-radius: 1.4rem;
+    object-fit: cover;
+}
+
+.owner-info {
+    text-align: left;
+    /*margin: 0 0 0 2%;*/
+}
+
+.owner-info-name {
+    margin: 0;
+    font-size: 0.9rem;
+}
+
+.owner-info-netId {
+    margin: 0;
+    font-size: 0.7rem;
 }
 
 /**/
