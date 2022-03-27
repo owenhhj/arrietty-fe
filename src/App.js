@@ -55,6 +55,8 @@ function App() {
         <SearchBar/>
         {/*<AdListing />*/}
         <AdDisplayCard/>
+        <AdDisplayCard/>
+        <AdDisplayCard/>
 
         {/*<MyProfile/>*/}
         {/*<AdminTagInputWidget/>*/}

@@ -8,13 +8,13 @@ function AdDisplayCardHoverMore({
   edition='3rd edition',
   originalPrice=100,
   relatedCourse='MATHSHU-101',
-  xPos=300,
-  yPos=400
+  xPos=500,
+  yPos=500
                                 }) {
   const position = {
-    top: xPos+'px',
-    left: yPos+'px'
-  }
+    left: xPos+'px',
+    top: yPos+'px'
+  };
   return (
     <div className={'AdDisplayCardHoverMore'} style={position}>
       <div className={'fields-container'}>

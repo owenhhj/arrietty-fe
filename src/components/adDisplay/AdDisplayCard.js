@@ -11,14 +11,15 @@ function AdDisplayCard({
   const [hover, setHover] = useState(false);
   const [hoverPos, setHoverPos] = useState({});
 
-  // todo
-  const handleHover = (e) => {
+  const handleMouseMove = (e) => {
     setHoverPos({
-      xPos: e.relatedTarget.pageX,
-      yPos: e.relatedTarget.pageY
-    })
+      xPos: e.clientX+15,
+      yPos: e.clientY+15
+    });
+  }
+
+  const handleHover = (e) => {
     setHover(true);
-    console.log(e);
   }
 
   const handleHoverLeave = () => {
@@ -27,7 +28,7 @@ function AdDisplayCard({
 
   return (
     <div>
-      <div className={'AdDisplayCard'} onMouseEnter={handleHover} onMouseLeave={handleHoverLeave}>
+      <div className={'AdDisplayCard'} onMouseEnter={handleHover} onMouseLeave={handleHoverLeave} onMouseMove={handleMouseMove}>
 
         <div className={'col-1'}>
           <img src="./default_cover.jpg" alt=""/>
