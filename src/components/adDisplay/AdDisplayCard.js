@@ -92,7 +92,7 @@ function AdDisplayCard({
           }
           <div className={'col-3-buttons-container'}>
             <div className={'col-3-buttons'}>
-              <div className={'btn-tap'} onClick={handleTap}>
+              <div className={'btn-tap'} onClick={handleTap} style={{backgroundColor: tapped?"#DDDDDD":""}}>
                 <img src="./touch_app_black_48dp.svg" alt=""/>
                 <p>Tap</p>
               </div>
