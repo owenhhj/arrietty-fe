@@ -1,9 +1,20 @@
-
+import SearchBarFilterDropdown from "./SearchBarFilterDropdown";
 import './SearchBar.css';
-
-
+import {useState, useEffect} from "react";
 
 function SearchBar() {
+  const [showFilterPrice, setShowFilterPrice] = useState(false);
+  const [showFilterTag, setShowFilterTag] = useState(false);
+
+  const [tagOptions, setTagOptions] = useState([]);
+
+  useEffect(() => {
+    setTagOptions(['textbook', 'furniture', 'stationary', 'electronic']);
+  }, []);
+
+  const handleFilterChange = (e) => {
+    console.log(e);
+  }
 
   return (
     <div className={'SearchBar'}>
@@ -35,18 +46,26 @@ function SearchBar() {
             <p>Filters</p>
           </div>
 
-          <div className={'choose-filter'}>
-            <p>{'price'}</p>
-            <div className={'choose-filter-svg-container'}>
-              <img src="./expand_more_black_48dp.svg" alt=""/>
+          <div className={'choose-filter-container'}>
+            <div className={'choose-filter'} onClick={()=>{setShowFilterPrice(!showFilterPrice)}}>
+              <p>{'price'}</p>
+              <div className={'choose-filter-svg-container'}>
+                <img src="./expand_more_black_48dp.svg" alt=""/>
+              </div>
             </div>
+            {showFilterPrice && <SearchBarFilterDropdown type={'filterPrice'} callback={handleFilterChange}/>}
           </div>
-          <div className={'choose-filter'}>
-            <p>{'tag'}</p>
-            <div className={'choose-filter-svg-container'}>
-              <img src="./expand_more_black_48dp.svg" alt=""/>
+
+          <div className={'choose-filter-container'}>
+            <div className={'choose-filter'} onClick={()=>{setShowFilterTag(!showFilterTag)}}>
+              <p>{'tag'}</p>
+              <div className={'choose-filter-svg-container'}>
+                <img src="./expand_more_black_48dp.svg" alt=""/>
+              </div>
             </div>
+            {showFilterTag && <SearchBarFilterDropdown type={'filterTag'} options={tagOptions} callback={handleFilterChange}/>}
           </div>
+
 
 
 
@@ -59,24 +78,6 @@ function SearchBar() {
 }
 
 export default SearchBar;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
