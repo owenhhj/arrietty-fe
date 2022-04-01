@@ -17,6 +17,10 @@ function SearchBar({
     setTagOptions(['textbook', 'furniture', 'stationary', 'electronic']);
   }, []);
 
+  const handleAdTypeChange = () => {
+    setAdType(adType==='Textbook'?'Others':'Textbook');
+  }
+
   // todo no need to pass down, ready to submit
   const handleFilterPrice = (e) => {
     filterPrice = e;
@@ -52,7 +56,7 @@ function SearchBar({
 
       <div className={'row-input-container'}>
         <div className={'row-input'}>
-          <div className={'choose-tag clickable'}>
+          <div className={'choose-tag clickable'} onClick={handleAdTypeChange}>
             <p>{adType}</p>
             <img src="./expand_more_black_48dp.svg" alt=""/>
           </div>
@@ -72,7 +76,7 @@ function SearchBar({
             <p>Filters</p>
           </div>
           <SearchBarFilterPrice callback={handleFilterPrice}/>
-          <SearchBarFilterTag options={tagOptions} callback={handleFilterTag}/>
+          {adType==='Textbook' && <SearchBarFilterTag options={tagOptions} callback={handleFilterTag}/>}
         </div>
       </div>
 
