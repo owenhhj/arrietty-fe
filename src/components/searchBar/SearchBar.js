@@ -1,19 +1,50 @@
-import SearchBarFilterDropdown from "./SearchBarFilterDropdown";
+import SearchBarFilterPrice from "./SearchBarFilterPrice";
+import SearchBarFilterTag from "./SearchBarFilterTag";
 import './SearchBar.css';
 import {useState, useEffect} from "react";
 
-function SearchBar() {
-  const [showFilterPrice, setShowFilterPrice] = useState(false);
-  const [showFilterTag, setShowFilterTag] = useState(false);
-
+function SearchBar({
+  callback=null
+                   }) {
+  let filterPrice = {'type': 'price', 'priceOrder': 0, 'priceRange': [null, null]};
+  let filterTag = {'type': 'tag', 'selectedOptions': []};
+  let keyword = '';
+  const priceOrders = ['', 'asc', 'desc']
   const [tagOptions, setTagOptions] = useState([]);
+  const [adType, setAdType] = useState('Textbook');
 
   useEffect(() => {
     setTagOptions(['textbook', 'furniture', 'stationary', 'electronic']);
   }, []);
 
-  const handleFilterChange = (e) => {
-    console.log(e);
+  // todo no need to pass down, ready to submit
+  const handleFilterPrice = (e) => {
+    filterPrice = e;
+  }
+
+  const handleFilterTag = (e) => {
+    filterTag = e;
+  }
+
+  const handleKeywordInput = (e) => {
+    keyword = e.target.value;
+  }
+
+  const handleKeyDown = (e) => {
+    if (e.key === 'Enter') {
+      handleSubmit();
+    }
+  }
+
+  const handleSubmit = () => {
+    callback({
+      'adType': adType,
+      'keyword': keyword,
+      'priceOrder': priceOrders[filterPrice.priceOrder],
+      'minPrice': filterPrice.priceRange[0],
+      'maxPrice': filterPrice.priceRange[1],
+      'tag': 'textbook',  // todo array or csv???
+    });
   }
 
   return (
@@ -21,19 +52,14 @@ function SearchBar() {
 
       <div className={'row-input-container'}>
         <div className={'row-input'}>
-          
-          <div className={'choose-tag'}>
-            <p>{'Textbook'}</p>
-            <div className={'choose-tag-svg-container'}>
-              <img src="./expand_more_black_48dp.svg" alt=""/>
-            </div>
+          <div className={'choose-tag clickable'}>
+            <p>{adType}</p>
+            <img src="./expand_more_black_48dp.svg" alt=""/>
           </div>
-
           <div className={'search-input'}>
-            <input type="text" placeholder={'want to purchase...'}/>
+            <input type="text" placeholder={'want to purchase...'} onChange={handleKeywordInput} onKeyDown={handleKeyDown}/>
           </div>
-          
-          <div className={'search-button'}>
+          <div className={'search-button clickable'} onClick={handleSubmit}>
             <img src="./search_black_48dp.svg" alt=""/>
           </div>
         </div>
@@ -45,31 +71,8 @@ function SearchBar() {
             <img src="./filter_alt_black_48dp.svg" alt=""/>
             <p>Filters</p>
           </div>
-
-          <div className={'choose-filter-container'}>
-            <div className={'choose-filter'} onClick={()=>{setShowFilterPrice(!showFilterPrice)}}>
-              <p>{'price'}</p>
-              <div className={'choose-filter-svg-container'}>
-                <img src="./expand_more_black_48dp.svg" alt=""/>
-              </div>
-            </div>
-            {showFilterPrice && <SearchBarFilterDropdown type={'filterPrice'} callback={handleFilterChange}/>}
-          </div>
-
-          <div className={'choose-filter-container'}>
-            <div className={'choose-filter'} onClick={()=>{setShowFilterTag(!showFilterTag)}}>
-              <p>{'tag'}</p>
-              <div className={'choose-filter-svg-container'}>
-                <img src="./expand_more_black_48dp.svg" alt=""/>
-              </div>
-            </div>
-            {showFilterTag && <SearchBarFilterDropdown type={'filterTag'} options={tagOptions} callback={handleFilterChange}/>}
-          </div>
-
-
-
-
-
+          <SearchBarFilterPrice callback={handleFilterPrice}/>
+          <SearchBarFilterTag options={tagOptions} callback={handleFilterTag}/>
         </div>
       </div>
 

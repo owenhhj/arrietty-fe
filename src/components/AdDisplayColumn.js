@@ -14,11 +14,15 @@ function AdDisplayColumn() {
   const [adData, setAdData] = useState([]);
 
   useEffect(() => {
-    // todo fetch
+    // todo fetch on mount
     setAdData(ads);
   }, []);
 
-
+  // data from SB
+  const handleSearchBar = (e) => {
+    console.log('ready to fetch in Column')
+    console.log(e)
+  }
 
   return (
     <div>
@@ -26,7 +30,7 @@ function AdDisplayColumn() {
         <button onClick={()=>{setAdData(adData.length!==0?[]:ads);}}>toggle Ads</button>
       </div>
 
-      <SearchBar/>
+      <SearchBar callback={handleSearchBar}/>
 
       {adData.map((ad, index) => {
         return (<AdDisplayCard key={index} adData={ad} contactInfo={ad}/>);

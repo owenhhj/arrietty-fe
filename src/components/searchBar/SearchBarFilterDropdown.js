@@ -6,11 +6,13 @@ function SearchBarFilterDropdown({
   options=[],
   callback=null
                                  }) {
-  const [priceRange, setPriceRange] = useState([null, null]);
-  const [priceOrder, setPriceOrder] = useState(0);  // index --> `orders`
-  const priceOrders = ['not set', 'lowest', 'highest']
-
   if (type === 'filterPrice') {
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    const [priceRange, setPriceRange] = useState([null, null]);
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    const [priceOrder, setPriceOrder] = useState(0);  // index --> `orders`
+    const priceOrders = ['not set', 'lowest', 'highest'];
+
     const handleOrderChange = (e) => {
       e.preventDefault();
       setPriceOrder((priceOrder+1)%3);
@@ -49,7 +51,7 @@ function SearchBarFilterDropdown({
 
     return (
       <div className={'SearchBarFilterDropdown dropdown-price'}>
-        <div className={'row-order'} onClick={handleOrderChange}>
+        <div className={'row-order clickable'} onClick={handleOrderChange}>
           <p>Order: {priceOrders[priceOrder]}</p>
           {priceOrder!==0 && <img src="./sort_black_48dp.svg" alt="" style={{transform: priceOrder===1?'scaleY(-1)':'none'}}/>}
         </div>
@@ -61,8 +63,8 @@ function SearchBarFilterDropdown({
         </div>
         <hr/>
         <div className={'row-buttons'}>
-          <p onClick={handleDone}>Done</p>
-          <p onClick={handleReset}>Reset</p>
+          {/*<p className={'clickable'} onClick={handleDone}>Done</p>*/}
+          <p className={'clickable'} onClick={handleReset}>Reset</p>
         </div>
       </div>
     );
@@ -71,16 +73,12 @@ function SearchBarFilterDropdown({
   if (type === 'filterTag') {
     const map = new Map();
 
-    const handleOptionToggle = (e) => {
-      e.preventDefault();
-      if (map.get(e.target.getAttribute('index'))) {
-        map.set(e.target.getAttribute('index'), !map.get(e.target.getAttribute('index')));
-      } else {
-        map.set(e.target.getAttribute('index'), true);
-      }
+    const handleSet = (e) => {
+      map.set(e, !map.get(e));
       submitFilter();
     }
 
+    // reset buggy & not in use
     const handleReset = (e) => {
       e.preventDefault();
       map.clear();
@@ -96,7 +94,7 @@ function SearchBarFilterDropdown({
       });
       callback({
         'type': type,
-        'selected': mapped
+        'selectedOptions': mapped
       });
     }
 
@@ -105,23 +103,39 @@ function SearchBarFilterDropdown({
         <div className={'row-options'}>
           {options.map((op, index) => {
             return (
-              <div key={index} className={'option-entry'}>
-                <p index={index} onClick={handleOptionToggle} className={map.get(index.toString())?'selected':''}>{op}</p>
-              </div>
+              <OptionEntry key={index} index={index.toString()} option={op} isClicked={map.get(index.toString())} callback={handleSet}/>
             );
           })}
         </div>
-        <hr/>
-        <div className={'row-buttons'}>
-          <p onClick={handleReset}>Reset</p>
-        </div>
+        {/*<hr/>*/}
+        {/*<div className={'row-buttons'}>*/}
+        {/*  <p className={'clickable'} onClick={handleReset}>Reset</p>*/}
+        {/*</div>*/}
       </div>
     );
   }
-
-
-
   return null;
+}
+
+function OptionEntry({
+  index='0',
+  option='text?book',
+  isClicked=false,
+  callback=null
+                     }) {
+  const [selfSelected, setSelfSelected] = useState(isClicked);
+
+  const handleClick = (e) => {
+    e.preventDefault();
+    setSelfSelected(!selfSelected);
+    callback(e.target.getAttribute('index'));
+  }
+
+  return (
+    <div className={'option-entry clickable'}>
+      <p index={index} onClick={handleClick} className={selfSelected?'selected':''}>{option}</p>
+    </div>
+  );
 }
 
 export default SearchBarFilterDropdown;

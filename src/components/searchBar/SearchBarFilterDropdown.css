@@ -1,13 +1,13 @@
 
 .SearchBarFilterDropdown {
     border-radius: 5px;
-    box-shadow: 3px 3px 3px #BBBBBB;
+    box-shadow: 1px 1px 3px 1px #BBBBBB;
 
     background-color: #F3F3F3;
     z-index: 9;
 
     position: absolute;
-    transform: translateY(0.5rem);
+    transform: translateY(0.5em);
 
     display: flex;
     flex-direction: column;
@@ -57,42 +57,51 @@ hr {
 .dropdown-price .row-input input {
     width: 3.5rem;
     height: 1.5rem;
-    border-style: none;
+    border-style: solid;
     border-radius: 3px;
+    border-width: 1px;
+    border-color: #BEBEBE;
     text-align: center;
 }
 
-.dropdown-price .row-buttons {
+.row-buttons {
     margin: 0.3rem 0 0.3rem 0;
     display: flex;
     align-items: center;
     justify-content: space-evenly;
 }
 
-.dropdown-price .row-buttons p {
-    margin: 0 0.3rem 0 0.3rem;
-    padding: 0rem 0.2rem 0rem 0.2rem;
+.row-buttons p {
+    margin: 0 0.3em 0 0.3em;
+    padding: 0.2em 0.4em 0.2em 0.4em;
+    background-color: #FFFFFF;
+    color: #222222;
     border-style: solid;
-    border-width: 1px;
     border-radius: 3px;
+    border-color: #BEBEBE;
+    border-width: 1px;
+}
+
+.row-buttons p.primary {
+    background-color: #36c0c9;
+    color: #FFFFFF;
+    border-style: none;
 }
 
 /**/
 
 .dropdown-tag {
-    width: 7em;
 }
 
 .dropdown-tag .row-options {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin: 0.5rem 0.5rem;
+    margin: 0.2em 0.5em 0.2em 0.5em;
 }
 
 .dropdown-tag .row-options .option-entry {
-    margin: 0.2rem 0 0 0;
-    width: 95%;
+    margin: 0.1em 0 0.1rem 0;
 }
 
 .dropdown-tag .row-options .option-entry p {
@@ -101,6 +110,12 @@ hr {
     border-radius: 3px;
     border-style: solid;
     border-width: 1px;
+    border-color: #BEBEBE;
+}
+
+.dropdown-tag .row-options .option-entry .selected {
+    background-color: #7635A0;
+    color: #FFFFFF;
 }
 
 

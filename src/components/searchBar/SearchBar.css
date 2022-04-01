@@ -39,20 +39,24 @@
 .row-input .choose-tag {
     height: 100%;
     width: 15%;
+    background-color: #36C0C9;
+    color: #FFFFFF;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
 
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
-.row-input .choose-tag .choose-tag-svg-container {
-    display: flex;
-    flex-direction: column;
+.row-input .choose-tag p {
+    margin: 0 0 0 0.2em;
 }
 
-.row-input .choose-tag .choose-tag-svg-container img {
+.row-input .choose-tag img {
     height: 1rem;
     width: 1rem;
+    filter: invert(100%) sepia(100%) saturate(0%) hue-rotate(288deg) brightness(102%) contrast(102%);
 }
 
 .row-input .search-input {
@@ -65,6 +69,7 @@
     height: 100%;
     border-style: none;
     font-size: 1rem;
+    padding: 0 0.5em 0 0.5em;
 }
 
 .row-input .search-button {
@@ -121,20 +126,15 @@
 .row-filters .choose-filter {
     height: min-content;
     width: min-content;
-    padding: 0.2rem 0.3rem 0.2rem 0.5rem;
+    padding: 0.3em 0.3em 0.3em 0.5em;
     border-radius: 3px;
     border-style: solid;
     border-width: 1px;
-    border-color: #888888;
+    border-color: #BEBEBE;
 
     display: flex;
     align-items: center;
     justify-content: center;
-}
-
-/*todo refactor ':active' into common.css, with class 'clickable'*/
-.row-filters .choose-filter:active {
-    background-color: #DDDDDD;
 }
 
 .row-filters .choose-filter .choose-filter-svg-container {
