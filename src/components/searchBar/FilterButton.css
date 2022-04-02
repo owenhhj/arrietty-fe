@@ -1,0 +1,39 @@
+.filter-button-container {
+    /*position: relative;*/
+    font-family: "Gothic A1", sans-serif;
+    margin-right: 1rem;
+    outline: none;
+}
+
+.filter-button {
+    height: 2rem;
+    padding: 0.1rem 0.2rem 0.1rem 0.5rem;
+    background-color: #FFF9F9;
+    border-radius: 5px;
+    border: 0.5px solid #BEBEBE;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.filter-button:hover {
+    background-color: #DBDBDB;
+}
+
+
+
+.filter-button > p {
+    margin: 0;
+    color: black;
+    font-size: 0.8rem;
+}
+
+.filter-button svg {
+    margin-left: 0.2rem;
+}
+
+.filter-menu {
+    margin-top:0.5rem;
+    position: absolute;
+    z-index: 1;
+}

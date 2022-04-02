@@ -6,9 +6,40 @@ import {BrowserRouter, Route, Routes} from "react-router-dom";
 import AdminTagInputWidget from "./components/admin/AdminTagInputWidget";
 import SelectSearch, {fuzzySearch} from "react-select-search";
 import "./components/common/select-search.css"
+import FilterButton from "./components/searchBar/FilterButton";
+import PriceFilter from "./components/searchBar/PriceFilter";
+import AdDisplayColumn from "./components/AdDisplayColumn";
 import AdvertisementUploadForm from "./components/advertisementUploadForm/AdvertisementUploadForm";
 
 function App() {
+    const options = [
+        {
+            name: "Annie Cruz",
+            value: "annie.cruz",
+            photo: "https://randomuser.me/api/portraits/women/60.jpg"
+        },
+        {
+            name: "Eli Shelton",
+            disabled: true,
+            value: "eli.shelton",
+            photo: "https://randomuser.me/api/portraits/men/7.jpg"
+        },
+        {
+            name: "Loretta Rogers",
+            value: "loretta.rogers",
+            photo: "https://randomuser.me/api/portraits/women/51.jpg"
+        },
+        {
+            name: "Lloyd Fisher",
+            value: "lloyd.fisher",
+            photo: "https://randomuser.me/api/portraits/men/34.jpg"
+        },
+        {
+            name: "Tiffany Gonzales",
+            value: "tiffany.gonzales",
+            photo: "https://randomuser.me/api/portraits/women/71.jpg"
+        }
+    ];
 
   return (
     <div className="App">
@@ -22,7 +53,10 @@ function App() {
 
         {/*<MyProfile/>*/}
         {/*<AdminTagInputWidget/>*/}
-        {/*<AdvertisementUploadForm/>*/}
+
+
+        <AdvertisementUploadForm/>
+        <AdDisplayColumn/>
 
     </div>
   );
