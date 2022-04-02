@@ -9,7 +9,7 @@ function SearchBar({
   let filterPrice = {'type': 'price', 'priceOrder': 0, 'priceRange': [null, null]};
   let filterTag = {'type': 'tag', 'selectedOptions': []};
   let keyword = '';
-  const priceOrders = ['', 'asc', 'desc']
+  const priceOrders = [null, 'asc', 'desc'];
   const [tagOptions, setTagOptions] = useState([]);
   const [adType, setAdType] = useState('textbook');
 
@@ -21,7 +21,6 @@ function SearchBar({
     setAdType(adType==='textbook'?'others':'textbook');
   }
 
-  // todo no need to pass down, ready to submit
   const handleFilterPrice = (e) => {
     filterPrice = e;
   }
@@ -31,7 +30,7 @@ function SearchBar({
   }
 
   const handleKeywordInput = (e) => {
-    keyword = e.target.value;
+    keyword = e.target.value;  // todo pending back-end update to accept null
   }
 
   const handleKeyDown = (e) => {
@@ -47,7 +46,7 @@ function SearchBar({
       'priceOrder': priceOrders[filterPrice.priceOrder],
       'minPrice': filterPrice.priceRange[0],
       'maxPrice': filterPrice.priceRange[1],
-      'tag': 'textbook',  // todo array or csv???
+      'tag': filterTag.selectedOptions.join(',')
     });
   }
 

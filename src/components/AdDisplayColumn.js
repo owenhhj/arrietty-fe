@@ -19,28 +19,28 @@ function AdDisplayColumn() {
 
   // todo refactor into two steps
   const handleSearchBar = (e) => {
+    e.pageNum = 0;  // todo
     console.log('ready to fetch in Column with search:', e);
-    e.pageNum = 0;
     dataFetch(
       'https://localhost:8000/search',
       {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify(e)},
-      (res) => {console.log('res', res)},
-      (err) => {console.log('err', err)})
+      (r) => {
+        console.log(r);
+        setAdData(r);
+      },
+      (e) => {console.warn(e)})
   }
 
   return (
     <div>
-      <div style={{width: "fit-content"}}>
-        <button onClick={()=>{setAdData(ads)}}>SetDefaultAds</button>
-      </div>
 
       <SearchBar callback={handleSearchBar}/>
 
       {adData.map((ad, index) => {
-        return (<AdDisplayCard key={index} adData={ad} contactInfo={ad}/>);
+        return (<AdDisplayCard key={index} adData={ad}/>);
       })}
 
     </div>

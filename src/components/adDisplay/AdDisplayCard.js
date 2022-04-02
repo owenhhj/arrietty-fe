@@ -1,25 +1,33 @@
 import './AdDisplayCard.css';
 import AdDisplayCardHoverMore from "./AdDisplayCardHoverMore";
-import {useState} from "react";
+import {useEffect, useState} from "react";
+import {dataFetch} from "../common/common";
+
+// const contactInfo={username: 'Yuechuan Zhang', userNetId: 'yz3919', userAvatarImageId: './avatar.jpg'};
 
 function AdDisplayCard({
-  adData={},
-  contactInfo={
-    username: 'Yuechuan Zhang', userNetId: 'yz3919', userAvatarImageId: './avatar.jpg'
-  }
+  adData={},  // one piece of adData
                        }) {
+  const ROOT = 'https://localhost:8000/';
   const [tapped, setTapped] = useState(false);  // todo adData.tapped not in README
   const [hover, setHover] = useState(false);
   const [hoverPos, setHoverPos] = useState({});
+  const [contactInfo, setContactInfo] = useState({});
+
+  // todo InfoVisual Hw return null component while loading?
+  useEffect(() => {
+    dataFetch(`${ROOT}tap?id=${adData.id}`,
+      {},
+      setContactInfo,
+      (e) => {console.warn(e)}
+    );
+  }, [adData]);
 
   const handleMouseMove = (e) => {
-    setHoverPos({
-      xPos: e.clientX+15,
-      yPos: e.clientY+15
-    });
+    setHoverPos({xPos: e.pageX+15, yPos: e.pageY+15});
   }
 
-  const handleHover = (e) => {
+  const handleHover = () => {
     setHover(true);
   }
 
@@ -30,7 +38,7 @@ function AdDisplayCard({
   const handleTap = (e) => {
     e.preventDefault();
     if (tapped) {
-      alert('Cannot withdraw tap');  // todo use GeneralNoti, not merged yet
+      alert('Cannot withdraw tap');  // todo use GeneralNoti
     } else {
       setTapped(true);
     }
@@ -41,8 +49,9 @@ function AdDisplayCard({
       <div className={'AdDisplayCard'} onMouseEnter={handleHover} onMouseLeave={handleHoverLeave} onMouseMove={handleMouseMove}>
 
         <div className={'col-1'}>
-          <img src={adData.imageIds} alt=""/>
-          {/* num of pics icon */}
+          {/*<img src={adData.imageIds} alt=""/>*/}
+          <img src={`${ROOT}image?id=${adData.imageIds.split(',')[0]}`} alt=""/>
+          {/* todo num of pics icon */}
         </div>
 
         <div className={'col-2'}>
@@ -81,7 +90,8 @@ function AdDisplayCard({
               <div className={'col-3-to-unlock-container'}>
                 <div className={'col-3-unlocked'}>
                   <div className={'owner-avatar'}>
-                    <img src={contactInfo.userAvatarImageId} alt=""/>
+                    {/*<img src={contactInfo.userAvatarImageId} alt=""/>*/}
+                    <img src={`${ROOT}image?id=${contactInfo.userAvatarImageId}`} alt=""/>
                   </div>
                   <div className={'owner-info'}>
                     <p className={'owner-info-name'}>{contactInfo.username}</p>
