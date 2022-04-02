@@ -1,25 +1,28 @@
+import React, {useEffect} from "react";
 import './GeneralNoti.css';
-import Button from './Button';
 
-
-// from the caller: msg to display, btn text, callback function onClick
+// https://github.com/daryanka/notification-component/blob/master/src/Notifications/Notification.js
 function GeneralNoti({
-  msg="Are you still there?",
-  btnText="OK",
-  onClick=null,
+  msg="GeneralNoti default prop",
+  good=true,
+  dispatch  // function to toggleShow
                      }) {
+  useEffect(() => {
+    setTimeout(() => {
+      dispatch({
+        action: "del"
+      });
+    }, 2000);
+  }, []);
+
   return (
-    <div className={"GeneralNoti"}>
-      <div>
+      <div className={"GeneralNoti"}>
         <p>{msg}</p>
+        {good && <img src="./done_outline_black_48dp.svg" alt="" className={"img-green"}/>}
+        {!good && <img src="./dangerous_black_48dp.svg" alt="" className={"img-red"}/>}
       </div>
-      <div>
-        <Button text={btnText} buttonStyle={"btn--primary"} buttonSize={"btn--medium"} onClick={onClick}/>
-      </div>
-    </div>
   );
 }
-
 
 export default GeneralNoti;
 

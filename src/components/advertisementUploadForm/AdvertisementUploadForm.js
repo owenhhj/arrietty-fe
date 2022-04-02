@@ -4,14 +4,12 @@ import AdTypeSwitch from "./AdTypeSwitch";
 import TextbookSearch from "./TextbookSearch";
 import Input from "../common/Input";
 import Button from "../common/Button";
-import GeneralNoti from "../common/GeneralNoti";
 import AlertablePrompt from "./AlertablePrompt";
 import NewAdDragDrop from "./NewAdDragDrop";
 import {dataFetch} from "../common/common";
-
+import {showGeneralNoti} from '../common/GeneralNotiProvider'
 
 function AdvertisementUploadForm(){
-
     const [adType, setAdType] = useState("textbook");
     const [textbookData, setTextbookData] = useState([]);
     const [otherTagData, setOtherTagData] = useState([]);
@@ -37,6 +35,11 @@ function AdvertisementUploadForm(){
         );
     }, [])
 
+    const dispatch = showGeneralNoti();
+    const handleNoti = (e) => {
+        e.preventDefault();
+        dispatch({action: "add", body: {msg: "AdUpForm.js called", good: false}});
+    }
 
     const getOtherTagOptions = (data)=>{
         let ret = [];
@@ -130,21 +133,11 @@ function AdvertisementUploadForm(){
               null
             )
         }
-
-    }
-
-    const [showNoti, setShowNoti] = useState([true, 'msg to display eawijrgorsdl kangoisjro eawijrgorsdl kangoisjro']);
-    const toggleNoti = (e) => {
-        e.preventDefault();
-        setShowNoti([false, '']);
     }
 
     return (
         <div className={"advertisement-upload-form card"}>
-
-            {/*TODO test GeneralNoti here*/}
-            {/*{showNoti[0] && <GeneralNoti onClick={toggleNoti}/>}*/}
-
+            <button onClick={handleNoti}>NOTI</button>
             <div className={"advertisement-upload-form-container"}>
                 <div className={"form-row"}>
                     <p className={"form-title"}>Create a New Advertisement</p>
