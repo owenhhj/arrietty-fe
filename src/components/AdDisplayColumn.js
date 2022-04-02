@@ -9,25 +9,32 @@ const ads = [
   {id: 2, username: 'user3', userNetId: 'cc1111', userAvatarImageId: './avatar.jpg', adType: 'textbook', adTitle: 'Selling Buying!!!', textbookTitle: 'Calargculus', isbn: '123-4564033823', author: 'Haha', publisher: 'Owens Pub', edition: '3', originalPrice: '23', relatedCourse: 'CSCISHU 101', otherTag: null, imageIds: './default_cover.jpg', price:34, comment:'nothing to tell really', createdTime: null}
 ]
 
-// todo fetch content with searchBar and pass down to AdListing
 function AdDisplayColumn() {
   const [adData, setAdData] = useState([]);
 
   useEffect(() => {
-    // todo fetch on mount
+    // todo fetch onMount
     setAdData(ads);
   }, []);
 
-  // data from SB
+  // todo refactor into two steps
   const handleSearchBar = (e) => {
-    console.log('ready to fetch in Column')
-    console.log(e)
+    console.log('ready to fetch in Column with search:', e);
+    e.pageNum = 0;
+    dataFetch(
+      'https://localhost:8000/search',
+      {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify(e)},
+      (res) => {console.log('res', res)},
+      (err) => {console.log('err', err)})
   }
 
   return (
     <div>
       <div style={{width: "fit-content"}}>
-        <button onClick={()=>{setAdData(adData.length!==0?[]:ads);}}>toggle Ads</button>
+        <button onClick={()=>{setAdData(ads)}}>SetDefaultAds</button>
       </div>
 
       <SearchBar callback={handleSearchBar}/>
@@ -35,8 +42,6 @@ function AdDisplayColumn() {
       {adData.map((ad, index) => {
         return (<AdDisplayCard key={index} adData={ad} contactInfo={ad}/>);
       })}
-
-
 
     </div>
   );

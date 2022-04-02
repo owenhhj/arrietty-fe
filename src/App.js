@@ -53,7 +53,7 @@ function App() {
 
         {/*<MyProfile/>*/}
         {/*<AdminTagInputWidget/>*/}
-        {/*<AdvertisementUploadForm/>*/}
+        <AdvertisementUploadForm/>
 
         <AdDisplayColumn/>
     </div>
