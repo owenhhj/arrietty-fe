@@ -3,7 +3,7 @@ import AdDisplayCardHoverMore from "./AdDisplayCardHoverMore";
 import {useEffect, useState} from "react";
 import {dataFetch} from "../common/common";
 
-// const contactInfo={username: 'Yuechuan Zhang', userNetId: 'yz3919', userAvatarImageId: './avatar.jpg'};
+// const contactInfo={username: 'Yuechuan Zhang', netId: 'yz3919', avatarImageId: './avatar.jpg'};
 
 function AdDisplayCard({
   adData={},  // one piece of adData
@@ -12,7 +12,7 @@ function AdDisplayCard({
   const [tapped, setTapped] = useState(false);  // todo adData.tapped not in README
   const [hover, setHover] = useState(false);
   const [hoverPos, setHoverPos] = useState({});
-  const [contactInfo, setContactInfo] = useState({});
+  const [contactInfo, setContactInfo] = useState({username:'Name', netId:'NetID', avatarImageId:0});
 
   // todo InfoVisual Hw return null component while loading?
   useEffect(() => {
@@ -44,12 +44,25 @@ function AdDisplayCard({
     }
   }
 
+  const logThisPic = () => {
+    let u = 'https://localhost:8000/image?id='+adData.imageIds.split(',')[0];
+    console.log('fetching pic with:', u);
+    dataFetch(u, {headers: {method: 'GET'}},
+      (r) => {
+      console.log(u, r);
+      },
+      (e) => {
+      console.log(u, e);
+      })
+  }
+
   return (
     <div>
       <div className={'AdDisplayCard'} onMouseEnter={handleHover} onMouseLeave={handleHoverLeave} onMouseMove={handleMouseMove}>
 
         <div className={'col-1'}>
           {/*<img src={adData.imageIds} alt=""/>*/}
+          <button onClick={logThisPic} style={{position: 'absolute', zIndex: '999'}}>LogThisPic</button>
           <img src={`${ROOT}image?id=${adData.imageIds.split(',')[0]}`} alt=""/>
           {/* todo num of pics icon */}
         </div>
@@ -91,11 +104,11 @@ function AdDisplayCard({
                 <div className={'col-3-unlocked'}>
                   <div className={'owner-avatar'}>
                     {/*<img src={contactInfo.userAvatarImageId} alt=""/>*/}
-                    <img src={`${ROOT}image?id=${contactInfo.userAvatarImageId}`} alt=""/>
+                    <img src={`${ROOT}image?id=${contactInfo.avatarImageId}`} alt=""/>
                   </div>
                   <div className={'owner-info'}>
                     <p className={'owner-info-name'}>{contactInfo.username}</p>
-                    <p className={'owner-info-netId'}>{contactInfo.userNetId}@nyu.edu</p>
+                    <p className={'owner-info-netId'}>{contactInfo.netId}@nyu.edu</p>
                   </div>
                 </div>
               </div>

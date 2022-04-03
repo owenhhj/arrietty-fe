@@ -63,6 +63,7 @@ function SearchBar({
           </div>
           <div className={'search-input'}>
             <input type="text" placeholder={'want to purchase...'} onChange={handleKeywordInput} onKeyDown={handleKeyDown}/>
+            {/* todo add search suggestions window */}
           </div>
           <div className={'search-button clickable'} onClick={handleSubmit}>
             <img src="./search_black_48dp.svg" alt=""/>
