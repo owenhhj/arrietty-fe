@@ -43,6 +43,8 @@ function AdDisplayColumn() {
         return (<AdDisplayCard key={index} adData={ad}/>);
       })}
 
+      {/* todo load next page */}
+
     </div>
   );
 }

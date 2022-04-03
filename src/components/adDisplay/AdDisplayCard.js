@@ -44,17 +44,18 @@ function AdDisplayCard({
     }
   }
 
-  const logThisPic = () => {
-    let u = 'https://localhost:8000/image?id='+adData.imageIds.split(',')[0];
-    console.log('fetching pic with:', u);
-    dataFetch(u, {headers: {method: 'GET'}},
-      (r) => {
-      console.log(u, r);
-      },
-      (e) => {
-      console.log(u, e);
-      })
-  }
+  // todo remove this
+  // const logThisPic = () => {
+  //   let u = 'https://localhost:8000/image?id='+adData.imageIds.split(',')[0];
+  //   console.log('fetching pic with:', u);
+  //   dataFetch(u, {headers: {method: 'GET'}},
+  //     (r) => {
+  //     console.log(u, r);
+  //     },
+  //     (e) => {
+  //     console.log(u, e);
+  //     })
+  // }
 
   return (
     <div>
@@ -62,7 +63,6 @@ function AdDisplayCard({
 
         <div className={'col-1'}>
           {/*<img src={adData.imageIds} alt=""/>*/}
-          <button onClick={logThisPic} style={{position: 'absolute', zIndex: '999'}}>LogThisPic</button>
           <img src={`${ROOT}image?id=${adData.imageIds.split(',')[0]}`} alt=""/>
           {/* todo num of pics icon */}
         </div>
