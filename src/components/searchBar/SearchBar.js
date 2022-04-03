@@ -78,7 +78,7 @@ function SearchBar({
             <p>Filters</p>
           </div>
           <SearchBarFilterPrice callback={handleFilterPrice}/>
-          {adType==='textbook' && <SearchBarFilterTag options={tagOptions} callback={handleFilterTag}/>}
+          {adType!=='textbook' && <SearchBarFilterTag options={tagOptions} callback={handleFilterTag}/>}
         </div>
       </div>
 
