@@ -10,53 +10,22 @@ import FilterButton from "./components/searchBar/FilterButton";
 import PriceFilter from "./components/searchBar/PriceFilter";
 import AdDisplayColumn from "./components/AdDisplayColumn";
 import AdvertisementUploadForm from "./components/advertisementUploadForm/AdvertisementUploadForm";
+import Home from "./Home";
+import Admin from "./Admin";
 
 function App() {
-    const options = [
-        {
-            name: "Annie Cruz",
-            value: "annie.cruz",
-            photo: "https://randomuser.me/api/portraits/women/60.jpg"
-        },
-        {
-            name: "Eli Shelton",
-            disabled: true,
-            value: "eli.shelton",
-            photo: "https://randomuser.me/api/portraits/men/7.jpg"
-        },
-        {
-            name: "Loretta Rogers",
-            value: "loretta.rogers",
-            photo: "https://randomuser.me/api/portraits/women/51.jpg"
-        },
-        {
-            name: "Lloyd Fisher",
-            value: "lloyd.fisher",
-            photo: "https://randomuser.me/api/portraits/men/34.jpg"
-        },
-        {
-            name: "Tiffany Gonzales",
-            value: "tiffany.gonzales",
-            photo: "https://randomuser.me/api/portraits/women/71.jpg"
-        }
-    ];
 
   return (
     <div className="App">
 
-        {/*<BrowserRouter>*/}
-        {/*    <Navbar/>*/}
-        {/*    <Routes>*/}
-        {/*        <Route  path="/" exact/>*/}
-        {/*    </Routes>*/}
-        {/*</BrowserRouter>*/}
+        <BrowserRouter>
+            <Navbar isAdmin={true} />
+            <Routes>
+                <Route  path="/home" element={<Home/>} exact/>
+                <Route  path="/admin" element={<Admin/>} exact/>
+            </Routes>
+        </BrowserRouter>
 
-        {/*<MyProfile/>*/}
-        {/*<AdminTagInputWidget/>*/}
-
-
-        <AdvertisementUploadForm/>
-        <AdDisplayColumn/>
 
     </div>
   );
