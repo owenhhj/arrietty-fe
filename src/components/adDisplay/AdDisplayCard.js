@@ -44,25 +44,11 @@ function AdDisplayCard({
     }
   }
 
-  // todo remove this
-  // const logThisPic = () => {
-  //   let u = 'https://localhost:8000/image?id='+adData.imageIds.split(',')[0];
-  //   console.log('fetching pic with:', u);
-  //   dataFetch(u, {headers: {method: 'GET'}},
-  //     (r) => {
-  //     console.log(u, r);
-  //     },
-  //     (e) => {
-  //     console.log(u, e);
-  //     })
-  // }
-
   return (
     <div>
       <div className={'AdDisplayCard'} onMouseEnter={handleHover} onMouseLeave={handleHoverLeave} onMouseMove={handleMouseMove}>
 
         <div className={'col-1'}>
-          {/*<img src={adData.imageIds} alt=""/>*/}
           <img src={`${ROOT}image?id=${adData.imageIds.split(',')[0]}`} alt=""/>
           {/* todo num of pics icon */}
         </div>

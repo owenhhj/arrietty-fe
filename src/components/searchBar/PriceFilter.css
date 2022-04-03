@@ -1,48 +1,48 @@
-.price-filter {
-    width: 12rem;
+/*.price-filter {*/
+/*    width: 12rem;*/
 
-    font-family: "Gothic A1", sans-serif;
+/*    font-family: "Gothic A1", sans-serif;*/
 
-    padding: 0.2rem 0;
-}
+/*    padding: 0.2rem 0;*/
+/*}*/
 
-.price-order-filter {
-    height: 2rem;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
+/*.price-order-filter {*/
+/*    height: 2rem;*/
+/*    width: 100%;*/
+/*    display: flex;*/
+/*    justify-content: center;*/
+/*    align-items: center;*/
+/*    cursor: pointer;*/
 
-    border-bottom: 0.5px solid #BEBEBE;
-}
+/*    border-bottom: 0.5px solid #BEBEBE;*/
+/*}*/
 
-.price-order-filter > p {
-    font-size: 0.8rem;
-    font-weight: bold;
-    color: #595959;
-}
+/*.price-order-filter > p {*/
+/*    font-size: 0.8rem;*/
+/*    font-weight: bold;*/
+/*    color: #595959;*/
+/*}*/
 
-.price-range-filter {
-    height: 3rem;
-    width: 100%;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
+/*.price-range-filter {*/
+/*    height: 3rem;*/
+/*    width: 100%;*/
+/*    display: flex;*/
+/*    justify-content: space-around;*/
+/*    align-items: center;*/
 
-    border-bottom: 0.5px solid #BEBEBE;
-}
+/*    border-bottom: 0.5px solid #BEBEBE;*/
+/*}*/
 
-.price-range-filter > p {
-    font-size: 0.8rem;
-    font-weight: bold;
-    color: #595959;
-}
+/*.price-range-filter > p {*/
+/*    font-size: 0.8rem;*/
+/*    font-weight: bold;*/
+/*    color: #595959;*/
+/*}*/
 
-.price-filter-button-row {
-    height: 3rem;
-    width: 100%;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-}
+/*.price-filter-button-row {*/
+/*    height: 3rem;*/
+/*    width: 100%;*/
+/*    display: flex;*/
+/*    justify-content: space-around;*/
+/*    align-items: center;*/
+/*}*/
