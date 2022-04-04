@@ -33,9 +33,17 @@ function SearchBarFilterPrice({
     callback(e);
   }
 
+  const getFilterStyle = () => {
+    if (showFilterPrice) {
+      return {
+        backgroundColor: '#DBDBDB'
+      };
+    } else {return {};}
+  }
+
   return (
     <div className={'choose-filter-container'} ref={ref}>
-      <div className={'choose-filter clickable'} onClick={()=>{setShowFilterPrice(!showFilterPrice)}}>
+      <div className={'choose-filter clickable'} onClick={()=>{setShowFilterPrice(!showFilterPrice)}} style={getFilterStyle()}>
         <p>{'price'}</p>
         <div className={'choose-filter-svg-container'}>
           <img src="./expand_more_black_48dp.svg" alt=""/>

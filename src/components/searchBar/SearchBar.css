@@ -4,27 +4,29 @@
 
 .SearchBar {
     width: 700px;
-    height: 100px;
+    height: 120px;
+
     background-color: #F3F3F3;
-    border-radius: 10px;
-    box-shadow: 5px 5px 5px #BBBBBB;
+    /* use common.css */
+    /*border-radius: 10px;*/
+    /*box-shadow: 5px 5px 5px #BBBBBB;*/
 
     display: flex;
     flex-direction: column;
-    justify-content: space-evenly;
+    justify-content: center;
 }
 
 .SearchBar * {
     margin: 0;
-    /*border-style: solid;*/
-    /*border-width: 1px;*/
 }
 
 /**/
 
 .row-input-container {
-    height: 40%;
+    height: 2.5em;
     width: 100%;
+    margin-top: 0.3em;
+    margin-bottom: 0.2em;
     display: flex;
     justify-content: center;
 }
@@ -34,6 +36,19 @@
     width: 90%;
     display: flex;
     align-items: center;
+}
+
+.row-input .choose-tag-container {
+    height: 100%;
+    width: 15%;
+    background-color: #36C0C9;
+    color: #FFFFFF;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .row-input .choose-tag {
@@ -46,16 +61,30 @@
 
     display: flex;
     align-items: center;
+    justify-content: space-between;
+}
+
+.row-input .choose-tag-p-container {
+    width: 75%;
+    display: flex;
     justify-content: center;
 }
 
 .row-input .choose-tag p {
-    margin: 0 0 0 0.2em;
+    margin-bottom: 0.2em;
+    margin-left: 0.2em;
+}
+
+.row-input .choose-tag-img-container {
+    width: 25%;
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
 }
 
 .row-input .choose-tag img {
-    height: 1rem;
-    width: 1rem;
+    height: 1.25em;
+    width: 1.25em;
     filter: invert(100%) sepia(100%) saturate(0%) hue-rotate(288deg) brightness(102%) contrast(102%);
 }
 
@@ -67,6 +96,7 @@
 .row-input .search-input input {
     width: 100%;
     height: 100%;
+    outline: none;
     border-style: none;
     font-size: 1rem;
     padding: 0 0.5em 0 0.5em;
@@ -88,7 +118,7 @@
 /**/
 
 .row-filters-container {
-    height: 40%;
+    height: 2.5em;
     width: 100%;
     display: flex;
     justify-content: center;
@@ -108,14 +138,9 @@
     justify-content: center;
 }
 
-.row-filters * {
-    /*border-style: solid;*/
-    /*border-width: 1px;*/
-}
-
 .row-filters .filter-label img {
-    width: 1.6rem;
-    height: 1.6rem;
+    width: 1.6em;
+    height: 1.6em;
 }
 
 /*container also contains dropdown*/
