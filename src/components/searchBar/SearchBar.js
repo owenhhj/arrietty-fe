@@ -1,34 +1,50 @@
 import SearchBarFilterPrice from "./SearchBarFilterPrice";
 import SearchBarFilterTag from "./SearchBarFilterTag";
-import SearchBarTextSuggest from "./SearchBarTextSuggest";
+import SearchBarKeywordSuggest from "./SearchBarKeywordSuggest";
 import './SearchBar.css';
-import {useState, useEffect} from "react";
+import {useState, useEffect, useRef} from "react";
+import {dataFetch} from "../common/common";
 
 function SearchBar({
   callback=null
                    }) {
   const ROOT = 'https://localhost:8000/';
+  const ref = useRef();
+  const priceOrders = [null, 'asc', 'desc'];
   let filterPrice = {'type': 'price', 'priceOrder': 0, 'priceRange': [null, null]};
   let filterTag = {'type': 'tag', 'selectedOptions': []};
-  let keyword = '';
-  const priceOrders = [null, 'asc', 'desc'];
+  const [keyword, setKeyword] = useState('');  // if not state --> callback not update
   const [tagOptions, setTagOptions] = useState([]);
   const [adType, setAdType] = useState('textbook');
-  const [showKeywordSuggest, setShowKeywordSuggest] = useState(true);  // todo
-  const [keywordSuggest, setKeywordSuggest] = useState(['suggestion1', 'suggestion2', 'suggestion3'])
+  const [showKeywordSuggest, setShowKeywordSuggest] = useState(false);
+  const [keywordSuggest, setKeywordSuggest] = useState(['textbook1', 'textbook2', 'test']);
 
+  // todo fetch tags onMount
   useEffect(() => {
-    setTagOptions(['textbook', 'furniture', 'stationary', 'electronic']);
+    setTagOptions(['furniture', 'stationary', 'electronic', 'free']);
   }, []);
 
+  useEffect(() => {
+    const handleClickOutside = (e) => {
+      if (ref.current && !ref.current.contains(e.target)) {
+        setShowKeywordSuggest(false);
+      }
+    }
+    document.addEventListener('mousedown', handleClickOutside);
+    return (() => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    });
+  }, [ref]);
+
   const handleAdTypeChange = () => {
-    setAdType(adType==='textbook'?'others':'textbook');
+    setAdType(adType==='textbook'?'other':'textbook');  // todo back-end change 'other' to 'others'?
   }
 
   const handleKeywordSuggest = (i) => {
     let temp = keywordSuggest[i];
-    console.log('selecting suggestion:', temp);
-    document.getElementById('inputKeyword').setAttribute('value', temp);
+    setKeyword(temp);
+    document.getElementById('inputKeyword').value = temp;
+    setShowKeywordSuggest(false);
   }
 
   const handleFilterPrice = (e) => {
@@ -39,9 +55,24 @@ function SearchBar({
     filterTag = e;
   }
 
+  // todo potential delay --> setInterval as adListing scrolling?
   const handleKeywordInput = (e) => {
-    keyword = e.target.value;
-    // todo fetch suggestions --> update state
+    let temp = e.target.value;
+    setKeyword(e.target.value);
+    if (temp.length > 0) {  // API rejects empty string
+      dataFetch(
+        `${ROOT}suggest?type=${adType}&keyword=${temp}`,
+        {
+          method: 'POST',
+          headers: {'Content-Type': 'application/json'},
+        },
+        (r) => {
+          setKeywordSuggest(r);
+          setShowKeywordSuggest(true);
+        },
+        null
+      )
+    }
   }
 
   const handleKeyDown = (e) => {
@@ -51,6 +82,7 @@ function SearchBar({
   }
 
   const handleSubmit = () => {
+    setShowKeywordSuggest(false);
     callback({
       'adType': adType,
       'keyword': keyword,
@@ -72,18 +104,13 @@ function SearchBar({
               <p>{adType}</p>
             </div>
             <div className={'choose-tag-img-container'}>
-              <img src="./change_circle_black_48dp.svg" alt=""/>{/*<img src="./expand_more_black_48dp.svg" alt=""/>*/}
+              <img src="./change_circle_black_48dp.svg" alt=""/>
             </div>
           </div>
 
-          <div className={'search-input'}>
+          <div className={'search-input'} ref={ref}>
             <input id={'inputKeyword'} type="text" placeholder={'want to purchase...'} onChange={handleKeywordInput} onKeyDown={handleKeyDown}/>
-
-
-            {/* todo add search suggestions window */}
-            {showKeywordSuggest && <SearchBarTextSuggest suggestions={keywordSuggest} callback={handleKeywordSuggest}/>}
-
-
+            {showKeywordSuggest && <SearchBarKeywordSuggest suggestions={keywordSuggest} callback={handleKeywordSuggest}/>}
           </div>
           <div className={'search-button clickable'} onClick={handleSubmit}>
             <img src="./search_black_48dp.svg" alt=""/>

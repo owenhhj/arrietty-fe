@@ -103,20 +103,20 @@
 }
 
 .row-input .search-button {
-    width: 8%;
+    width: 10%;
     height: 100%;
+    background-color: #FFFFFF;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
     display: flex;
     align-items: center;
-    justify-content: center;
-
-    background-color: white;
-    border-bottom-right-radius: 5px ;
-    border-top-right-radius: 5px;
+    justify-content: right;
 }
 
 .row-input .search-button img {
-    width: 1.6rem;
-    height: 1.6rem;
+    width: 1.6em;
+    height: 1.6em;
+    margin-right: 0.5em;
 }
 
 /**/
