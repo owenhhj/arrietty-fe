@@ -52,11 +52,13 @@ function MyProfileEdit(props) {
               (x)=>{
                 formData.avatarImageUrl = avatarImageSrc;
                 props.callback({action: "update", body: formData});
+                window.location.reload();
               },
               null
           )
 
       }
+
   }
 
   // real-time bind keyboard input

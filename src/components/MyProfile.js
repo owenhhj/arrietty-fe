@@ -9,6 +9,7 @@ import {dataFetch} from "./common/common";
 function MyProfile({callback}) {
   const [myProfileData, setMyProfileData] = useState(MyProfile.defaultProps.profileData)
   const [pageShow, setPageShow] = useState(0)  // 0: show disp, 1: show edit
+
   const ROOT = 'https://localhost:8000/'
 
   useEffect(() => {
@@ -23,8 +24,8 @@ function MyProfile({callback}) {
   // handle data from children: disp & edit
   function callbackHandler(data) {
     if (data.action === "update") {
-      setMyProfileData(data.body)
-      setPageShow(0)
+      setMyProfileData(data.body);
+      setPageShow(0);
     } else if (data.action === "switch") {
       setPageShow(1-pageShow)
     }
