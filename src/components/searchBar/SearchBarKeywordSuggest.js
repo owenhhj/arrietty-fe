@@ -1,20 +1,16 @@
 import './SearchBarKeywordSuggest.css';
 
-
 function SearchBarKeywordSuggest({
   suggestions=['one default suggestion'],
   callback=null
                               }) {
-
   return (
-    <div className={'SearchBarTextSuggest'}>
-
+    <div className={'SearchBarTextSuggest card'}>
       {suggestions.map((entry, index) => {
         return (
           <SuggestionEntry key={index} index={index} suggestion={entry} callback={callback}/>
         );
       })}
-
     </div>
   );
 }
@@ -31,7 +27,7 @@ function SuggestionEntry({
   }
 
   return (
-    <div className={'SuggestionEntry'} onClick={handleChoose}>
+    <div className={'SuggestionEntry clickable'} onClick={handleChoose}>
       <p>{suggestion}</p>
     </div>
   );

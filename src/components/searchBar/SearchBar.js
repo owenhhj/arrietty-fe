@@ -9,19 +9,32 @@ function SearchBar({
   callback=null
                    }) {
   const ROOT = 'https://localhost:8000/';
+  const ref = useRef();
   const priceOrders = [null, 'asc', 'desc'];
   let filterPrice = {'type': 'price', 'priceOrder': 0, 'priceRange': [null, null]};
   let filterTag = {'type': 'tag', 'selectedOptions': []};
   const [keyword, setKeyword] = useState('');  // if not state --> callback not update
   const [tagOptions, setTagOptions] = useState([]);
   const [adType, setAdType] = useState('textbook');
-  const [showKeywordSuggest, setShowKeywordSuggest] = useState(true);
+  const [showKeywordSuggest, setShowKeywordSuggest] = useState(true);  // fixme change to false when finished
   const [keywordSuggest, setKeywordSuggest] = useState(['textbook1', 'textbook2', 'test']);
 
   // todo fetch tags onMount
   useEffect(() => {
     setTagOptions(['furniture', 'stationary', 'electronic', 'free']);
   }, []);
+
+  useEffect(() => {
+    const handleClickOutside = (e) => {
+      if (ref.current && !ref.current.contains(e.target)) {
+        setShowKeywordSuggest(false);
+      }
+    }
+    document.addEventListener('mousedown', handleClickOutside);
+    return (() => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    });
+  }, [ref]);
 
   const handleAdTypeChange = () => {
     setAdType(adType==='textbook'?'other':'textbook');  // todo back-end change 'other' to 'others'?
@@ -90,18 +103,13 @@ function SearchBar({
               <p>{adType}</p>
             </div>
             <div className={'choose-tag-img-container'}>
-              <img src="./change_circle_black_48dp.svg" alt=""/>{/*<img src="./expand_more_black_48dp.svg" alt=""/>*/}
+              <img src="./change_circle_black_48dp.svg" alt=""/>
             </div>
           </div>
 
-          <div className={'search-input'}>
+          <div className={'search-input'} ref={ref}>
             <input id={'inputKeyword'} type="text" placeholder={'want to purchase...'} onChange={handleKeywordInput} onKeyDown={handleKeyDown}/>
-
-
-            {/* todo add search suggestions window */}
             {showKeywordSuggest && <SearchBarKeywordSuggest suggestions={keywordSuggest} callback={handleKeywordSuggest}/>}
-
-
           </div>
           <div className={'search-button clickable'} onClick={handleSubmit}>
             <img src="./search_black_48dp.svg" alt=""/>

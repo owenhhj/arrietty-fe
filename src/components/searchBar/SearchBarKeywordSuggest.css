@@ -1,11 +1,18 @@
 
 .SearchBarTextSuggest {
-    position: absolute;
+    /*position: absolute;*/
 
-    width: 200px;
-    height: 200px;
-    border-style: solid;
-    z-index: 19;
+    width: 100%;
+    height: min-content;
+    margin-top: 0.3em;
+
+    background-color: #FFFFFF;
+
+    border-radius: 5px;
+    z-index: 10;
+
+    display: flex;
+    flex-direction: column;
 }
 
 .SearchBarTextSuggest * {
@@ -13,35 +20,25 @@
     margin: 0;
 }
 
-
-
-
-
-
-
-
+/**/
 
 .SuggestionEntry {
-    border-style: solid;
+    /*border-style: solid;*/
+
+    text-align: left;
+    margin: 0.1em 0.1em 0.1em 0.1em;
+    padding: 0 0.1em 0 0.1em;
 }
 
+.SuggestionEntry:hover {
+    border-style: solid;
+    border-width: 1px;
+    border-color: #BEBEBE;
+}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+.SuggestionEntry p {
+    padding: 0.5em 1em 0.5em 1em;
+}
 
 
 
