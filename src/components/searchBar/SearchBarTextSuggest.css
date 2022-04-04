@@ -1,0 +1,64 @@
+
+.SearchBarTextSuggest {
+    position: absolute;
+
+    width: 200px;
+    height: 200px;
+    border-style: solid;
+    z-index: 19;
+}
+
+.SearchBarTextSuggest * {
+    padding: 0;
+    margin: 0;
+}
+
+
+
+
+
+
+
+
+
+.SuggestionEntry {
+    border-style: solid;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

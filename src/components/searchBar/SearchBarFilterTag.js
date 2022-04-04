@@ -30,9 +30,17 @@ function SearchBarFilterTag({
     setShowFilterTag(false);
   }
 
+  const getFilterStyle = () => {
+    if (showFilterTag) {
+      return {
+        backgroundColor: '#DBDBDB'
+      };
+    } else {return {};}
+  }
+
   return (
     <div className={'choose-filter-container'} ref={ref}>
-      <div className={'choose-filter clickable'} onClick={()=>{setShowFilterTag(!showFilterTag)}}>
+      <div className={'choose-filter clickable'} onClick={()=>{setShowFilterTag(!showFilterTag)}} style={getFilterStyle()}>
         <p>{'tag'}</p>
         <div className={'choose-filter-svg-container'}>
           <img src="./expand_more_black_48dp.svg" alt=""/>
