@@ -8,6 +8,11 @@ function MyProfileDisplay(props) {
     props.callback({action: "switch"})
   }
 
+  const handleNewAdBtnClick = ()=>{
+    props.callback({action: "addNewAd"})
+  }
+
+
   return (
     <div className="MyProfileDisplay">
       <div className="MyProfileDisplay1">
@@ -49,7 +54,7 @@ function MyProfileDisplay(props) {
       </div>
 
       <div className={"new-ad-btn"}>
-        <Button buttonStyle={"btn--primary"} buttonSize={"btn--medium"} text={"+ Add a new ad"}  />
+        <Button buttonStyle={"btn--primary"} buttonSize={"btn--medium"} text={"+ Add a new ad"}  onClick={handleNewAdBtnClick}/>
       </div>
 
 

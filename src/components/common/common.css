@@ -18,11 +18,23 @@
 }
 
 .page {
+    width: 100%;
     margin-top:1rem;
     display: flex;
-    justify-content: space-around;
+    justify-content: space-evenly;
+    align-items: flex-start;
 }
 
+
+.disable-scrollbars::-webkit-scrollbar {
+    background: transparent; /* Chrome/Safari/Webkit */
+    width: 0px;
+}
+
+.disable-scrollbars {
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none;  /* IE 10+ */
+}
 
 
 

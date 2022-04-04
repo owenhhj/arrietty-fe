@@ -10,13 +10,17 @@ import FilterButton from "./components/searchBar/FilterButton";
 import PriceFilter from "./components/searchBar/PriceFilter";
 import AdDisplayColumn from "./components/AdDisplayColumn";
 import AdvertisementUploadForm from "./components/advertisementUploadForm/AdvertisementUploadForm";
-import Home from "./Home";
-import Admin from "./Admin";
+import Home from "./components/Home";
+import Admin from "./components/Admin";
+import Modal from "react-modal";
+
+
 
 function App() {
+    Modal.setAppElement('#root');
 
   return (
-    <div className="App">
+    <div className="App" id={"app-root"}>
 
         <BrowserRouter>
             <Navbar isAdmin={true} />

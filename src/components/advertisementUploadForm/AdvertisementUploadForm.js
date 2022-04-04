@@ -9,7 +9,7 @@ import NewAdDragDrop from "./NewAdDragDrop";
 import {dataFetch} from "../common/common";
 import {showGeneralNoti} from '../common/GeneralNotiProvider'
 
-function AdvertisementUploadForm(){
+function AdvertisementUploadForm({callback}){
   const [adType, setAdType] = useState("textbook");
   const [textbookData, setTextbookData] = useState([]);
   const [otherTagData, setOtherTagData] = useState([]);
@@ -188,7 +188,7 @@ function AdvertisementUploadForm(){
 
       </div>
 
-      <svg className={"cancel-btn"} width="700pt" height="700pt" version="1.1" viewBox="0 0 700 700" xmlns="http://www.w3.org/2000/svg">
+      <svg className={"cancel-btn"} onClick={()=>{callback(false)}} width="700pt" height="700pt" version="1.1" viewBox="0 0 700 700" xmlns="http://www.w3.org/2000/svg">
         <path d="m374.5 280 180.25-180.25c7-7 7-17.5 0-24.5s-17.5-7-24.5 0l-180.25 180.25-180.25-180.25c-7-7-17.5-7-24.5 0s-7 17.5 0 24.5l180.25 180.25-180.25 180.25c-7 7-7 17.5 0 24.5 3.5 3.5 7 5.25 12.25 5.25s8.75-1.75 12.25-5.25l180.25-180.25 180.25 180.25c3.5 3.5 8.75 5.25 12.25 5.25s8.75-1.75 12.25-5.25c7-7 7-17.5 0-24.5z"/>
       </svg>
     </div>
