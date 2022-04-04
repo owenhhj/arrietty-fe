@@ -1,7 +1,7 @@
-import './SearchBarTextSuggest.css';
+import './SearchBarKeywordSuggest.css';
 
 
-function SearchBarTextSuggest({
+function SearchBarKeywordSuggest({
   suggestions=['one default suggestion'],
   callback=null
                               }) {
@@ -26,6 +26,7 @@ function SuggestionEntry({
                          }) {
   const handleChoose = (e) => {
     e.preventDefault();
+    console.log('SuggestionEntry choosing index:', index, suggestion);
     callback(index);
   }
 
@@ -36,7 +37,7 @@ function SuggestionEntry({
   );
 }
 
-export default SearchBarTextSuggest;
+export default SearchBarKeywordSuggest;
 
 
 
