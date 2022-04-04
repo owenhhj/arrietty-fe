@@ -16,7 +16,7 @@ function SearchBar({
   const [keyword, setKeyword] = useState('');  // if not state --> callback not update
   const [tagOptions, setTagOptions] = useState([]);
   const [adType, setAdType] = useState('textbook');
-  const [showKeywordSuggest, setShowKeywordSuggest] = useState(true);  // fixme change to false when finished
+  const [showKeywordSuggest, setShowKeywordSuggest] = useState(false);
   const [keywordSuggest, setKeywordSuggest] = useState(['textbook1', 'textbook2', 'test']);
 
   // todo fetch tags onMount
@@ -58,20 +58,21 @@ function SearchBar({
   // todo potential delay --> setInterval as adListing scrolling?
   const handleKeywordInput = (e) => {
     let temp = e.target.value;
-    setKeyword(e.target.value)
-    console.log('handleInput keyword set as:', temp);
-    dataFetch(
-      `${ROOT}suggest?type=${adType}&keyword=${temp}`,
-      {
-        method: 'POST',
-        headers: {'Content-Type': 'application/json'},
-      },
-      (r) => {
-        setKeywordSuggest(r);
-        setShowKeywordSuggest(true);
-      },
-      null
-    )
+    setKeyword(e.target.value);
+    if (temp.length > 0) {  // API rejects empty string
+      dataFetch(
+        `${ROOT}suggest?type=${adType}&keyword=${temp}`,
+        {
+          method: 'POST',
+          headers: {'Content-Type': 'application/json'},
+        },
+        (r) => {
+          setKeywordSuggest(r);
+          setShowKeywordSuggest(true);
+        },
+        null
+      )
+    }
   }
 
   const handleKeyDown = (e) => {
