@@ -13,6 +13,7 @@ function AdvertisementUploadForm({callback}){
   const [adType, setAdType] = useState("textbook");
   const [textbookData, setTextbookData] = useState([]);
   const [otherTagData, setOtherTagData] = useState([]);
+  const [courseData, setCourseData] = useState([]);
   const [textbookInputAlerted, setTextbookInputAlerted] = useState(false);
   const [pricingInputAlerted, setPricingInputAlerted] = useState(false);
   const [commentInputAlerted, setCommentInputAlerted] = useState(false);
@@ -33,6 +34,13 @@ function AdvertisementUploadForm({callback}){
       setOtherTagData,
       null
     );
+    dataFetch(
+        "https://localhost:8000/course?id=",
+        {method:"GET"},
+        setCourseData,
+        null
+    )
+
   }, [])
 
   const dispatch = showGeneralNoti();
@@ -46,8 +54,8 @@ function AdvertisementUploadForm({callback}){
     for (let i=0; i<data.length; i++){
       ret.push(
         {
-          name: data.name,
-          value: data.id
+          name: data[i].name,
+          value: data[i].id
         }
       );
     }
@@ -133,6 +141,19 @@ function AdvertisementUploadForm({callback}){
     }
   }
 
+  const getTextbookData = ()=>{
+    let ret = textbookData;
+    let courseMap = new Map();
+    for(let i=0; i<courseData.length; i++){
+      courseMap.set(courseData[i].id, courseData[i].courseCode);
+    }
+    for(let j=0; j<ret.length; j++){
+      ret[j].relatedCourse = courseMap.get(ret[j].courseId);
+    }
+
+    return ret;
+  }
+
   return (
     <div className={"advertisement-upload-form card"}>
       <div className={"advertisement-upload-form-container"}>
@@ -154,7 +175,7 @@ function AdvertisementUploadForm({callback}){
         {adType==="textbook" &&
           <div className={"form-row textbook-search"}>
             <AlertablePrompt promptText={"Select a textbook"} required={true} alertText={"Please select a textbook"} alerted={textbookInputAlerted}/>
-            <TextbookSearch textbookData={textbookData} onChange={handleInputChange} />
+            <TextbookSearch textbookData={getTextbookData()} onChange={handleInputChange} />
           </div>
         }
         {adType==="other" &&

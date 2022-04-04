@@ -57,7 +57,7 @@ function TextbookSearch(
                 </div>
                 <div className={"textbook-info-row"}>
                     <p className={"info-prompt"}>Related course:</p>
-                    <p className={"info-value"}>{selectedTextbook.courseId}</p>
+                    <p className={"info-value"}>{selectedTextbook.relatedCourse}</p>
                 </div>
                 <div className={"textbook-info-row"}>
                     <p className={"info-prompt"}>Original price:</p>

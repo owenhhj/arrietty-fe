@@ -13,7 +13,7 @@ function Home(){
     useEffect(() => {
 
         if(showNewAdForm){
-            document.getElementById("app-root").style.filter = 'blur(5px)';
+            document.getElementById("app-root").style.filter = 'blur(2px)';
         }
         else{
             document.getElementById("app-root").style.filter = 'blur(0px) grayscale(0%)';
@@ -22,14 +22,16 @@ function Home(){
 
     const customStyles = {
         content: {
+            position: "absolute",
+            left:0,
+            top:"1rem",
             width:"100vw",
-            height:"auto",
+            height:"calc(100vh-2rem)",
+            "overflow-y": "scroll",
             background: "transparent",
             display: "flex",
             "justify-content":"center",
-            border:"none"
-
-
+            border:"none",
         },
     };
 
