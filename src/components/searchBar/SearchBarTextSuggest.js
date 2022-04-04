@@ -1,15 +1,19 @@
-
+import './SearchBarTextSuggest.css';
 
 
 function SearchBarTextSuggest({
-  suggestions
+  suggestions=['one default suggestion'],
+  callback=null
                               }) {
 
-
-
-
   return (
-    <div>
+    <div className={'SearchBarTextSuggest'}>
+
+      {suggestions.map((entry, index) => {
+        return (
+          <SuggestionEntry key={index} index={index} suggestion={entry} callback={callback}/>
+        );
+      })}
 
     </div>
   );
@@ -20,7 +24,6 @@ function SuggestionEntry({
   suggestion='defaultSuggestion',
   callback=null
                          }) {
-
   const handleChoose = (e) => {
     e.preventDefault();
     callback(index);
