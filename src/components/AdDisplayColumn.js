@@ -3,11 +3,6 @@ import SearchBar from "./searchBar/SearchBar";
 import AdDisplayCard from "./adDisplay/AdDisplayCard";
 import {dataFetch} from "./common/common";
 
-// const ads = [
-//   {id: 0, username: 'user1', userNetId: 'aa1111', userAvatarImageId: './avatar.jpg', adType: 'textbook', adTitle: 'Selling This!!!', textbookTitle: 'Calculus', isbn: '123-4564033823', author: 'Owen', publisher: 'Owens Pub', edition: '3', originalPrice: '998', relatedCourse: 'CSCISHU 101', otherTag: null, imageIds: './default_cover.jpg', price:50, comment:'nothing to tell really', createdTime: null},
-//   {id: 1, username: 'user2', userNetId: 'bb1111', userAvatarImageId: './avatar.jpg', adType: 'textbook', adTitle: 'Buying This!!!', textbookTitle: 'sdrfg', isbn: '123-4564033823', author: 'Robert', publisher: 'Owens Pub', edition: '3', originalPrice: '3456', relatedCourse: 'CSCISHU 101', otherTag: null, imageIds: './default_ad_preview_image.jpg', price:234, comment:'nothing to tell really', createdTime: null},
-// ]
-
 function AdDisplayColumn() {
   const ROOT = 'https://localhost:8000/';
   const [adData, setAdData] = useState([]);  // adListing data
@@ -56,7 +51,8 @@ function AdDisplayColumn() {
     }
   }
 
-  const handleSearchBar = (e) => {  // user search --> reset queryBody & queryPageNum
+  // user search --> reset queryBody & queryPageNum
+  const handleSearchBar = (e) => {
     // setIsLoading(false);
     let temp = {...e, pageNum: 0};
     setQueryBody(temp);
