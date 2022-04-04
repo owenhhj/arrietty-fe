@@ -8,53 +8,26 @@ import SelectSearch, {fuzzySearch} from "react-select-search";
 import "./components/common/select-search.css"
 import AdDisplayColumn from "./components/AdDisplayColumn";
 import AdvertisementUploadForm from "./components/advertisementUploadForm/AdvertisementUploadForm";
+import Home from "./components/Home";
+import Admin from "./components/Admin";
+import Modal from "react-modal";
+
+
 
 function App() {
-    const options = [
-        {
-            name: "Annie Cruz",
-            value: "annie.cruz",
-            photo: "https://randomuser.me/api/portraits/women/60.jpg"
-        },
-        {
-            name: "Eli Shelton",
-            disabled: true,
-            value: "eli.shelton",
-            photo: "https://randomuser.me/api/portraits/men/7.jpg"
-        },
-        {
-            name: "Loretta Rogers",
-            value: "loretta.rogers",
-            photo: "https://randomuser.me/api/portraits/women/51.jpg"
-        },
-        {
-            name: "Lloyd Fisher",
-            value: "lloyd.fisher",
-            photo: "https://randomuser.me/api/portraits/men/34.jpg"
-        },
-        {
-            name: "Tiffany Gonzales",
-            value: "tiffany.gonzales",
-            photo: "https://randomuser.me/api/portraits/women/71.jpg"
-        }
-    ];
+    Modal.setAppElement('#root');
 
   return (
-    <div className="App">
+    <div className="App" id={"app-root"}>
 
-        {/*<BrowserRouter>*/}
-        {/*    <Navbar/>*/}
-        {/*    <Routes>*/}
-        {/*        <Route  path="/" exact/>*/}
-        {/*    </Routes>*/}
-        {/*</BrowserRouter>*/}
+        <BrowserRouter>
+            <Navbar isAdmin={true} />
+            <Routes>
+                <Route  path="/home" element={<Home/>} exact/>
+                <Route  path="/admin" element={<Admin/>} exact/>
+            </Routes>
+        </BrowserRouter>
 
-        {/*<MyProfile/>*/}
-        {/*<AdminTagInputWidget/>*/}
-
-
-        <AdvertisementUploadForm/>
-        <AdDisplayColumn/>
 
     </div>
   );

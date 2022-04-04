@@ -6,7 +6,7 @@ import GeneralNoti from "./common/GeneralNoti";
 import {useState, useEffect} from "react";
 import {dataFetch} from "./common/common";
 
-function MyProfile(props) {
+function MyProfile({callback}) {
   const [myProfileData, setMyProfileData] = useState(MyProfile.defaultProps.profileData)
   const [pageShow, setPageShow] = useState(0)  // 0: show disp, 1: show edit
   const ROOT = 'https://localhost:8000/'
@@ -28,9 +28,13 @@ function MyProfile(props) {
     } else if (data.action === "switch") {
       setPageShow(1-pageShow)
     }
+    else if (data.action === "addNewAd") {
+      callback(true);
+    }
   }
 
-  const [showNoti, setShowNoti] = useState(true);
+  const [showNoti, setShowNoti] = useState(false);
+
   const handleNoti = (e) => {
     e.preventDefault();
     setShowNoti(false);

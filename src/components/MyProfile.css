@@ -1,19 +1,15 @@
 .MyProfile {
     width: 14rem;
-    height: auto;
     text-align: left;
     border-radius: 5px;
-
-    margin-top:1rem;
-    margin-bottom:1rem;
-
 }
 
 .MyProfile * {
-    font-family: 'Gothic A1', sans-serif;
-
+    font-family: 'Roboto', sans-serif;
     color: #202020;
 }
+
+
 
 .MyProfileDisplay1 {
     text-align: center;
@@ -147,7 +143,6 @@
     font-weight: bold;
     color: #595959;
     display: inline-block;
-
 }
 
 .field-value {
