@@ -7,9 +7,9 @@
 
     background-color: #FFFFFF;
     border-radius: 10px;
-    box-shadow: 5px 5px 5px #BBBBBB;
+    box-shadow: 0 1px 4px #BBBBBB;
 
-    margin: 10px 0 0 0;
+    margin: 1rem 0 0 0;
 
     display: flex;
     justify-content: space-between;
@@ -125,7 +125,7 @@
 }
 
 .col-3-tags {
-    width: 95%;
+    width: 90%;
     display: flex;
     justify-content: space-between;
 }
@@ -140,7 +140,7 @@
 }
 
 .col-3-tags .tag {
-    background-color: #36C0C9;
+    background-color: #83D8DD;
     color: #FFFFFF;
 }
 
@@ -154,7 +154,7 @@
 }
 
 .col-3-to-unlock {
-    width: 95%;
+    width: 90%;
     border-style: solid;
     border-width: 1px;
     border-color: #808080;
@@ -180,7 +180,7 @@
 /**/
 
 .col-3-unlocked {
-    width: 80%;
+    width: 85%;
     display: flex;
     /*justify-content: space-evenly;*/
     justify-content: space-between;
@@ -231,7 +231,7 @@
 }
 
 .col-3-buttons {
-    width: 95%;
+    width: 90%;
     display: flex;
     justify-content: space-between;
     align-self: center;
@@ -249,7 +249,7 @@
 .btn-tap {
     display: flex;
     width: 30%;
-    padding: 0.5em 0.8em 0.5em 0.8em;
+    padding: 0.2em 0.8em 0.2em 0.8em;
     align-items: center;
     justify-content: space-between;
 }
@@ -263,7 +263,7 @@
 .btn-mark {
     display: flex;
     width: 30%;
-    padding: 0.5em 0.8em 0.5em 0.8em;
+    padding: 0.2em 0.8em 0.2em 0.8em;
     align-items: center;
     justify-content: space-between;
 }

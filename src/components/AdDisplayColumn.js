@@ -113,14 +113,15 @@ function AdDisplayColumn() {
       <SearchBar callback={handleSearchBar}/>
 
       {adData.map((ad, index) => {
+        console.log(ad.createTime)
         return (
           <AdDisplayCard key={ad.id} adData={ad}/>
         );
       })}
 
-      {/*<AdDisplayCard/>*/}
-      {/*<AdDisplayCard/>*/}
-      {/*<AdDisplayCard/>*/}
+      <AdDisplayCard/>
+      <AdDisplayCard/>
+      <AdDisplayCard/>
 
       <div style={{width: 'auto', height:'300px'}}>
         {isLoading!==0 && <div><p>{loadingMsg[isLoading]}</p></div>}
