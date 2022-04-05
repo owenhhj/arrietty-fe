@@ -9,7 +9,9 @@ import NewAdDragDrop from "./NewAdDragDrop";
 import {dataFetch} from "../common/common";
 import {showGeneralNoti} from '../common/GeneralNotiProvider'
 
-function AdvertisementUploadForm({callback}){
+function AdvertisementUploadForm({
+  callback
+                                 }){
   const [adType, setAdType] = useState("textbook");
   const [textbookData, setTextbookData] = useState([]);
   const [otherTagData, setOtherTagData] = useState([]);
@@ -35,18 +37,17 @@ function AdvertisementUploadForm({callback}){
       null
     );
     dataFetch(
-        "https://localhost:8000/course?id=",
-        {method:"GET"},
-        setCourseData,
-        null
-    )
-
+      "https://localhost:8000/course?id=",
+      {method:"GET"},
+      setCourseData,
+      null
+    );
   }, [])
 
   const dispatch = showGeneralNoti();
-  const handleNoti = (e) => {
-    e.preventDefault();
-    dispatch({action: "add", body: {msg: "AdUpForm.js called", good: false}});
+  const handleNoti = (msg, good) => {
+    // e.preventDefault();
+    dispatch({action: "add", body: {msg: msg, good: good}});
   }
 
   const getOtherTagOptions = (data)=>{
@@ -126,8 +127,7 @@ function AdvertisementUploadForm({callback}){
 
     // fixme some input alerted --> change it --> now all input alerted --> cannot submit
     if (true){
-      // TODO success handler
-      console.log('AdUploadForm to submit:', formData);
+      // console.log('AdUploadForm to submit:', formData);
       formData.set("isTextbook",adType==="textbook"?"true":"false");
       dataFetch(
         "https://localhost:8000/advertisement?action=update",
@@ -135,8 +135,15 @@ function AdvertisementUploadForm({callback}){
           method: 'POST',
           body: formData
         },
-        (res)=>{console.log('AdUploadForm res:', res)},
-        (err)=>{console.log('AdUploadForm res:', err)}
+        (res)=>{
+          console.log('AdUploadForm res:', res);
+          handleNoti('Ad Upload Success', true);
+          callback(false);
+        },
+        (err)=>{
+          console.log('AdUploadForm res:', err);
+          handleNoti('Ad Upload Failure', false);
+        }
       )
     }
   }
