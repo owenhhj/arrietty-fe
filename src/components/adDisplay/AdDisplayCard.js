@@ -116,7 +116,7 @@ function AdDisplayCard({
           </div>
           {!tapped &&
             <div className={'col-3-to-unlock-container'}>
-              <div className={'col-3-to-unlock'}>
+              <div className={'col-3-to-unlock card'}>
                 <img src="./lock_black_48dp.svg" alt=""/>
                 <p>Tap to unlock user info</p>
               </div>
@@ -124,7 +124,7 @@ function AdDisplayCard({
           }
           {tapped &&
               <div className={'col-3-to-unlock-container'}>
-                <div className={'col-3-unlocked'}>
+                <div className={'col-3-unlocked card'}>
                   <div className={'owner-avatar'}>
 
                     {/*<img src={contactInfo.avatarImageId} alt=""/>*/}

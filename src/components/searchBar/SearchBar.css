@@ -53,7 +53,7 @@
 
 .row-input .choose-tag {
     height: 100%;
-    width: 15%;
+    width: 17%;
     background-color: #36C0C9;
     color: #FFFFFF;
     border-top-left-radius: 5px;
@@ -89,7 +89,7 @@
 }
 
 .row-input .search-input {
-    width: 75%;
+    width: 73%;
     height: 100%;
 }
 
