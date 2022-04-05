@@ -3,13 +3,10 @@ import {createContext, useContext, useReducer} from "react";
 
 // >>>>>>>>>>>>>>>>>>>> HOW TO USE
 // import {showGeneralNoti} from "./components/common/GeneralNotiProvider";
-// function CallerComponent() {
 //   const dispatch = showGeneralNoti();
-//   const handleShowNoti = (e) => {
-//     e.preventDefault();
-//     dispatch({action: "add", body: {msg: "ALERT!", good: true}});
+//   const handleShowNoti = (msg, good) => {
+//     dispatch({action: "add", body: {msg: msg, good: good}});
 //   }
-// }
 // >>>>>>>>>>>>>>>>>>>> HOW TO USE
 
 const GeneralNotiContext = createContext();

@@ -2,6 +2,7 @@ import './MyProfile.css'
 import './common/common.css'
 import MyProfileDisplay from "./MyProfileDisplay";
 import MyProfileEdit from "./MyProfileEdit";
+import {showGeneralNoti} from "./common/GeneralNotiProvider";
 import {useState, useEffect} from "react";
 import {dataFetch} from "./common/common";
 
@@ -17,13 +18,19 @@ function MyProfile({callback}) {
         setMyProfileData,
         null
     );
-  }, [])
+  }, []);
+
+  const dispatch = showGeneralNoti();
+  const handleShowNoti = (msg, good) => {
+    dispatch({action: "add", body: {msg: msg, good: good}});
+  };
 
   // handle data from children: disp & edit
   function callbackHandler(data) {
     if (data.action === "update") {
       setMyProfileData(data.body);
       setPageShow(0);
+      handleShowNoti('Profile edit success', true);
     } else if (data.action === "switch") {
       setPageShow(1-pageShow)
     } else if (data.action === "addNewAd") {
