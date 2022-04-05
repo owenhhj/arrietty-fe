@@ -114,10 +114,13 @@ function AdDisplayColumn() {
 
       {adData.map((ad, index) => {
         return (
-          // <AdDisplayCard key={index} adData={ad}/>
           <AdDisplayCard key={ad.id} adData={ad}/>
         );
       })}
+
+      {/*<AdDisplayCard/>*/}
+      {/*<AdDisplayCard/>*/}
+      {/*<AdDisplayCard/>*/}
 
       <div style={{width: 'auto', height:'300px'}}>
         {isLoading!==0 && <div><p>{loadingMsg[isLoading]}</p></div>}

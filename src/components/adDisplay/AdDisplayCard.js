@@ -3,16 +3,21 @@ import AdDisplayCardHoverMore from "./AdDisplayCardHoverMore";
 import {useEffect, useState} from "react";
 import {dataFetch} from "../common/common";
 
-// const contactInfo={username: 'Yuechuan Zhang', netId: 'yz3919', avatarImageId: './avatar.jpg'};
+const fakeAd = {
+  id: 1, adType: 'textbook', adTitle: 'This is a fake title for and ad but this is very long', price: '1233425',
+  comment: 'This is a fake comment for and ad but this is very long very long very long very long very long very long very long very long very long very long very long very long very long very long very long very long very long very long very long very long very long'
+}
+
+const fakeContact = {username:'Nameee eeeaw sfee aew faewf eawf', netId:'abcd12345', avatarImageId:'./default_avatar.jpg'};
 
 function AdDisplayCard({
-  adData={},  // one piece of adData
+  adData=fakeAd,  // one piece of adData
                        }) {
   const ROOT = 'https://localhost:8000/';
   const [tapped, setTapped] = useState(false);  // todo adData.tapped not in README
   const [hover, setHover] = useState(false);
   const [hoverPos, setHoverPos] = useState({});
-  const [contactInfo, setContactInfo] = useState({username:'Name', netId:'NetID', avatarImageId:0});
+  const [contactInfo, setContactInfo] = useState(fakeContact);
 
   // todo InfoVisual Hw return null component while loading?
   useEffect(() => {
@@ -50,7 +55,10 @@ function AdDisplayCard({
 
         <div className={'col-1'}>
           <img src={`${ROOT}image?id=${adData.imageIds.split(',')[0]}`} alt=""/>
+          {/*<img src="./default_cover.jpg" alt=""/>*/}
+
           {/* todo num of pics icon */}
+
         </div>
 
         <div className={'col-2'}>
@@ -89,7 +97,7 @@ function AdDisplayCard({
               <div className={'col-3-to-unlock-container'}>
                 <div className={'col-3-unlocked'}>
                   <div className={'owner-avatar'}>
-                    {/*<img src={contactInfo.userAvatarImageId} alt=""/>*/}
+                    {/*<img src={contactInfo.avatarImageId} alt=""/>*/}
                     <img src={`${ROOT}image?id=${contactInfo.avatarImageId}`} alt=""/>
                   </div>
                   <div className={'owner-info'}>
