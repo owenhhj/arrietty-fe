@@ -14,7 +14,7 @@ function AdDisplayColumn() {
   const loadingMsg = ['', 'Loading...', 'No more advertisements...'];
 
   useEffect(() => {
-    console.log('onMount search with:', queryBody);
+    // console.log('onMount search with:', queryBody);
     dataFetch(
       `${ROOT}search`,
       {
@@ -56,7 +56,7 @@ function AdDisplayColumn() {
     // setIsLoading(false);
     let temp = {...e, pageNum: 0};
     setQueryBody(temp);
-    console.log('user search with:', temp);
+    // console.log('user search with:', temp);
     dataFetch(
       `${ROOT}search`,
       {
@@ -77,7 +77,7 @@ function AdDisplayColumn() {
 
   // scroll to bottom --> auto fetch
   const handleLoadMore = () => {
-    console.log('handleLoadMore with:', queryBody);
+    // console.log('handleLoadMore with:', queryBody);
     dataFetch(
       `${ROOT}search`,
       {
