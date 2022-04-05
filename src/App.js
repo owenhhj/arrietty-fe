@@ -11,6 +11,7 @@ import AdvertisementUploadForm from "./components/advertisementUploadForm/Advert
 import Home from "./components/Home";
 import Admin from "./components/Admin";
 import Modal from "react-modal";
+import MyPosts from "./components/MyPosts";
 
 
 
@@ -24,7 +25,9 @@ function App() {
             <Navbar isAdmin={true} />
             <Routes>
                 <Route  path="/home" element={<Home/>} exact/>
+                <Route  path="/myPosts" element={<MyPosts/>} exact/>
                 <Route  path="/admin" element={<Admin/>} exact/>
+
             </Routes>
         </BrowserRouter>
 
