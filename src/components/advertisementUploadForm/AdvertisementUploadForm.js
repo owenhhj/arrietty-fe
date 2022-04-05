@@ -65,7 +65,9 @@ function AdvertisementUploadForm({
 
   const handleAdTypeChange = (state)=>{
     setAdType(state);
-    formData = new FormData();
+    formData = new FormData();  // fixme before demo
+    // formData.set('isTextbook', state === 'textbook');
+    // formData.set('tagId', null);
   }
 
   const handleInputChange = (identifier, value)=>{

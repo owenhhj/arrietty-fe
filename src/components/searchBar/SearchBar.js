@@ -83,13 +83,17 @@ function SearchBar({
 
   const handleSubmit = () => {
     setShowKeywordSuggest(false);
+    let tags = [];
+    filterTag.selectedOptions.forEach(idx => {
+      tags.push(tagOptions[Number(idx)])
+    })
     callback({
       'adType': adType,
       'keyword': keyword,
       'priceOrder': priceOrders[filterPrice.priceOrder],
       'minPrice': filterPrice.priceRange[0],
       'maxPrice': filterPrice.priceRange[1],
-      'tag': filterTag.selectedOptions.join(',')
+      'tag': tags.join(',').length>0?tags.join(',').length:null
     });
   }
 

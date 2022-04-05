@@ -56,7 +56,7 @@ function AdDisplayColumn() {
     // setIsLoading(false);
     let temp = {...e, pageNum: 0};
     setQueryBody(temp);
-    // console.log('user search with:', temp);
+    console.log('user search with:', temp);
     dataFetch(
       `${ROOT}search`,
       {
@@ -113,7 +113,6 @@ function AdDisplayColumn() {
       <SearchBar callback={handleSearchBar}/>
 
       {adData.map((ad, index) => {
-        console.log(ad.createTime)
         return (
           <AdDisplayCard key={ad.id} adData={ad}/>
         );
