@@ -56,8 +56,8 @@ function AdDisplayCard({
 
         <div className={'col-1'}>
 
-          {/*<img src={`${ROOT}image?id=${adData.imageIds.split(',')[0]}`} alt=""/>*/}
-          <img src="./default_cover.jpg" alt=""/>
+          <img src={`${ROOT}image?id=${adData.imageIds.split(',')[0]}`} alt=""/>
+          {/*<img src="./default_cover.jpg" alt=""/>*/}
 
           {/* todo num of pics icon */}
         </div>
@@ -99,8 +99,8 @@ function AdDisplayCard({
                 <div className={'col-3-unlocked'}>
                   <div className={'owner-avatar'}>
 
-                    <img src={contactInfo.avatarImageId} alt=""/>
-                    {/*<img src={`${ROOT}image?id=${contactInfo.avatarImageId}`} alt=""/>*/}
+                    {/*<img src={contactInfo.avatarImageId} alt=""/>*/}
+                    <img src={`${ROOT}image?id=${contactInfo.avatarImageId}`} alt=""/>
 
                   </div>
                   <div className={'owner-info'}>

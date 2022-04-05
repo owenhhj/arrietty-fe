@@ -119,9 +119,9 @@ function AdDisplayColumn() {
         );
       })}
 
-      <AdDisplayCard/>
-      <AdDisplayCard/>
-      <AdDisplayCard/>
+      {/*<AdDisplayCard/>*/}
+      {/*<AdDisplayCard/>*/}
+      {/*<AdDisplayCard/>*/}
 
       <div style={{width: 'auto', height:'300px'}}>
         {isLoading!==0 && <div><p>{loadingMsg[isLoading]}</p></div>}
