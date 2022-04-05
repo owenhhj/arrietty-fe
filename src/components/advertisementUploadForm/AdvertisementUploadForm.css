@@ -12,7 +12,7 @@
     scrollbar-width: none;  /* Firefox */
 }
 
-.advertisement-upload-form::-webkit-scrollbar {
+.ReactModal__Content::-webkit-scrollbar {
     display: none;
 }
 

@@ -1,0 +1,72 @@
+.ad-listing-detail-container {
+    display: flex;
+}
+.ad-listing-detail-container::-webkit-scrollbar {
+    display: none;
+}
+.image-slider-container {
+    height: 100%;
+    width: 55%;
+    padding: 1rem 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.css-1f6mae5  {
+    border: none!important;
+}
+
+.css-14i60ud {
+    border: none!important;
+}
+
+.ad-listing-detail-info {
+    height: 100%;
+    width: 40%;
+    font-family: "Roboto", sans-serif;
+
+    padding:2rem 2rem;
+}
+
+.row1 {
+    height: 2rem;
+
+    display: flex;
+    align-items: center;
+    font-size: 0.875rem;
+    color: #595959;
+}
+
+.row1 > p {
+    margin-right: 1rem;
+}
+
+.row1 > svg {
+    cursor: pointer;
+}
+
+.row2 {
+    font-size: 1rem;
+    color: black;
+}
+
+.row3 {
+    font-size: 0.875rem;
+    color: #595959;
+}
+
+.row4 {
+    font-size: 0.875rem;
+    color: #595959;
+}
+
+.cancel-btn {
+    height: 2rem;
+    width: 2rem;
+    position: absolute;
+    right: 1rem;
+    top: 1rem;
+    cursor: pointer;
+}
