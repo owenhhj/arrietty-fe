@@ -145,6 +145,7 @@
 .row-filters .filter-label img {
     width: 1.6em;
     height: 1.6em;
+    filter: invert(21%) sepia(20%) saturate(0%) hue-rotate(193deg) brightness(92%) contrast(100%);
 }
 
 /*container also contains dropdown*/

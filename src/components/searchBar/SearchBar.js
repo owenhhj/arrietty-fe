@@ -15,7 +15,7 @@ function SearchBar({
   let filterTag = {'type': 'tag', 'selectedOptions': []};
   const [keyword, setKeyword] = useState('');  // if not state --> callback not update
   const [tagOptions, setTagOptions] = useState([]);
-  const [adType, setAdType] = useState('textbook');
+  const [adType, setAdType] = useState('textbook');  // may need future refactoring
   const [showKeywordSuggest, setShowKeywordSuggest] = useState(false);
   const [keywordSuggest, setKeywordSuggest] = useState(['textbook1', 'textbook2', 'test']);
 
@@ -37,7 +37,7 @@ function SearchBar({
   }, [ref]);
 
   const handleAdTypeChange = () => {
-    setAdType(adType==='textbook'?'other':'textbook');  // todo back-end change 'other' to 'others'?
+    setAdType(adType==='textbook'?'other':'textbook');
   }
 
   const handleKeywordSuggest = (i) => {
@@ -49,31 +49,32 @@ function SearchBar({
 
   const handleFilterPrice = (e) => {
     filterPrice = e;
+    handleSubmit();
   }
 
   const handleFilterTag = (e) => {
     filterTag = e;
+    handleSubmit();
   }
 
   // todo potential delay --> setInterval as adListing scrolling?
   const handleKeywordInput = (e) => {
     let temp = e.target.value;
     setKeyword(temp);
-    // if (temp.length > 0) {  // API rejects empty string
-    //   dataFetch(
-    //     `${ROOT}suggest?type=${adType}&keyword=${temp}`,
-    //     {
-    //       method: 'POST',
-    //       headers: {'Content-Type': 'application/json'},
-    //     },
-    //     (r) => {
-    //       setKeywordSuggest(r);
-    //       setShowKeywordSuggest(true);
-    //     },
-    //     null
-    //   )
-    // }
-    setShowKeywordSuggest(true)  // fixme remove this
+    if (temp.length > 0) {  // API rejects empty string
+      dataFetch(
+        `${ROOT}suggest?type=${adType}&keyword=${temp}`,
+        {
+          method: 'POST',
+          headers: {'Content-Type': 'application/json'},
+        },
+        (r) => {
+          setKeywordSuggest(r);
+          setShowKeywordSuggest(true);
+        },
+        null
+      )
+    }
   }
 
   const handleKeyDown = (e) => {
