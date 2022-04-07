@@ -9,7 +9,7 @@ function SearchBar({
   callback=null
                    }) {
   const ROOT = 'https://localhost:8000/';
-  const ref = useRef();
+  const ref = useRef();  // to bind text suggestion window
   const priceOrders = [null, 'asc', 'desc'];
   let filterPrice = {'type': 'price', 'priceOrder': 0, 'priceRange': [null, null]};
   let filterTag = {'type': 'tag', 'selectedOptions': []};
@@ -58,21 +58,22 @@ function SearchBar({
   // todo potential delay --> setInterval as adListing scrolling?
   const handleKeywordInput = (e) => {
     let temp = e.target.value;
-    setKeyword(e.target.value);
-    if (temp.length > 0) {  // API rejects empty string
-      dataFetch(
-        `${ROOT}suggest?type=${adType}&keyword=${temp}`,
-        {
-          method: 'POST',
-          headers: {'Content-Type': 'application/json'},
-        },
-        (r) => {
-          setKeywordSuggest(r);
-          setShowKeywordSuggest(true);
-        },
-        null
-      )
-    }
+    setKeyword(temp);
+    // if (temp.length > 0) {  // API rejects empty string
+    //   dataFetch(
+    //     `${ROOT}suggest?type=${adType}&keyword=${temp}`,
+    //     {
+    //       method: 'POST',
+    //       headers: {'Content-Type': 'application/json'},
+    //     },
+    //     (r) => {
+    //       setKeywordSuggest(r);
+    //       setShowKeywordSuggest(true);
+    //     },
+    //     null
+    //   )
+    // }
+    setShowKeywordSuggest(true)  // fixme remove this
   }
 
   const handleKeyDown = (e) => {

@@ -1,5 +1,6 @@
 .GeneralNoti {
-    position: absolute;
+    /*position: absolute;*/
+    position: fixed;
     z-index: 999;
     top: 40%;
     left: 50%;
