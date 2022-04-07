@@ -93,7 +93,7 @@ function SearchBar({
       'priceOrder': priceOrders[filterPrice.priceOrder],
       'minPrice': filterPrice.priceRange[0],
       'maxPrice': filterPrice.priceRange[1],
-      'tag': tags.join(',').length>0?tags.join(',').length:null
+      'tag': tags.join(',').length>0 ? tags.join(',') : null
     });
   }
 
