@@ -16,6 +16,7 @@ function SearchBar({
   const [keyword, setKeyword] = useState('');  // if not state --> callback not update
   const [tagOptions, setTagOptions] = useState([]);
   const [adType, setAdType] = useState('textbook');  // may need future refactoring
+  let adTypeConst = 'textbook';  // to avoid async in `handleAdTypeChange`
   const [showKeywordSuggest, setShowKeywordSuggest] = useState(false);
   const [keywordSuggest, setKeywordSuggest] = useState(['textbook1', 'textbook2', 'test']);
 
@@ -37,7 +38,10 @@ function SearchBar({
   }, [ref]);
 
   const handleAdTypeChange = () => {
-    setAdType(adType==='textbook'?'other':'textbook');
+    let temp = adType==='textbook'?'other':'textbook'
+    setAdType(temp);
+    adTypeConst = temp;
+    handleSubmit();
   }
 
   const handleKeywordSuggest = (i) => {
@@ -57,13 +61,13 @@ function SearchBar({
     handleSubmit();
   }
 
-  // todo potential delay --> setInterval as adListing scrolling?
+  // potential delay --> setInterval as `adListing` scrolling?
   const handleKeywordInput = (e) => {
     let temp = e.target.value;
     setKeyword(temp);
     if (temp.length > 0) {  // API rejects empty string
       dataFetch(
-        `${ROOT}suggest?type=${adType}&keyword=${temp}`,
+        `${ROOT}suggest?type=${adTypeConst}&keyword=${temp}`,
         {
           method: 'POST',
           headers: {'Content-Type': 'application/json'},
@@ -90,7 +94,7 @@ function SearchBar({
       tags.push(tagOptions[Number(idx)])
     })
     callback({
-      'adType': adType,
+      'adType': adTypeConst,
       'keyword': keyword,
       'priceOrder': priceOrders[filterPrice.priceOrder],
       'minPrice': filterPrice.priceRange[0],
