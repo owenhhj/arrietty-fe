@@ -1,12 +1,12 @@
 import logo from './logo.svg';
 import './App.css';
-import MyProfile from "./components/MyProfile";
+import MyProfile from "./components/myProfile/MyProfile";
 import Navbar from "./components/Navbar";
 import {BrowserRouter, Route, Routes} from "react-router-dom";
 import AdminTagInputWidget from "./components/admin/AdminTagInputWidget";
 import SelectSearch, {fuzzySearch} from "react-select-search";
 import "./components/common/select-search.css"
-import AdDisplayColumn from "./components/AdDisplayColumn";
+import AdDisplayColumn from "./components/adDisplay/AdDisplayColumn";
 import AdUploadForm from "./components/adUploadForm/AdUploadForm";
 import Home from "./components/Home";
 import Admin from "./components/Admin";

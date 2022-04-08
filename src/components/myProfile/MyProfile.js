@@ -1,10 +1,10 @@
 import './MyProfile.css'
-import './common/common.css'
+import '../common/common.css'
 import MyProfileDisplay from "./MyProfileDisplay";
 import MyProfileEdit from "./MyProfileEdit";
-import {showGeneralNoti} from "./common/GeneralNotiProvider";
+import {showGeneralNoti} from "../common/GeneralNotiProvider";
 import {useState, useEffect} from "react";
-import {dataFetch} from "./common/common";
+import {dataFetch} from "../common/common";
 
 function MyProfile({callback}) {
   const [myProfileData, setMyProfileData] = useState(MyProfile.defaultProps.profileData)

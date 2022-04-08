@@ -1,8 +1,8 @@
 import "./MyProfile.css"
 import {useState} from "react"
-import {dataFetch} from "./common/common";
-import Input from "./common/Input";
-import Button from "./common/Button";
+import {dataFetch} from "../common/common";
+import Input from "../common/Input";
+import Button from "../common/Button";
 
 function getYearOptions() {
   // let date = new Date();

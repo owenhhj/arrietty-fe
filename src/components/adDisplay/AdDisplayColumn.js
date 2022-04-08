@@ -1,7 +1,7 @@
 import {useEffect, useState} from "react";
-import SearchBar from "./searchBar/SearchBar";
-import AdDisplayCard from "./adDisplay/AdDisplayCard";
-import {dataFetch} from "./common/common";
+import SearchBar from "../searchBar/SearchBar";
+import AdDisplayCard from "./AdDisplayCard";
+import {dataFetch} from "../common/common";
 
 function AdDisplayColumn() {
   const ROOT = 'https://localhost:8000/';

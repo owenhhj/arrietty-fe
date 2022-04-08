@@ -1,5 +1,5 @@
-import MyProfile from "./MyProfile";
-import AdDisplayColumn from "./AdDisplayColumn";
+import MyProfile from "./myProfile/MyProfile";
+import AdDisplayColumn from "./adDisplay/AdDisplayColumn";
 import "./common/common.css";
 import "./Home.css";
 import Bulletin from "./Bulletin";

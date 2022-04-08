@@ -21,15 +21,6 @@ function AdDisplayCard({
   const [hoverPos, setHoverPos] = useState({});
   const [contactInfo, setContactInfo] = useState(fakeContact);
 
-  // todo InfoVisual Hw return null component while loading?
-  useEffect(() => {
-    dataFetch(`${ROOT}tap?id=${adData.id}`,
-      {},
-      setContactInfo,
-      (e) => {console.warn(e)}
-    );
-  }, [adData]);
-
   const handleMouseMove = (e) => {
     setHoverPos({xPos: e.pageX+15, yPos: e.pageY+15});
   }
@@ -47,21 +38,23 @@ function AdDisplayCard({
     dispatch({action: "add", body: {msg: msg, good: good}});
   }
 
-  // todo unimplemented yet
-  const handleTap = (e) => {
-    e.preventDefault();
+  // fixme if already tapped, parent fetched data contains these fields, need more props?
+  const handleTap = () => {
     if (tapped) {
       handleShowNoti('Cannot withdraw tap', false);
-      // alert('Cannot withdraw tap');
     } else {
       setTapped(true);
+      dataFetch(`${ROOT}tap?id=${adData.id}`,
+        {},
+        setContactInfo,
+        (e) => {console.warn(e)}
+      );
     }
   }
 
-  // s = "Apr 5, 2022, 12:00:00 PM";
+  // s = "Apr 5, 2022, 12:00:00 PM"; fixme really bad imp
   const getTimeAgo = (s) => {
-    // difference in minutes
-    let diff = (Date.now() - Date.parse(s)) / 1000 / 60;
+    let diff = (Date.now() - Date.parse(s)) / 1000 / 60;  // difference in minutes
     if (diff < 15) {
       return 'just now';
     } else if (diff < 60) {
@@ -79,7 +72,6 @@ function AdDisplayCard({
 
   return (
     <div>
-      {/* todo change card in common.css */}
       <div className={'AdDisplayCard card'} onMouseEnter={handleHover} onMouseLeave={handleHoverLeave} onMouseMove={handleMouseMove}>
 
         <div className={'col-1'}>
@@ -109,7 +101,6 @@ function AdDisplayCard({
         <div className={'col-3'}>
           <div className={'col-3-tags-container'}>
             <div className={'col-3-tags'}>
-              {/*todo tag/time*/}
               <p className={'tag'}>{adData.adType}</p>
               <p className={'last-mod'}>{getTimeAgo(adData.createTime)}</p>
             </div>
