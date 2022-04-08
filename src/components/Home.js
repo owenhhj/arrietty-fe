@@ -4,7 +4,7 @@ import "./common/common.css";
 import "./Home.css";
 import Bulletin from "./Bulletin";
 import {useEffect, useState} from "react";
-import AdvertisementUploadForm from "./advertisementUploadForm/AdvertisementUploadForm";
+import AdUploadForm from "./adUploadForm/AdUploadForm";
 import Modal from "react-modal";
 
 function Home(){
@@ -42,7 +42,7 @@ function Home(){
       <AdDisplayColumn/>
       <Bulletin/>
       <Modal isOpen={showNewAdForm} style={customStyles}>
-        <AdvertisementUploadForm callback={setShowNewAdForm}/>
+        <AdUploadForm callback={setShowNewAdForm}/>
       </Modal>
 
 

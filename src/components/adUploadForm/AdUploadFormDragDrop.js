@@ -1,11 +1,11 @@
-import "./NewAdDragDrop.css"
-import NewAdDragDropPic from "./NewAdDragDropPic";
+import "./AdUploadFormDragDrop.css"
+import AdUploadFormDragDropPic from "./AdUploadFormDragDropPic";
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import {useState} from 'react'
 
 
 // TODO release RAM from createObjectURL after submission
-function NewAdDragDrop({
+function AdUploadFormDragDrop({
   identifier = "images",
   onChange  // to pass files to parent onChange
                   }) {
@@ -116,7 +116,7 @@ function NewAdDragDrop({
                           snapshot.isDragging,
                           provided.draggableProps.style)}
                       >
-                        <NewAdDragDropPic
+                        <AdUploadFormDragDropPic
                           pic={{'name': item.name, 'url': item.url, 'index': index.toString()}}
                           toParent={handlePicDelete}
                         />
@@ -137,4 +137,4 @@ function NewAdDragDrop({
   )
 }
 
-export default NewAdDragDrop;
+export default AdUploadFormDragDrop;

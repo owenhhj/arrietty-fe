@@ -1,8 +1,8 @@
-import './NewAdDragDrop.css'
+import './AdUploadFormDragDrop.css'
 import {useState} from "react";
 
 
-function NewAdDragDropPic({
+function AdUploadFormDragDropPic({
   pic,  // object --> {name, url, index}
   toParent  // parent function to delete this
                           }) {
@@ -19,7 +19,7 @@ function NewAdDragDropPic({
   );
 }
 
-export default NewAdDragDropPic;
+export default AdUploadFormDragDropPic;
 
 
 

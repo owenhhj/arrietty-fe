@@ -1,61 +1,51 @@
-import './AdvertisementUploadForm.css'
+import './AdUploadForm.css'
 import {useEffect, useState} from "react";
 import AdTypeSwitch from "./AdTypeSwitch";
 import TextbookSearch from "./TextbookSearch";
 import Input from "../common/Input";
 import Button from "../common/Button";
 import AlertablePrompt from "./AlertablePrompt";
-import NewAdDragDrop from "./NewAdDragDrop";
+import AdUploadFormDragDrop from "./AdUploadFormDragDrop";
 import {dataFetch} from "../common/common";
 
-function AdvertisementUploadFormTextbook({
-  adType='textbook',
-  toSwitchAdType=null,  // 0: close, 1: textbook, 2: other
-  toSubmit=null
-                                         }) {
-  console.assert(adType==='textbook');
+function AdUploadFormOther({
+  adType='other',
+  toSwitchAdType,
+  toSubmit
+                                      }) {
+  console.assert(adType==='other');
 
-  const [textbookData, setTextbookData] = useState([]);
-  const [courseData, setCourseData] = useState([]);
-  const [textbookInputAlerted, setTextbookInputAlerted] = useState(false);
+  const [otherTagData, setOtherTagData] = useState([]);
   const [pricingInputAlerted, setPricingInputAlerted] = useState(false);
   const [commentInputAlerted, setCommentInputAlerted] = useState(false);
   const [pledgeInputAlerted, setPledgeInputAlerted] = useState(false);
   let pledgeTicked = false;
-  console.log('line before `let new FormData()`');
   let formData = new FormData();
 
   useEffect(() => {
     dataFetch(
-      "https://localhost:8000/textbook?id=",
+      "https://localhost:8000/otherTag?id=",
       {method:"GET"},
-      setTextbookData,
-      null
-    );
-    dataFetch(
-      "https://localhost:8000/course?id=",
-      {method:"GET"},
-      setCourseData,
+      setOtherTagData,
       null
     );
   }, []);
 
-  const getTextbookData = () => {
-    let ret = textbookData;
-    let courseMap = new Map();
-    for(let i=0; i<courseData.length; i++){
-      courseMap.set(courseData[i].id, courseData[i].courseCode);
-    }
-    for(let j=0; j<ret.length; j++){
-      ret[j].relatedCourse = courseMap.get(ret[j].courseId);
+  const getOtherTagOptions = (data)=>{
+    let ret = [];
+    for (let i=0; i<data.length; i++){
+      ret.push(
+        {
+          name: data[i].name,
+          value: data[i].id
+        }
+      );
     }
     return ret;
   };
 
   const handleInputChange = (identifier, value) => {
-    if(identifier==="tagId"){
-      setTextbookInputAlerted(false);
-    } else if (identifier==="price"){
+    if (identifier==="price"){
       setPricingInputAlerted(false);
     } else if (identifier==="comment"){
       setCommentInputAlerted(false);
@@ -78,11 +68,7 @@ function AdvertisementUploadFormTextbook({
 
   // todo validate input and call parent to submit
   const handleFormSubmit = () => {
-    formData.set('isTextbook', 'true');
-    console.log('child form sending to parent comp:')
-    for (let pair of formData.entries()) {
-      console.log('>>>', pair[0], pair[1]);
-    }
+    formData.set('isTextbook', 'false');
     toSubmit(formData);
   };
 
@@ -102,13 +88,13 @@ function AdvertisementUploadFormTextbook({
         </div>
         <div className={"form-row"}>
           <p className={"form-prompt"}>Upload photos</p>
-          <NewAdDragDrop identifier={"images"} onChange={handleInputChange}/>
+          <AdUploadFormDragDrop identifier={"images"} onChange={handleInputChange}/>
         </div>
 
 
-        <div className={"form-row textbook-search"}>
-          <AlertablePrompt promptText={"Select a textbook"} required={true} alertText={"Please select a textbook"} alerted={textbookInputAlerted}/>
-          <TextbookSearch textbookData={getTextbookData()} onChange={handleInputChange} />
+        <div className={"form-row"}>
+          <p className={"form-prompt"}>Select a tag if applicable</p>
+          <Input type={"select-search"} identifier={"tagId"} options={getOtherTagOptions(otherTagData)} placeholder={"select a tag"} onChange={handleInputChange} />
         </div>
 
 
@@ -144,7 +130,21 @@ function AdvertisementUploadFormTextbook({
   );
 }
 
-export default AdvertisementUploadFormTextbook;
+export default AdUploadFormOther;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

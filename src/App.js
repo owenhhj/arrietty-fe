@@ -7,7 +7,7 @@ import AdminTagInputWidget from "./components/admin/AdminTagInputWidget";
 import SelectSearch, {fuzzySearch} from "react-select-search";
 import "./components/common/select-search.css"
 import AdDisplayColumn from "./components/AdDisplayColumn";
-import AdvertisementUploadForm from "./components/advertisementUploadForm/AdvertisementUploadForm";
+import AdUploadForm from "./components/adUploadForm/AdUploadForm";
 import Home from "./components/Home";
 import Admin from "./components/Admin";
 import Modal from "react-modal";
