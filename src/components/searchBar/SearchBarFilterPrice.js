@@ -13,6 +13,7 @@ function SearchBarFilterPrice({
   const [showFilterPrice, setShowFilterPrice] = useState(false);
   const [priceRange, setPriceRange] = useState(priceRangeParent);
   const [priceOrder, setPriceOrder] = useState(priceOrderParent);
+  // todo state necessary? or pass callback through middle component without local manipulation
 
   useEffect(() => {
     const handleClickOutside = (e) => {

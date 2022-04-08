@@ -1,4 +1,4 @@
-import "./AdvertisementUploadForm.css"
+import "./AdUploadForm.css"
 import "./TextbookSearch.css"
 import {useState} from "react";
 import Input from "../common/Input";

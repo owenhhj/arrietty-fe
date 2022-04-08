@@ -12,7 +12,7 @@ function GeneralNoti({
       dispatch({
         action: "del"
       });
-    }, 2000);
+    }, 2500);
   }, []);
 
   return (

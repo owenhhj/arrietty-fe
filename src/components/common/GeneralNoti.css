@@ -1,31 +1,28 @@
 .GeneralNoti {
-    position: absolute;
-    /*min-width: 200px;*/
-    /*min-height: 50px;*/
+    /*position: absolute;*/
+    position: fixed;
     z-index: 999;
     top: 40%;
     left: 50%;
     transform: translate(-50%, -50%);
 
     border-radius: 5px;
-    background-color: #F3F3F3;
-    box-shadow: 5px 5px 5px #D6D6D6;
+    background-color: #FAFAFA;
+    box-shadow: 0 5px 20px #BEBEBE;
 
-    /*word-wrap: normal;*/
-    /*text-align: center;*/
+    display: flex;
+    align-content: center;
 }
 
 .GeneralNoti p {
-    display: inline-block;
-    float: left;
-    margin: 10px 5px 10px 10px;
+    font-size: 1.5rem;
+    margin: 0.5em 0.5em 0.5em 1em;
 }
 
 .GeneralNoti img {
-    display: inline-block;
-    float: right;
-    height: 1.2rem;
-    margin: 10px 10px 10px 5px;
+    align-self: center;
+    height: 2em;
+    margin: 0.5em 1em 0.5em 0.5em;
 }
 
 .img-green {

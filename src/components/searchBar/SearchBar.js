@@ -9,13 +9,14 @@ function SearchBar({
   callback=null
                    }) {
   const ROOT = 'https://localhost:8000/';
-  const ref = useRef();
+  const ref = useRef();  // to bind text suggestion window
   const priceOrders = [null, 'asc', 'desc'];
   let filterPrice = {'type': 'price', 'priceOrder': 0, 'priceRange': [null, null]};
   let filterTag = {'type': 'tag', 'selectedOptions': []};
   const [keyword, setKeyword] = useState('');  // if not state --> callback not update
   const [tagOptions, setTagOptions] = useState([]);
-  const [adType, setAdType] = useState('textbook');
+  const [adType, setAdType] = useState('textbook');  // may need future refactoring
+  let adTypeConst = 'textbook';  // to avoid async in `handleAdTypeChange`
   const [showKeywordSuggest, setShowKeywordSuggest] = useState(false);
   const [keywordSuggest, setKeywordSuggest] = useState(['textbook1', 'textbook2', 'test']);
 
@@ -37,7 +38,10 @@ function SearchBar({
   }, [ref]);
 
   const handleAdTypeChange = () => {
-    setAdType(adType==='textbook'?'other':'textbook');  // todo back-end change 'other' to 'others'?
+    let temp = adType==='textbook'?'other':'textbook'
+    setAdType(temp);
+    adTypeConst = temp;
+    handleSubmit();
   }
 
   const handleKeywordSuggest = (i) => {
@@ -49,19 +53,21 @@ function SearchBar({
 
   const handleFilterPrice = (e) => {
     filterPrice = e;
+    handleSubmit();
   }
 
   const handleFilterTag = (e) => {
     filterTag = e;
+    handleSubmit();
   }
 
-  // todo potential delay --> setInterval as adListing scrolling?
+  // potential delay --> setInterval as `adListing` scrolling?
   const handleKeywordInput = (e) => {
     let temp = e.target.value;
-    setKeyword(e.target.value);
+    setKeyword(temp);
     if (temp.length > 0) {  // API rejects empty string
       dataFetch(
-        `${ROOT}suggest?type=${adType}&keyword=${temp}`,
+        `${ROOT}suggest?type=${adTypeConst}&keyword=${temp}`,
         {
           method: 'POST',
           headers: {'Content-Type': 'application/json'},
@@ -83,13 +89,17 @@ function SearchBar({
 
   const handleSubmit = () => {
     setShowKeywordSuggest(false);
+    let tags = [];
+    filterTag.selectedOptions.forEach(idx => {
+      tags.push(tagOptions[Number(idx)])
+    })
     callback({
-      'adType': adType,
+      'adType': adTypeConst,
       'keyword': keyword,
       'priceOrder': priceOrders[filterPrice.priceOrder],
       'minPrice': filterPrice.priceRange[0],
       'maxPrice': filterPrice.priceRange[1],
-      'tag': filterTag.selectedOptions.join(',')
+      'tag': tags.join(',').length>0 ? tags.join(',') : null
     });
   }
 

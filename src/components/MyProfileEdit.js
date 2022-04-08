@@ -25,40 +25,38 @@ function MyProfileEdit(props) {
   let formData = {...profileDataEdit};
   let avatarFileInputDom;
   const handleFormSubmit = () => {
-      dataFetch(
-          ROOT+"profile",
+    dataFetch(
+      ROOT+"profile",
+      {
+        method:'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData)
+      },
+      (x)=>{
+        setProfileDataEdit(formData);
+        props.callback({action: "update", body: formData});
+      },
+      null
+    )
+
+    // TODO: image size check
+    if(avatarFileInputDom.files && avatarFileInputDom.files[0]){
+      let form = new FormData();
+        form.append("file", avatarFileInputDom.files[0]);
+        dataFetch(
+          ROOT+"avatar",
           {
-              method:'POST',
-              headers: { 'Content-Type': 'application/json' },
-              body: JSON.stringify(formData)
+            method:'POST',
+            body: form
           },
-          (x)=>{
-              setProfileDataEdit(formData);
-              props.callback({action: "update", body: formData});
-            },
+          (x) => {
+            formData.avatarImageUrl = avatarImageSrc;
+            props.callback({action: "update", body: formData});
+            window.location.reload();
+          },
           null
-      )
-
-      // TODO: image size check
-      if(avatarFileInputDom.files && avatarFileInputDom.files[0]){
-          let form = new FormData();
-          form.append("file", avatarFileInputDom.files[0]);
-          dataFetch(
-              ROOT+"avatar",
-              {
-                  method:'POST',
-                  body: form
-              },
-              (x)=>{
-                formData.avatarImageUrl = avatarImageSrc;
-                props.callback({action: "update", body: formData});
-                window.location.reload();
-              },
-              null
-          )
-
-      }
-
+        );
+    }
   }
 
   // real-time bind keyboard input
@@ -67,12 +65,12 @@ function MyProfileEdit(props) {
   }
 
   const handleAvatarEdit = ()=>{
-      avatarFileInputDom.click();
+    avatarFileInputDom.click();
   };
 
   const onAvatarImageChange = (event) => {
     if (event.target.files && event.target.files[0]) {
-        setAvatarImageSrc(URL.createObjectURL(event.target.files[0]));
+      setAvatarImageSrc(URL.createObjectURL(event.target.files[0]));
     }
   }
 
