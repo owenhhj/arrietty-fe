@@ -4,11 +4,11 @@ import Navbar from "./components/Navbar";
 import {BrowserRouter, Route, Routes} from "react-router-dom";
 import SelectSearch, {fuzzySearch} from "react-select-search";
 import "./components/common/select-search.css"
-import Home from "./components/Home";
-import Admin from "./components/Admin";
+import RouteHome from "./components/RouteHome";
+import RouteAdmin from "./components/RouteAdmin";
 
-import MyPosts from "./components/MyPosts";
-import Notification from "./components/Notification";
+import RouteMyPosts from "./components/RouteMyPosts";
+import RouteNotification from "./components/RouteNotification";
 import Modal from "react-modal";
 
 
@@ -22,10 +22,10 @@ function App() {
         <BrowserRouter>
             <Navbar isAdmin={true} />
             <Routes>
-                <Route  path="/home" element={<Home/>} exact/>
-                <Route  path="/myPosts" element={<MyPosts/>} exact/>
-                <Route  path="/admin" element={<Admin/>} exact/>
-                <Route  path="/notification" element={<Notification/>} exact/>
+                <Route path="/home" element={<RouteHome/>} exact/>
+                <Route path="/myPosts" element={<RouteMyPosts/>} exact/>
+                <Route path="/admin" element={<RouteAdmin/>} exact/>
+                <Route path="/notification" element={<RouteNotification/>} exact/>
 
             </Routes>
         </BrowserRouter>

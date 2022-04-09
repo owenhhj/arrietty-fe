@@ -1,14 +1,14 @@
 import MyProfile from "./myProfile/MyProfile";
 import NotificationColumn from "./notification/NotificationColumn";
 
-// page component for Notification
-function Notification() {
+// page component for RouteNotification
+function RouteNotification() {
 
 
 
 
   return (
-    <div className={'Notification page'}>
+    <div className={'RouteNotification page'}>
 
       <MyProfile/>
       <NotificationColumn/>
@@ -17,7 +17,7 @@ function Notification() {
   );
 }
 
-export default Notification;
+export default RouteNotification;
 
 
 
