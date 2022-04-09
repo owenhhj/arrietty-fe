@@ -1,10 +1,12 @@
 import './NotificationColumn.css';
+import RoutePageTitleCard from "../common/RoutePageTitleCard";
 import NotificationCard from "./NotificationCard";
 import {useEffect, useState} from "react";
 import {dataFetch} from "../common/common";
 
 function NotificationColumn() {
   const ROOT = 'https://localhost:8000/';
+  const pageTitle = 'Notifications';
   const [notis, setNotis] = useState([]);
 
   useEffect(() => {
@@ -19,10 +21,7 @@ function NotificationColumn() {
   return (
     <div className={'NotificationColumn'}>
 
-      {/* todo refactor this for other routes */}
-      <div className={'NotificationTitle card'}>
-        <p>Notifications</p>
-      </div>
+      <RoutePageTitleCard pageTitle={pageTitle}/>
 
       {notis.map(noti => {
         return (
