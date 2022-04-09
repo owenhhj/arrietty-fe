@@ -30,10 +30,6 @@ function NotificationColumn() {
         );
       })}
 
-      <NotificationCard/>
-      <NotificationCard/>
-      <NotificationCard/>
-
     </div>
   );
 }
