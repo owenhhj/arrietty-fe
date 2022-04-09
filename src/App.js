@@ -6,7 +6,7 @@ import SelectSearch, {fuzzySearch} from "react-select-search";
 import "./components/common/select-search.css"
 import RouteHome from "./components/RouteHome";
 import RouteAdmin from "./components/RouteAdmin";
-
+import RouteFavorite from "./components/RouteFavorite";
 import RouteMyPosts from "./components/RouteMyPosts";
 import RouteNotification from "./components/RouteNotification";
 import Modal from "react-modal";
@@ -26,6 +26,7 @@ function App() {
                 <Route path="/myPosts" element={<RouteMyPosts/>} exact/>
                 <Route path="/admin" element={<RouteAdmin/>} exact/>
                 <Route path="/notification" element={<RouteNotification/>} exact/>
+                <Route path="/favorite" element={<RouteFavorite/>} exact/>
 
             </Routes>
         </BrowserRouter>

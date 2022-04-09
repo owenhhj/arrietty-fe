@@ -1,0 +1,13 @@
+
+.FavoriteColumn {
+    width: 700px;
+}
+
+.FavoriteColumn * {
+    margin: 0;
+    padding: 0;
+}
+
+
+
+

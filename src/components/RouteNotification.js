@@ -4,9 +4,6 @@ import NotificationColumn from "./notification/NotificationColumn";
 // page component for RouteNotification
 function RouteNotification() {
 
-
-
-
   return (
     <div className={'RouteNotification page'}>
 
