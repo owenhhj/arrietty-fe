@@ -22,6 +22,8 @@ function NotificationColumn() {
 
   return (
     <div className={'NotificationColumn'}>
+
+      {/* todo refactor this for other routes */}
       <div className={'NotificationTitle card'}>
         <p>Notifications</p>
       </div>
