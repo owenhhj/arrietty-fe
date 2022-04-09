@@ -2,7 +2,7 @@ import './AdDisplayCard.css';
 import AdDisplayCardHoverMore from "./AdDisplayCardHoverMore";
 import {translateTimeAgo} from "../common/common";
 import {showGeneralNoti} from "../common/GeneralNotiProvider";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import {dataFetch} from "../common/common";
 
 const fakeAd = {
@@ -15,12 +15,25 @@ const fakeContact = {username:'Nameee eeeaw sfee aew faewf eawf', netId:'abcd123
 
 function AdDisplayCard({
   adData=fakeAd,  // one piece of adData
+  tappedBefore=false,
                        }) {
   const ROOT = 'https://localhost:8000/';
-  const [tapped, setTapped] = useState(false);  // todo adData.tapped not in README
+  const [tapped, setTapped] = useState(tappedBefore);
   const [hover, setHover] = useState(false);
   const [hoverPos, setHoverPos] = useState({});
   const [contactInfo, setContactInfo] = useState(fakeContact);
+
+  useEffect(() => {
+    if (tappedBefore) {
+      let temp = {
+        username: adData.username!==null ? adData.username : fakeContact.username,
+        netId: adData.netId,
+        avatarImageId: adData.avatarImageId
+      };
+      console.log('setting tappedBefore', temp);
+      setContactInfo(temp);
+    }
+  }, []);
 
   const handleMouseMove = (e) => {
     setHoverPos({xPos: e.pageX+15, yPos: e.pageY+15});
@@ -39,16 +52,20 @@ function AdDisplayCard({
     dispatch({action: "add", body: {msg: msg, good: good}});
   };
 
-  // fixme if already tapped, parent fetched data contains these fields, need more props?
   const handleTap = () => {
-    if (tapped) {
+    if (tappedBefore || tapped) {  // double check for state
       handleShowNoti('Cannot withdraw tap', false);
     } else {
-      setTapped(true);
       dataFetch(`${ROOT}tap?id=${adData.id}`,
         {},
-        setContactInfo,
-        (e) => {console.warn(e)}
+        (res) => {
+          setContactInfo(res);
+          setTapped(true);
+        },
+        (e) => {
+          console.warn(e);
+          handleShowNoti('Tap failure', false);
+        }
       );
     }
   };

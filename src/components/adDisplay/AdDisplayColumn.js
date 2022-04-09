@@ -113,11 +113,15 @@ function AdDisplayColumn() {
       <SearchBar callback={handleSearchBar}/>
 
       {adData.map((ad, index) => {
+        // let tappedBefore = false;  // dummy
+        let tappedBefore = !!ad.netId;  // new user may not have a username/avatar, only check if netId exists
+        console.log('adData tappedBefore:', tappedBefore, 'netId fetched is:', ad.netId);
         return (
-          <AdDisplayCard key={ad.id} adData={ad}/>
+          <AdDisplayCard key={ad.id} adData={ad} tappedBefore={tappedBefore}/>
         );
       })}
 
+      {/* dummy data */}
       {/*<AdDisplayCard/>*/}
       {/*<AdDisplayCard/>*/}
       {/*<AdDisplayCard/>*/}
