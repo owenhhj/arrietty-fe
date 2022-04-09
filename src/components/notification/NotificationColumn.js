@@ -11,7 +11,7 @@ function NotificationColumn() {
     dataFetch(
       `${ROOT}notification`,
       {method: 'GET'},
-      // setNotis,
+      // setNotis,  // todo change this back
       (r) => {
         console.log('/notification fetched:', r);
         setNotis(r);
@@ -21,13 +21,22 @@ function NotificationColumn() {
   }, []);
 
   return (
-    <>
-      {notis.map(noti => {
-        return (
-          <NotificationCard key={noti.id} {...noti}/>
-        );
-      })}
-    </>
+    <div className={'NotificationColumn'}>
+      <div>
+        <h3>Notifications</h3>
+      </div>
+
+      {/*{notis.map(noti => {*/}
+      {/*  return (*/}
+      {/*    <NotificationCard key={noti.id} {...noti}/>*/}
+      {/*  );*/}
+      {/*})}*/}
+
+      <NotificationCard/>
+      <NotificationCard/>
+      <NotificationCard/>
+
+    </div>
   );
 }
 

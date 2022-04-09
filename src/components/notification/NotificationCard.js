@@ -1,11 +1,11 @@
-
+import './NotificationCard.css';
 
 function NotificationCard({
   id=1,
-  username='RandomUser',
+  username='CenturyAve',
   netId='ca1555',
   avatarImageId=2,
-  adTitle='RandomAdTitle',
+  adTitle='Random Ad Title to Sell Something',
   createTime="Apr 5, 2022, 12:00:00 PM"
                           }) {
   const ROOT = 'https://localhost:8000/';
@@ -14,10 +14,25 @@ function NotificationCard({
   return (
     <div className={'NotificationCard card'}>
 
-      <img src={`${ROOT}image?id=${avatarImageId}`} alt=""/>
-      <p>{username}</p>
-      <p>{netId}</p>
-      <p>{adTitle}</p>
+      <div className={'NotiCard-col-1'}>
+        {/*<img src={`${ROOT}image?id=${avatarImageId}`} alt=""/>*/}
+        <img src="./default_avatar.jpg" alt=""/>
+      </div>
+
+      <div className={'NotiCard-col-2'}>
+        <p>
+          <span className={'username'}>{username}</span> <span className={'netId'}>{netId}</span> tapped on your advertisement <span className={'adTitle'}>"{adTitle}"</span>
+        </p>
+      </div>
+
+      <div className={'NotiCard-col-3'}>
+        <p>just now</p>
+      </div>
+
+
+
+
+
 
 
 

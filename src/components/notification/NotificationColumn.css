@@ -1,11 +1,6 @@
 .NotificationColumn {
-    width: 300px;
+    width: 700px;
 
-}
-
-.NotificationColumn * {
-    padding: 0;
-    margin: 0;
 }
 
 /**/
