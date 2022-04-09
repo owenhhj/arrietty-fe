@@ -22,8 +22,8 @@ function NotificationColumn() {
 
   return (
     <div className={'NotificationColumn'}>
-      <div>
-        <h3>Notifications</h3>
+      <div className={'NotificationTitle card'}>
+        <p>Notifications</p>
       </div>
 
       {/*{notis.map(noti => {*/}

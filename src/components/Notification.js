@@ -10,7 +10,7 @@ function Notification() {
   return (
     <div className={'Notification page'}>
 
-      {/*<MyProfile/>*/}
+      <MyProfile/>
       <NotificationColumn/>
 
     </div>

@@ -50,6 +50,20 @@
     margin: 0 1em 0 1em;
 }
 
+p .username {
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+p .netId {
+    font-size: 0.9em;
+    color: #666666;
+}
+
+p .adTitle {
+    font-size: 1.1em;
+}
+
 /**/
 
 .NotiCard-col-3 {
