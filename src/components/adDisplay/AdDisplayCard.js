@@ -1,7 +1,8 @@
 import './AdDisplayCard.css';
 import AdDisplayCardHoverMore from "./AdDisplayCardHoverMore";
+import {translateTimeAgo} from "../common/common";
 import {showGeneralNoti} from "../common/GeneralNotiProvider";
-import {useEffect, useState} from "react";
+import {useState} from "react";
 import {dataFetch} from "../common/common";
 
 const fakeAd = {
@@ -23,20 +24,20 @@ function AdDisplayCard({
 
   const handleMouseMove = (e) => {
     setHoverPos({xPos: e.pageX+15, yPos: e.pageY+15});
-  }
+  };
 
   const handleHover = () => {
     setHover(true);
-  }
+  };
 
   const handleHoverLeave = () => {
     setHover(false);
-  }
+  };
 
   const dispatch = showGeneralNoti();
   const handleShowNoti = (msg, good) => {
     dispatch({action: "add", body: {msg: msg, good: good}});
-  }
+  };
 
   // fixme if already tapped, parent fetched data contains these fields, need more props?
   const handleTap = () => {
@@ -50,25 +51,7 @@ function AdDisplayCard({
         (e) => {console.warn(e)}
       );
     }
-  }
-
-  // s = "Apr 5, 2022, 12:00:00 PM"; fixme really bad imp
-  const getTimeAgo = (s) => {
-    let diff = (Date.now() - Date.parse(s)) / 1000 / 60;  // difference in minutes
-    if (diff < 15) {
-      return 'just now';
-    } else if (diff < 60) {
-      return '1 hour ago';
-    } else if (diff/60 < 12) {
-      return '12h ago';
-    } else if (diff/60 < 24) {
-      return '1 day ago';
-    } else if (diff/60/24 < 7) {
-      return '1 week ago';
-    } else {
-      return 'too long ago';
-    }
-  }
+  };
 
   return (
     <div>
@@ -102,7 +85,7 @@ function AdDisplayCard({
           <div className={'col-3-tags-container'}>
             <div className={'col-3-tags'}>
               <p className={'tag'}>{adData.adType}</p>
-              <p className={'last-mod'}>{getTimeAgo(adData.createTime)}</p>
+              <p className={'last-mod'}>{translateTimeAgo(adData.createTime)}</p>
             </div>
           </div>
           {!tapped &&

@@ -26,11 +26,11 @@ function NotificationColumn() {
         <p>Notifications</p>
       </div>
 
-      {/*{notis.map(noti => {*/}
-      {/*  return (*/}
-      {/*    <NotificationCard key={noti.id} {...noti}/>*/}
-      {/*  );*/}
-      {/*})}*/}
+      {notis.map(noti => {
+        return (
+          <NotificationCard key={noti.id} {...noti}/>
+        );
+      })}
 
       <NotificationCard/>
       <NotificationCard/>
