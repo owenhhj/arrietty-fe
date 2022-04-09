@@ -11,11 +11,7 @@ function NotificationColumn() {
     dataFetch(
       `${ROOT}notification`,
       {method: 'GET'},
-      // setNotis,  // todo change this back
-      (r) => {
-        console.log('/notification fetched:', r);
-        setNotis(r);
-      },
+      setNotis,
       (e) => {console.warn(e);}
     );
   }, []);
