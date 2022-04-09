@@ -1,13 +1,13 @@
-import MyProfile from "./MyProfile";
-import AdDisplayColumn from "./AdDisplayColumn";
+import MyProfile from "./myProfile/MyProfile";
+import AdDisplayColumn from "./adDisplay/AdDisplayColumn";
 import "./common/common.css";
-import "./Home.css";
+import "./RouteHome.css";
 import Bulletin from "./Bulletin";
 import {useEffect, useState} from "react";
 import AdUploadForm from "./adUploadForm/AdUploadForm";
 import Modal from "react-modal";
 
-function Home(){
+function RouteHome(){
   const [showNewAdForm, setShowNewAdForm] = useState(false);
 
   useEffect(() => {
@@ -51,4 +51,4 @@ function Home(){
   );
 }
 
-export default Home;
+export default RouteHome;

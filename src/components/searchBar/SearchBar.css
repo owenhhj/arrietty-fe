@@ -7,9 +7,6 @@
     height: 120px;
 
     background-color: #F3F3F3;
-    /* use common.css */
-    /*border-radius: 10px;*/
-    /*box-shadow: 5px 5px 5px #BBBBBB;*/
 
     display: flex;
     flex-direction: column;

@@ -1,5 +1,5 @@
 import './MyProfile.css'
-import Button from "./common/Button";
+import Button from "../common/Button";
 import React from "react";
 
 function MyProfileDisplay({

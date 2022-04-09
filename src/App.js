@@ -1,17 +1,15 @@
 import logo from './logo.svg';
 import './App.css';
-import MyProfile from "./components/MyProfile";
 import Navbar from "./components/Navbar";
 import {BrowserRouter, Route, Routes} from "react-router-dom";
-import AdminTagInputWidget from "./components/admin/AdminTagInputWidget";
 import SelectSearch, {fuzzySearch} from "react-select-search";
 import "./components/common/select-search.css"
-import AdDisplayColumn from "./components/AdDisplayColumn";
-import AdUploadForm from "./components/adUploadForm/AdUploadForm";
-import Home from "./components/Home";
-import Admin from "./components/Admin";
+import RouteHome from "./components/RouteHome";
+import RouteAdmin from "./components/RouteAdmin";
+
+import RouteMyPosts from "./components/RouteMyPosts";
+import RouteNotification from "./components/RouteNotification";
 import Modal from "react-modal";
-import MyPosts from "./components/MyPosts";
 
 
 
@@ -24,9 +22,10 @@ function App() {
         <BrowserRouter>
             <Navbar isAdmin={true} />
             <Routes>
-                <Route  path="/home" element={<Home/>} exact/>
-                <Route  path="/myPosts" element={<MyPosts/>} exact/>
-                <Route  path="/admin" element={<Admin/>} exact/>
+                <Route path="/home" element={<RouteHome/>} exact/>
+                <Route path="/myPosts" element={<RouteMyPosts/>} exact/>
+                <Route path="/admin" element={<RouteAdmin/>} exact/>
+                <Route path="/notification" element={<RouteNotification/>} exact/>
 
             </Routes>
         </BrowserRouter>

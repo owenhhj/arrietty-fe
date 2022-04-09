@@ -1,7 +1,8 @@
 import './AdDisplayCard.css';
 import AdDisplayCardHoverMore from "./AdDisplayCardHoverMore";
+import {translateTimeAgo} from "../common/common";
 import {showGeneralNoti} from "../common/GeneralNotiProvider";
-import {useEffect, useState} from "react";
+import {useState} from "react";
 import {dataFetch} from "../common/common";
 
 const fakeAd = {
@@ -21,65 +22,39 @@ function AdDisplayCard({
   const [hoverPos, setHoverPos] = useState({});
   const [contactInfo, setContactInfo] = useState(fakeContact);
 
-  // todo InfoVisual Hw return null component while loading?
-  useEffect(() => {
-    dataFetch(`${ROOT}tap?id=${adData.id}`,
-      {},
-      setContactInfo,
-      (e) => {console.warn(e)}
-    );
-  }, [adData]);
-
   const handleMouseMove = (e) => {
     setHoverPos({xPos: e.pageX+15, yPos: e.pageY+15});
-  }
+  };
 
   const handleHover = () => {
     setHover(true);
-  }
+  };
 
   const handleHoverLeave = () => {
     setHover(false);
-  }
+  };
 
   const dispatch = showGeneralNoti();
   const handleShowNoti = (msg, good) => {
     dispatch({action: "add", body: {msg: msg, good: good}});
-  }
+  };
 
-  // todo unimplemented yet
-  const handleTap = (e) => {
-    e.preventDefault();
+  // fixme if already tapped, parent fetched data contains these fields, need more props?
+  const handleTap = () => {
     if (tapped) {
       handleShowNoti('Cannot withdraw tap', false);
-      // alert('Cannot withdraw tap');
     } else {
       setTapped(true);
+      dataFetch(`${ROOT}tap?id=${adData.id}`,
+        {},
+        setContactInfo,
+        (e) => {console.warn(e)}
+      );
     }
-  }
-
-  // s = "Apr 5, 2022, 12:00:00 PM";
-  const getTimeAgo = (s) => {
-    // difference in minutes
-    let diff = (Date.now() - Date.parse(s)) / 1000 / 60;
-    if (diff < 15) {
-      return 'just now';
-    } else if (diff < 60) {
-      return '1 hour ago';
-    } else if (diff/60 < 12) {
-      return '12h ago';
-    } else if (diff/60 < 24) {
-      return '1 day ago';
-    } else if (diff/60/24 < 7) {
-      return '1 week ago';
-    } else {
-      return 'too long ago';
-    }
-  }
+  };
 
   return (
     <div>
-      {/* todo change card in common.css */}
       <div className={'AdDisplayCard card'} onMouseEnter={handleHover} onMouseLeave={handleHoverLeave} onMouseMove={handleMouseMove}>
 
         <div className={'col-1'}>
@@ -109,9 +84,8 @@ function AdDisplayCard({
         <div className={'col-3'}>
           <div className={'col-3-tags-container'}>
             <div className={'col-3-tags'}>
-              {/*todo tag/time*/}
               <p className={'tag'}>{adData.adType}</p>
-              <p className={'last-mod'}>{getTimeAgo(adData.createTime)}</p>
+              <p className={'last-mod'}>{translateTimeAgo(adData.createTime)}</p>
             </div>
           </div>
           {!tapped &&
