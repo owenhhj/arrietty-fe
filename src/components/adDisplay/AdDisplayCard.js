@@ -30,7 +30,7 @@ function AdDisplayCard({
         netId: adData.netId,
         avatarImageId: adData.avatarImageId
       };
-      console.log('setting tappedBefore', temp);
+      console.log('setting contactInfo to be:', temp);
       setContactInfo(temp);
     }
   }, []);
