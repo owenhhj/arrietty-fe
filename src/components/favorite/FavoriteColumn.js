@@ -12,7 +12,7 @@ function FavoriteColumn() {
 
   useEffect(() => {
     dataFetch(
-      `${ROOT}myFavorite`,
+      `${ROOT}favorite`,
       {method: 'GET'},
       setFavs,
       (e) => {console.warn(e);}

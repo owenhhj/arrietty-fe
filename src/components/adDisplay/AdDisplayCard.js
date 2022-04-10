@@ -73,8 +73,8 @@ function AdDisplayCard({
   const handleMark = () => {
     if (marked) {
       dataFetch(
-        `${ROOT}mark?adId=${adData.id}&status=off`,
-        {},
+        `${ROOT}mark?id=${adData.id}&status=off`,
+        {method: 'GET'},
         () => {
           setMarked(false);
         },
@@ -85,8 +85,8 @@ function AdDisplayCard({
       );
     } else {
       dataFetch(
-        `${ROOT}mark?adId=${adData.id}&status=on`,
-        {},
+        `${ROOT}mark?id=${adData.id}&status=on`,
+        {method: 'GET'},
         () => {
           setMarked(true);
         },
@@ -164,7 +164,8 @@ function AdDisplayCard({
                 <p>Tap</p>
               </div>
               <div className={'btn-mark clickable'} onClick={handleMark} style={{backgroundColor: marked?"#DDDDDD":""}}>
-                <img src="bookmark_border_black_48dp.svg" alt=""/>
+                {!marked && <img src="bookmark_border_black_48dp.svg" alt=""/>}
+                {marked && <img src="bookmark_black_48dp.svg" alt=""/>}
                 <p>Mark</p>
               </div>
             </div>
