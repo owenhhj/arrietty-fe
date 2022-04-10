@@ -4,6 +4,7 @@ import {translateTimeAgo} from "../common/common";
 import {showGeneralNoti} from "../common/GeneralNotiProvider";
 import {useEffect, useState} from "react";
 import {dataFetch} from "../common/common";
+import {getSiteInfo} from "../common/SiteInfoProvider";
 
 const fakeAd = {
   id: 1, adType: 'textbook', adTitle: 'This is a fake title for and ad but this is very long', price: '1233425',
@@ -17,6 +18,8 @@ function AdDisplayCard({
   adData=fakeAd,  // one piece of adData  <--> one advertisement
                        }) {
   const ROOT = 'https://localhost:8000/';
+  const MY_NETID = getSiteInfo().netId;
+  const [isMine, setIsMine] = useState(!!adData.userNetId && adData.userNetId===MY_NETID);
   const [tapped, setTapped] = useState(!!adData.userNetId);  // true if field exists
   const [marked, setMarked] = useState(!!adData.isMarked);  // fixme pending
   const [hover, setHover] = useState(false);
@@ -159,11 +162,15 @@ function AdDisplayCard({
           }
           <div className={'col-3-buttons-container'}>
             <div className={'col-3-buttons'}>
-              <div className={'btn-tap clickable'} onClick={handleTap} style={{backgroundColor: tapped?"#DDDDDD":""}}>
-                <img src="./touch_app_black_48dp.svg" alt=""/>
-                <p>Tap</p>
-              </div>
-              <div className={'btn-mark clickable'} onClick={handleMark} style={{backgroundColor: marked?"#DDDDDD":""}}>
+
+              {!isMine &&
+                <div className={'btn-tap clickable'} onClick={handleTap} style={{backgroundColor: tapped?"#DDDDDD":""}}>
+                  <img src="./touch_app_black_48dp.svg" alt=""/>
+                  <p>Tap</p>
+                </div>
+              }
+
+              <div className={'btn-mark clickable'} onClick={handleMark}>
                 {!marked && <img src="bookmark_border_black_48dp.svg" alt=""/>}
                 {marked && <img src="bookmark_black_48dp.svg" alt=""/>}
                 <p>Mark</p>

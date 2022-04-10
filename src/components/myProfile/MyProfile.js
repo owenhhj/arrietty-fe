@@ -7,16 +7,16 @@ import {useState, useEffect} from "react";
 import {dataFetch} from "../common/common";
 
 function MyProfile({callback}) {
+  const ROOT = 'https://localhost:8000/';
   const [myProfileData, setMyProfileData] = useState(MyProfile.defaultProps.profileData)
   const [pageShow, setPageShow] = useState(0)  // 0: show disp, 1: show edit
-  const ROOT = 'https://localhost:8000/'
 
   useEffect(() => {
     dataFetch(
-        ROOT+"profile?userId=",
-        {method:"GET"},
-        setMyProfileData,
-        null
+      ROOT+"profile?userId=",
+      {method:"GET"},
+      setMyProfileData,
+      null
     );
   }, []);
 
