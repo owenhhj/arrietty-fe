@@ -114,9 +114,10 @@ function AdDisplayColumn() {
 
       {adData.map((ad, index) => {
         // fixme
-        // let tappedBefore = false;  // dummy
-        let tappedBefore = !!ad.netId;  // new user may not have a username/avatar, only check if netId exists
-        console.log('adData tappedBefore:', tappedBefore, 'netId fetched is:', ad.netId);
+        let tappedBefore = !!ad.userNetId;  // new user may not have a username/avatar, only check if netId exists
+        if (tappedBefore) {
+          console.log('this ad was tappedBefore:', tappedBefore, 'netId fetched is:', ad.userNetId);
+        }
         return (
           <AdDisplayCard key={ad.id} adData={ad} tappedBefore={tappedBefore}/>
         );

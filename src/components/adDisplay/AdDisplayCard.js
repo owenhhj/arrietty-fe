@@ -27,8 +27,8 @@ function AdDisplayCard({
     if (tappedBefore) {
       let temp = {
         username: adData.username!==null ? adData.username : fakeContact.username,
-        netId: adData.netId,
-        avatarImageId: adData.avatarImageId
+        netId: adData.userNetId,
+        avatarImageId: adData.userAvatarImageId
       };
       console.log('setting contactInfo to be:', temp);
       setContactInfo(temp);
