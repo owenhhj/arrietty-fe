@@ -9,7 +9,7 @@ import {getSiteInfo} from "../common/SiteInfoProvider";
 const fakeAd = {
   id: 1, adType: 'textbook', adTitle: 'This is a fake title for and ad but this is very long', price: '1233425',
   comment: 'This is a fake comment for and ad but this is very long very long very long very long very long very long very long very long very long very long very long very long very long very long very long very long very long very long very long very long very long',
-  createTime: "Apr 4, 2022, 12:00:00 AM",
+  createTime: "Apr 4, 2022, 12:00:00 AM"
 }
 
 const fakeContact = {username:'Nameee eeeaw sfee aew faewf eawf', netId:'abcd12345', avatarImageId:'./default_avatar.jpg'};
@@ -145,32 +145,33 @@ function AdDisplayCard({
             </div>
           }
           {tapped &&
-              <div className={'col-3-to-unlock-container'}>
-                <div className={'col-3-unlocked card'}>
-                  <div className={'owner-avatar'}>
+            <div className={'col-3-to-unlock-container'}>
+              <div className={'col-3-unlocked card'}>
+                <div className={'owner-avatar'}>
 
-                    {/*<img src={contactInfo.avatarImageId} alt=""/>*/}
-                    <img src={`${ROOT}image?id=${contactInfo.avatarImageId}`} alt=""/>
+                  {/*<img src={contactInfo.avatarImageId} alt=""/>*/}
+                  <img src={`${ROOT}image?id=${contactInfo.avatarImageId}`} alt=""/>
 
-                  </div>
-                  <div className={'owner-info'}>
-                    <p className={'owner-info-name'}>{contactInfo.username}</p>
-                    <p className={'owner-info-netId'}>{contactInfo.netId}@nyu.edu</p>
-                  </div>
+                </div>
+                <div className={'owner-info'}>
+                  <p className={'owner-info-name'}>{contactInfo.username}</p>
+                  <p className={'owner-info-netId'}>{contactInfo.netId}@nyu.edu</p>
                 </div>
               </div>
+            </div>
           }
           <div className={'col-3-buttons-container'}>
             <div className={'col-3-buttons'}>
-
               {!isMine &&
-                <div className={'btn-tap clickable'} onClick={handleTap} style={{backgroundColor: tapped?"#DDDDDD":""}}>
+                <div className={'tap-mark clickable'} onClick={handleTap} style={{backgroundColor: tapped?"#DDDDDD":""}}>
                   <img src="./touch_app_black_48dp.svg" alt=""/>
                   <p>Tap</p>
                 </div>
               }
-
-              <div className={'btn-mark clickable'} onClick={handleMark}>
+              {isMine && <div className={'tap-mark-placeholder'}>
+                {/*placeholder*/}
+              </div>}
+              <div className={'tap-mark clickable'} onClick={handleMark}>
                 {!marked && <img src="bookmark_border_black_48dp.svg" alt=""/>}
                 {marked && <img src="bookmark_black_48dp.svg" alt=""/>}
                 <p>Mark</p>

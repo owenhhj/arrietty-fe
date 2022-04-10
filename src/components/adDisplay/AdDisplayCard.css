@@ -232,6 +232,7 @@
     width: 90%;
     display: flex;
     justify-content: space-between;
+    /*justify-content: right;*/
     align-self: center;
 }
 
@@ -246,7 +247,7 @@
     font-family: Roboto, serif;
 }
 
-.btn-tap {
+.col-3-buttons .tap-mark {
     display: flex;
     width: 30%;
     padding: 0.2em 0.8em 0.2em 0.8em;
@@ -254,24 +255,18 @@
     justify-content: space-between;
 }
 
-.btn-tap:hover {
+.col-3-buttons .tap-mark:hover {
     border-color: #BEBEBE;
     border-style: solid;
     border-width: 1px;
 }
 
-.btn-mark {
+.col-3-buttons .tap-mark-placeholder {
     display: flex;
     width: 30%;
     padding: 0.2em 0.8em 0.2em 0.8em;
     align-items: center;
     justify-content: space-between;
-}
-
-.btn-mark:hover {
-    border-color: #BEBEBE;
-    border-style: solid;
-    border-width: 1px;
 }
 
 
