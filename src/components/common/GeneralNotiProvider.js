@@ -12,7 +12,7 @@ import {createContext, useContext, useReducer} from "react";
 const GeneralNotiContext = createContext();
 
 function GeneralNotiProvider({children}) {
-  const[state, dispatch] = useReducer((state, action) => {
+  const [state, dispatch] = useReducer((state, action) => {
     switch (action.action) {
       case "add":
         return [{...action.body.body}];

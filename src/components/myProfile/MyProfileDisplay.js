@@ -15,7 +15,6 @@ function MyProfileDisplay({
     callback({action: "addNewAd"})
   }
 
-
   return (
     <div className="MyProfileDisplay">
       <div className="MyProfileDisplay1">

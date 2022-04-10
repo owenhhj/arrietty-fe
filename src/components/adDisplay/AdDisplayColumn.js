@@ -118,6 +118,7 @@ function AdDisplayColumn() {
         );
       })}
 
+      {/* dummy data */}
       {/*<AdDisplayCard/>*/}
       {/*<AdDisplayCard/>*/}
       {/*<AdDisplayCard/>*/}

@@ -22,7 +22,7 @@ function NotificationCard({
 
       <div className={'NotiCard-col-2'}>
         <p>
-          <span className={'username'}>{username}</span> <span className={'netId'}>{netId}</span> tapped on your advertisement <span className={'adTitle'}>"{adTitle}"</span>
+          <span className={'username'}>{username}</span> <span className={'netId'}>({netId})</span> tapped on your advertisement <span className={'adTitle'}>"{adTitle}"</span>
         </p>
       </div>
 

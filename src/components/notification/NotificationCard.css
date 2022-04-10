@@ -50,13 +50,15 @@
 }
 
 p .username {
-    font-size: 1.2em;
+    font-size: 1.1em;
     font-weight: bold;
+    color: #000000;
 }
 
 p .netId {
-    font-size: 0.9em;
-    color: #666666;
+    font-size: 1.1em;
+    font-weight: bold;
+    color: #000000;
 }
 
 p .adTitle {

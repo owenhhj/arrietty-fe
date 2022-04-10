@@ -2,25 +2,41 @@ import './AdDisplayCard.css';
 import AdDisplayCardHoverMore from "./AdDisplayCardHoverMore";
 import {translateTimeAgo} from "../common/common";
 import {showGeneralNoti} from "../common/GeneralNotiProvider";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import {dataFetch} from "../common/common";
+import {getSiteInfo} from "../common/SiteInfoProvider";
 
 const fakeAd = {
   id: 1, adType: 'textbook', adTitle: 'This is a fake title for and ad but this is very long', price: '1233425',
   comment: 'This is a fake comment for and ad but this is very long very long very long very long very long very long very long very long very long very long very long very long very long very long very long very long very long very long very long very long very long',
-  createTime: "Apr 4, 2022, 12:00:00 AM",
+  createTime: "Apr 4, 2022, 12:00:00 AM"
 }
 
 const fakeContact = {username:'Nameee eeeaw sfee aew faewf eawf', netId:'abcd12345', avatarImageId:'./default_avatar.jpg'};
 
 function AdDisplayCard({
-  adData=fakeAd,  // one piece of adData
+  adData=fakeAd,  // one piece of adData  <--> one advertisement
                        }) {
   const ROOT = 'https://localhost:8000/';
-  const [tapped, setTapped] = useState(false);  // todo adData.tapped not in README
+  const MY_NETID = getSiteInfo().netId;
+  const [isMine, setIsMine] = useState(!!adData.userNetId && adData.userNetId===MY_NETID);
+  const [tapped, setTapped] = useState(!!adData.userNetId);  // true if field exists
+  const [marked, setMarked] = useState(!!adData.isMarked);  // fixme pending
   const [hover, setHover] = useState(false);
   const [hoverPos, setHoverPos] = useState({});
   const [contactInfo, setContactInfo] = useState(fakeContact);
+
+  useEffect(() => {
+    if (!!adData.userNetId) {
+      let temp = {
+        username: adData.username!==null ? adData.username : fakeContact.username,
+        netId: adData.userNetId,
+        avatarImageId: adData.userAvatarImageId
+      };
+      // console.log('AdDisplayCard onMount set contactInfo to:', temp);
+      setContactInfo(temp);
+    }
+  }, []);
 
   const handleMouseMove = (e) => {
     setHoverPos({xPos: e.pageX+15, yPos: e.pageY+15});
@@ -39,19 +55,51 @@ function AdDisplayCard({
     dispatch({action: "add", body: {msg: msg, good: good}});
   };
 
-  // fixme if already tapped, parent fetched data contains these fields, need more props?
   const handleTap = () => {
-    if (tapped) {
+    if (!!adData.userNetId || tapped) {  // double check for state
       handleShowNoti('Cannot withdraw tap', false);
     } else {
-      setTapped(true);
       dataFetch(`${ROOT}tap?id=${adData.id}`,
         {},
-        setContactInfo,
-        (e) => {console.warn(e)}
+        (res) => {
+          setContactInfo(res);
+          setTapped(true);
+        },
+        (err) => {
+          console.warn(err);
+          handleShowNoti('Tap failure', false);
+        }
       );
     }
   };
+
+  const handleMark = () => {
+    if (marked) {
+      dataFetch(
+        `${ROOT}mark?id=${adData.id}&status=off`,
+        {method: 'GET'},
+        () => {
+          setMarked(false);
+        },
+        (err) => {
+          console.warn(err);
+          handleShowNoti('Unmark failure', false);
+        }
+      );
+    } else {
+      dataFetch(
+        `${ROOT}mark?id=${adData.id}&status=on`,
+        {method: 'GET'},
+        () => {
+          setMarked(true);
+        },
+        (err) => {
+          console.warn(err);
+          handleShowNoti('Mark failure', false);
+        }
+      );
+    }
+  }
 
   return (
     <div>
@@ -97,31 +145,36 @@ function AdDisplayCard({
             </div>
           }
           {tapped &&
-              <div className={'col-3-to-unlock-container'}>
-                <div className={'col-3-unlocked card'}>
-                  <div className={'owner-avatar'}>
+            <div className={'col-3-to-unlock-container'}>
+              <div className={'col-3-unlocked card'}>
+                <div className={'owner-avatar'}>
 
-                    {/*<img src={contactInfo.avatarImageId} alt=""/>*/}
-                    <img src={`${ROOT}image?id=${contactInfo.avatarImageId}`} alt=""/>
+                  {/*<img src={contactInfo.avatarImageId} alt=""/>*/}
+                  <img src={`${ROOT}image?id=${contactInfo.avatarImageId}`} alt=""/>
 
-                  </div>
-                  <div className={'owner-info'}>
-                    <p className={'owner-info-name'}>{contactInfo.username}</p>
-                    <p className={'owner-info-netId'}>{contactInfo.netId}@nyu.edu</p>
-                  </div>
+                </div>
+                <div className={'owner-info'}>
+                  <p className={'owner-info-name'}>{contactInfo.username}</p>
+                  <p className={'owner-info-netId'}>{contactInfo.netId}@nyu.edu</p>
                 </div>
               </div>
+            </div>
           }
           <div className={'col-3-buttons-container'}>
             <div className={'col-3-buttons'}>
-              <div className={'btn-tap clickable'} onClick={handleTap} style={{backgroundColor: tapped?"#DDDDDD":""}}>
-                <img src="./touch_app_black_48dp.svg" alt=""/>
-                <p>Tap</p>
-              </div>
-              <div className={'btn-mark clickable'}>
-                <img src="bookmark_border_black_48dp.svg" alt=""/>
-                <p>Mark</p>
-              </div>
+              {!isMine &&
+                <div className={'tap-mark clickable'} onClick={handleTap} style={{backgroundColor: tapped?"#DDDDDD":""}}>
+                  <img src="./touch_app_black_48dp.svg" alt=""/>
+                  <p>Tap</p>
+                </div>
+              }
+              {!isMine &&
+                <div className={'tap-mark clickable'} onClick={handleMark}>
+                  {!marked && <img src="bookmark_border_black_48dp.svg" alt=""/>}
+                  {marked && <img src="bookmark_black_48dp.svg" alt=""/>}
+                  <p>Mark</p>
+                </div>
+              }
             </div>
 
           </div>

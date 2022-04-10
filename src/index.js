@@ -4,13 +4,15 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import GeneralNotiProvider from "./components/common/GeneralNotiProvider";
+import SiteInfoProvider from "./components/common/SiteInfoProvider";
 
-
-ReactDOM.render(
-  <GeneralNotiProvider>
-    <App />
-  </GeneralNotiProvider>
-  , document.getElementById('root'));
+ReactDOM.render((
+  <SiteInfoProvider>
+    <GeneralNotiProvider>
+      <App />
+    </GeneralNotiProvider>
+  </SiteInfoProvider>
+  ), document.getElementById('root'));
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
