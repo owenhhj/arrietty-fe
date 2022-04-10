@@ -168,14 +168,13 @@ function AdDisplayCard({
                   <p>Tap</p>
                 </div>
               }
-              {isMine && <div className={'tap-mark-placeholder'}>
-                {/*placeholder*/}
-              </div>}
-              <div className={'tap-mark clickable'} onClick={handleMark}>
-                {!marked && <img src="bookmark_border_black_48dp.svg" alt=""/>}
-                {marked && <img src="bookmark_black_48dp.svg" alt=""/>}
-                <p>Mark</p>
-              </div>
+              {!isMine &&
+                <div className={'tap-mark clickable'} onClick={handleMark}>
+                  {!marked && <img src="bookmark_border_black_48dp.svg" alt=""/>}
+                  {marked && <img src="bookmark_black_48dp.svg" alt=""/>}
+                  <p>Mark</p>
+                </div>
+              }
             </div>
 
           </div>
