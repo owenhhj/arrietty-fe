@@ -163,7 +163,7 @@ function AdDisplayCard({
                 <img src="./touch_app_black_48dp.svg" alt=""/>
                 <p>Tap</p>
               </div>
-              <div className={'btn-mark clickable'} onClick={handleMark} style={{backgroundColor: tapped?"#DDDDDD":""}}>
+              <div className={'btn-mark clickable'} onClick={handleMark} style={{backgroundColor: marked?"#DDDDDD":""}}>
                 <img src="bookmark_border_black_48dp.svg" alt=""/>
                 <p>Mark</p>
               </div>
