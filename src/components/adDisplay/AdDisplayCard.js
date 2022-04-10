@@ -29,7 +29,7 @@ function AdDisplayCard({
         netId: adData.userNetId,
         avatarImageId: adData.userAvatarImageId
       };
-      console.log('setting contactInfo to be:', temp);
+      // console.log('AdDisplayCard onMount set contactInfo to:', temp);
       setContactInfo(temp);
     }
   }, []);
