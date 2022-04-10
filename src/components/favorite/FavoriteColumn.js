@@ -1,7 +1,6 @@
 import './FavoriteColumn.css';
 import RoutePageTitleCard from "../common/RoutePageTitleCard";
-import FavoriteCard from "./FavoriteCard";
-// todo FavCard or just use adDisplay?
+import FavoriteCard from "./FavoriteCard";  // todo FavCard or just use adDisplay?
 import AdDisplayCard from "../adDisplay/AdDisplayCard";
 import {useEffect, useState} from "react";
 import {dataFetch} from "../common/common";

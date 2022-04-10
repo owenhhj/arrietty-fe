@@ -14,17 +14,16 @@ const fakeAd = {
 const fakeContact = {username:'Nameee eeeaw sfee aew faewf eawf', netId:'abcd12345', avatarImageId:'./default_avatar.jpg'};
 
 function AdDisplayCard({
-  adData=fakeAd,  // one piece of adData
-  tappedBefore=false,
+  adData=fakeAd,  // one piece of adData  <--> one advertisement
                        }) {
   const ROOT = 'https://localhost:8000/';
-  const [tapped, setTapped] = useState(tappedBefore);
+  const [tapped, setTapped] = useState(!!adData.userNetId);  // true if field exists
   const [hover, setHover] = useState(false);
   const [hoverPos, setHoverPos] = useState({});
   const [contactInfo, setContactInfo] = useState(fakeContact);
 
   useEffect(() => {
-    if (tappedBefore) {
+    if (!!adData.userNetId) {
       let temp = {
         username: adData.username!==null ? adData.username : fakeContact.username,
         netId: adData.userNetId,
@@ -53,7 +52,7 @@ function AdDisplayCard({
   };
 
   const handleTap = () => {
-    if (tappedBefore || tapped) {  // double check for state
+    if (!!adData.userNetId || tapped) {  // double check for state
       handleShowNoti('Cannot withdraw tap', false);
     } else {
       dataFetch(`${ROOT}tap?id=${adData.id}`,
