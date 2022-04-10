@@ -18,6 +18,7 @@ function AdDisplayCard({
                        }) {
   const ROOT = 'https://localhost:8000/';
   const [tapped, setTapped] = useState(!!adData.userNetId);  // true if field exists
+  const [marked, setMarked] = useState(!!adData.isMarked);  // fixme pending
   const [hover, setHover] = useState(false);
   const [hoverPos, setHoverPos] = useState({});
   const [contactInfo, setContactInfo] = useState(fakeContact);
@@ -61,13 +62,41 @@ function AdDisplayCard({
           setContactInfo(res);
           setTapped(true);
         },
-        (e) => {
-          console.warn(e);
+        (err) => {
+          console.warn(err);
           handleShowNoti('Tap failure', false);
         }
       );
     }
   };
+
+  const handleMark = () => {
+    if (marked) {
+      dataFetch(
+        `${ROOT}mark?adId=${adData.id}&status=off`,
+        {},
+        () => {
+          setMarked(false);
+        },
+        (err) => {
+          console.warn(err);
+          handleShowNoti('Unmark failure', false);
+        }
+      );
+    } else {
+      dataFetch(
+        `${ROOT}mark?adId=${adData.id}&status=on`,
+        {},
+        () => {
+          setMarked(true);
+        },
+        (err) => {
+          console.warn(err);
+          handleShowNoti('Mark failure', false);
+        }
+      );
+    }
+  }
 
   return (
     <div>
@@ -134,7 +163,7 @@ function AdDisplayCard({
                 <img src="./touch_app_black_48dp.svg" alt=""/>
                 <p>Tap</p>
               </div>
-              <div className={'btn-mark clickable'}>
+              <div className={'btn-mark clickable'} onClick={handleMark} style={{backgroundColor: tapped?"#DDDDDD":""}}>
                 <img src="bookmark_border_black_48dp.svg" alt=""/>
                 <p>Mark</p>
               </div>

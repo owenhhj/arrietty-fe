@@ -24,7 +24,6 @@ function FavoriteColumn() {
       <RoutePageTitleCard pageTitle={pageTitle}/>
 
       {favs.map((ad, index) => {
-        // fixme pending `AdDisplayColumn` tap fix
         return (
           <AdDisplayCard key={ad.id} adData={ad}/>
         );
