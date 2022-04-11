@@ -1,6 +1,10 @@
 import {createContext, useContext, useEffect, useState} from "react";
 import {dataFetch} from "./common";
 
+////////// HOW TO USE
+// import {getSiteInfo} from;
+// const MY_NETID = getSiteInfo().netId;
+
 const SiteInfoContext = createContext();  // `getSiteInfo` to get the object
 const SetSiteInfoContext = createContext();  // `setSiteInfo` to set the object
 
