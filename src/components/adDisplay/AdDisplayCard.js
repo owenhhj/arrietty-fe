@@ -1,5 +1,6 @@
 import './AdDisplayCard.css';
 import AdDisplayCardHoverMore from "./AdDisplayCardHoverMore";
+import AdListingDetailCard from "./AdListingDetailCard";
 import {translateTimeAgo} from "../common/common";
 import {showGeneralNoti} from "../common/GeneralNotiProvider";
 import {useEffect, useState} from "react";
@@ -9,24 +10,25 @@ import {getSiteInfo} from "../common/SiteInfoProvider";
 const fakeAd = {
   id: 1, adType: 'textbook', adTitle: 'This is a fake title for an ad but this is very long', price: '1233425',
   comment: 'This is a fake comment for and ad but this is very long very long very long very long very long very long very long very long very long very long very long very long very long very long very long very long very long very long very long very long very long',
-  createTime: "Apr 4, 2022, 12:00:00 AM", isMarked: true, numberOfTaps: 60
+  createTime: "Apr 4, 2022, 12:00:00 AM", isMarked: true, numberOfTaps: 60, imageIds: '3,6,9'
 }
 
 const fakeContact = {username:'Nameee eeeaw sfee aew faewf eawf', netId:'abcd12345', avatarImageId:'./default_avatar.jpg'};
 
 function AdDisplayCard({
-  adData=fakeAd,  // one piece of adData  <--> one advertisement
+  adData=fakeAd,  // one piece of adData <--> one advertisement
                        }) {
   const ROOT = 'https://localhost:8000/';
   const MY_NETID = getSiteInfo().netId;
   // eslint-disable-next-line no-unused-vars
   const [isMine, setIsMine] = useState(!!adData.userNetId && adData.userNetId===MY_NETID);
+  const [contactInfo, setContactInfo] = useState(fakeContact);
   const [tapped, setTapped] = useState(!!adData.userNetId);  // true if field exists
   const [numOfTaps, setNumOfTaps] = useState(0);
   const [marked, setMarked] = useState(!!adData.isMarked);
   const [hover, setHover] = useState(false);
   const [hoverPos, setHoverPos] = useState({});
-  const [contactInfo, setContactInfo] = useState(fakeContact);
+  const [showDetailCard, setShowDetailCard] = useState(false);
 
   useEffect(() => {
     if (!!adData.userNetId) {
@@ -60,7 +62,8 @@ function AdDisplayCard({
     dispatch({action: "add", body: {msg: msg, good: good}});
   };
 
-  const handleTap = () => {
+  const handleTap = (e) => {
+    e.stopPropagation();  // prevent clicking the card below at the same time
     if (!!adData.userNetId || tapped) {  // double check for state
       handleShowNoti('Cannot withdraw tap', false);
     } else {
@@ -79,7 +82,8 @@ function AdDisplayCard({
     }
   };
 
-  const handleMark = () => {
+  const handleMark = (e) => {
+    e.stopPropagation();  // prevent clicking the card below at the same time
     if (marked) {
       dataFetch(
         `${ROOT}mark?id=${adData.id}&status=off`,
@@ -107,10 +111,23 @@ function AdDisplayCard({
     }
   }
 
+  const handleShowDetail = () => {
+    setShowDetailCard(true);
+  }
+
+  const handleDetailCard = () => {
+    // the only action now is to close the card
+    setShowDetailCard(false);
+  }
+
   return (
     <div>
-      <div className={'AdDisplayCard card'} onMouseEnter={handleHover} onMouseLeave={handleHoverLeave} onMouseMove={handleMouseMove}>
-
+      <AdListingDetailCard isOpen={showDetailCard} adData={adData} callback={handleDetailCard}/>
+      <div
+        className={'AdDisplayCard card'}
+        onMouseEnter={handleHover} onMouseLeave={handleHoverLeave} onMouseMove={handleMouseMove}
+        onClick={handleShowDetail}
+      >
         <div className={'col-1 clickable'}>
 
           <img src={`${ROOT}image?id=${adData.imageIds.split(',')[0]}`} alt=""/>
