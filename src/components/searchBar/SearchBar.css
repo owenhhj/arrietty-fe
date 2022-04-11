@@ -86,7 +86,7 @@
 }
 
 .row-input .search-input {
-    width: 73%;
+    width: 76%;
     height: 100%;
 }
 
@@ -100,14 +100,15 @@
 }
 
 .row-input .search-button {
-    width: 10%;
+    /*width: 10%;*/
+    width: 7%;
     height: 100%;
     background-color: #FFFFFF;
     border-top-right-radius: 5px;
     border-bottom-right-radius: 5px;
     display: flex;
     align-items: center;
-    justify-content: right;
+    justify-content: center;
 }
 
 .row-input .search-button img {

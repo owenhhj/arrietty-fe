@@ -129,7 +129,7 @@ function SearchBar({
 
       <div className={'row-filters-container'}>
         <div className={'row-filters'}>
-          <div className={'filter-label'}>
+          <div className={'filter-label non-text'}>
             <img src="./filter_alt_black_48dp.svg" alt=""/>
             <p>Filters</p>
           </div>
