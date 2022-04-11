@@ -94,16 +94,6 @@ export default function AdListingDetailCard(
         <div className={"ad-listing-detail-info"}>
           <div className={"row1"}>
             <p>{`${imageIndex+1}/${adData.imageIds.split(",").length}`}</p>
-            {/*<svg width="25" height="23" viewBox="0 0 25 23" fill="none" xmlns="http://www.w3.org/2000/svg">*/}
-            {/*  <g clipPath="url(#clip0_955_54)">*/}
-            {/*    <path d="M19.9669 0H4.07533C3.74713 0 3.48071 0.245436 3.48071 0.548268V21.0824C3.48025 21.4938 3.72948 21.8708 4.1262 22.0588C4.52315 22.2466 5.0007 22.2139 5.36281 21.9738L12.0211 17.5729L18.6796 21.9736C19.042 22.2132 19.519 22.2458 19.9158 22.058C20.3123 21.8701 20.5617 21.4934 20.5617 21.0824V0.548268C20.5617 0.245436 20.2953 0 19.9669 0ZM19.3722 21.0822L12.3679 16.4525C12.1607 16.3157 11.882 16.3157 11.675 16.4525L4.67041 21.0824V1.09654H19.3722V21.0822Z" fill="#414141"/>*/}
-            {/*  </g>*/}
-            {/*  <defs>*/}
-            {/*    <clipPath id="clip0_955_54">*/}
-            {/*      <rect width="24.0547" height="22.1798" fill="white"/>*/}
-            {/*    </clipPath>*/}
-            {/*  </defs>*/}
-            {/*</svg>*/}
           </div>
           <div className={"row2"}>
             <p>{adData.adTitle}</p>
