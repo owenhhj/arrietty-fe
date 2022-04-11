@@ -23,7 +23,7 @@ function AdDisplayCard({
   const [isMine, setIsMine] = useState(!!adData.userNetId && adData.userNetId===MY_NETID);
   const [tapped, setTapped] = useState(!!adData.userNetId);  // true if field exists
   const [numOfTaps, setNumOfTaps] = useState(0);
-  const [marked, setMarked] = useState(!!adData.isMarked);  // fixme pending
+  const [marked, setMarked] = useState(!!adData.isMarked);
   const [hover, setHover] = useState(false);
   const [hoverPos, setHoverPos] = useState({});
   const [contactInfo, setContactInfo] = useState(fakeContact);
@@ -109,9 +109,9 @@ function AdDisplayCard({
 
   return (
     <div>
-      <div className={'AdDisplayCard card clickable'} onMouseEnter={handleHover} onMouseLeave={handleHoverLeave} onMouseMove={handleMouseMove}>
+      <div className={'AdDisplayCard card'} onMouseEnter={handleHover} onMouseLeave={handleHoverLeave} onMouseMove={handleMouseMove}>
 
-        <div className={'col-1'}>
+        <div className={'col-1 clickable'}>
 
           <img src={`${ROOT}image?id=${adData.imageIds.split(',')[0]}`} alt=""/>
           {/*<img src="./default_cover.jpg" alt=""/>*/}
@@ -172,7 +172,7 @@ function AdDisplayCard({
                 <div className={'tap-mark clickable'} onClick={handleTap} style={{backgroundColor: tapped?"#DDDDDD":""}}>
                   <img src="./touch_app_black_48dp.svg" alt=""/>
                   {numOfTaps<=0 && <p>Tap</p>}
-                  {numOfTaps>0 && <p>{adData.numberOfTaps}</p>}
+                  {numOfTaps>0 && <p>{numOfTaps}</p>}
                 </div>
               }
               {!isMine &&
