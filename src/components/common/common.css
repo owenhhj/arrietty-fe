@@ -14,8 +14,25 @@
     cursor: pointer;
 }
 
+.clickable:hover {
+    box-shadow: 0 1px 4px #BBBBBB;
+}
+
 .clickable:active {
-    background-color: #DDDDDD;
+    background-color: #F6F6F6;
+}
+
+.non-text {
+    /* cursor not be text selector */
+    cursor: default;
+}
+
+.draggable {
+    cursor: grab;
+}
+
+.draggable:active {
+    cursor: grabbing;
 }
 
 .page {

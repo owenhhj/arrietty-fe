@@ -7,9 +7,9 @@ import {dataFetch} from "../common/common";
 import {getSiteInfo} from "../common/SiteInfoProvider";
 
 const fakeAd = {
-  id: 1, adType: 'textbook', adTitle: 'This is a fake title for and ad but this is very long', price: '1233425',
+  id: 1, adType: 'textbook', adTitle: 'This is a fake title for an ad but this is very long', price: '1233425',
   comment: 'This is a fake comment for and ad but this is very long very long very long very long very long very long very long very long very long very long very long very long very long very long very long very long very long very long very long very long very long',
-  createTime: "Apr 4, 2022, 12:00:00 AM"
+  createTime: "Apr 4, 2022, 12:00:00 AM", isMarked: true, numberOfTaps: 60
 }
 
 const fakeContact = {username:'Nameee eeeaw sfee aew faewf eawf', netId:'abcd12345', avatarImageId:'./default_avatar.jpg'};
@@ -19,8 +19,10 @@ function AdDisplayCard({
                        }) {
   const ROOT = 'https://localhost:8000/';
   const MY_NETID = getSiteInfo().netId;
+  // eslint-disable-next-line no-unused-vars
   const [isMine, setIsMine] = useState(!!adData.userNetId && adData.userNetId===MY_NETID);
   const [tapped, setTapped] = useState(!!adData.userNetId);  // true if field exists
+  const [numOfTaps, setNumOfTaps] = useState(0);
   const [marked, setMarked] = useState(!!adData.isMarked);  // fixme pending
   const [hover, setHover] = useState(false);
   const [hoverPos, setHoverPos] = useState({});
@@ -35,6 +37,9 @@ function AdDisplayCard({
       };
       // console.log('AdDisplayCard onMount set contactInfo to:', temp);
       setContactInfo(temp);
+    }
+    if (!!adData.numberOfTaps && Number(adData.numberOfTaps)>=0) {
+      setNumOfTaps(Number(adData.numberOfTaps));
     }
   }, []);
 
@@ -64,6 +69,7 @@ function AdDisplayCard({
         (res) => {
           setContactInfo(res);
           setTapped(true);
+          setNumOfTaps(numOfTaps+1);
         },
         (err) => {
           console.warn(err);
@@ -103,7 +109,7 @@ function AdDisplayCard({
 
   return (
     <div>
-      <div className={'AdDisplayCard card'} onMouseEnter={handleHover} onMouseLeave={handleHoverLeave} onMouseMove={handleMouseMove}>
+      <div className={'AdDisplayCard card clickable'} onMouseEnter={handleHover} onMouseLeave={handleHoverLeave} onMouseMove={handleMouseMove}>
 
         <div className={'col-1'}>
 
@@ -129,7 +135,7 @@ function AdDisplayCard({
           </div>
         </div>
 
-        <div className={'col-3'}>
+        <div className={'col-3 non-text'}>
           <div className={'col-3-tags-container'}>
             <div className={'col-3-tags'}>
               <p className={'tag'}>{adData.adType}</p>
@@ -165,7 +171,8 @@ function AdDisplayCard({
               {!isMine &&
                 <div className={'tap-mark clickable'} onClick={handleTap} style={{backgroundColor: tapped?"#DDDDDD":""}}>
                   <img src="./touch_app_black_48dp.svg" alt=""/>
-                  <p>Tap</p>
+                  {numOfTaps<=0 && <p>Tap</p>}
+                  {numOfTaps>0 && <p>{adData.numberOfTaps}</p>}
                 </div>
               }
               {!isMine &&
