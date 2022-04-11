@@ -76,6 +76,8 @@ export default function AdListingDetailCard(
             showDots={false}
             showArrows={true}
             infinite={true}
+            elementWrapperStyles={{animationDuration: '0s'}}
+            itemStyles={{animationDuration: '0s'}}
             leftArrowComponent={
               <svg onClick={handleClickLeftArrow} width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M18.41 10.41L17 9L11 15L17 21L18.41 19.59L13.83 15L18.41 10.41Z" fill="white"/>
