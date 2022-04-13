@@ -17,12 +17,14 @@ function MyPostsCard({
   callbackEdit=null,
   callbackDelete=null
                      }) {
+  const ROOT = 'https://localhost:8000/';
 
   const handleEdit = () => {
     callbackEdit(adData.id);
   }
 
   const handleDelete = () => {
+    // console.log('mypostscard ready to callbackDelete:', adData, 'id is', adData.id)
     callbackDelete(adData.id)
   }
 
@@ -31,7 +33,8 @@ function MyPostsCard({
       <div className={'rows-container'}>
 
         <div className={'row-thumbnail'}>
-          <img src="./default_cover.jpg" alt=""/>
+          <img src={`${ROOT}image?id=${adData.imageIds.split(',')[0]}`} alt=""/>
+          {/*<img src="./default_cover.jpg" alt=""/>*/}
         </div>
 
         <hr/>

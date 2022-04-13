@@ -28,14 +28,6 @@ function MyPostsCanvas() {
 
   useEffect(() => {
     refreshData();
-    // dataFetch(
-    //   `${ROOT}myAdvertisement`,
-    //   {method: 'GET'},
-    //   setMyAds,
-    //   (err) => {
-    //     console.warn(err);
-    //   }
-    // );
   }, []);
 
   useEffect(() => {
@@ -49,15 +41,23 @@ function MyPostsCanvas() {
   const dispatch = showGeneralNoti();
 
   const handleCallbackEdit = (id) => {
-    console.log('callbackEdit')
+    console.log('callbackEdit id:', id)
 
   }
 
   const handleCallbackDelete = (id) => {
-    console.log('callbackDelete')
+    let temp = new FormData();
+    temp.set('id', id);
+    for (let pair of temp.entries()) {
+      console.log('inside temp form:', pair[0], pair[1])
+    }
     dataFetch(
       `${ROOT}advertisement?action=delete`,
-      {method: 'POST', body: {id: id}},
+      {
+        method: 'POST',
+        // headers: {'Content-Type': 'application/json'},
+        body: temp
+      },
       (res) => {
         dispatch({action: "add", body: {msg: 'Ad deletion success', good: true}});
         refreshData();
@@ -74,7 +74,9 @@ function MyPostsCanvas() {
     dataFetch(
       `${ROOT}myAdvertisement`,
       {method: 'GET'},
-      setMyAds,
+      (res) => {
+        setMyAds(res)
+      },
       (err) => {
         console.warn(err);
       }
