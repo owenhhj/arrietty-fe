@@ -1,14 +1,56 @@
+import './MyPostsCanvas.css';
 import MyPostsCard from "./MyPostsCard";
 import {dataFetch} from "../common/common";
 import {showGeneralNoti} from "../common/GeneralNotiProvider";
+import {useEffect, useState} from "react";
+import Modal from "react-modal";
+
+// todo refactor into common.js
+const customStyles = {
+  content: {
+    position: "absolute",
+    left:0,
+    top:"1rem",
+    width:"100vw",
+    height:"calc(100vh-2rem)",
+    "overflow-y": "scroll",
+    background: "transparent",
+    display: "flex",
+    "justify-content":"center",
+    border:"none",
+  },
+};
 
 function MyPostsCanvas() {
   const ROOT = 'https://localhost:8000/';
+  const [myAds, setMyAds] = useState([]);
+  const [showEditAdForm, setShowEditAdForm] = useState(false);
+
+  useEffect(() => {
+    refreshData();
+    // dataFetch(
+    //   `${ROOT}myAdvertisement`,
+    //   {method: 'GET'},
+    //   setMyAds,
+    //   (err) => {
+    //     console.warn(err);
+    //   }
+    // );
+  }, []);
+
+  useEffect(() => {
+    if(showEditAdForm){
+      document.getElementById("app-root").style.filter = 'blur(2px)';
+    } else{
+      document.getElementById("app-root").style.filter = 'blur(0px) grayscale(0%)';
+    }
+  }, [showEditAdForm]);
 
   const dispatch = showGeneralNoti();
 
   const handleCallbackEdit = (id) => {
     console.log('callbackEdit')
+
   }
 
   const handleCallbackDelete = (id) => {
@@ -29,13 +71,38 @@ function MyPostsCanvas() {
 
   const refreshData = () => {
     console.log('refreshData called')
-    // setData
+    dataFetch(
+      `${ROOT}myAdvertisement`,
+      {method: 'GET'},
+      setMyAds,
+      (err) => {
+        console.warn(err);
+      }
+    );
   }
 
   return (
-    <>
-      <MyPostsCard callbackDelete={handleCallbackDelete}/>
-    </>
+    <div className={'MyPostsCanvas card'}>
+
+      {myAds.map(ad => {
+        return (
+          <MyPostsCard key={ad.id} adData={ad} callbackEdit={handleCallbackEdit} callbackDelete={handleCallbackDelete}/>
+        );
+      })}
+
+      {/*<MyPostsCard callbackEdit={handleCallbackEdit} callbackDelete={handleCallbackDelete}/>*/}
+      {/*<MyPostsCard callbackEdit={handleCallbackEdit} callbackDelete={handleCallbackDelete}/>*/}
+      {/*<MyPostsCard callbackEdit={handleCallbackEdit} callbackDelete={handleCallbackDelete}/>*/}
+      {/*<MyPostsCard callbackEdit={handleCallbackEdit} callbackDelete={handleCallbackDelete}/>*/}
+      {/*<MyPostsCard callbackEdit={handleCallbackEdit} callbackDelete={handleCallbackDelete}/>*/}
+      {/*<MyPostsCard callbackEdit={handleCallbackEdit} callbackDelete={handleCallbackDelete}/>*/}
+      {/*<MyPostsCard callbackEdit={handleCallbackEdit} callbackDelete={handleCallbackDelete}/>*/}
+
+      <Modal isOpen={showEditAdForm} style={customStyles}>
+        {/*<AdUploadForm callback={setShowEditAdForm()}/>*/}
+      </Modal>
+
+    </div>
   );
 }
 

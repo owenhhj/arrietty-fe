@@ -9,7 +9,7 @@ const fakeAd = {
 const fakeAd2 = {
   id: 1, adType: 'textbook', adTitle: 'this is a fake title', price: '123',
   comment: 'This is a fake comment for and ad bery long very long very long very long very long',
-  createTime: "Apr 4, 2022, 12:00:00 AM", numberOfTaps: 66, imageIds: '3,6,9'
+  createTime: "Apr 4, 2022, 12:00:00 AM", numberOfTaps: 64, imageIds: '3,6,9'
 }
 
 function MyPostsCard({
@@ -49,7 +49,7 @@ function MyPostsCard({
         </div>
 
         <div className={'row-tapped-by row-price'}>
-          <p>Tapped by {'sh2013'}</p>
+          <p>Tapped {adData.numberOfTaps} time{adData.numberOfTaps>1?'s':''}</p>
         </div>
 
         <hr/>

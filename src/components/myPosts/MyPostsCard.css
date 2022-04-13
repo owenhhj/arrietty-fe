@@ -2,6 +2,9 @@
 .MyPostsCard {
     width: 240px;
     height: 400px;
+
+    margin-left: 1rem;
+
     display: flex;
     flex-direction: column;
     align-items: center;
