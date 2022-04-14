@@ -1,19 +1,7 @@
 import './MyPostsCard.css';
 
-const fakeAd = {
-  id: 1, adType: 'textbook', adTitle: 'Tttthis is a fake title for an ad but this is very long', price: '1233425',
-  comment: 'This is a fake comment for and ad but this is very long very long very long very long very long very long very long very long very long very long very long very long very long very long very long very long very long very long very long very long very long',
-  createTime: "Apr 4, 2022, 12:00:00 AM", numberOfTaps: 99, imageIds: '3,6,9'
-}
-
-const fakeAd2 = {
-  id: 1, adType: 'textbook', adTitle: 'this is a fake title', price: '123',
-  comment: 'This is a fake comment for and ad bery long very long very long very long very long',
-  createTime: "Apr 4, 2022, 12:00:00 AM", numberOfTaps: 64, imageIds: '3,6,9'
-}
-
 function MyPostsCard({
-  adData=fakeAd2,
+  adData= {},
   callbackEdit=null,
   callbackDelete=null
                      }) {
@@ -33,8 +21,8 @@ function MyPostsCard({
       <div className={'rows-container'}>
 
         <div className={'row-thumbnail'}>
-          <img src={`${ROOT}image?id=${adData.imageIds.split(',')[0]}`} alt=""/>
-          {/*<img src="./default_cover.jpg" alt=""/>*/}
+          {/*<img src={`${ROOT}image?id=${adData.imageIds.split(',')[0]}`} alt=""/>*/}
+          <img src={adData.imageIds} alt=""/>
         </div>
 
         <hr/>

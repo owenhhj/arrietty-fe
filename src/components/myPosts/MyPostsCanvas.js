@@ -4,6 +4,19 @@ import {dataFetch} from "../common/common";
 import {showGeneralNoti} from "../common/GeneralNotiProvider";
 import {useEffect, useState} from "react";
 import Modal from "react-modal";
+import MyPostsEdit from "./MyPostsEdit";
+
+const fakeAd = {
+  id: 111, adType: 'textbook', adTitle: 'Tttthis is a fake title for an ad but this is very long', price: '1233425',
+  comment: 'This is a fake comment for and ad but this is very long very long very long very long very long very long very long very long very long very long very long very long very long very long very long very long very long very long very long very long very long',
+  createTime: "Apr 4, 2022, 12:00:00 AM", numberOfTaps: 99, imageIds: "./default_cover.jpg"
+}
+
+const fakeAd2 = {
+  id: 222, adType: 'textbook', adTitle: 'this is a fake title', price: '123',
+  comment: 'This is a fake comment for and ad bery long very long very long very long very long',
+  createTime: "Apr 4, 2022, 12:00:00 AM", numberOfTaps: 64, imageIds: "./default_cover.jpg"
+}
 
 // todo refactor into common.js
 const customStyles = {
@@ -24,9 +37,12 @@ const customStyles = {
 function MyPostsCanvas() {
   const ROOT = 'https://localhost:8000/';
   const [myAds, setMyAds] = useState([]);
+  const defaultEditState = {show: false, id: -1};
   const [showEditAdForm, setShowEditAdForm] = useState(false);
+  const [idToEdit, setIdToEdit] = useState(-1);
 
   useEffect(() => {
+    setMyAds([fakeAd, fakeAd2]);  // fixme remove this
     refreshData();
   }, []);
 
@@ -38,11 +54,27 @@ function MyPostsCanvas() {
     }
   }, [showEditAdForm]);
 
-  const dispatch = showGeneralNoti();
+  const refreshData = () => {
+    console.log('refreshData called')
+    dataFetch(
+      `${ROOT}myAdvertisement`,
+      {method: 'GET'},
+      (res) => {
+        setMyAds(res);
+      },
+      (err) => {
+        console.warn(err);
+      }
+    );
+  };
+
+  // todo refactor all uses of dispatch
+  const showNoti = showGeneralNoti();
 
   const handleCallbackEdit = (id) => {
     console.log('callbackEdit id:', id)
-
+    setIdToEdit(id);
+    setShowEditAdForm(true);
   }
 
   const handleCallbackDelete = (id) => {
@@ -59,26 +91,35 @@ function MyPostsCanvas() {
         body: temp
       },
       (res) => {
-        dispatch({action: "add", body: {msg: 'Ad deletion success', good: true}});
+        showNoti({action: "add", body: {msg: 'Ad deletion success', good: true}});
         refreshData();
       },
       (err) => {
         console.warn(err)
-        dispatch({action: "add", body: {msg: 'Ad deletion failure', good: false}});
+        showNoti({action: "add", body: {msg: 'Ad deletion failure', good: false}});
       }
     )
   }
 
-  const refreshData = () => {
-    console.log('refreshData called')
+  const handleEditSubmit = (f) => {
+    console.log('MyPostsEdit to submit with:')
+    for (let pair of f.entries()) {
+      console.log('   ', pair[0], pair[1]);
+    }
     dataFetch(
-      `${ROOT}myAdvertisement`,
-      {method: 'GET'},
-      (res) => {
-        setMyAds(res)
+      "https://localhost:8000/advertisement?action=update",
+      {
+        method: 'POST',
+        body: f
       },
-      (err) => {
-        console.warn(err);
+      (res)=>{
+        console.log('parent form res:', res);
+        showNoti({msg: 'Ad Edit Success', good: true});
+        setShowEditAdForm(false);
+      },
+      (err)=>{
+        console.log('parent form res:', err);
+        showNoti({msg: 'Ad Edit Failure', good: false});
       }
     );
   }
@@ -92,6 +133,8 @@ function MyPostsCanvas() {
         );
       })}
 
+      {/*<MyPostsCard key={fakeAd2.id} adData={fakeAd2} callbackEdit={handleCallbackEdit} callbackDelete={handleCallbackDelete}/>*/}
+
       {/*<MyPostsCard callbackEdit={handleCallbackEdit} callbackDelete={handleCallbackDelete}/>*/}
       {/*<MyPostsCard callbackEdit={handleCallbackEdit} callbackDelete={handleCallbackDelete}/>*/}
       {/*<MyPostsCard callbackEdit={handleCallbackEdit} callbackDelete={handleCallbackDelete}/>*/}
@@ -102,6 +145,7 @@ function MyPostsCanvas() {
 
       <Modal isOpen={showEditAdForm} style={customStyles}>
         {/*<AdUploadForm callback={setShowEditAdForm()}/>*/}
+        <MyPostsEdit adDataOriginal={myAds.filter(ad=>ad.id===idToEdit)[0]} toClose={()=>setShowEditAdForm(false)} toSubmit={handleEditSubmit}/>
       </Modal>
 
     </div>
