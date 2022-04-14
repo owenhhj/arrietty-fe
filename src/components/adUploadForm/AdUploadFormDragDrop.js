@@ -1,16 +1,53 @@
 import "./AdUploadFormDragDrop.css"
 import AdUploadFormDragDropPic from "./AdUploadFormDragDropPic";
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
-import {useState} from 'react'
+import {useEffect, useState} from 'react'
+import {dataFetch} from "../common/common";
 
 
 // TODO release RAM from createObjectURL after submission
 function AdUploadFormDragDrop({
   identifier = "images",
+  imageIdsOriginal='',
   onChange  // to pass files to parent onChange
                   }) {
+  const ROOT = 'https://localhost:8000/';
   const [picURLs, setPicURLs] = useState([]);
   let pic = [];  // current pic being added
+  const reader = new FileReader();
+
+  // todo useEffect on imageIdsOriginal?
+  useEffect(() => {
+    let ids = imageIdsOriginal.split(',')
+    console.log('imageIdsOriginal:', ids);
+    ids.forEach((id) => {
+      // dataFetch(
+      //   `${ROOT}image?id=${id}`,
+      //   {method: 'GET'},
+      //   (res) => {
+      //     console.log('getting original image:', res);
+      //   },
+      //   (err) => {
+      //     console.warn(err);
+      //   }
+      // );
+
+      fetch(`${ROOT}image?id=${id}`)
+        .then(async res => {
+          let imgBlob = res.blob();
+          console.log('imgBlob', imgBlob);
+          let imgFile = new File([await imgBlob], `picOriginal${id}`);
+          console.log('imgFile', imgFile);
+          pic.push({
+            'name': `picOriginal${id}`,
+            'url': URL.createObjectURL(imgFile),
+            'file': imgFile
+          });
+        })
+    });
+    handlePicAdd();
+
+  }, []);
 
   const toParent = (v) => {
     onChange(identifier, v);
@@ -32,6 +69,8 @@ function AdUploadFormDragDrop({
   }
 
   const handlePicAdd = () => {
+    console.log('handlePicAdd picURLs[]:', picURLs);
+    console.log('handlePicAdd pic[]:', pic);
     let legal = pic.length > 0;
     picURLs.forEach((uploaded) => {
       pic.forEach((newPic) => {

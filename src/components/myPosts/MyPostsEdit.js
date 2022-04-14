@@ -50,7 +50,7 @@ function MyPostsEdit({
         </div>
         <div className={"form-row"}>
           <p className={"form-prompt"}>Upload photos</p>
-          <AdUploadFormDragDrop identifier={"images"} onChange={handleInputChange}/>
+          <AdUploadFormDragDrop identifier={"images"} imageIdsOriginal={adDataOriginal.imageIds} onChange={handleInputChange}/>
         </div>
 
 

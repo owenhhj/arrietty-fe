@@ -21,8 +21,8 @@ function MyPostsCard({
       <div className={'rows-container'}>
 
         <div className={'row-thumbnail'}>
-          {/*<img src={`${ROOT}image?id=${adData.imageIds.split(',')[0]}`} alt=""/>*/}
-          <img src={adData.imageIds} alt=""/>
+          <img src={`${ROOT}image?id=${adData.imageIds.split(',')[0]}`} alt=""/>
+          {/*<img src={adData.imageIds} alt=""/>*/}
         </div>
 
         <hr/>

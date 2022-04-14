@@ -72,7 +72,6 @@ function MyPostsCanvas() {
   const showNoti = showGeneralNoti();
 
   const handleCallbackEdit = (id) => {
-    console.log('callbackEdit id:', id)
     setIdToEdit(id);
     setShowEditAdForm(true);
   }
