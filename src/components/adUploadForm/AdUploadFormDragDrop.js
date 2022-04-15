@@ -16,54 +16,14 @@ function AdUploadFormDragDrop({
 
   useEffect(() => {
     let ids = imageIdsOriginal.split(',');
-    console.log('imageIdsOriginal:', ids);
-    // ids.forEach((id) => {
-    //   fetch(`${ROOT}image?id=${id}`)
-    //     .then(async res => {
-    //       let imgBlob = res.blob();
-    //       let imgFile = new File([await imgBlob], `adImgOri${id}`);
-    //       let tempFile = {
-    //         'name': `adImgOri${id}`,
-    //         'url': URL.createObjectURL(imgFile),
-    //         'file': imgFile
-    //       };
-    //       handlePicAdd([tempFile]);
-    //     });
-    //
-    // });
-
-    // console.log('handleFetchImgOriginal returned:', handleFetchImgOriginal(ids));
     handleFetchImgOriginal(ids);
 
   }, []);
 
-  useEffect(() => {console.log('useEffect picURLs changed to:',picURLs)}, [picURLs]);
-
-  const handleFetchImgOriginal = (ids) => {
+  const handleFetchImgOriginal = async (ids) => {
     let tempPics = [];
-    let temp = ids.map(async id => {
-      // return await fetch(`${ROOT}image?id=${id}`)
-      //   .then(async res => {
-      //     let imgBlob = await res.blob();
-      //     let imgFile = new File([imgBlob], `adImgOri${id}`);
-      //     return {
-      //       'name': `adImgOri${id}`,
-      //       'url': URL.createObjectURL(imgFile),
-      //       'file': imgFile
-      //     };
-      //   });
-
-      // tempPics.push(await fetch(`${ROOT}image?id=${id}`)
-      //   .then(async res => {
-      //     let imgBlob =  res.blob();
-      //     let imgFile = new File([await imgBlob], `adImgOri${id}`);
-      //     return {
-      //       'name': `adImgOri${id}`,
-      //       'url': URL.createObjectURL(imgFile),
-      //       'file': imgFile
-      //     }
-      //   }));
-
+    for (let i = 0; i<ids.length; i++){
+      let id = ids[i];
       let res = await fetch(`${ROOT}image?id=${id}`);
       let imgFile = new File([await res.blob()], `adImgOri${id}`);
       let tempPic = {
@@ -72,15 +32,29 @@ function AdUploadFormDragDrop({
         'file': imgFile
       };
       tempPics.push(tempPic);
-      console.log(tempPic)
-    });
-    tempPics.forEach(tp => console.log('tp.file', tp.file));
-    console.log('handleFetchImgOriginal Promise mapped tempPics:', tempPics);
+    }
+
     handlePicAdd(tempPics);
-    // return temp;
-    // console.log('handleFetchImgOriginal Promise mapped temp:', temp);
-    // handlePicAdd(temp);
   }
+
+
+
+  // const handleFetchImgOriginal = (ids) => {
+  //   let tempPics = [];
+  //   let temp = ids.map(async id => {
+  //
+  //     let res = await fetch(`${ROOT}image?id=${id}`);
+  //     let imgFile = new File([await res.blob()], `adImgOri${id}`);
+  //     let tempPic = {
+  //       'name': `adImgOri${id}`,
+  //       'url': URL.createObjectURL(imgFile),
+  //       'file': imgFile
+  //     };
+  //     tempPics.push(tempPic);
+  //   });
+  //
+  //   handlePicAdd(tempPics);
+  // }
 
   const toParent = (v) => {
     onChange(identifier, v);
@@ -104,32 +78,9 @@ function AdUploadFormDragDrop({
 
   // fixme why not just pass in pic[]
   const handlePicAdd = (currPics) => {
-    console.log('handlePicAdd picURLs[]:', picURLs);
-    console.log('handlePicAdd currPics[]:', currPics);
-
-    // let legal = true;
-    // picURLs.forEach((uploaded) => {
-    //   currPics.forEach((newPic) => {
-    //     if (newPic.name === uploaded.name) {
-    //       legal = false;
-    //     }
-    //   })
-    // });
-    console.log('before legal:', currPics);
-    // todo thread interleaving??? use a outside variable? probably not --> ensure all fetches are done
-    if (true) {
-      console.log('handlePicAdd legal currPics before temp:', currPics);
-      console.log('handlePicAdd legal picURLs before temp:', picURLs);
-      // let temp = [...picURLs, ...currPics];
-      let temp = picURLs.concat(currPics);
-      console.log('handlePicAdd legal temp before setState:', temp)
-      console.log('handlePicAdd legal picURLs before setState:', picURLs);
+      let temp = [...picURLs, ...currPics];
       toParent(temp.map((item) => (item.file)));
-      // setPicURLs(temp);
-      setPicURLs(currPics);
-    } else {
-      alert('Upload another picture!');
-    }
+      setPicURLs([...currPics]);
   }
 
   const handlePicDelete = (e) => {
@@ -174,6 +125,26 @@ function AdUploadFormDragDrop({
     setPicURLs(items);
   }
 
+  const getDraggables = ()=>{
+    return picURLs.map((item, index) => (
+      <Draggable key={index.toString()} draggableId={index.toString()} index={index} >
+        {(provided, snapshot) => {return (
+          <div ref={provided.innerRef} {...provided.draggableProps} {...provided.dragHandleProps}
+               style={getItemStyle(
+                 snapshot.isDragging,
+                 provided.draggableProps.style)}
+          >
+            <AdUploadFormDragDropPic
+              pic={{'name': item.name, 'url': item.url, 'index': index.toString()}}
+              toParent={handlePicDelete}
+            />
+
+          </div>
+        )}}
+      </Draggable>
+    ))
+  }
+
   return (
     <div className="NewAdDragDrop">
 
@@ -190,23 +161,7 @@ function AdUploadFormDragDrop({
           <Droppable droppableId="droppable" direction="horizontal">
             {(provided, snapshot) => (
               <div className={"DivDroppable"} ref={provided.innerRef} style={getListStyle(snapshot.isDraggingOver)} {...provided.droppableProps}>
-                {picURLs.map((item, index) => (
-                  <Draggable key={index.toString()} draggableId={index.toString()} index={index} >
-                    {(provided, snapshot) => {return (
-                      <div ref={provided.innerRef} {...provided.draggableProps} {...provided.dragHandleProps}
-                        style={getItemStyle(
-                          snapshot.isDragging,
-                          provided.draggableProps.style)}
-                      >
-                        <AdUploadFormDragDropPic
-                          pic={{'name': item.name, 'url': item.url, 'index': index.toString()}}
-                          toParent={handlePicDelete}
-                        />
-
-                      </div>
-                    )}}
-                  </Draggable>
-                ))}
+                {getDraggables()}
                 {provided.placeholder}
               </div>
             )}
