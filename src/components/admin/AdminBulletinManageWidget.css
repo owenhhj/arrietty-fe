@@ -1,0 +1,99 @@
+.admin-bulletin-manage-widget {
+    width: 60vw;
+    display: flex;
+    justify-content: center;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    font-family: "Roboto", sans-serif;
+}
+
+.admin-bulletin-manage-widget-container {
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.bulletin-manage-title {
+    height: 3rem;
+    font-size: 1.5rem;
+    width: 100%;
+    font-weight: bold;
+    color: #57068C;
+    display: flex;
+    align-items: center;
+    border-bottom: 0.5px solid #DADADA;
+    margin-bottom: 0.8rem;
+
+}
+
+.bulletin-listing-container{
+    min-height: 10rem;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+
+.admin-bulletin-listing {
+    height: 50vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: "Roboto", sans-serif;
+    margin-top: 1rem;
+
+}
+
+.admin-bulletin-listing-container {
+    height: 90%;
+    width: 90%;
+}
+
+.admin-bulletin-listing-row1 {
+    height: 15%;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 0.5px solid #DADADA;
+
+}
+
+.admin-bulletin-listing-title {
+    height: 100%;
+    width: 70%;
+    font-size: 1rem;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+}
+
+.admin-bulletin-listing-create-time {
+    height: 100%;
+    font-size: 0.875rem;
+    color: #595959;
+    display: flex;
+    align-items: center;
+}
+
+.admin-bulletin-listing-content {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    font-size: 0.75rem;
+    text-align: justify;
+    height: 60%;
+    margin: 0;
+}
+
+.admin-bulletin-listing-btn-row {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.admin-bulletin-listing-btn-row > button {
+    margin-left: 2rem;
+}
