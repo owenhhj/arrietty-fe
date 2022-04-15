@@ -14,39 +14,28 @@ function AdUploadFormDragDrop({
   const ROOT = 'https://localhost:8000/';
   const [picURLs, setPicURLs] = useState([]);
   let pic = [];  // current pic being added
-  const reader = new FileReader();
+  // const reader = new FileReader();
 
-  // todo useEffect on imageIdsOriginal?
   useEffect(() => {
-    let ids = imageIdsOriginal.split(',')
+    let ids = imageIdsOriginal.split(',');
+    // let fetchCount = 0;
     console.log('imageIdsOriginal:', ids);
     ids.forEach((id) => {
-      // dataFetch(
-      //   `${ROOT}image?id=${id}`,
-      //   {method: 'GET'},
-      //   (res) => {
-      //     console.log('getting original image:', res);
-      //   },
-      //   (err) => {
-      //     console.warn(err);
-      //   }
-      // );
 
       fetch(`${ROOT}image?id=${id}`)
         .then(async res => {
           let imgBlob = res.blob();
-          console.log('imgBlob', imgBlob);
-          let imgFile = new File([await imgBlob], `picOriginal${id}`);
-          console.log('imgFile', imgFile);
-          pic.push({
-            'name': `picOriginal${id}`,
+          let imgFile = new File([await imgBlob], `adImageOriginal${id}`);
+          let tempFile = {
+            'name': `adImageOriginal${id}`,
             'url': URL.createObjectURL(imgFile),
             'file': imgFile
-          });
+          };
+          pic.push(tempFile);
+          // fetchCount++;
+          handlePicAdd();
         })
     });
-    handlePicAdd();
-
   }, []);
 
   const toParent = (v) => {
@@ -68,10 +57,12 @@ function AdUploadFormDragDrop({
     handlePicAdd();
   }
 
+  // fixme why not just pass in pic[]
   const handlePicAdd = () => {
     console.log('handlePicAdd picURLs[]:', picURLs);
     console.log('handlePicAdd pic[]:', pic);
-    let legal = pic.length > 0;
+    // let legal = pic.length > 0;  // fixme length===0 should work, right?
+    let legal = true;
     picURLs.forEach((uploaded) => {
       pic.forEach((newPic) => {
         if (newPic.name === uploaded.name) {

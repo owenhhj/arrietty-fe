@@ -28,9 +28,8 @@ function MyPostsEdit({
   };
 
   const handleFormSubmit = () => {
-
+    toSubmit(formData);
   };
-
 
   return (
     // todo copy from AdUploadFormTextbook, change the tag/textbookInfo row to only display
@@ -41,7 +40,7 @@ function MyPostsEdit({
         </div>
         <div className={'form-row'}>
           <p className={'form-prompt'}>Ad Title</p>
-          <Input type={'text'} identifier={'adTitle'} placeholder={adDataOriginal.adTitle} onChange={handleInputChange}/>
+          <Input type={'text'} identifier={'adTitle'} placeholder={adDataOriginal.adTitle}/>
         </div>
         <div className={"form-row"}>
           <p className={"form-prompt"}>Ad type</p>

@@ -68,8 +68,10 @@ function MyPostsCanvas() {
     );
   };
 
-  // todo refactor all uses of dispatch
-  const showNoti = showGeneralNoti();
+  const dispatch = showGeneralNoti();
+  const handleShowNoti = (msg, good) => {
+    dispatch({action: "add", body: {msg: msg, good: good}});
+  }
 
   const handleCallbackEdit = (id) => {
     setIdToEdit(id);
@@ -90,21 +92,31 @@ function MyPostsCanvas() {
         body: temp
       },
       (res) => {
-        showNoti({action: "add", body: {msg: 'Ad deletion success', good: true}});
+        handleShowNoti('Ad deletion success', true);
         refreshData();
       },
       (err) => {
         console.warn(err)
-        showNoti({action: "add", body: {msg: 'Ad deletion failure', good: false}});
+        handleShowNoti('Ad deletion failure', false);
       }
     )
   }
 
   const handleEditSubmit = (f) => {
-    console.log('MyPostsEdit to submit with:')
+    f.set('id', idToEdit);
+
+    ['price', 'comment'].forEach(identifier => {
+      let temp = null;
+      if (!f.get(identifier) || f.get(identifier).length===0) {
+        temp = myAds.filter(ad=>ad.id===idToEdit)[0][identifier];
+        f.set(identifier, temp);
+      }
+    });
+    console.log('MyPostsCanvas to submit edit form with:')
     for (let pair of f.entries()) {
       console.log('   ', pair[0], pair[1]);
     }
+
     dataFetch(
       "https://localhost:8000/advertisement?action=update",
       {
@@ -113,12 +125,12 @@ function MyPostsCanvas() {
       },
       (res)=>{
         console.log('parent form res:', res);
-        showNoti({msg: 'Ad Edit Success', good: true});
+        handleShowNoti('Ad Edit Success', true);
         setShowEditAdForm(false);
       },
       (err)=>{
         console.log('parent form res:', err);
-        showNoti({msg: 'Ad Edit Failure', good: false});
+        handleShowNoti('Ad Edit Failure', false);
       }
     );
   }
