@@ -20,7 +20,7 @@ function RoutePageTitleCard({
   };
 
   return (
-    <div className={'card'} style={styleDiv}>
+    <div className={'card non-text'} style={styleDiv}>
       <p style={styleP}>{pageTitle}</p>
     </div>
   );
