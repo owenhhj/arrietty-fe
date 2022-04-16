@@ -14,10 +14,12 @@ function AdUploadFormDragDrop({
   // let pic = [];  // current pic being added
 
   useEffect(() => {
-    let ids = imageIdsOriginal.split(',');
-    handleFetchImgOriginal(ids).then(r => {
-      handlePicAdd(r);
-    });
+    if (imageIdsOriginal) {  // only when not empty
+      let ids = imageIdsOriginal.split(',');
+      handleFetchImgOriginal(ids).then(r => {
+        handlePicAdd(r);
+      });
+    }
   }, []);
 
   const handleFetchImgOriginal = async (ids) => {

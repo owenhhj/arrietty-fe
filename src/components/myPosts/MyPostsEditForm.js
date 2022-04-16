@@ -3,7 +3,8 @@ import Input from "../common/Input";
 import AdUploadFormDragDrop from "../adUploadForm/AdUploadFormDragDrop";
 import Button from "../common/Button";
 import TextbookSearchShowSelected from "../adUploadForm/TextbookSearchShowSelected";
-import {useEffect, useRef} from "react";
+import {useEffect, useRef, useState} from "react";
+import {dataFetch} from "../common/common";
 
 function MyPostsEditForm({
   adDataOriginal={},
@@ -11,9 +12,23 @@ function MyPostsEditForm({
   toSubmit=null
                      }) {
   const ROOT = 'https://localhost:8000/';
+  const [tagOri, setTagOri] = useState(null);
   const ref = useRef(null);
   let formData = new FormData();
   console.log(adDataOriginal)
+
+  // useEffect(() => {
+  //   if (adDataOriginal.adType !== 'textbook') {
+  //     dataFetch(
+  //       `${ROOT}otherTag?id=${adDataOriginal.tagId}`,
+  //       {method: 'GET'},
+  //       res => {
+  //         setTagOri(res);
+  //       },
+  //       err => {console.warn(err);}
+  //     );
+  //   }
+  // }, []);
 
   useEffect(() => {
     const handleClickOutside = (e) => {
@@ -31,7 +46,7 @@ function MyPostsEditForm({
     let ans = {};
     for (let k in adDataOriginal) {
       if (needed.includes(k)) {
-        ans.k = adDataOriginal.k;
+        ans[k] = adDataOriginal[k];
       }
     }
     return ans;
@@ -77,7 +92,8 @@ function MyPostsEditForm({
         </div>
 
         <div className={"form-row textbook-search"}>
-          <TextbookSearchShowSelected selectedTextbook={getTextbookData()}/>
+          {adDataOriginal.adType==='textbook' && <TextbookSearchShowSelected selectedTextbook={getTextbookData()}/>}
+          {adDataOriginal.otherTag && <p className={'info-prompt'}>{adDataOriginal.otherTag}</p>}
         </div>
 
         <div className={"form-row"}>
