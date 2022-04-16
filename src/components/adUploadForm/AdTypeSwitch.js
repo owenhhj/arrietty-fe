@@ -7,11 +7,11 @@ function AdTypeSwitch({
 }) {
   const [switchState, setSwitchState] = useState(adType);
   const handleClick = (event)=>{
-    if(event.target.innerText==="Textbook" && switchState==="other"){
+    if(event.target.innerText==="textbook" && switchState==="other"){
       setSwitchState("textbook");
       callback("textbook");
     }
-    else if(event.target.innerText==="Other" && switchState==="textbook"){
+    else if(event.target.innerText==="other" && switchState==="textbook"){
       setSwitchState("other");
       callback("other");
     }
@@ -19,8 +19,8 @@ function AdTypeSwitch({
 
   return(
     <div className={"ad-type-switch"}>
-      <div className={switchState==="textbook"?"option-active":"option"} onClick={handleClick}>Textbook</div>
-      <div className={switchState==="other"?"option-active":"option"} onClick={handleClick}>Other</div>
+      <div className={switchState==="textbook"?"option-active":"option"} onClick={handleClick}>textbook</div>
+      <div className={switchState==="other"?"option-active":"option"} onClick={handleClick}>other</div>
     </div>
   );
 }

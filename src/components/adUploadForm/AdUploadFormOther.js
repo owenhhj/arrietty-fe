@@ -15,6 +15,7 @@ function AdUploadFormOther({
                                       }) {
   console.assert(adType==='other');
 
+  const ROOT = 'https://localhost:8000/';
   const [otherTagData, setOtherTagData] = useState([]);
   const [pricingInputAlerted, setPricingInputAlerted] = useState(false);
   const [commentInputAlerted, setCommentInputAlerted] = useState(false);
@@ -24,7 +25,7 @@ function AdUploadFormOther({
 
   useEffect(() => {
     dataFetch(
-      "https://localhost:8000/otherTag?id=",
+      `${ROOT}otherTag?id=`,
       {method:"GET"},
       setOtherTagData,
       null
@@ -51,8 +52,7 @@ function AdUploadFormOther({
       setCommentInputAlerted(false);
     }
     if (identifier==='images') {
-      // if use set(), will turn images[] into a string
-      formData.set('images', null);
+      formData.delete('images');
       value.forEach((f) => {
         formData.append('images', f);
       });

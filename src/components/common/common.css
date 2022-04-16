@@ -10,6 +10,10 @@
     box-shadow: 0 1px 4px #BBBBBB;
 }
 
+hr {
+    border-color: #FFFFFF;
+}
+
 .clickable {
     cursor: pointer;
 }

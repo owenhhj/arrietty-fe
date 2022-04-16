@@ -1,0 +1,104 @@
+
+.MyPostsCard {
+    width: 240px;
+    height: 400px;
+
+    margin-left: 1rem;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.MyPostsCard * {
+    padding: 0;
+    margin: 0;
+}
+
+.MyPostsCard div p {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.MyPostsCard .rows-container {
+    width: 96%;
+    height: 98%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+
+hr {
+    width: 100%;
+}
+
+/**/
+
+.row-thumbnail {
+    height: 60%;
+    width: 100%;
+}
+
+.row-thumbnail img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/**/
+
+.row-title {
+    width: 95%;
+    text-align: left;
+}
+
+.row-title p {
+    font-size: 1.1rem;
+    color: #595959;
+    font-weight: bold;
+    letter-spacing: -0.03em;
+}
+
+.row-price {
+    width: 95%;
+    text-align: left;
+}
+
+.row-price p {
+    font-size: 0.9rem;
+    letter-spacing: -0.03em;
+}
+
+/**/
+
+.row-buttons {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.row-buttons div {
+    margin: 0 0.2em 0 0.2em;
+}
+
+.row-buttons .btn-edit p {
+    padding: 0.2em 1em 0.2em 1em;
+    color: #FFFFFF;
+    background-color: #36c0c9;
+}
+
+.row-buttons .btn-delete p {
+    padding: 0.2em 0.5em 0.2em 0.5em;
+    color: #a61f16;
+    background-color: #F3F4F6;
+}
+
+
+
+
+
+
+
