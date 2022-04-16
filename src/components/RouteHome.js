@@ -35,7 +35,6 @@ function RouteHome(){
     },
   };
 
-
   return (
     <div className={"home-page page"}>
       <MyProfile callback={setShowNewAdForm}/>
@@ -44,11 +43,12 @@ function RouteHome(){
       <Modal isOpen={showNewAdForm} style={customStyles}>
         <AdUploadForm callback={setShowNewAdForm}/>
       </Modal>
-
-
-
     </div>
   );
 }
 
 export default RouteHome;
+
+
+
+

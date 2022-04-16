@@ -3,7 +3,6 @@ import AdUploadFormDragDropPic from "./AdUploadFormDragDropPic";
 import {DragDropContext, Draggable, Droppable} from 'react-beautiful-dnd';
 import {useEffect, useState} from 'react'
 
-
 // TODO release RAM from createObjectURL after submission
 function AdUploadFormDragDrop({
   identifier = "images",
@@ -16,13 +15,14 @@ function AdUploadFormDragDrop({
 
   useEffect(() => {
     let ids = imageIdsOriginal.split(',');
-    handleFetchImgOriginal(ids);
-
+    handleFetchImgOriginal(ids).then(r => {
+      handlePicAdd(r);
+    });
   }, []);
 
   const handleFetchImgOriginal = async (ids) => {
     let tempPics = [];
-    for (let i = 0; i<ids.length; i++){
+    for (let i = 0; i<ids.length; i++) {
       let id = ids[i];
       let res = await fetch(`${ROOT}image?id=${id}`);
       let imgFile = new File([await res.blob()], `adImgOri${id}`);
@@ -33,32 +33,13 @@ function AdUploadFormDragDrop({
       };
       tempPics.push(tempPic);
     }
-
-    handlePicAdd(tempPics);
-  }
-
-
-
-  // const handleFetchImgOriginal = (ids) => {
-  //   let tempPics = [];
-  //   let temp = ids.map(async id => {
-  //
-  //     let res = await fetch(`${ROOT}image?id=${id}`);
-  //     let imgFile = new File([await res.blob()], `adImgOri${id}`);
-  //     let tempPic = {
-  //       'name': `adImgOri${id}`,
-  //       'url': URL.createObjectURL(imgFile),
-  //       'file': imgFile
-  //     };
-  //     tempPics.push(tempPic);
-  //   });
-  //
-  //   handlePicAdd(tempPics);
-  // }
+    // handlePicAdd(tempPics);
+    return tempPics;
+  };
 
   const toParent = (v) => {
     onChange(identifier, v);
-  }
+  };
 
   const picInputChange = (e) => {
     e.preventDefault();
@@ -74,21 +55,20 @@ function AdUploadFormDragDrop({
       }
     }
     handlePicAdd(currPics);
-  }
+  };
 
-  // fixme why not just pass in pic[]
   const handlePicAdd = (currPics) => {
       let temp = [...picURLs, ...currPics];
       toParent(temp.map((item) => (item.file)));
-      setPicURLs([...currPics]);
-  }
+      setPicURLs(temp);
+  };
 
   const handlePicDelete = (e) => {
     let tmpPicURLs = picURLs;
     tmpPicURLs.splice(Number(e.target.name), 1);
     toParent(tmpPicURLs.map((item) => (item.file)));
     setPicURLs([...tmpPicURLs]);
-  }
+  };
 
   const getItemStyle = (isDragging, draggableStyle) => ({
     ...draggableStyle,
@@ -97,21 +77,19 @@ function AdUploadFormDragDrop({
     top: "auto !important",
     userSelect: 'none',
     margin: `0 5px 0 0`,
-  })
+  });
 
   const getListStyle = isDraggingOver => ({
-
     display: 'flex',
     overflow: 'auto',
-
-  })
+  });
 
   const reorder = (list, startIndex, endIndex) => {
     const result = Array.from(list)
     const [removed] = result.splice(startIndex, 1)
     result.splice(endIndex, 0, removed)
     return result
-  }
+  };
 
   const onDragEnd = (result) => {
     // dropped outside the list
@@ -123,27 +101,7 @@ function AdUploadFormDragDrop({
     );
     toParent(items.map((item) => (item.file)));
     setPicURLs(items);
-  }
-
-  const getDraggables = ()=>{
-    return picURLs.map((item, index) => (
-      <Draggable key={index.toString()} draggableId={index.toString()} index={index} >
-        {(provided, snapshot) => {return (
-          <div ref={provided.innerRef} {...provided.draggableProps} {...provided.dragHandleProps}
-               style={getItemStyle(
-                 snapshot.isDragging,
-                 provided.draggableProps.style)}
-          >
-            <AdUploadFormDragDropPic
-              pic={{'name': item.name, 'url': item.url, 'index': index.toString()}}
-              toParent={handlePicDelete}
-            />
-
-          </div>
-        )}}
-      </Draggable>
-    ))
-  }
+  };
 
   return (
     <div className="NewAdDragDrop">
@@ -161,7 +119,27 @@ function AdUploadFormDragDrop({
           <Droppable droppableId="droppable" direction="horizontal">
             {(provided, snapshot) => (
               <div className={"DivDroppable"} ref={provided.innerRef} style={getListStyle(snapshot.isDraggingOver)} {...provided.droppableProps}>
-                {getDraggables()}
+                {
+                  picURLs.map((item, index) => (
+                    <Draggable key={index.toString()} draggableId={index.toString()} index={index}>
+                      {(provided, snapshot) => {
+                        return (
+                          <div ref={provided.innerRef} {...provided.draggableProps} {...provided.dragHandleProps}
+                               style={getItemStyle(
+                                 snapshot.isDragging,
+                                 provided.draggableProps.style)}
+                          >
+                            <AdUploadFormDragDropPic
+                              pic={{'name': item.name, 'url': item.url, 'index': index.toString()}}
+                              toParent={handlePicDelete}
+                            />
+
+                          </div>
+                        )
+                      }}
+                    </Draggable>
+                  ))
+                }
                 {provided.placeholder}
               </div>
             )}

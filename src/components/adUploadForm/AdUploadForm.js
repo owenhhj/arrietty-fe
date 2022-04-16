@@ -9,6 +9,7 @@ function AdUploadForm({
   adTypes=['', 'textbook', 'other'],
   callback
                                  }) {
+  const ROOT = 'https://localhost:8000/';
   const [adType, setAdType] = useState(1);
 
   const dispatch = showGeneralNoti();
@@ -22,29 +23,22 @@ function AdUploadForm({
         callback(false);
         break;
       default:
-        // directly switches between tb/other
-        setAdType(Math.abs(adType-3));
+        setAdType(Math.abs(adType-3));  // directly switches between tb/other
     }
   };
 
   const handleSubmit = (f) => {
-    // console.log('adUploadForm to submit with:')
-    // for (let pair of f.entries()) {
-    //   console.log('   ', pair[0], pair[1]);
-    // }
     dataFetch(
-      "https://localhost:8000/advertisement?action=update",
+      `${ROOT}advertisement?action=update`,
       {
         method: 'POST',
         body: f
       },
-      (res)=>{
-        console.log('parent form res:', res);
+      (res) => {
         handleNoti('Ad Upload Success', true);
         handleSwitchAdType(0);
       },
-      (err)=>{
-        console.log('parent form res:', err);
+      (err) => {
         handleNoti('Ad Upload Failure', false);
       }
     );

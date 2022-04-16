@@ -15,6 +15,7 @@ function AdUploadFormTextbook({
                                          }) {
   console.assert(adType==='textbook');
 
+  const ROOT = 'https://localhost:8000/';
   const [textbookData, setTextbookData] = useState([]);
   const [courseData, setCourseData] = useState([]);
   const [textbookInputAlerted, setTextbookInputAlerted] = useState(false);
@@ -26,13 +27,13 @@ function AdUploadFormTextbook({
 
   useEffect(() => {
     dataFetch(
-      "https://localhost:8000/textbook?id=",
+      `${ROOT}textbook?id=`,
       {method:"GET"},
       setTextbookData,
       null
     );
     dataFetch(
-      "https://localhost:8000/course?id=",
+      `${ROOT}textbook?id=`,
       {method:"GET"},
       setCourseData,
       null
@@ -60,8 +61,7 @@ function AdUploadFormTextbook({
       setCommentInputAlerted(false);
     }
     if (identifier==='images') {
-      // if use set(), will turn images[] into a string
-      formData.set('images', null);
+      formData.delete('images');
       value.forEach((f) => {
         formData.append('images', f);
       });
