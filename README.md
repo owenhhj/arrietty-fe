@@ -1,6 +1,8 @@
 # Bugs to fix:
 
-#### Total Redo AdUploadForm + MyPostsEdit
+#### `input`类GoogleForms输入框：无边框底部动态下划线
+
+#### Total Redo AdUploadForm + MyPostsEditForm
 
 #### `myAd`多个ad如何显示overflow
 

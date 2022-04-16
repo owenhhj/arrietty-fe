@@ -4,7 +4,7 @@ import {dataFetch} from "../common/common";
 import {showGeneralNoti} from "../common/GeneralNotiProvider";
 import {useEffect, useState} from "react";
 import Modal from "react-modal";
-import MyPostsEdit from "./MyPostsEdit";
+import MyPostsEditForm from "./MyPostsEditForm";
 
 const fakeAd = {
   id: 111, adType: 'textbook', adTitle: 'Tttthis is a fake title for an ad but this is very long', price: '1233425',
@@ -88,7 +88,6 @@ function MyPostsCanvas() {
       `${ROOT}advertisement?action=delete`,
       {
         method: 'POST',
-        // headers: {'Content-Type': 'application/json'},
         body: temp
       },
       (res) => {
@@ -104,7 +103,6 @@ function MyPostsCanvas() {
 
   const handleEditSubmit = (f) => {
     f.set('id', idToEdit);
-
     ['price', 'comment'].forEach(identifier => {
       let temp = null;
       if (!f.get(identifier) || f.get(identifier).length===0) {
@@ -112,25 +110,24 @@ function MyPostsCanvas() {
         f.set(identifier, temp);
       }
     });
-    console.log('MyPostsCanvas to submit edit form with:')
-    for (let pair of f.entries()) {
-      console.log('   ', pair[0], pair[1]);
-    }
+    // console.log('MyPostsCanvas to submit edit form with:')
+    // for (let pair of f.entries()) {
+    //   console.log('   ', pair[0], pair[1]);
+    // }
 
     dataFetch(
-      "https://localhost:8000/advertisement?action=update",
+      `${ROOT}advertisement?action=update`,
       {
         method: 'POST',
         body: f
       },
       (res)=>{
-        console.log('parent form res:', res);
         handleShowNoti('Ad Edit Success', true);
         setShowEditAdForm(false);
       },
       (err)=>{
-        console.log('parent form res:', err);
         handleShowNoti('Ad Edit Failure', false);
+        console.warn(err);
       }
     );
   }
@@ -155,8 +152,7 @@ function MyPostsCanvas() {
       {/*<MyPostsCard callbackEdit={handleCallbackEdit} callbackDelete={handleCallbackDelete}/>*/}
 
       <Modal isOpen={showEditAdForm} style={customStyles}>
-        {/*<AdUploadForm callback={setShowEditAdForm()}/>*/}
-        <MyPostsEdit adDataOriginal={myAds.filter(ad=>ad.id===idToEdit)[0]} toClose={()=>setShowEditAdForm(false)} toSubmit={handleEditSubmit}/>
+        <MyPostsEditForm adDataOriginal={myAds.filter(ad=>ad.id===idToEdit)[0]} toClose={()=>setShowEditAdForm(false)} toSubmit={handleEditSubmit}/>
       </Modal>
 
     </div>
