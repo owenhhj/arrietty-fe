@@ -1,12 +1,15 @@
-
+import MyProfile from "./myProfile/MyProfile";
 import MyPostsCanvas from "./myPosts/MyPostsCanvas";
-import AdListingDetailCard from "./adDisplay/AdListingDetailCard";
 
-export default function RouteMyPosts(){
+export default function RouteMyPosts() {
 
   return (
-    <div>
+    <div className={'RouteMyPosts page'}>
+      <MyProfile/>
       <MyPostsCanvas/>
     </div>
   );
-}
+};
+
+
+

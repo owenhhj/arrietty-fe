@@ -1,15 +1,56 @@
 
 .MyPostsCanvas {
     width: 1000px;
-    height: 600px;
+    height: 650px;
 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.MyPostsCanvas-children {
+    width: 90%;
+    height: 90%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.row-title-card {
+    width: 100%;
+    height: 4.5em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-bottom: 1px solid #DADADA;
+}
+
+.row-title-card p {
+    width: 100%;
+    margin: 0;
+    text-align: left;
+    font-size: 2rem;
+    font-weight: bold;
+    color: #57068C;
+}
+
+/**/
+
+.row-MyPostsListing {
+    width: 100%;
+    height: 380px;
+    margin-top: 1.5rem;
+    overflow: auto;
+    white-space: nowrap;
+}
+
+.MyPostsListingContainer {
     display: flex;
     align-items: center;
     justify-content: left;
-
-    overflow-x: scroll;
-    /*overflow-y: auto;*/
 }
+
+
 
 
 

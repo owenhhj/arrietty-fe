@@ -1,10 +1,11 @@
 import './MyPostsCanvas.css';
+import RoutePageTitleCard from "../common/RoutePageTitleCard";
 import MyPostsCard from "./MyPostsCard";
+import MyPostsEditForm from "./MyPostsEditForm";
 import {dataFetch} from "../common/common";
 import {showGeneralNoti} from "../common/GeneralNotiProvider";
 import {useEffect, useState} from "react";
 import Modal from "react-modal";
-import MyPostsEditForm from "./MyPostsEditForm";
 
 const fakeAd = {
   id: 111, adType: 'textbook', adTitle: 'Tttthis is a fake title for an ad but this is very long', price: '1233425',
@@ -130,30 +131,35 @@ function MyPostsCanvas() {
         console.warn(err);
       }
     );
-  }
+  };
 
   return (
     <div className={'MyPostsCanvas card'}>
+      <div className={'MyPostsCanvas-children'}>
+        <div className={'row-title-card non-text'}>
+          {/*<RoutePageTitleCard pageTitle={'My Advertisements'}/>*/}
+          <p>My Advertisements</p>
+        </div>
 
-      {myAds.map(ad => {
-        return (
-          <MyPostsCard key={ad.id} adData={ad} callbackEdit={handleCallbackEdit} callbackDelete={handleCallbackDelete}/>
-        );
-      })}
+        <div className={'row-MyPostsListing'}>
+          <div className={'MyPostsListingContainer'}>
+            {myAds.map(ad => {
+              return (
+                <MyPostsCard key={ad.id} adData={ad} callbackEdit={handleCallbackEdit} callbackDelete={handleCallbackDelete}/>
+              );
+            })}
 
-      {/*<MyPostsCard key={fakeAd2.id} adData={fakeAd2} callbackEdit={handleCallbackEdit} callbackDelete={handleCallbackDelete}/>*/}
+            {/*<MyPostsCard adData={fakeAd2} callbackEdit={handleCallbackEdit} callbackDelete={handleCallbackDelete}/>*/}
+            {/*<MyPostsCard callbackEdit={handleCallbackEdit} callbackDelete={handleCallbackDelete}/>*/}
+            {/*<MyPostsCard callbackEdit={handleCallbackEdit} callbackDelete={handleCallbackDelete}/>*/}
+            {/*<MyPostsCard callbackEdit={handleCallbackEdit} callbackDelete={handleCallbackDelete}/>*/}
+          </div>
+        </div>
 
-      {/*<MyPostsCard callbackEdit={handleCallbackEdit} callbackDelete={handleCallbackDelete}/>*/}
-      {/*<MyPostsCard callbackEdit={handleCallbackEdit} callbackDelete={handleCallbackDelete}/>*/}
-      {/*<MyPostsCard callbackEdit={handleCallbackEdit} callbackDelete={handleCallbackDelete}/>*/}
-      {/*<MyPostsCard callbackEdit={handleCallbackEdit} callbackDelete={handleCallbackDelete}/>*/}
-      {/*<MyPostsCard callbackEdit={handleCallbackEdit} callbackDelete={handleCallbackDelete}/>*/}
-      {/*<MyPostsCard callbackEdit={handleCallbackEdit} callbackDelete={handleCallbackDelete}/>*/}
-      {/*<MyPostsCard callbackEdit={handleCallbackEdit} callbackDelete={handleCallbackDelete}/>*/}
-
-      <Modal isOpen={showEditAdForm} style={customStyles}>
-        <MyPostsEditForm adDataOriginal={myAds.filter(ad=>ad.id===idToEdit)[0]} toClose={()=>setShowEditAdForm(false)} toSubmit={handleEditSubmit}/>
-      </Modal>
+        <Modal isOpen={showEditAdForm} style={customStyles}>
+          <MyPostsEditForm adDataOriginal={myAds.filter(ad=>ad.id===idToEdit)[0]} toClose={()=>setShowEditAdForm(false)} toSubmit={handleEditSubmit}/>
+        </Modal>
+      </div>
 
     </div>
   );
