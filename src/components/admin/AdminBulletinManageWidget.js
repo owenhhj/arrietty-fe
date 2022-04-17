@@ -14,22 +14,25 @@ export default function AdminBulletinManageWidget() {
   const [bulletinList, setBulletinList] = useState([]);
   const navigate = useNavigate();
 
-  useEffect(
-    () => {
-      dataFetch(
-        `${ROOT}bulletin`,
-        {method: "GET"},
-        (data) => {
-          setBulletinList(data);
-        },
-        null
-      );
+  useEffect(() => {
+      refreshData();
     }, []);
 
   const dispatch = showGeneralNoti();
   const handleShowNoti = (msg, good) => {
     dispatch({msg: msg, good: good});
   }
+
+  const refreshData = () => {
+    dataFetch(
+      `${ROOT}bulletin`,
+      {method: "GET"},
+      (data) => {
+        setBulletinList(data);
+      },
+      null
+    );
+  };
 
   const handleListingCallback = (call) => {
     if (call.action === "edit") {
@@ -68,9 +71,8 @@ export default function AdminBulletinManageWidget() {
           body: JSON.stringify(d.data)
         },
         (res) => {
-          // fixme reloading page cancels all interactions
-          window.location.reload();
           handleShowNoti('Add bulletin success', true);
+          setTimeout(refreshData, 1000);
         },
         (err) => {
           handleShowNoti('Add bulletin failure', false);
