@@ -1,16 +1,20 @@
 # Bugs to fix:
 
-#### `input`类GoogleForms输入框：无边框底部动态下划线
+`Navbar`里每30s请求一次`/lastModified?target=advertisement/notification`
 
-#### Total Redo AdUploadForm + MyPostsEditForm
+`res.body`与`README`不同，`body: lastModified`不再嵌套object
 
-#### `myAd`多个ad如何显示overflow
+`myAd`多个ad如何显示overflow
 
-#### 其它页面的profile改成display only并从父级获取profile信息？避免多次fetch
+`input`类GoogleForms输入框：无边框底部动态下划线
 
-#### refactor各种centerColumn的styling到common --> 统一控制宽度
+Total Redo AdUploadForm + MyPostsEditForm
 
-#### NavBar routing的URL在浏览器点刷新后变成callAPI
+其它页面的profile改成display only并从父级获取profile信息？避免多次fetch
+
+refactor各种centerColumn的styling到common --> 统一控制宽度
+
+NavBar routing的URL在浏览器点刷新后变成callAPI
 
 
 
