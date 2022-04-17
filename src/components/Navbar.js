@@ -1,17 +1,85 @@
-import React, {useRef, useState} from "react";
-
+import {useEffect, useRef, useState} from "react";
 import {Link} from "react-router-dom";
 import './Navbar.css';
+import {dataFetch} from "./common/common";
+import {getSiteInfo, setSiteInfo} from "./common/SiteInfoProvider";
 
 function Navbar({isAdmin}) {
+  const ROOT = 'https://localhost:8000/';
   const [click, setClick] = useState(false);
   const [activeTab, setActiveTab] = useState("home");
+  const [onMountRefresh, setOnMountRefresh] = useState(false);
+  const [lastModHome, setLastModHome] = useState(0);
+  const [showDotHome, setShowDotHome] = useState(false);
+  const [showDotNoti, setShowDotNoti] = useState(false);
   const homeLink = useRef(null);
   const myPostsLink = useRef(null);
   const favoriteLink = useRef(null);
   const notificationLink = useRef(null);
   const adminLink = useRef(null);
 
+  // todo if click browser refresh: will trigger useEffect
+  // todo if click search button: need a callback
+  useEffect(() => {
+    // setShowDotHome(false);
+    // dataFetch(
+    //   `${ROOT}lastModified`,
+    //   {method: 'GET'},
+    //   (res) => {
+    //     console.log('onMount res', res)
+    //     setLastModHome(Date.parse(res));
+    //   },
+    //   null
+    // );
+    // updateRedDotNoti();
+
+    let intervalID = setInterval(() => {
+      updateRedDotHome();
+      updateRedDotNoti();
+    }, 5*1000);
+    return () => {clearInterval(intervalID)}
+  }, []);
+
+  // let intervalID = setInterval(() => {
+  //   updateRedDotHome();
+  //   updateRedDotNoti();
+  // }, 5*1000);  // fixme
+
+  const updateRedDotHome = () => {
+    console.log('interval start lastModHome', lastModHome);
+    dataFetch(
+      `${ROOT}lastModified`,
+      {method: 'GET'},
+      (res) => {
+        let temp = Date.parse(res);
+        console.log('new time, lastModHome:', temp, lastModHome)
+
+        if (temp > lastModHome) {
+          setShowDotHome(true);
+        } else {
+          setShowDotHome(false);
+        }
+        setLastModHome(temp);
+      },
+      null
+    );
+  };
+
+  const updateRedDotNoti = () => {
+    dataFetch(
+      `${ROOT}hasNew`,
+      {method: 'GET'},
+      (res) => {
+        console.log('hasNew res:', res)
+        if (res) {
+          setShowDotNoti(true);
+        } else {
+          setShowDotNoti(false);
+        }
+      },
+      null
+    );
+  };
 
   const handleClick = () => {
     setClick(!click);
@@ -25,12 +93,14 @@ function Navbar({isAdmin}) {
     return (e) => {
       setActiveTab(tabName);
       if (tabName === "home") {
+        setShowDotHome(false);
         homeLink.current.click();
       } else if (tabName === "my-posts") {
         myPostsLink.current.click();
       } else if (tabName === "favorite") {
         favoriteLink.current.click();
       } else if (tabName === "notification") {
+        setShowDotNoti(false);
         notificationLink.current.click();
       } else if (tabName === "admin") {
         adminLink.current.click();
@@ -40,7 +110,6 @@ function Navbar({isAdmin}) {
 
 
   return (
-
     <nav className="navbar">
       <div className="navbar-container">
         <Link to="/home" className="navbar-logo">
@@ -51,18 +120,21 @@ function Navbar({isAdmin}) {
           <i className={click ? 'fas fa-times' : 'fas fa-bars'}/>
         </div>
         <ul className={click ? 'nav-menu active' : 'nav-menu'}>
+
           <li className={`nav-item${activeTab === "home" ? "-clicked" : ""}`} onClick={getClickHandler("home")}>
             <svg className="nav-icon" width="50" height="50" viewBox="0 0 50 50" fill="none"
                  xmlns="http://www.w3.org/2000/svg">
               <path
                 d="M44.2526 22.565C44.2517 22.5641 44.2508 22.5631 44.2499 22.5622L27.8098 6.12449C27.1091 5.42351 26.1774 5.03735 25.1864 5.03735C24.1954 5.03735 23.2638 5.4232 22.5627 6.12418L6.13129 22.5536C6.12575 22.5591 6.12022 22.565 6.11468 22.5705C4.67568 24.0177 4.67814 26.3657 6.12175 27.8091C6.7813 28.4689 7.65239 28.8511 8.58375 28.8911C8.62157 28.8947 8.65969 28.8966 8.69813 28.8966H9.35337V40.9938C9.35337 43.3876 11.3013 45.3352 13.6959 45.3352H20.1278C20.7796 45.3352 21.3085 44.8067 21.3085 44.1546V34.6705C21.3085 33.5781 22.1971 32.6896 23.2896 32.6896H27.0833C28.1757 32.6896 29.0644 33.5781 29.0644 34.6705V44.1546C29.0644 44.8067 29.5929 45.3352 30.2451 45.3352H36.6769C39.0716 45.3352 41.0195 43.3876 41.0195 40.9938V28.8966H41.6271C42.6178 28.8966 43.5494 28.5107 44.2508 27.8098C45.6959 26.3638 45.6966 24.0118 44.2526 22.565Z"
                 fill={activeTab === "home" ? "#191919" : "#595959"}/>
+              {showDotHome && <circle cx="38" cy="15" r="6" stroke="black" strokeWidth="1" fill="red"/>}
             </svg>
             <Link ref={homeLink} to="/home" className={`nav-links${activeTab === "home" ? "-clicked" : ""}`}
                   onClick={closeMobileMenu}>
               Home
             </Link>
           </li>
+
           <li className={`nav-item${activeTab === "my-posts" ? "-clicked" : ""}`} onClick={getClickHandler("my-posts")}>
             <svg className={"nav-icon"} width="50" height="50" viewBox="0 0 50 50"
                  fill={activeTab === "my-posts" ? "#191919" : "#595959"} xmlns="http://www.w3.org/2000/svg">
@@ -78,6 +150,7 @@ function Navbar({isAdmin}) {
               My posts
             </Link>
           </li>
+
           <li className={`nav-item${activeTab === "favorite" ? "-clicked" : ""}`} onClick={getClickHandler("favorite")}>
             <svg className={"nav-icon"} width="50" height="50" viewBox="0 0 50 50"
                  fill={activeTab === "favorite" ? "#191919" : "#595959"} xmlns="http://www.w3.org/2000/svg">
@@ -91,6 +164,7 @@ function Navbar({isAdmin}) {
               Favorite
             </Link>
           </li>
+
           <li className={`nav-item${activeTab === "notification" ? "-clicked" : ""}`}
               onClick={getClickHandler("notification")}>
             <svg className={"nav-icon"} width="50" height="50" viewBox="0 0 50 50" fill="none"
@@ -98,6 +172,7 @@ function Navbar({isAdmin}) {
               <path
                 d="M25.0002 45.8333C27.2918 45.8333 29.1668 43.9583 29.1668 41.6666H20.8335C20.8335 43.9583 22.7085 45.8333 25.0002 45.8333ZM37.5002 33.3333V22.9166C37.5002 16.5208 34.1043 11.1666 28.1252 9.74992V8.33325C28.1252 6.60409 26.7293 5.20825 25.0002 5.20825C23.271 5.20825 21.8752 6.60409 21.8752 8.33325V9.74992C15.9168 11.1666 12.5002 16.4999 12.5002 22.9166V33.3333L8.3335 37.4999V39.5833H41.6668V37.4999L37.5002 33.3333ZM33.3335 35.4166H16.6668V22.9166C16.6668 17.7499 19.8127 13.5416 25.0002 13.5416C30.1877 13.5416 33.3335 17.7499 33.3335 22.9166V35.4166Z"
                 fill={activeTab === "notification" ? "#191919" : "#595959"}/>
+              {showDotNoti && <circle cx="38" cy="15" r="6" stroke="black" strokeWidth="1" fill="red"/>}
             </svg>
 
             <Link ref={notificationLink} to="/notification"
