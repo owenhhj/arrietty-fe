@@ -4,82 +4,83 @@ import AdminBulletinListing from "./AdminBulletinListing";
 import {useEffect, useState} from "react";
 import AdminBulletinForm from "./AdminBulletinForm";
 import {dataFetch} from "../common/common";
-import {useNavigate } from "react-router-dom";
+import {showGeneralNoti} from "../common/GeneralNotiProvider";
+import {useNavigate} from "react-router-dom";
 
-
-
-export default function AdminBulletinManageWidget(){
-
+export default function AdminBulletinManageWidget() {
+  const ROOT = 'https://localhost:8000/';
   const [isFormOpen, setIsFormOpen] = useState(false);
-  const [formData, setFormData] = useState({id:null, title:null, content:null});
+  const [formData, setFormData] = useState({id: null, title: null, content: null});
   const [bulletinList, setBulletinList] = useState([]);
   const navigate = useNavigate();
 
-  useEffect(
-    ()=>{
+  useEffect(() => {
+      refreshData();
+    }, []);
+
+  const dispatch = showGeneralNoti();
+  const handleShowNoti = (msg, good) => {
+    dispatch({msg: msg, good: good});
+  }
+
+  const refreshData = () => {
+    dataFetch(
+      `${ROOT}bulletin`,
+      {method: "GET"},
+      (data) => {
+        setBulletinList(data);
+      },
+      null
+    );
+  };
+
+  const handleListingCallback = (call) => {
+    if (call.action === "edit") {
+      setFormData(call.data);
+      setIsFormOpen(true);
+    } else if (call.action === "delete") {
       dataFetch(
-        "https://localhost:8000/bulletin",
+        `${ROOT}bulletin?action=delete`,
         {
-          method:"GET"
+          method: "POST",
+          headers: {'Content-Type': 'application/json'},
+          body: JSON.stringify(call.data)
         },
-        (data)=>{
-          setBulletinList(data);
+        () => {
+          navigate(0);
         },
         null
       );
-    },
-    []
-  );
-
-
-  const handleListingCallback = (call)=>{
-   if(call.action==="edit"){
-     setFormData(call.data);
-     setIsFormOpen(true);
-   }
-   else if (call.action==="delete"){
-     dataFetch(
-       "https://localhost:8000/bulletin?action=delete",
-       {
-         method:"POST",
-         headers: {
-           'Content-Type': 'application/json'
-         },
-         body: JSON.stringify(call.data)
-       },
-       ()=>{
-          navigate(0);
-         },
-       null
-     );
-   }
-  }
-
-
-  const handleAddNew = ()=>{
-    setFormData({id:null, title:null, content:null});
-    setIsFormOpen(true);
-  }
-
-  const handleFormCallBack = (d)=>{
-    if(d.action==="cancel"){
-      setIsFormOpen(false);
     }
-    else if (d.action==="publish"){
+  };
+
+  const handleAddNew = () => {
+    setFormData({id: null, title: null, content: null});
+    setIsFormOpen(true);
+  };
+
+  const handleFormCallBack = (d) => {
+    if (d.action === "cancel") {
+      setIsFormOpen(false);
+    } else if (d.action === "publish") {
       dataFetch(
-        'https://localhost:8000/bulletin?action=update',
+        `${ROOT}bulletin?action=update`,
         {
-          method:"POST",
+          method: "POST",
           headers: {'Content-Type': 'application/json'},
           body: JSON.stringify(d.data)
         },
-        (data)=>{window.location.reload();},
-        null
+        (res) => {
+          handleShowNoti('Add bulletin success', true);
+          setTimeout(refreshData, 1000);
+        },
+        (err) => {
+          handleShowNoti('Add bulletin failure', false);
+        }
       );
       setIsFormOpen(false);
     }
-  }
-
+  };
 
   return (
     <div className={"admin-bulletin-manage-widget card"}>
@@ -87,7 +88,7 @@ export default function AdminBulletinManageWidget(){
         <div className={"bulletin-manage-title"}>Bulletin</div>
         <Button buttonStyle="btn--primary" buttonSize="btn--small" text={"Add a new bulletin"} onClick={handleAddNew}/>
         <div className={"bulletin-listing-container"}>
-          {bulletinList.map((data)=> {
+          {bulletinList.map((data) => {
             return (
               <AdminBulletinListing
                 key={data.id}
@@ -97,12 +98,13 @@ export default function AdminBulletinManageWidget(){
                 createTime={data.createTime}
                 callback={handleListingCallback}
               />
-              );
-            })
+            );
+          })
           }
         </div>
       </div>
-      <AdminBulletinForm isOpen={isFormOpen} id={formData.id} title={formData.title} content={formData.content} callback={handleFormCallBack}/>
+      <AdminBulletinForm isOpen={isFormOpen} id={formData.id} title={formData.title} content={formData.content}
+                         callback={handleFormCallBack}/>
 
     </div>
   );

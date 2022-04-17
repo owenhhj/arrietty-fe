@@ -11,7 +11,9 @@
 }
 
 hr {
-    border-color: #FFFFFF;
+    height: 1px;
+    background-color: #DADADA;
+    border: none;
 }
 
 .clickable {
