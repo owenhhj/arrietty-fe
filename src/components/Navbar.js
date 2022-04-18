@@ -6,9 +6,9 @@ import {getSiteInfo, setSiteInfo} from "./common/SiteInfoProvider";
 
 function Navbar({isAdmin}) {
   const ROOT = 'https://localhost:8000/';
+  const INTERVAL = 5*1000;  // seconds*1000, default 30  // fixme before deployment
   const [click, setClick] = useState(false);
   const [activeTab, setActiveTab] = useState("home");
-  const [onMountRefresh, setOnMountRefresh] = useState(false);
   const [lastModHome, setLastModHome] = useState(0);
   const [showDotHome, setShowDotHome] = useState(false);
   const [showDotNoti, setShowDotNoti] = useState(false);
@@ -18,42 +18,41 @@ function Navbar({isAdmin}) {
   const notificationLink = useRef(null);
   const adminLink = useRef(null);
 
-  // todo if click browser refresh: will trigger useEffect
-  // todo if click search button: need a callback
   useEffect(() => {
-    // setShowDotHome(false);
-    // dataFetch(
-    //   `${ROOT}lastModified`,
-    //   {method: 'GET'},
-    //   (res) => {
-    //     console.log('onMount res', res)
-    //     setLastModHome(Date.parse(res));
-    //   },
-    //   null
-    // );
-    // updateRedDotNoti();
-
-    let intervalID = setInterval(() => {
-      updateRedDotHome();
-      updateRedDotNoti();
-    }, 5*1000);
-    return () => {clearInterval(intervalID)}
+    dataFetch(
+      `${ROOT}lastModified`,
+      {method: 'GET'},
+      (res) => {
+        let temp = Date.parse(res);
+        console.log('onMount new time, lastModHome:', temp, lastModHome)
+        setLastModHome(temp);
+      },
+      null
+    );
   }, []);
 
-  // let intervalID = setInterval(() => {
-  //   updateRedDotHome();
-  //   updateRedDotNoti();
-  // }, 5*1000);  // fixme
+  // todo if click search button: need a callback?
+  useEffect(() => {
+    let intervalID = setInterval(() => {
+      updateRedDotHome();
+    }, INTERVAL);
+    return () => {clearInterval(intervalID)}
+  }, [lastModHome, showDotHome]);
+
+  useEffect(() => {
+    let intervalID = setInterval(() => {
+      updateRedDotNoti();
+    }, INTERVAL);
+    return () => {clearInterval(intervalID)}
+  }, [showDotNoti]);
 
   const updateRedDotHome = () => {
-    console.log('interval start lastModHome', lastModHome);
     dataFetch(
       `${ROOT}lastModified`,
       {method: 'GET'},
       (res) => {
         let temp = Date.parse(res);
         console.log('new time, lastModHome:', temp, lastModHome)
-
         if (temp > lastModHome) {
           setShowDotHome(true);
         } else {
@@ -70,7 +69,7 @@ function Navbar({isAdmin}) {
       `${ROOT}hasNew`,
       {method: 'GET'},
       (res) => {
-        console.log('hasNew res:', res)
+        console.log('/hasNew res:', res)
         if (res) {
           setShowDotNoti(true);
         } else {
@@ -94,6 +93,7 @@ function Navbar({isAdmin}) {
       setActiveTab(tabName);
       if (tabName === "home") {
         setShowDotHome(false);
+        // setShowDotHome(0);  // fixme
         homeLink.current.click();
       } else if (tabName === "my-posts") {
         myPostsLink.current.click();

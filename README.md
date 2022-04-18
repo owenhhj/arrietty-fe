@@ -1,10 +1,6 @@
 # Bugs to fix:
 
-`Navbar`里每30s请求一次`/lastModified?target=advertisement/notification`
-
-`res.body`与`README`不同，`body: lastModified`不再嵌套object
-
-`myAd`多个ad如何显示overflow
+全局`Error Page`，报错后redirect
 
 `input`类GoogleForms输入框：无边框底部动态下划线
 
