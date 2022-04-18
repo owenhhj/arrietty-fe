@@ -28,8 +28,16 @@ hr {
     background-color: #F6F6F6;
 }
 
+p {
+    text-align: left;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
 .non-text {
-    /* cursor not be text selector */
     cursor: default;
 }
 

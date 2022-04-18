@@ -38,7 +38,7 @@ function RouteHome(){
   return (
     <div className={"home-page page"}>
       <MyProfile callback={setShowNewAdForm}/>
-      <AdDisplayColumn/>
+      {/*<AdDisplayColumn/>*/}
       <Bulletin/>
       <Modal isOpen={showNewAdForm} style={customStyles}>
         <AdUploadForm callback={setShowNewAdForm}/>
