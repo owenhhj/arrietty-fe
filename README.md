@@ -4,7 +4,7 @@ Figma：黑白名单界面 & 如何画图
 
 全局`Error Page`，报错后redirect && 全局loading动态小组件（转圈）
 
-`input`类GoogleForms输入框：无边框底部动态下划线
+`input`照搬`mui.com`
 
 Total Redo AdUploadForm + MyPostsEditForm
 
