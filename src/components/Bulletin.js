@@ -22,7 +22,6 @@ export default function Bulletin() {
       `${ROOT}bulletin`,
       {method: 'GET'},
       (res) => {
-        console.log('onMount bullData:', res)
         setBullData(res);
       },
       null

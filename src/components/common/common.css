@@ -11,6 +11,7 @@
 }
 
 hr {
+    /*margin: 0;*/
     height: 1px;
     background-color: #DADADA;
     border: none;
