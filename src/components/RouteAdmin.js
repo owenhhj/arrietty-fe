@@ -1,6 +1,7 @@
 import AdminTagInputWidget from "./admin/AdminTagInputWidget";
 import "./RouteAdmin.css";
 import {useState} from "react";
+import AdminSiteStats from "./admin/AdminSiteStats";
 import AdminBulletinManageWidget from "./admin/AdminBulletinManageWidget";
 import AdminBlacklist from "./admin/AdminBlacklist";
 
@@ -36,6 +37,7 @@ function RouteAdmin(){
         </div>
       </div>
 
+      {tabId===0 && <AdminSiteStats/>}
       {tabId===1 && <AdminTagInputWidget/>}
       {tabId===2 && <AdminBulletinManageWidget/>}
       {tabId===3 && <AdminBlacklist/>}
