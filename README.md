@@ -1,6 +1,6 @@
 # Bugs to fix:
 
-Figma：黑白名单界面 & 如何画图
+画图：是否让admin选择field自动绘图？
 
 全局`Error Page`，报错后redirect && 全局loading动态小组件（转圈）
 
