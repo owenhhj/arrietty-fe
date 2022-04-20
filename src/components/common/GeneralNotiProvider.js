@@ -6,7 +6,7 @@ import {createContext, useContext, useReducer} from "react";
 //   const dispatch = showGeneralNoti();
 //   const handleShowNoti = (msg, good) => {
 //     dispatch({action: "add", body: {msg: msg, good: good}});
-//   }
+//   };
 // >>>>>>>>>>>>>>>>>>>> HOW TO USE
 
 const GeneralNotiContext = createContext();
