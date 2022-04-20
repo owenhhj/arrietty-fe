@@ -4,7 +4,7 @@ Figma：黑白名单界面 & 如何画图
 
 全局`Error Page`，报错后redirect && 全局loading动态小组件（转圈）
 
-`input`照搬`mui.com`
+`input`照搬`mui.com` & `inputForm` validation
 
 Total Redo AdUploadForm + MyPostsEditForm
 
