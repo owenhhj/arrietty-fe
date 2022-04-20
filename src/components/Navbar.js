@@ -24,7 +24,6 @@ function Navbar({isAdmin}) {
       {method: 'GET'},
       (res) => {
         let temp = Date.parse(res);
-        console.log('onMount new time, lastModHome:', temp, lastModHome)
         setLastModHome(temp);
       },
       null
@@ -52,7 +51,6 @@ function Navbar({isAdmin}) {
       {method: 'GET'},
       (res) => {
         let temp = Date.parse(res);
-        console.log('new time, lastModHome:', temp, lastModHome)
         if (temp > lastModHome) {
           setShowDotHome(true);
         } else {
@@ -69,7 +67,6 @@ function Navbar({isAdmin}) {
       `${ROOT}hasNew`,
       {method: 'GET'},
       (res) => {
-        console.log('/hasNew res:', res)
         if (res) {
           setShowDotNoti(true);
         } else {

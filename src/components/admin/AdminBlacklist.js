@@ -14,6 +14,23 @@ export default function AdminBlacklist() {
   const [netIdInput, setNetIdInput] = useState('');
 
   useEffect(() => {
+    // dataFetch(
+    //   `${ROOT}blacklist`,
+    //   {method: 'GET'},
+    //   (res) => {
+    //     setNetIds(res);
+    //   },
+    //   null
+    // );
+    refreshData();
+  }, []);
+
+  const dispatch = showGeneralNoti();
+  const handleShowNoti = (msg, good) => {
+    dispatch({action: "add", body: {msg: msg, good: good}});
+  };
+
+  const refreshData = () => {
     dataFetch(
       `${ROOT}blacklist`,
       {method: 'GET'},
@@ -22,11 +39,6 @@ export default function AdminBlacklist() {
       },
       null
     );
-  }, []);
-
-  const dispatch = showGeneralNoti();
-  const handleShowNoti = (msg, good) => {
-    dispatch({action: "add", body: {msg: msg, good: good}});
   };
 
   const handleBlacklistInput = (e) => {
@@ -42,6 +54,7 @@ export default function AdminBlacklist() {
       {method: 'POST'},
       (res) => {
         handleShowNoti(`Add ${temp} to blacklist success`, true);
+        refreshData();
       },
       (err) => {
         handleShowNoti(`Add ${temp} to blacklist failure`, false);
@@ -55,6 +68,7 @@ export default function AdminBlacklist() {
       {method: 'POST'},
       (res) => {
         handleShowNoti(`Remove ${e} from blacklist success`, true);
+        refreshData();
       },
       (err) => {
         handleShowNoti(`Remove ${e} from blacklist failure`, false);
