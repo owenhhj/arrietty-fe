@@ -2,14 +2,18 @@ import {createContext, useContext, useEffect, useState} from "react";
 import {dataFetch} from "./common";
 
 ////////// HOW TO USE
-// import {getSiteInfo} from;
+// import {getSiteInfo};
 // const MY_NETID = getSiteInfo().netId;
 
 const SiteInfoContext = createContext();  // `getSiteInfo` to get the object
 const SetSiteInfoContext = createContext();  // `setSiteInfo` to set the object
 
 const defaultSiteInfo = {
-  netId: 'sh2013'
+  // lastModAd: 0,
+  // lastModNoti: 0,
+  isAdmin: false,
+  netId: 'sh2013',
+  username: 'Bruh',
 };
 
 // children --> all components wrapped in this provider, in `index.js`
@@ -18,6 +22,7 @@ function SiteInfoProvider({children}) {
   const [siteInfo, setSiteInfo] = useState(defaultSiteInfo);
 
   useEffect(() => {
+    console.log('SiteInfoProvider useEffect fetching once');
     dataFetch(
       ROOT+"profile?userId=",
       {method: 'GET'},

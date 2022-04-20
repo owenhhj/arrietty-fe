@@ -1,0 +1,73 @@
+
+.AdminBlacklist {
+    width: 1000px;
+    height: 650px;
+}
+
+.AdminBlacklist-subtitle {
+    width: 100%;
+    height: 3em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.AdminBlacklist-subtitle p {
+    width: 100%;
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+/**/
+
+.AdminBlacklist-card-input-row {
+    width: 100%;
+}
+
+.AdminBlacklist-card-input {
+    width: 30%;
+    height: 3em;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+/**/
+
+.AdminBlacklist-area-listing {
+    width: 100%;
+    display: inline-flex;
+    justify-content: left;
+    flex-wrap: wrap;
+}
+
+/**/
+
+.AdminBlacklistEach {
+    height: 2.5em;
+    width: 7em;
+
+    margin: 0.3em 0.6em 0.3em 0.6em;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.AdminBlacklistEach p {
+    margin-left: 0.6em;
+}
+
+.AdminBlacklistEach img {
+    height: 1.5em;
+    width: 1.5em;
+    margin-right: 0.5em;
+    filter: invert(29%) sepia(90%) saturate(7440%) hue-rotate(358deg) brightness(117%) contrast(131%);
+}
+
+
+
+
+
+

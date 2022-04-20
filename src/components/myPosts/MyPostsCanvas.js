@@ -1,5 +1,4 @@
 import './MyPostsCanvas.css';
-import RoutePageTitleCard from "../common/RoutePageTitleCard";
 import MyPostsCard from "./MyPostsCard";
 import MyPostsEditForm from "./MyPostsEditForm";
 import {dataFetch} from "../common/common";
@@ -38,7 +37,6 @@ const customStyles = {
 function MyPostsCanvas() {
   const ROOT = 'https://localhost:8000/';
   const [myAds, setMyAds] = useState([]);
-  const defaultEditState = {show: false, id: -1};
   const [showEditAdForm, setShowEditAdForm] = useState(false);
   const [idToEdit, setIdToEdit] = useState(-1);
 
@@ -56,7 +54,6 @@ function MyPostsCanvas() {
   }, [showEditAdForm]);
 
   const refreshData = () => {
-    console.log('refreshData called')
     dataFetch(
       `${ROOT}myAdvertisement`,
       {method: 'GET'},
@@ -96,7 +93,7 @@ function MyPostsCanvas() {
         refreshData();
       },
       (err) => {
-        console.warn(err)
+        console.warn(err);
         handleShowNoti('Ad deletion failure', false);
       }
     )
@@ -115,7 +112,6 @@ function MyPostsCanvas() {
     // for (let pair of f.entries()) {
     //   console.log('   ', pair[0], pair[1]);
     // }
-
     dataFetch(
       `${ROOT}advertisement?action=update`,
       {
@@ -137,7 +133,6 @@ function MyPostsCanvas() {
     <div className={'MyPostsCanvas card'}>
       <div className={'MyPostsCanvas-children'}>
         <div className={'row-title-card non-text'}>
-          {/*<RoutePageTitleCard pageTitle={'My Advertisements'}/>*/}
           <p>My Advertisements</p>
         </div>
 
