@@ -129,7 +129,7 @@ export default function AdminSiteStats() {
   };
 
   return (
-    <div className={'MyPostsCanvas card non-text'} style={{height: 'min-content'}}>
+    <div className={'MyPostsCanvas card non-text'} style={{height: 'min-content', width: '1300px'}}>
       <div className={'MyPostsCanvas-children'}>
         <div className={'row-title-card'}>
           <p>Site Statistics</p>
@@ -139,28 +139,38 @@ export default function AdminSiteStats() {
           <div className={'AdminSSTodayCard-each'}>
             <p style={{fontWeight: 'bold'}}>Today</p>
           </div>
-          <div className={'AdminSSTodayCard-each'}>
-            <p>#loginUser: {dataToday.loginUserNum}</p>
-          </div>
-          <div className={'AdminSSTodayCard-each'}>
-            <p>#adUpload: {dataToday.adUploadNum}</p>
-          </div>
-          <div className={'AdminSSTodayCard-each'}>
-            <p>#adDelete: {dataToday.adDeleteNum}</p>
-          </div>
-          <div className={'AdminSSTodayCard-each'}>
-            <p>#tap: {dataToday.tapRequestNum}</p>
-          </div>
-          <div className={'AdminSSTodayCard-each'}>
-            <p>#mark: {dataToday.markRequestNum}</p>
-          </div>
+          {chartTypes.slice(0, 6).map(type => {
+            return (
+              <div key={type} className={'AdminSSTodayCard-each'}>
+                <p>{type}: {dataToday[type]}</p>
+              </div>
+            );
+          })}
 
+          {/*<div className={'AdminSSTodayCard-each'}>*/}
+          {/*  <p style={{fontWeight: 'bold'}}>Today</p>*/}
+          {/*</div>*/}
+          {/*<div className={'AdminSSTodayCard-each'}>*/}
+          {/*  <p>#loginUser: {dataToday.loginUserNum}</p>*/}
+          {/*</div>*/}
+          {/*<div className={'AdminSSTodayCard-each'}>*/}
+          {/*  <p>#adUpload: {dataToday.adUploadNum}</p>*/}
+          {/*</div>*/}
+          {/*<div className={'AdminSSTodayCard-each'}>*/}
+          {/*  <p>#adDelete: {dataToday.adDeleteNum}</p>*/}
+          {/*</div>*/}
+          {/*<div className={'AdminSSTodayCard-each'}>*/}
+          {/*  <p>#tap: {dataToday.tapRequestNum}</p>*/}
+          {/*</div>*/}
+          {/*<div className={'AdminSSTodayCard-each'}>*/}
+          {/*  <p>#mark: {dataToday.markRequestNum}</p>*/}
+          {/*</div>*/}
         </div>
 
         <div className={'AdminSSWidgetCard-container'}>
           {chartTypes.map(type => {
             return (
-              <AdminSSWidgetCard options={getChartOptions()} data={getDataForChart(type)}/>
+              <AdminSSWidgetCard key={type} options={getChartOptions()} data={getDataForChart(type)}/>
             );
           })}
         </div>
