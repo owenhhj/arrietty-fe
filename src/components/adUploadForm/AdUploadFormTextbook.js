@@ -7,6 +7,7 @@ import Button from "../common/Button";
 import AlertablePrompt from "./AlertablePrompt";
 import AdUploadFormDragDrop from "./AdUploadFormDragDrop";
 import {dataFetch} from "../common/common";
+import MUITextField from "../common/MUITextField";
 
 function AdUploadFormTextbook({
   adType='textbook',
@@ -90,6 +91,7 @@ function AdUploadFormTextbook({
         <div className={'form-row'}>
           <p className={'form-prompt'}>Ad Title</p>
           <Input type={'text'} identifier={'adTitle'} onChange={handleInputChange}/>
+          <MUITextField/>
         </div>
         <div className={"form-row"}>
           <p className={"form-prompt"}>Ad type</p>
