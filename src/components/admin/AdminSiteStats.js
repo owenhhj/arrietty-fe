@@ -136,22 +136,27 @@ export default function AdminSiteStats() {
 
         </div>
 
-        <div>
-          <Line options={getChartOptions()} data={getDataTotalUser()}/>
+        <div className={'AdminSSWidgetCard-container'}>
+          <AdminSSWidgetCard options={getChartOptions()} data={getDataTotalUser()}/>
+          <AdminSSWidgetCard options={getChartOptions()} data={getDataTotalUser()}/>
+          <AdminSSWidgetCard options={getChartOptions()} data={getDataTotalUser()}/>
+          <AdminSSWidgetCard options={getChartOptions()} data={getDataTotalUser()}/>
         </div>
+
 
       </div>
     </div>
   );
 }
 
-function AdminSSWidget() {
-
-
+function AdminSSWidgetCard({
+  options={},
+  data={}
+                           }) {
   return (
-    <>
-
-    </>
+    <div className={'AdminSSWidgetCard card'}>
+      <Line options={options} data={data}/>
+    </div>
   );
 }
 
