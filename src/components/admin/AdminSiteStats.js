@@ -1,7 +1,11 @@
 import './AdminSiteStats.css';
-import Chart from 'chart.js/auto';
+import {useEffect, useState} from "react";
+import Chart from 'chart.js/auto';  // don't remove this
 import {Line, Bar} from 'react-chartjs-2';
-import {useState} from "react";
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import FormControl from '@mui/material/FormControl';
+import Select, { SelectChangeEvent } from '@mui/material/Select';
 
 const fakeSS = [
   {
@@ -81,9 +85,27 @@ const fakeSS = [
 export default function AdminSiteStats() {
   const [data5Days, setData5Days] = useState(fakeSS);
   const [dataToday, setDataToday] = useState(fakeSS[0]);
+  const [chartTypes, setChartTypes] = useState([]);
+
+  useEffect(() => {
+    // todo fetch
+  }, []);
+
+  useEffect(() => {
+    let temp = data5Days;
+    let types = [];
+    if (temp.length>0) {
+      let curr = temp[0];
+      for (let k of Object.keys(curr)) {
+        if (!['id', 'date'].includes(k)) {
+          types.push(k);
+        }
+      }
+    }
+    setChartTypes(types);
+  }, [data5Days]);
 
   const convertDate = (s) => {
-    let ans = '';
     let d = new Date(Date.parse(s));
     return `${d.getMonth()+1}/${d.getDate()}`;
   };
@@ -94,13 +116,12 @@ export default function AdminSiteStats() {
     };
   };
 
-  // todo universal helper func?
-  const getDataTotalUser = (dataType) => {
+  const getDataForChart = (type) => {
     let ans = {labels: [], datasets: []};
     ans.labels = data5Days.map(day => convertDate(day.date));
     let dataset = {
-      label: 'Total User Count',
-      data: data5Days.map(day => day.totalUserNum),
+      label: type,
+      data: data5Days.map(day => day[type]),
       backgroundColor: '#57068C'
     };
     ans.datasets.push(dataset);
@@ -108,7 +129,7 @@ export default function AdminSiteStats() {
   };
 
   return (
-    <div className={'MyPostsCanvas card non-text'}>
+    <div className={'MyPostsCanvas card non-text'} style={{height: 'min-content'}}>
       <div className={'MyPostsCanvas-children'}>
         <div className={'row-title-card'}>
           <p>Site Statistics</p>
@@ -137,12 +158,16 @@ export default function AdminSiteStats() {
         </div>
 
         <div className={'AdminSSWidgetCard-container'}>
-          <AdminSSWidgetCard options={getChartOptions()} data={getDataTotalUser()}/>
-          <AdminSSWidgetCard options={getChartOptions()} data={getDataTotalUser()}/>
-          <AdminSSWidgetCard options={getChartOptions()} data={getDataTotalUser()}/>
-          <AdminSSWidgetCard options={getChartOptions()} data={getDataTotalUser()}/>
+          {chartTypes.map(type => {
+            return (
+              <AdminSSWidgetCard options={getChartOptions()} data={getDataForChart(type)}/>
+            );
+          })}
         </div>
 
+        <div style={{height: '3rem'}}>
+          {/* placeholder for padding */}
+        </div>
 
       </div>
     </div>
