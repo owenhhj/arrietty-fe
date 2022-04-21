@@ -14,14 +14,14 @@ export default function AdminBlacklist() {
   const [netIdInput, setNetIdInput] = useState('');
 
   useEffect(() => {
-    // dataFetch(
-    //   `${ROOT}blacklist`,
-    //   {method: 'GET'},
-    //   (res) => {
-    //     setNetIds(res);
-    //   },
-    //   null
-    // );
+    dataFetch(
+      `${ROOT}blacklist`,
+      {method: 'GET'},
+      (res) => {
+        setNetIds(res);
+      },
+      null
+    );
     refreshData();
   }, []);
 
