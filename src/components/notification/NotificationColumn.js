@@ -11,7 +11,7 @@ function NotificationColumn() {
 
   useEffect(() => {
     dataFetch(
-      `${ROOT}notification`,
+      `${ROOT}getNotification`,
       {method: 'GET'},
       setNotis,
       (e) => {console.warn(e);}
