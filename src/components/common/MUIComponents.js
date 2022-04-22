@@ -1,7 +1,8 @@
 import * as React from 'react';
+import './MUIComponents.css';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
-import {Autocomplete, Checkbox, FormControlLabel, FormGroup, InputAdornment} from "@mui/material";
+import {Autocomplete, Checkbox, FormControlLabel, InputAdornment} from "@mui/material";
 import {useState} from "react";
 
 // README props without default values are required from parent, others can be omitted
@@ -46,13 +47,15 @@ export function MUITextField({
         style={{...styleBoxDefault, ...styleBox}}
       >
         {size === 'normal' && (
-          <TextField label={label} variant={'standard'} value={value} placeholder={placeholder}
+          <TextField label={label} variant={'standard'} placeholder={placeholder}
+                     // value={value}
                      style={{...styleInputDefault, ...styleInput}}
                      onChange={handleInputChange}
           />
         )}
         {size === 'multiline' && (
-          <TextField label={label} variant={'outlined'} value={value} placeholder={placeholder}
+          <TextField label={label} variant={'outlined'} placeholder={placeholder}
+                     // value={value}
                      style={{...styleInputDefault, ...styleInput}}
                      multiline minRows={minRows} maxRows={maxRows}
                      onChange={handleInputChange}
@@ -116,7 +119,6 @@ export function MUICheckbox({
                             }) {
   const [checked, setChecked] = useState(false);
   const handleInputChange = () => {
-    console.log(!checked)
     setChecked(!checked);  // todo
     // onChange(identifier, e.target.value);
   };
@@ -135,7 +137,7 @@ export function MUITagSelect({
                                onChange
                              }) {
   const handleInputChange = (v) => {
-    onChange(identifier, v)
+    // onChange(identifier, v)
   };
 
   return (

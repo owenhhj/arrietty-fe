@@ -7,7 +7,7 @@ import Button from "../common/Button";
 import AlertablePrompt from "./AlertablePrompt";
 import AdUploadFormDragDrop from "./AdUploadFormDragDrop";
 import {dataFetch} from "../common/common";
-import {MUITextField, MUINumber, MUICheckbox, MUITagSelect} from "../common/MUITextField";
+import {MUITextField, MUINumber, MUICheckbox, MUITagSelect} from "../common/MUIComponents";
 
 function AdUploadFormTextbook({
   adType='textbook',
@@ -34,7 +34,7 @@ function AdUploadFormTextbook({
       null
     );
     dataFetch(
-      `${ROOT}textbook?id=`,
+      `${ROOT}course?id=`,
       {method:"GET"},
       setCourseData,
       null
@@ -50,6 +50,7 @@ function AdUploadFormTextbook({
     for(let j=0; j<ret.length; j++){
       ret[j].relatedCourse = courseMap.get(ret[j].courseId);
     }
+    console.log('ret in getTextbookData:', ret)
     return ret;
   };
 
@@ -108,8 +109,9 @@ function AdUploadFormTextbook({
 
         <div className={"form-row textbook-search"}>
           {/*<AlertablePrompt promptText={"Select a textbook"} required={true} alertText={"Please select a textbook"} alerted={textbookInputAlerted}/>*/}
-          {/*<TextbookSearch textbookData={getTextbookData()} onChange={handleInputChange} />*/}
-          <MUITagSelect options={['book1', 'book2', 'book3']}/>
+          <TextbookSearch textbookData={getTextbookData()} onChange={handleInputChange} />
+          <MUITagSelect identifier={'tagId'} options={getTextbookData()}/>
+        {/* ['book1', 'book2', 'book3'] */}
         </div>
 
 
@@ -117,7 +119,7 @@ function AdUploadFormTextbook({
           <AlertablePrompt promptText={"Pricing"} required={true} alertText={"Please enter a valid price"} alerted={pricingInputAlerted} />
           <div className={"pricing-row"}>
             {/*<Input type={"price"} identifier={"price"} inputSize={"large"} onChange={handleInputChange}/>*/}
-            <MUINumber/>
+            <MUINumber identifier={'price'} onChange={handleInputChange}/>
             {/* todo pass in value */}
             {/*<p>RMB</p>*/}
           </div>
@@ -126,7 +128,7 @@ function AdUploadFormTextbook({
           <AlertablePrompt alertText={"Comment must be between 1 and 150 characters"} alerted={commentInputAlerted}/>
           <p className={"form-prompt"}>Additional comment</p>
           {/*<Input type={"text"} identifier={"comment"} inputSize={"extra-large"} onChange={handleInputChange}/>*/}
-          <MUITextField size={'multiline'} identifier={'comment'} onChange={handleInputChange}/>
+          <MUITextField identifier={'comment'} size={'multiline'} onChange={handleInputChange}/>
 
         </div>
         <AlertablePrompt alertText={"Please sign the pledge"} alerted={pledgeInputAlerted}/>

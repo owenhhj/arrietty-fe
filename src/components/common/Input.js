@@ -25,6 +25,7 @@ export default function Input(
     };
 
     const handleSelectSearchInputChange = (...args)=>{
+      console.log('args[0]', args[0])
         onChange(identifier, args[0]);
     }
 
