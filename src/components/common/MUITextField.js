@@ -1,7 +1,8 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
-import {InputAdornment} from "@mui/material";
+import {Autocomplete, Checkbox, FormControlLabel, FormGroup, InputAdornment} from "@mui/material";
+import {useState} from "react";
 
 // README props without default values are required from parent, others can be omitted
 export function MUITextField({
@@ -18,6 +19,11 @@ export function MUITextField({
                              }) {
   const styleBoxDefault = {
     width: size === 'multiline' ? '90%' : '62%',
+    margin: 0,
+    padding: 0
+  };
+
+  const styleInputDefault = {
     margin: 0,
     padding: 0
   };
@@ -40,12 +46,14 @@ export function MUITextField({
         style={{...styleBoxDefault, ...styleBox}}
       >
         {size === 'normal' && (
-          <TextField label={label} variant={'standard'} value={value} placeholder={placeholder} style={{...styleInput}}
+          <TextField label={label} variant={'standard'} value={value} placeholder={placeholder}
+                     style={{...styleInputDefault, ...styleInput}}
                      onChange={handleInputChange}
           />
         )}
         {size === 'multiline' && (
-          <TextField label={label} variant={'outlined'} value={value} placeholder={placeholder} style={{...styleInput}}
+          <TextField label={label} variant={'outlined'} value={value} placeholder={placeholder}
+                     style={{...styleInputDefault, ...styleInput}}
                      multiline minRows={minRows} maxRows={maxRows}
                      onChange={handleInputChange}
           />
@@ -58,14 +66,14 @@ export function MUITextField({
 export function MUINumber({
                             identifier,
                             label = '',
-                            value = '',
+                            value = 0,
                             placeholder = '',
                             styleBox = {},
                             styleInput = {},
                             onChange
                           }) {
   const styleBoxDefault = {
-    width: '16em',
+    width: '6em',
     margin: 0,
     padding: 0
   };
@@ -87,18 +95,65 @@ export function MUINumber({
         autoComplete="off"
         style={{...styleBoxDefault, ...styleBox}}
       >
-        <TextField label={label} type="number" variant="standard" style={{...styleInput}}
-                   // value={value} placeholder={placeholder}
-                   endAdornment={<InputAdornment position="end">RMB</InputAdornment>}
-                   aria-describedby="outlined-weight-helper-text"
+        <TextField label={label} type="number" variant="standard" placeholder={placeholder} style={{...styleInput}}
+                   InputProps={{
+                     endAdornment: <InputAdornment position="end">RMB</InputAdornment>,
+                   }}
                    InputLabelProps={{
-                     shrink: true,
+                     // shrink: true,
                    }}
         />
       </Box>
     </>
   );
 }
+
+export function MUICheckbox({
+                              identifier,
+                              label = '',
+                              value = false,
+                              onChange
+                            }) {
+  const [checked, setChecked] = useState(false);
+  const handleInputChange = () => {
+    console.log(!checked)
+    setChecked(!checked);  // todo
+    // onChange(identifier, e.target.value);
+  };
+
+  return (
+    <>
+      <FormControlLabel control={<Checkbox defaultChecked={false} onChange={handleInputChange}/>} label={label}/>
+    </>
+  );
+}
+
+export function MUITagSelect({
+                               identifier,
+                               options = [],
+                               label = '',
+                               onChange
+                             }) {
+  const handleInputChange = (v) => {
+    onChange(identifier, v)
+  };
+
+  return (
+    <>
+      <Autocomplete
+        disablePortal
+        size={'small'}
+        options={options}
+        sx={{width: 300}}
+        onChange={(e, newValue) => {
+          handleInputChange(newValue)
+        }}
+        renderInput={(params) => <TextField {...params} label={label}/>}
+      />
+    </>
+  );
+}
+
 
 
 

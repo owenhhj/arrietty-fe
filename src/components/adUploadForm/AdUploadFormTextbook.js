@@ -7,7 +7,7 @@ import Button from "../common/Button";
 import AlertablePrompt from "./AlertablePrompt";
 import AdUploadFormDragDrop from "./AdUploadFormDragDrop";
 import {dataFetch} from "../common/common";
-import {MUITextField, MUINumber} from "../common/MUITextField";
+import {MUITextField, MUINumber, MUICheckbox, MUITagSelect} from "../common/MUITextField";
 
 function AdUploadFormTextbook({
   adType='textbook',
@@ -53,6 +53,7 @@ function AdUploadFormTextbook({
     return ret;
   };
 
+  // todo use state to track each input and then submit
   const handleInputChange = (identifier, value) => {
     if(identifier==="tagId"){
       setTextbookInputAlerted(false);
@@ -106,8 +107,9 @@ function AdUploadFormTextbook({
 
 
         <div className={"form-row textbook-search"}>
-          <AlertablePrompt promptText={"Select a textbook"} required={true} alertText={"Please select a textbook"} alerted={textbookInputAlerted}/>
-          <TextbookSearch textbookData={getTextbookData()} onChange={handleInputChange} />
+          {/*<AlertablePrompt promptText={"Select a textbook"} required={true} alertText={"Please select a textbook"} alerted={textbookInputAlerted}/>*/}
+          {/*<TextbookSearch textbookData={getTextbookData()} onChange={handleInputChange} />*/}
+          <MUITagSelect options={['book1', 'book2', 'book3']}/>
         </div>
 
 
@@ -116,6 +118,7 @@ function AdUploadFormTextbook({
           <div className={"pricing-row"}>
             {/*<Input type={"price"} identifier={"price"} inputSize={"large"} onChange={handleInputChange}/>*/}
             <MUINumber/>
+            {/* todo pass in value */}
             {/*<p>RMB</p>*/}
           </div>
         </div>
@@ -128,8 +131,9 @@ function AdUploadFormTextbook({
         </div>
         <AlertablePrompt alertText={"Please sign the pledge"} alerted={pledgeInputAlerted}/>
         <div className={"pledge"}>
-          <input type={"checkbox"} onChange={handlePledgeClicked}/>
-          <p>I confirm that the ad information is accurate</p>
+          {/*<input type={"checkbox"} onChange={handlePledgeClicked}/>*/}
+          {/*<p>I confirm that the ad information is accurate</p>*/}
+          <MUICheckbox label={'I confirm that the ad information is accurate'}/>
         </div>
         <div className={"button-row"}>
           <Button text={"Submit"} buttonStyle={"btn--primary"} buttonSize={"btn--large"} onClick={handleFormSubmit}/>
