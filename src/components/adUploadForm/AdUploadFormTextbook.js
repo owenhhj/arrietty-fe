@@ -7,7 +7,7 @@ import Button from "../common/Button";
 import AlertablePrompt from "./AlertablePrompt";
 import AdUploadFormDragDrop from "./AdUploadFormDragDrop";
 import {dataFetch} from "../common/common";
-import MUITextField from "../common/MUITextField";
+import {MUITextField, MUINumber} from "../common/MUITextField";
 
 function AdUploadFormTextbook({
   adType='textbook',
@@ -114,8 +114,9 @@ function AdUploadFormTextbook({
         <div className={"form-row"}>
           <AlertablePrompt promptText={"Pricing"} required={true} alertText={"Please enter a valid price"} alerted={pricingInputAlerted} />
           <div className={"pricing-row"}>
-            <Input type={"price"} identifier={"price"} inputSize={"large"} onChange={handleInputChange}/>
-            <p>RMB</p>
+            {/*<Input type={"price"} identifier={"price"} inputSize={"large"} onChange={handleInputChange}/>*/}
+            <MUINumber/>
+            {/*<p>RMB</p>*/}
           </div>
         </div>
         <div className={"form-row comment"}>
