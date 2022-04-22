@@ -6,19 +6,6 @@ import {showGeneralNoti} from "../common/GeneralNotiProvider";
 import {useEffect, useState} from "react";
 import Modal from "react-modal";
 
-const fakeAd = {
-  id: 111, adType: 'textbook', adTitle: 'Tttthis is a fake title for an ad but this is very long', price: '1233425',
-  comment: 'This is a fake comment for and ad but this is very long very long very long very long very long very long very long very long very long very long very long very long very long very long very long very long very long very long very long very long very long',
-  createTime: "Apr 4, 2022, 12:00:00 AM", numberOfTaps: 99, imageIds: "./default_cover.jpg"
-}
-
-const fakeAd2 = {
-  id: 222, adType: 'textbook', adTitle: 'this is a fake title', price: '123',
-  comment: 'This is a fake comment for and ad bery long very long very long very long very long',
-  createTime: "Apr 4, 2022, 12:00:00 AM", numberOfTaps: 64, imageIds: "./default_cover.jpg"
-}
-
-// todo refactor into common.js
 const customStyles = {
   content: {
     position: "absolute",
@@ -41,7 +28,6 @@ function MyPostsCanvas() {
   const [idToEdit, setIdToEdit] = useState(-1);
 
   useEffect(() => {
-    setMyAds([fakeAd, fakeAd2]);  // fixme remove this
     refreshData();
   }, []);
 
@@ -108,10 +94,6 @@ function MyPostsCanvas() {
         f.set(identifier, temp);
       }
     });
-    // console.log('MyPostsCanvas to submit edit form with:')
-    // for (let pair of f.entries()) {
-    //   console.log('   ', pair[0], pair[1]);
-    // }
     dataFetch(
       `${ROOT}advertisement?action=update`,
       {
@@ -143,11 +125,6 @@ function MyPostsCanvas() {
                 <MyPostsCard key={ad.id} adData={ad} callbackEdit={handleCallbackEdit} callbackDelete={handleCallbackDelete}/>
               );
             })}
-
-            {/*<MyPostsCard adData={fakeAd2} callbackEdit={handleCallbackEdit} callbackDelete={handleCallbackDelete}/>*/}
-            {/*<MyPostsCard callbackEdit={handleCallbackEdit} callbackDelete={handleCallbackDelete}/>*/}
-            {/*<MyPostsCard callbackEdit={handleCallbackEdit} callbackDelete={handleCallbackDelete}/>*/}
-            {/*<MyPostsCard callbackEdit={handleCallbackEdit} callbackDelete={handleCallbackDelete}/>*/}
           </div>
         </div>
 
