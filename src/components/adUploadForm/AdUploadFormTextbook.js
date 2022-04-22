@@ -90,8 +90,10 @@ function AdUploadFormTextbook({
         </div>
         <div className={'form-row'}>
           <p className={'form-prompt'}>Ad Title</p>
-          <Input type={'text'} identifier={'adTitle'} onChange={handleInputChange}/>
-          <MUITextField/>
+          {/*<Input type={'text'} identifier={'adTitle'} onChange={handleInputChange}/>*/}
+          {/* todo */}
+          <MUITextField identifier={'adTitle'} onChange={handleInputChange}/>
+
         </div>
         <div className={"form-row"}>
           <p className={"form-prompt"}>Ad type</p>
@@ -119,7 +121,8 @@ function AdUploadFormTextbook({
         <div className={"form-row comment"}>
           <AlertablePrompt alertText={"Comment must be between 1 and 150 characters"} alerted={commentInputAlerted}/>
           <p className={"form-prompt"}>Additional comment</p>
-          <Input type={"text"} identifier={"comment"} inputSize={"extra-large"} onChange={handleInputChange}/>
+          {/*<Input type={"text"} identifier={"comment"} inputSize={"extra-large"} onChange={handleInputChange}/>*/}
+          <MUITextField size={'multiline'} identifier={'comment'} onChange={handleInputChange}/>
 
         </div>
         <AlertablePrompt alertText={"Please sign the pledge"} alerted={pledgeInputAlerted}/>
