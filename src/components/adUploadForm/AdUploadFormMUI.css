@@ -1,6 +1,6 @@
 
 .AdUploadFormMUI {
-    width: 40rem;
+    width: 38rem;
     height: min-content;
     padding: 1rem 2rem 1rem 2rem;
 }
@@ -28,3 +28,17 @@
     margin-left: 2em;
     color: #d32f2f;
 }
+
+/**/
+
+.AdUploadFormMUI-row-submit {
+    width: 100%;
+    padding: 1em 0 1em 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/**/
+
+
