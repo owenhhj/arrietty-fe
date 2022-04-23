@@ -7,7 +7,7 @@ import Button from "../common/Button";
 import AlertablePrompt from "./AlertablePrompt";
 import AdUploadFormDragDrop from "./AdUploadFormDragDrop";
 import {dataFetch} from "../common/common";
-import {MUITextField, MUINumber, MUICheckbox, MUITagSelect} from "../common/MUIComponents";
+import {MUITextField, MUINumber, MUICheckbox, MUITagSelect, MUIButton, MUIButtonGroup} from "../common/MUIComponents";
 
 function AdUploadFormTextbook({
   adType='textbook',
@@ -100,6 +100,8 @@ function AdUploadFormTextbook({
         <div className={"form-row"}>
           <p className={"form-prompt"}>Ad type</p>
           <AdTypeSwitch adType={adType} callback={toSwitchAdType}/>
+          <MUIButton/>
+          <MUIButtonGroup/>
         </div>
         <div className={"form-row"}>
           <p className={"form-prompt"}>Upload photos</p>

@@ -10,25 +10,29 @@ import RouteMyPosts from "./components/RouteMyPosts";
 import RouteNotification from "./components/RouteNotification";
 import Modal from "react-modal";
 
+
+
+import AdUploadFormMUI from "./components/adUploadForm/AdUploadFormMUI";
+
 function App() {
   Modal.setAppElement('#root');
 
   return (
     <div className="App" id={"app-root"}>
 
-      <BrowserRouter>
-        <Navbar isAdmin={true}/>
-        <Routes>
-          {/*<Route path="/" element={<RouteHome/>} exact/>*/}
-          <Route path="/home" element={<RouteHome/>} exact/>
-          <Route path="/myPosts" element={<RouteMyPosts/>} exact/>
-          <Route path="/admin" element={<RouteAdmin/>} exact/>
-          <Route path="/notification" element={<RouteNotification/>} exact/>
-          <Route path="/favorite" element={<RouteFavorite/>} exact/>
+      {/*<BrowserRouter>*/}
+      {/*  <Navbar isAdmin={true}/>*/}
+      {/*  <Routes>*/}
+      {/*    /!*<Route path="/" element={<RouteHome/>} exact/>*!/*/}
+      {/*    <Route path="/home" element={<RouteHome/>} exact/>*/}
+      {/*    <Route path="/myPosts" element={<RouteMyPosts/>} exact/>*/}
+      {/*    <Route path="/admin" element={<RouteAdmin/>} exact/>*/}
+      {/*    <Route path="/notification" element={<RouteNotification/>} exact/>*/}
+      {/*    <Route path="/favorite" element={<RouteFavorite/>} exact/>*/}
+      {/*  </Routes>*/}
+      {/*</BrowserRouter>*/}
 
-        </Routes>
-      </BrowserRouter>
-
+      <AdUploadFormMUI/>
 
     </div>
   );

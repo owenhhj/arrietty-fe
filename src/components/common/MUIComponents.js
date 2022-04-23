@@ -1,8 +1,9 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
-import {Autocomplete, Checkbox, FormControlLabel, InputAdornment} from "@mui/material";
-import {TTextField} from "./MUIComponentsThemed";
+import {Autocomplete, ButtonGroup, Checkbox, FormControlLabel, InputAdornment} from "@mui/material";
+import {TTextField, TButton} from "./MUIComponentsThemed";
 import {useState} from "react";
+import Button from "@mui/material/Button";
 
 // README props without default values are required from parent, others can be omitted
 export function MUITextField({
@@ -29,8 +30,7 @@ export function MUITextField({
   };
 
   const handleInputChange = (e) => {
-    e.preventDefault();
-    onChange(identifier, e.target.value);
+    onChange(e.target.value);
   };
 
   return (
@@ -158,6 +158,64 @@ export function MUITagSelect({
         }}
         renderInput={(params) => <TTextField {...params} label={label}/>}
       />
+    </>
+  );
+}
+
+export function MUIButton({
+                            label = 'Submit',
+                            variant = 2,  // 'text', 'contained', 'outlined'
+                          }) {
+  const buttonVariants = ['text', 'contained', 'outlined'];
+
+  const buttonSxs = [
+    {},
+    {backgroundColor: '#36C0C9'},
+    {color: '#36C0C9', borderColor: '#36C0C9'}
+  ]
+
+  return (
+    <>
+      <Button
+        sx={{...buttonSxs[variant], width:'6em', height:'2.5em'}}
+        variant={buttonVariants[variant]}
+      >
+        {label}
+      </Button>
+    </>
+  );
+}
+
+export function MUIButtonGroup({
+                                 labels = ['submit', 'cancel'],
+                                 selected = 0,
+  buttonStyle={},
+                                 callback
+                               }) {
+  const buttonVariants = ['text', 'contained'];
+
+  const buttonSxs = [
+    {color: '#36C0C9', width:'6em', height:'2.5em'},
+    {backgroundColor: '#36C0C9', width:'6em', height:'2.5em'}
+  ];
+
+  return (
+    <>
+      <ButtonGroup>
+        {labels.map((label, index) => {
+          return (
+            <Button
+              key={index}
+              sx={{...buttonSxs[index===selected?1:0], ...buttonStyle}}
+              variant={buttonVariants[index===selected?1:0]}
+              onClick={()=>{callback(index)}}
+            >
+              {label}
+            </Button>
+          );
+        })}
+      </ButtonGroup>
+
     </>
   );
 }
