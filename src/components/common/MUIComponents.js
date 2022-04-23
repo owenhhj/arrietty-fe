@@ -1,8 +1,7 @@
 import * as React from 'react';
-import './MUIComponents.css';
 import Box from '@mui/material/Box';
-import TextField from '@mui/material/TextField';
 import {Autocomplete, Checkbox, FormControlLabel, InputAdornment} from "@mui/material";
+import {TTextField} from "./MUIComponentsThemed";
 import {useState} from "react";
 
 // README props without default values are required from parent, others can be omitted
@@ -47,14 +46,14 @@ export function MUITextField({
         style={{...styleBoxDefault, ...styleBox}}
       >
         {size === 'normal' && (
-          <TextField label={label} variant={'standard'} placeholder={placeholder}
+          <TTextField label={label} variant={'standard'} placeholder={placeholder}
                      // value={value}
                      style={{...styleInputDefault, ...styleInput}}
                      onChange={handleInputChange}
           />
         )}
         {size === 'multiline' && (
-          <TextField label={label} variant={'outlined'} placeholder={placeholder}
+          <TTextField label={label} variant={'outlined'} placeholder={placeholder}
                      // value={value}
                      style={{...styleInputDefault, ...styleInput}}
                      multiline minRows={minRows} maxRows={maxRows}
@@ -98,7 +97,7 @@ export function MUINumber({
         autoComplete="off"
         style={{...styleBoxDefault, ...styleBox}}
       >
-        <TextField label={label} type="number" variant="standard" placeholder={placeholder} style={{...styleInput}}
+        <TTextField label={label} type="number" variant="standard" placeholder={placeholder} style={{...styleInput}}
                    InputProps={{
                      endAdornment: <InputAdornment position="end">RMB</InputAdornment>,
                    }}
@@ -118,6 +117,11 @@ export function MUICheckbox({
                               onChange
                             }) {
   const [checked, setChecked] = useState(false);
+
+  const styleCheckboxDefault = {
+    color: '#57068C',
+  }
+
   const handleInputChange = () => {
     setChecked(!checked);  // todo
     // onChange(identifier, e.target.value);
@@ -125,7 +129,7 @@ export function MUICheckbox({
 
   return (
     <>
-      <FormControlLabel control={<Checkbox defaultChecked={false} onChange={handleInputChange}/>} label={label}/>
+      <FormControlLabel control={<Checkbox defaultChecked={false} style={{...styleCheckboxDefault}} onChange={handleInputChange}/>} label={label}/>
     </>
   );
 }
@@ -150,7 +154,7 @@ export function MUITagSelect({
         onChange={(e, newValue) => {
           handleInputChange(newValue)
         }}
-        renderInput={(params) => <TextField {...params} label={label}/>}
+        renderInput={(params) => <TTextField {...params} label={label}/>}
       />
     </>
   );
