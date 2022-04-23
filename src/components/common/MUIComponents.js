@@ -21,7 +21,7 @@ export function MUITextField({
                                onChange
                              }) {
   const styleBoxDefault = {
-    width: size === 'multiline' ? '90%' : '62%',
+    width: size === 'multiline' ? '100%' : '62%',
     margin: 0,
     padding: 0
   };
@@ -132,15 +132,19 @@ export function MUICheckbox({
     color: '#36C0C9'
   }
 
-  const handleInputChange = () => {
-    setChecked(!checked);  // todo
-    // onChange(identifier, e.target.value);
+  const handleInputChange = (e) => {
+    let temp = !checked;
+    setChecked(temp);  // todo
+    onChange(identifier, temp);
   };
 
   return (
     <>
       <FormControlLabel
-        control={<Checkbox defaultChecked={false} style={{...styleCheckboxDefault}} onChange={handleInputChange}/>}
+        control={<Checkbox
+          defaultChecked={false} style={{...styleCheckboxDefault}} onChange={handleInputChange}
+          error={error} helperText={error?helperText:null}
+        />}
         label={label}/>
     </>
   );
@@ -165,7 +169,7 @@ export function MUITagSelect({
         size={'small'}
         options={options}
         sx={{width: '20em'}}
-
+        isOptionEqualToValue={(option, value) => option.id===value.id}  // to avoid some error
         onChange={(e, newOption) => {
           handleInputChange(newOption);
         }}

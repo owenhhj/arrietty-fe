@@ -29,10 +29,9 @@ function AdUploadForm({
   };
 
   const handleSubmit = (f) => {
-    // console.log('AdUploadForm to send:')
-    // for (let pair of f.entries()) {
-    //   console.log(pair[0], pair[1]);
-    // }
+    for (let pair of f.entries()) {
+      console.log('>>>>>>>', pair[0], pair[1]);
+    }
     dataFetch(
       `${ROOT}advertisement?action=update`,
       {

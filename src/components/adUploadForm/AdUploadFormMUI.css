@@ -1,12 +1,30 @@
 
 .AdUploadFormMUI {
     width: 40rem;
-    height: 60rem;
-    /*display: flex;*/
-    /*flex-direction: column;*/
-    /*justify-content: flex-start;*/
-    padding: 1rem;
+    height: min-content;
+    padding: 1rem 2rem 1rem 2rem;
 }
 
+.AdUploadFormMUI-row-title {
+    width: 100%;
+    padding: 1em 0 1em 0;
+    border-bottom: 1px solid #DADADA;
+}
 
+.AdUploadFormMUI-row-title p {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #57068C;
+}
 
+.AdUploadFormMUI-row {
+    width: 100%;
+    padding: 1em 0 1em 0;
+    border-bottom: 1px solid #DADADA;
+}
+
+.AdUploadFormMUI-row-pledge-alert p {
+    font-size: 0.8rem;
+    margin-left: 2em;
+    color: #d32f2f;
+}

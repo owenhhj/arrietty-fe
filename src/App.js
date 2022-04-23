@@ -10,10 +10,6 @@ import RouteMyPosts from "./components/RouteMyPosts";
 import RouteNotification from "./components/RouteNotification";
 import Modal from "react-modal";
 
-
-
-import AdUploadFormMUI from "./components/adUploadForm/AdUploadFormMUI";
-
 function App() {
   Modal.setAppElement('#root');
 
@@ -31,8 +27,6 @@ function App() {
           <Route path="/favorite" element={<RouteFavorite/>} exact/>
         </Routes>
       </BrowserRouter>
-
-      {/*<AdUploadFormMUI/>*/}
 
     </div>
   );
