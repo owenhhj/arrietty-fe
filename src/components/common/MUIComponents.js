@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import {Autocomplete, ButtonGroup, Checkbox, FormControlLabel, InputAdornment} from "@mui/material";
-import {TTextField, TButton} from "./MUIComponentsThemed";
+import {TTextField} from "./MUIComponentsThemed";
 import {useState} from "react";
 import Button from "@mui/material/Button";
 
@@ -16,6 +16,8 @@ export function MUITextField({
                                placeholder = '',
                                styleBox = {},
                                styleInput = {},
+  error=false,
+  helperText='Invalid entry',
                                onChange
                              }) {
   const styleBoxDefault = {
@@ -30,7 +32,7 @@ export function MUITextField({
   };
 
   const handleInputChange = (e) => {
-    onChange(e.target.value);
+    onChange(identifier, e.target.value);
   };
 
   return (
@@ -49,6 +51,7 @@ export function MUITextField({
           <TTextField label={label} variant={'standard'} placeholder={placeholder}
             // value={value}
                       style={{...styleInputDefault, ...styleInput}}
+                      error={error} helperText={error?helperText:null}
                       onChange={handleInputChange}
           />
         )}
@@ -57,6 +60,7 @@ export function MUITextField({
             // value={value}
                       style={{...styleInputDefault, ...styleInput}}
                       multiline minRows={minRows} maxRows={maxRows}
+                      error={error} helperText={error?helperText:null}
                       onChange={handleInputChange}
           />
         )}
@@ -72,6 +76,8 @@ export function MUINumber({
                             placeholder = '',
                             styleBox = {},
                             styleInput = {},
+                            error=false,
+                            helperText='Invalid entry',
                             onChange
                           }) {
   const styleBoxDefault = {
@@ -81,7 +87,6 @@ export function MUINumber({
   };
 
   const handleInputChange = (e) => {
-    e.preventDefault();
     onChange(identifier, e.target.value);
   };
 
@@ -104,6 +109,8 @@ export function MUINumber({
                     InputLabelProps={{
                       // shrink: true,
                     }}
+                    error={error} helperText={error?helperText:null}
+                    onChange={handleInputChange}
         />
       </Box>
     </>
@@ -114,12 +121,15 @@ export function MUICheckbox({
                               identifier,
                               label = '',
                               value = false,
+                              error=false,
+                              helperText='Invalid entry',
                               onChange
                             }) {
   const [checked, setChecked] = useState(false);
 
   const styleCheckboxDefault = {
-    color: '#57068C',
+    // color: '#57068C',
+    color: '#36C0C9'
   }
 
   const handleInputChange = () => {
@@ -140,10 +150,12 @@ export function MUITagSelect({
                                identifier,
                                options = [],
                                label = '',
+                               error=false,
+                               helperText='Invalid entry',
                                onChange
                              }) {
-  const handleInputChange = (v) => {
-    // onChange(identifier, v)
+  const handleInputChange = (newOption) => {
+    onChange(identifier, newOption?newOption.id:null);
   };
 
   return (
@@ -152,11 +164,17 @@ export function MUITagSelect({
         disablePortal
         size={'small'}
         options={options}
-        sx={{width: 300}}
-        onChange={(e, newValue) => {
-          handleInputChange(newValue)
+        sx={{width: '20em'}}
+
+        onChange={(e, newOption) => {
+          handleInputChange(newOption);
         }}
-        renderInput={(params) => <TTextField {...params} label={label}/>}
+        renderInput={(params) => (
+          <TTextField
+            {...params} label={label}
+            error={error} helperText={error?helperText:null}
+          />
+        )}
       />
     </>
   );
@@ -165,6 +183,7 @@ export function MUITagSelect({
 export function MUIButton({
                             label = 'Submit',
                             variant = 2,  // 'text', 'contained', 'outlined'
+  onClick
                           }) {
   const buttonVariants = ['text', 'contained', 'outlined'];
 
@@ -179,6 +198,7 @@ export function MUIButton({
       <Button
         sx={{...buttonSxs[variant], width:'6em', height:'2.5em'}}
         variant={buttonVariants[variant]}
+        onClick={onClick}
       >
         {label}
       </Button>
@@ -190,7 +210,7 @@ export function MUIButtonGroup({
                                  labels = ['submit', 'cancel'],
                                  selected = 0,
   buttonStyle={},
-                                 callback
+                                 onChange
                                }) {
   const buttonVariants = ['text', 'contained'];
 
@@ -208,7 +228,7 @@ export function MUIButtonGroup({
               key={index}
               sx={{...buttonSxs[index===selected?1:0], ...buttonStyle}}
               variant={buttonVariants[index===selected?1:0]}
-              onClick={()=>{callback(index)}}
+              onClick={()=>{onChange(index)}}
             >
               {label}
             </Button>
