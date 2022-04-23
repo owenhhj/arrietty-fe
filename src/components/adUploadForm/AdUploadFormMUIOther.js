@@ -84,35 +84,28 @@ const fakeOptions = [
   }
 ];
 
-export default function AdUploadFormMUI({
-  toSwitchAdType,
-  toSubmit
+export default function AdUploadFormMUIOther({
+                                          toSwitchAdType,
+                                          toSubmit
                                         }) {
   const ROOT = 'https://localhost:8000/';
   const ref = useRef(null);
-  const [textbookData, setTextbookData] = useState([]);
-  const [courseData, setCourseData] = useState([]);
+  const [otherTagData, setOtherTagData] = useState([]);
   const [valiAdTitle, setValiAdTitle] = useState({error: false, helperText: 'invalid entry...'});
   const [valiTagId, setValiTagId] = useState({error: false, helperText: 'invalid entry...'});
   const [valiPrice, setValiPrice] = useState({error: false, helperText: 'invalid entry...'});
   const [valiComment, setValiComment] = useState({error: false, helperText: 'invalid entry...'});
   const [valiPledge, setValiPledge] = useState({error: false, helperText: 'pledge not confirmed...'});
-  const adType = 0;  // adType managed by parent, not here
+  const adType = 1;  // adType managed by parent, not here
   const adTypes = ['textbook', 'other'];
   let formData = new FormData();
   let pledgeConfirmed = false;
 
   useEffect(() => {
     dataFetch(
-      `${ROOT}textbook?id=`,
+      `${ROOT}otherTag?id=`,
       {method:"GET"},
-      setTextbookData,
-      null
-    );
-    dataFetch(
-      `${ROOT}course?id=`,
-      {method:"GET"},
-      setCourseData,
+      setOtherTagData,
       null
     );
   }, []);
@@ -129,19 +122,7 @@ export default function AdUploadFormMUI({
     });
   }, [ref]);
 
-  const getTextbookData = () => {
-    let ret = textbookData;
-    let courseMap = new Map();
-    for(let i=0; i<courseData.length; i++){
-      courseMap.set(courseData[i].id, courseData[i].courseCode);
-    }
-    for(let j=0; j<ret.length; j++){
-      ret[j].relatedCourse = courseMap.get(ret[j].courseId);
-    }
-    return ret;
-  };
-
-  const handleChangeAdType = (i) => {
+  const handleChangeAdType = (e) => {
     toSwitchAdType(1);
   };
 
@@ -242,7 +223,7 @@ export default function AdUploadFormMUI({
 
       <div className={'AdUploadFormMUI-row'}>
         <MUITagSelect
-          identifier={'tagId'} options={getTextbookData().map(op => {return {label: op.title, id: op.id};})}
+          identifier={'tagId'} options={otherTagData.map(op => {return {label: op.name, id: op.id};})}
           onChange={handleInputChange}
           error={valiTagId.error} helperText={valiTagId.error?valiTagId.helperText:''}
         />
@@ -285,9 +266,6 @@ export default function AdUploadFormMUI({
     </div>
   );
 }
-
-
-
 
 
 

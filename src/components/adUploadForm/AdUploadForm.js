@@ -5,6 +5,7 @@ import {showGeneralNoti} from '../common/GeneralNotiProvider';
 import AdUploadFormTextbook from "./AdUploadFormTextbook";
 import AdUploadFormOther from "./AdUploadFormOther";
 import AdUploadFormMUI from "./AdUploadFormMUI";
+import AdUploadFormMUIOther from "./AdUploadFormMUIOther";
 
 function AdUploadForm({
   adTypes=['', 'textbook', 'other'],
@@ -51,8 +52,9 @@ function AdUploadForm({
   return (
     <>
       {/*{adType===1 && <AdUploadFormTextbook adType={adTypes[adType]} toSwitchAdType={handleSwitchAdType} toSubmit={handleSubmit}/>}*/}
+      {/*{adType===2 && <AdUploadFormOther adType={adTypes[adType]} toSwitchAdType={handleSwitchAdType} toSubmit={handleSubmit}/>}*/}
       {adType===1 && <AdUploadFormMUI toSwitchAdType={handleSwitchAdType} toSubmit={handleSubmit}/>}
-      {adType===2 && <AdUploadFormOther adType={adTypes[adType]} toSwitchAdType={handleSwitchAdType} toSubmit={handleSubmit}/>}
+      {adType===2 && <AdUploadFormMUIOther toSwitchAdType={handleSwitchAdType} toSubmit={handleSubmit}/>}
     </>
   );
 }
