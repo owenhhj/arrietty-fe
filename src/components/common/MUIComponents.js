@@ -47,17 +47,17 @@ export function MUITextField({
       >
         {size === 'normal' && (
           <TTextField label={label} variant={'standard'} placeholder={placeholder}
-                     // value={value}
-                     style={{...styleInputDefault, ...styleInput}}
-                     onChange={handleInputChange}
+            // value={value}
+                      style={{...styleInputDefault, ...styleInput}}
+                      onChange={handleInputChange}
           />
         )}
         {size === 'multiline' && (
           <TTextField label={label} variant={'outlined'} placeholder={placeholder}
-                     // value={value}
-                     style={{...styleInputDefault, ...styleInput}}
-                     multiline minRows={minRows} maxRows={maxRows}
-                     onChange={handleInputChange}
+            // value={value}
+                      style={{...styleInputDefault, ...styleInput}}
+                      multiline minRows={minRows} maxRows={maxRows}
+                      onChange={handleInputChange}
           />
         )}
       </Box>
@@ -98,12 +98,12 @@ export function MUINumber({
         style={{...styleBoxDefault, ...styleBox}}
       >
         <TTextField label={label} type="number" variant="standard" placeholder={placeholder} style={{...styleInput}}
-                   InputProps={{
-                     endAdornment: <InputAdornment position="end">RMB</InputAdornment>,
-                   }}
-                   InputLabelProps={{
-                     // shrink: true,
-                   }}
+                    InputProps={{
+                      endAdornment: <InputAdornment position="end">RMB</InputAdornment>,
+                    }}
+                    InputLabelProps={{
+                      // shrink: true,
+                    }}
         />
       </Box>
     </>
@@ -129,7 +129,9 @@ export function MUICheckbox({
 
   return (
     <>
-      <FormControlLabel control={<Checkbox defaultChecked={false} style={{...styleCheckboxDefault}} onChange={handleInputChange}/>} label={label}/>
+      <FormControlLabel
+        control={<Checkbox defaultChecked={false} style={{...styleCheckboxDefault}} onChange={handleInputChange}/>}
+        label={label}/>
     </>
   );
 }
