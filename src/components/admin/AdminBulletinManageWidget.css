@@ -1,14 +1,17 @@
 .admin-bulletin-manage-widget {
     width: 60vw;
+    height: 90vh;
     display: flex;
     justify-content: center;
     padding-top: 1rem;
     padding-bottom: 1rem;
     font-family: "Roboto", sans-serif;
+    overflow: scroll;
 }
 
 .admin-bulletin-manage-widget-container {
     width: 80%;
+    height: min-content;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
