@@ -6,12 +6,22 @@ import AdminBulletinForm from "./AdminBulletinForm";
 import {dataFetch} from "../common/common";
 import {showGeneralNoti} from "../common/GeneralNotiProvider";
 import {useNavigate} from "react-router-dom";
+import {MUIButton} from "../common/MUIComponents";
+
+const fakeBulletin = [
+  {
+    id: 11, title: 'Welcome to Arrietty-1 what dads fi feawifo !', content: 'Make your sells at home!', createTime: 'Apr 5, 2022, 12:00:00 PM'
+  },
+  {
+    id: 22, title: 'Welcome to Arrietty-2!', content: 'Make your sells at homeef Make your sells at homeef Make your sells at homeef Make your sells at homeef Make your sells at homeef ewa aewfawef awef e faaefw eweaf!', createTime: 'Apr 5, 2022, 12:00:00 PM'
+  }
+];
 
 export default function AdminBulletinManageWidget() {
   const ROOT = 'https://localhost:8000/';
   const [isFormOpen, setIsFormOpen] = useState(false);
   const [formData, setFormData] = useState({id: null, title: null, content: null});
-  const [bulletinList, setBulletinList] = useState([]);
+  const [bulletinList, setBulletinList] = useState(fakeBulletin);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -86,7 +96,7 @@ export default function AdminBulletinManageWidget() {
     <div className={"admin-bulletin-manage-widget card"}>
       <div className={"admin-bulletin-manage-widget-container"}>
         <div className={"bulletin-manage-title"}>Bulletin</div>
-        <Button buttonStyle="btn--primary" buttonSize="btn--small" text={"Add a new bulletin"} onClick={handleAddNew}/>
+        <MUIButton size={'small'} variant={1} label={'New Message'} onClick={handleAddNew}/>
         <div className={"bulletin-listing-container"}>
           {bulletinList.map((data) => {
             return (
