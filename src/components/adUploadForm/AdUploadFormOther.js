@@ -1,7 +1,6 @@
 import './AdUploadForm.css'
 import {useEffect, useState} from "react";
 import AdTypeSwitch from "./AdTypeSwitch";
-import TextbookSearch from "./TextbookSearch";
 import Input from "../common/Input";
 import Button from "../common/Button";
 import AlertablePrompt from "./AlertablePrompt";
