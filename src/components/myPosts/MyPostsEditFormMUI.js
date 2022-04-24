@@ -30,12 +30,11 @@ function MyPostsEditFormMUI({
   }, [ref]);
 
   useEffect(() => {
-    if (!adDataOriginal.isTextbook) {
+    if (adDataOriginal.adType!=='textbook') {
       dataFetch(
         `${ROOT}otherTag?id=${adDataOriginal.tagId}`,
         {method: 'GET'},
         res => {
-          console.log('tagId get returned', res)
           setTagName(res);
         },
         null
@@ -117,7 +116,7 @@ function MyPostsEditFormMUI({
         />
       </div>
       <div className={'AdUploadFormMUI-row'}>
-        <MUIButton label={adDataOriginal.isTextbook?'textbook':'other'} variant={1}/>
+        <MUIButton label={adDataOriginal.adType} variant={1}/>
       </div>
 
       <div className={'AdUploadFormMUI-row'}>
@@ -131,11 +130,11 @@ function MyPostsEditFormMUI({
       </div>
 
       <div className={'AdUploadFormMUI-row'}>
-        <p>Selected {adDataOriginal.isTextbook?'textbook':'tag'}</p>
-        {!adDataOriginal.isTextbook && (
+        <p>Selected {adDataOriginal.adType}</p>
+        {adDataOriginal.adType!=='textbook' && (
           <MUIButton label={tagName}/>
         )}
-        {adDataOriginal.isTextbook && (
+        {adDataOriginal.adType==='textbook' && (
           <TextbookSearchShowSelected selectedTextbook={getTextbookData()}/>
         )}
       </div>
