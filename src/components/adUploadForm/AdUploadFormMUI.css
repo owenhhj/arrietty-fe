@@ -25,11 +25,12 @@
 
 .AdUploadFormMUI-row p {
     margin: 0 0 0.5em 0;
+    cursor: default;
 }
 
 .AdUploadFormMUI-row-pledge-alert p {
     font-size: 0.8rem;
-    margin-left: 2em;
+    margin-left: 0;
     color: #d32f2f;
 }
 

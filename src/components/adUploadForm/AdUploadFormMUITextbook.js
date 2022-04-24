@@ -3,6 +3,7 @@ import {MUITextField, MUINumber, MUICheckbox, MUITagSelect, MUIButtonGroup, MUIB
 import {useEffect, useRef, useState} from "react";
 import {dataFetch} from "../common/common";
 import AdUploadFormDragDrop from "./AdUploadFormDragDrop";
+import TextbookSearchShowSelected from "./TextbookSearchShowSelected";
 
 const fakeOptions = [
   {
@@ -84,6 +85,9 @@ const fakeOptions = [
   }
 ];
 
+let formData = new FormData();
+let pledgeConfirmed = false;
+
 export default function AdUploadFormMUITextbook({
   toSwitchAdType,
   toSubmit
@@ -92,6 +96,7 @@ export default function AdUploadFormMUITextbook({
   const ref = useRef(null);
   const [textbookData, setTextbookData] = useState([]);
   const [courseData, setCourseData] = useState([]);
+  const [selectedTextbook, setSelectedTextbook] = useState(null);
   const [valiAdTitle, setValiAdTitle] = useState({error: false, helperText: 'invalid entry...'});
   const [valiImage, setValiImage] = useState({error: false, helperText: 'one or more pictures needed...'})
   const [valiTagId, setValiTagId] = useState({error: false, helperText: 'invalid entry...'});
@@ -100,8 +105,9 @@ export default function AdUploadFormMUITextbook({
   const [valiPledge, setValiPledge] = useState({error: false, helperText: 'pledge not confirmed...'});
   const adType = 0;  // adType managed by parent, not here
   const adTypes = ['textbook', 'other'];
-  let formData = new FormData();
-  let pledgeConfirmed = false;
+  // variable declaration moved to the outside of the component
+  // let formData = new FormData();
+  // let pledgeConfirmed = false;
 
   useEffect(() => {
     dataFetch(
@@ -146,6 +152,25 @@ export default function AdUploadFormMUITextbook({
     toSwitchAdType(1);
   };
 
+  const handleInputChange = (identifier, value) => {
+    handleResetVali(identifier);
+    if (identifier==='pledge') {
+      pledgeConfirmed = value;
+      return;
+    }
+    if (identifier==='images') {
+      formData.delete('images');
+      value.forEach((f) => {
+        formData.append('images', f);
+      });
+      return;
+    }
+    if (identifier==='tagId') {
+      setSelectedTextbook(value);
+    }
+    formData.set(identifier, value);
+  };
+
   const handleResetVali = (identifier) => {
     if (identifier==='adTitle') {
       setValiAdTitle({...valiAdTitle, error: false});
@@ -162,25 +187,6 @@ export default function AdUploadFormMUITextbook({
     }
   };
 
-  const handleInputChange = (identifier, value) => {
-    console.log('handleInputChange', identifier, value);
-    // handleResetVali(identifier);  // fixme call this or directly setState here --> formData won't set
-    if (identifier==='pledge') {
-      pledgeConfirmed = value;
-      return;
-    }
-    if (identifier==='images') {
-      formData.delete('images');
-      value.forEach((f) => {
-        formData.append('images', f);
-      });
-      return;
-    }
-    console.log('line before formData.set')
-    formData.set(identifier, value);
-  };
-
-  // todo 与后端确认有哪些限制
   const handleValidate = () => {
     let ans = true;
     if (!formData.get('adTitle') || formData.get('adTitle').length<1 || formData.get('adTitle').length>30) {
@@ -214,14 +220,8 @@ export default function AdUploadFormMUITextbook({
   const handleSubmit = (e) => {
     e.preventDefault();
     formData.set('isTextbook', (adType===0).toString());
-    for (let pair of formData.entries()) {
-      console.log('>>>', pair[0], pair[1]);
-    }
-    // fixme validate here same bug as resetVali
     if (handleValidate()) {
       toSubmit(formData);
-    } else {
-
     }
   };
 
@@ -247,6 +247,11 @@ export default function AdUploadFormMUITextbook({
       <div className={'AdUploadFormMUI-row'}>
         <p>Picture(s)</p>
         <AdUploadFormDragDrop identifier={"images"} onChange={handleInputChange}/>
+        {valiImage.error && (
+          <div className={'AdUploadFormMUI-row-pledge-alert'}>
+            <p>{valiImage.helperText}</p>
+          </div>
+        )}
       </div>
 
       <div className={'AdUploadFormMUI-row'}>
@@ -256,6 +261,9 @@ export default function AdUploadFormMUITextbook({
           onChange={handleInputChange}
           error={valiTagId.error} helperText={valiTagId.error?valiTagId.helperText:''}
         />
+        {selectedTextbook && (
+          <TextbookSearchShowSelected selectedTextbook={getTextbookData().filter(op => op.id===selectedTextbook)[0]}/>
+        )}
       </div>
 
       <div className={'AdUploadFormMUI-row'}>
@@ -281,7 +289,7 @@ export default function AdUploadFormMUITextbook({
         />
         {valiPledge.error && (
           <div className={'AdUploadFormMUI-row-pledge-alert'}>
-            <p>pledge not confirmed...</p>
+            <p>{valiPledge.helperText}</p>
           </div>
         )}
       </div>

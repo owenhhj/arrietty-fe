@@ -4,85 +4,8 @@ import {useEffect, useRef, useState} from "react";
 import {dataFetch} from "../common/common";
 import AdUploadFormDragDrop from "./AdUploadFormDragDrop";
 
-const fakeOptions = [
-  {
-    "id": 1,
-    "title": "textbook1",
-    "isbn": "123-456",
-    "author": "Owen H",
-    "publisher": "Owen's Publisher",
-    "edition": "3",
-    "originalPrice": 100,
-    "courseId": 1,
-    "relatedCourse": "coursecode1"
-  },
-  {
-    "id": 2,
-    "title": "textbook2",
-    "isbn": "223-456",
-    "author": "Owen H2",
-    "publisher": "Owen's Publisher2",
-    "edition": "3",
-    "originalPrice": 100,
-    "courseId": 2,
-    "relatedCourse": "coursecode2"
-  },
-  {
-    "id": 3,
-    "title": "test",
-    "isbn": "223-45623",
-    "author": "test",
-    "publisher": "test Publisher2",
-    "edition": "3",
-    "originalPrice": 200,
-    "courseId": 2,
-    "relatedCourse": "coursecode2"
-  },
-  {
-    "id": 4,
-    "title": "Computation Theory",
-    "isbn": "123-433983489",
-    "author": "Robert",
-    "publisher": "Publisher",
-    "edition": "666",
-    "originalPrice": 9,
-    "courseId": 4,
-    "relatedCourse": "CSCISHU-101"
-  },
-  {
-    "id": 5,
-    "title": "Computer Networking",
-    "isbn": "456-32934",
-    "author": "P.S.",
-    "publisher": "NYUSH",
-    "edition": "4",
-    "originalPrice": 999,
-    "courseId": 5,
-    "relatedCourse": "CSCISHU-301"
-  },
-  {
-    "id": 6,
-    "title": "Linear Algebra Book",
-    "isbn": "324-658348",
-    "author": "Mr. Linear",
-    "publisher": "Algebra",
-    "edition": "6",
-    "originalPrice": 314,
-    "courseId": 7,
-    "relatedCourse": "MATHSHU-201"
-  },
-  {
-    "id": 7,
-    "title": "Intro to Computer Science Book",
-    "isbn": "5443-2387932457",
-    "author": "Robert",
-    "publisher": "ICS Publisher Company",
-    "edition": "6",
-    "originalPrice": 200,
-    "courseId": 5,
-    "relatedCourse": "CSCISHU-301"
-  }
-];
+let formData = new FormData();
+let pledgeConfirmed = false;
 
 export default function AdUploadFormMUIOther({
                                           toSwitchAdType,
@@ -99,8 +22,9 @@ export default function AdUploadFormMUIOther({
   const [valiPledge, setValiPledge] = useState({error: false, helperText: 'pledge not confirmed...'});
   const adType = 1;  // adType managed by parent, not here
   const adTypes = ['textbook', 'other'];
-  let formData = new FormData();
-  let pledgeConfirmed = false;
+  // variable declaration moved to the outside of the component
+  // let formData = new FormData();
+  // let pledgeConfirmed = false;
 
   useEffect(() => {
     dataFetch(
@@ -127,6 +51,22 @@ export default function AdUploadFormMUIOther({
     toSwitchAdType(1);
   };
 
+  const handleInputChange = (identifier, value) => {
+    handleResetVali(identifier);
+    if (identifier==='pledge') {
+      pledgeConfirmed = value;
+      return;
+    }
+    if (identifier==='images') {
+      formData.delete('images');
+      value.forEach((f) => {
+        formData.append('images', f);
+      });
+      return;
+    }
+    formData.set(identifier, value);
+  };
+
   const handleResetVali = (identifier) => {
     if (identifier==='adTitle') {
       setValiAdTitle({...valiAdTitle, error: false});
@@ -143,25 +83,6 @@ export default function AdUploadFormMUIOther({
     }
   };
 
-  const handleInputChange = (identifier, value) => {
-    console.log('handleInputChange', identifier, value);
-    // handleResetVali(identifier);  // fixme call this or directly setState here --> formData won't set
-    if (identifier==='pledge') {
-      pledgeConfirmed = value;
-      return;
-    }
-    if (identifier==='images') {
-      formData.delete('images');
-      value.forEach((f) => {
-        formData.append('images', f);
-      });
-      return;
-    }
-    console.log('line before formData.set')
-    formData.set(identifier, value);
-  };
-
-  // todo 与后端确认有哪些限制
   const handleValidate = () => {
     let ans = true;
     if (!formData.get('adTitle') || formData.get('adTitle').length<1 || formData.get('adTitle').length>30) {
@@ -195,14 +116,8 @@ export default function AdUploadFormMUIOther({
   const handleSubmit = (e) => {
     e.preventDefault();
     formData.set('isTextbook', (adType===0).toString());
-    for (let pair of formData.entries()) {
-      console.log('>>>', pair[0], pair[1]);
-    }
-    // fixme validate here same bug as resetVali
     if (handleValidate()) {
       toSubmit(formData);
-    } else {
-
     }
   };
 
@@ -228,6 +143,11 @@ export default function AdUploadFormMUIOther({
       <div className={'AdUploadFormMUI-row'}>
         <p>Picture(s)</p>
         <AdUploadFormDragDrop identifier={"images"} onChange={handleInputChange}/>
+        {valiImage.error && (
+          <div className={'AdUploadFormMUI-row-pledge-alert'}>
+            <p>{valiImage.helperText}</p>
+          </div>
+        )}
       </div>
 
       <div className={'AdUploadFormMUI-row'}>
@@ -262,7 +182,7 @@ export default function AdUploadFormMUIOther({
         />
         {valiPledge.error && (
           <div className={'AdUploadFormMUI-row-pledge-alert'}>
-            <p>pledge not confirmed...</p>
+            <p>{valiPledge.helperText}</p>
           </div>
         )}
       </div>
