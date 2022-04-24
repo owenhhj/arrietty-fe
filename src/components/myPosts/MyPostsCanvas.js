@@ -1,6 +1,5 @@
 import './MyPostsCanvas.css';
 import MyPostsCard from "./MyPostsCard";
-import MyPostsEditForm from "./MyPostsEditForm";
 import {dataFetch} from "../common/common";
 import {showGeneralNoti} from "../common/GeneralNotiProvider";
 import {useEffect, useState} from "react";
@@ -51,7 +50,6 @@ function MyPostsCanvas() {
       `${ROOT}myAdvertisement`,
       {method: 'GET'},
       (res) => {
-        console.log('refreshData myAds', res)
         setMyAds(res);
       },
       (err) => {
@@ -73,9 +71,9 @@ function MyPostsCanvas() {
   const handleCallbackDelete = (id) => {
     let temp = new FormData();
     temp.set('id', id);
-    for (let pair of temp.entries()) {
-      console.log('inside temp form:', pair[0], pair[1])
-    }
+    // for (let pair of temp.entries()) {
+    //   console.log('inside temp form:', pair[0], pair[1])
+    // }
     dataFetch(
       `${ROOT}advertisement?action=delete`,
       {
@@ -130,16 +128,20 @@ function MyPostsCanvas() {
           <div className={'MyPostsListingContainer'}>
             {myAds.map(ad => {
               return (
-                <MyPostsCard key={ad.id} adData={ad} callbackEdit={handleCallbackEdit} callbackDelete={handleCallbackDelete}/>
+                <MyPostsCard
+                  key={ad.id} adData={ad}
+                  callbackEdit={handleCallbackEdit} callbackDelete={handleCallbackDelete}
+                />
               );
             })}
           </div>
         </div>
 
         <Modal isOpen={showEditAdForm} style={customStyles}>
-          {/*<MyPostsEditForm adDataOriginal={myAds.filter(ad=>ad.id===idToEdit)[0]} toClose={()=>setShowEditAdForm(false)} toSubmit={handleEditSubmit}/>*/}
-          <MyPostsEditFormMUI adDataOriginal={myAds.filter(ad=>ad.id===idToEdit)[0]} toClose={()=>setShowEditAdForm(false)} toSubmit={handleEditSubmit}/>
-
+          <MyPostsEditFormMUI
+            adDataOriginal={myAds.filter(ad=>ad.id===idToEdit)[0]}
+            toClose={()=>setShowEditAdForm(false)} toSubmit={handleEditSubmit}
+          />
         </Modal>
       </div>
 
