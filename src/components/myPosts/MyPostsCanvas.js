@@ -5,6 +5,7 @@ import {dataFetch} from "../common/common";
 import {showGeneralNoti} from "../common/GeneralNotiProvider";
 import {useEffect, useState} from "react";
 import Modal from "react-modal";
+import MyPostsEditFormMUI from "./MyPostsEditFormMUI";
 
 const customStyles = {
   content: {
@@ -21,6 +22,8 @@ const customStyles = {
   },
 };
 
+const fakeMyAds = [{id: 666, adTitle:'title', isTextbook: true, tagId: 12, imageIds:'', price:444, comment: 'comment', numberOfTaps: 3, createTime:'Apr 6'}];
+
 function MyPostsCanvas() {
   const ROOT = 'https://localhost:8000/';
   const [myAds, setMyAds] = useState([]);
@@ -28,7 +31,8 @@ function MyPostsCanvas() {
   const [idToEdit, setIdToEdit] = useState(-1);
 
   useEffect(() => {
-    refreshData();
+    // refreshData();
+    setMyAds(fakeMyAds)
   }, []);
 
   useEffect(() => {
@@ -129,7 +133,9 @@ function MyPostsCanvas() {
         </div>
 
         <Modal isOpen={showEditAdForm} style={customStyles}>
-          <MyPostsEditForm adDataOriginal={myAds.filter(ad=>ad.id===idToEdit)[0]} toClose={()=>setShowEditAdForm(false)} toSubmit={handleEditSubmit}/>
+          {/*<MyPostsEditForm adDataOriginal={myAds.filter(ad=>ad.id===idToEdit)[0]} toClose={()=>setShowEditAdForm(false)} toSubmit={handleEditSubmit}/>*/}
+          <MyPostsEditFormMUI adDataOriginal={myAds.filter(ad=>ad.id===idToEdit)[0]} toClose={()=>setShowEditAdForm(false)} toSubmit={handleEditSubmit}/>
+
         </Modal>
       </div>
 
