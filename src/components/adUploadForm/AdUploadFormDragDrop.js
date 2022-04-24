@@ -110,7 +110,7 @@ function AdUploadFormDragDrop({
 
       <div className={"DragDropRowContainer"}>
 
-        <div className={"BtnAddPic"}>
+        <div className={"BtnAddPic clickable"}>
           <input id={"file-input"} type="file" onChange={picInputChange} multiple/>
           <label htmlFor="file-input">
             <img src="./add_black_48dp.svg" alt=""/>

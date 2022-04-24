@@ -2,8 +2,8 @@ import './AdUploadForm.css'
 import {useState} from "react";
 import {dataFetch} from "../common/common";
 import {showGeneralNoti} from '../common/GeneralNotiProvider';
-import AdUploadFormTextbook from "./AdUploadFormTextbook";
-import AdUploadFormOther from "./AdUploadFormOther";
+import AdUploadFormMUITextbook from "./AdUploadFormMUITextbook";
+import AdUploadFormMUIOther from "./AdUploadFormMUIOther";
 
 function AdUploadForm({
   adTypes=['', 'textbook', 'other'],
@@ -28,9 +28,8 @@ function AdUploadForm({
   };
 
   const handleSubmit = (f) => {
-    // console.log('AdUploadForm to send:')
     // for (let pair of f.entries()) {
-    //   console.log(pair[0], pair[1]);
+    //   console.log('>>>>>>>', pair[0], pair[1]);
     // }
     dataFetch(
       `${ROOT}advertisement?action=update`,
@@ -50,8 +49,8 @@ function AdUploadForm({
 
   return (
     <>
-      {adType===1 && <AdUploadFormTextbook adType={adTypes[adType]} toSwitchAdType={handleSwitchAdType} toSubmit={handleSubmit}/>}
-      {adType===2 && <AdUploadFormOther adType={adTypes[adType]} toSwitchAdType={handleSwitchAdType} toSubmit={handleSubmit}/>}
+      {adType===1 && <AdUploadFormMUITextbook toSwitchAdType={handleSwitchAdType} toSubmit={handleSubmit}/>}
+      {adType===2 && <AdUploadFormMUIOther toSwitchAdType={handleSwitchAdType} toSubmit={handleSubmit}/>}
     </>
   );
 }

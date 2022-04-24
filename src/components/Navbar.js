@@ -2,11 +2,10 @@ import {useEffect, useRef, useState} from "react";
 import {Link} from "react-router-dom";
 import './Navbar.css';
 import {dataFetch} from "./common/common";
-import {getSiteInfo, setSiteInfo} from "./common/SiteInfoProvider";
 
 function Navbar({isAdmin}) {
   const ROOT = 'https://localhost:8000/';
-  const INTERVAL = 5*1000;  // seconds*1000, default 30  // fixme before deployment
+  const INTERVAL = 30*1000;  // seconds*1000, default 30
   const [click, setClick] = useState(false);
   const [activeTab, setActiveTab] = useState("home");
   const [lastModHome, setLastModHome] = useState(0);
@@ -210,3 +209,4 @@ function Navbar({isAdmin}) {
 }
 
 export default Navbar;
+

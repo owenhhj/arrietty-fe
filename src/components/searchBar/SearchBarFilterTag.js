@@ -40,7 +40,7 @@ function SearchBarFilterTag({
 
   return (
     <div className={'choose-filter-container'} ref={ref}>
-      <div className={'choose-filter clickable'} onClick={()=>{setShowFilterTag(!showFilterTag)}} style={getFilterStyle()}>
+      <div className={'choose-filter clickable'} onClick={()=>{setShowFilterTag(!showFilterTag)}} style={{...getFilterStyle(), width:'3em'}}>
         <p>{'tag'}</p>
         <div className={'choose-filter-svg-container'}>
           <img src="./expand_more_black_48dp.svg" alt=""/>

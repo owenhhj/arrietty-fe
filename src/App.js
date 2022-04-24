@@ -19,16 +19,14 @@ function App() {
       <BrowserRouter>
         <Navbar isAdmin={true}/>
         <Routes>
-          <Route path="/" element={<RouteHome/>} exact/>
+          {/*<Route path="/" element={<RouteHome/>} exact/>*/}
           <Route path="/home" element={<RouteHome/>} exact/>
           <Route path="/myPosts" element={<RouteMyPosts/>} exact/>
           <Route path="/admin" element={<RouteAdmin/>} exact/>
           <Route path="/notification" element={<RouteNotification/>} exact/>
           <Route path="/favorite" element={<RouteFavorite/>} exact/>
-
         </Routes>
       </BrowserRouter>
-
 
     </div>
   );
