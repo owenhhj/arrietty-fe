@@ -23,6 +23,10 @@
     border-bottom: 1px solid #DADADA;
 }
 
+.AdUploadFormMUI-row p {
+    margin: 0 0 0.5em 0;
+}
+
 .AdUploadFormMUI-row-pledge-alert p {
     font-size: 0.8rem;
     margin-left: 2em;

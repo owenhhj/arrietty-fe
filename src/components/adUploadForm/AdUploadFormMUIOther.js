@@ -91,10 +91,11 @@ export default function AdUploadFormMUIOther({
   const ROOT = 'https://localhost:8000/';
   const ref = useRef(null);
   const [otherTagData, setOtherTagData] = useState([]);
-  const [valiAdTitle, setValiAdTitle] = useState({error: false, helperText: 'invalid entry...'});
-  const [valiTagId, setValiTagId] = useState({error: false, helperText: 'invalid entry...'});
-  const [valiPrice, setValiPrice] = useState({error: false, helperText: 'invalid entry...'});
-  const [valiComment, setValiComment] = useState({error: false, helperText: 'invalid entry...'});
+  const [valiAdTitle, setValiAdTitle] = useState({error: false, helperText: 'invalid ad title...'});
+  const [valiImage, setValiImage] = useState({error: false, helperText: 'one or more pictures needed...'})
+  const [valiTagId, setValiTagId] = useState({error: false, helperText: 'tag unselected...'});
+  const [valiPrice, setValiPrice] = useState({error: false, helperText: 'price in range (0, 1000)...'});
+  const [valiComment, setValiComment] = useState({error: false, helperText: 'invalid comment...'});
   const [valiPledge, setValiPledge] = useState({error: false, helperText: 'pledge not confirmed...'});
   const adType = 1;  // adType managed by parent, not here
   const adTypes = ['textbook', 'other'];
@@ -129,6 +130,8 @@ export default function AdUploadFormMUIOther({
   const handleResetVali = (identifier) => {
     if (identifier==='adTitle') {
       setValiAdTitle({...valiAdTitle, error: false});
+    } else if (identifier==='images') {
+      setValiImage({...valiImage, error: false});
     } else if (identifier==='tagId') {
       setValiTagId({...valiTagId, error: false});
     } else if (identifier==='price') {
@@ -165,6 +168,10 @@ export default function AdUploadFormMUIOther({
       setValiAdTitle({...valiAdTitle, error: true});
       ans = false;
     } else {setValiAdTitle({...valiAdTitle, error: false});}
+    if (!formData.get('images') || formData.get('images').length<1) {
+      setValiImage({...valiImage, error: true});
+      ans = false;
+    } else {setValiImage({...valiImage, error: false});}
     if (!formData.get('tagId')) {
       setValiTagId({...valiTagId, error: true});
       ans = false;
@@ -207,6 +214,7 @@ export default function AdUploadFormMUIOther({
       </div>
 
       <div className={'AdUploadFormMUI-row'}>
+        <p>Ad Title</p>
         <MUITextField
           identifier={'adTitle'} onChange={handleInputChange}
           error={valiAdTitle.error} helperText={valiAdTitle.error?valiAdTitle.helperText:''}
@@ -218,10 +226,12 @@ export default function AdUploadFormMUIOther({
       </div>
 
       <div className={'AdUploadFormMUI-row'}>
+        <p>Picture(s)</p>
         <AdUploadFormDragDrop identifier={"images"} onChange={handleInputChange}/>
       </div>
 
       <div className={'AdUploadFormMUI-row'}>
+        <p>Select a tag</p>
         <MUITagSelect
           identifier={'tagId'} options={otherTagData.map(op => {return {label: op.name, id: op.id};})}
           onChange={handleInputChange}
@@ -230,6 +240,7 @@ export default function AdUploadFormMUIOther({
       </div>
 
       <div className={'AdUploadFormMUI-row'}>
+        <p>Price to sell at</p>
         <MUINumber
           identifier={'price'} onChange={handleInputChange}
           error={valiPrice.error} helperText={valiPrice.error?valiPrice.helperText:''}
@@ -237,6 +248,7 @@ export default function AdUploadFormMUIOther({
       </div>
 
       <div className={'AdUploadFormMUI-row'}>
+        <p>Comment</p>
         <MUITextField
           identifier={'comment'} size={'multiline'} onChange={handleInputChange}
           error={valiComment.error} helperText={valiComment.error?valiComment.helperText:''}

@@ -84,7 +84,7 @@ const fakeOptions = [
   }
 ];
 
-export default function AdUploadFormMUI({
+export default function AdUploadFormMUITextbook({
   toSwitchAdType,
   toSubmit
                                         }) {
@@ -93,6 +93,7 @@ export default function AdUploadFormMUI({
   const [textbookData, setTextbookData] = useState([]);
   const [courseData, setCourseData] = useState([]);
   const [valiAdTitle, setValiAdTitle] = useState({error: false, helperText: 'invalid entry...'});
+  const [valiImage, setValiImage] = useState({error: false, helperText: 'one or more pictures needed...'})
   const [valiTagId, setValiTagId] = useState({error: false, helperText: 'invalid entry...'});
   const [valiPrice, setValiPrice] = useState({error: false, helperText: 'invalid entry...'});
   const [valiComment, setValiComment] = useState({error: false, helperText: 'invalid entry...'});
@@ -148,6 +149,8 @@ export default function AdUploadFormMUI({
   const handleResetVali = (identifier) => {
     if (identifier==='adTitle') {
       setValiAdTitle({...valiAdTitle, error: false});
+    } else if (identifier==='images') {
+      setValiImage({...valiImage, error: false});
     } else if (identifier==='tagId') {
       setValiTagId({...valiTagId, error: false});
     } else if (identifier==='price') {
@@ -184,6 +187,10 @@ export default function AdUploadFormMUI({
       setValiAdTitle({...valiAdTitle, error: true});
       ans = false;
     } else {setValiAdTitle({...valiAdTitle, error: false});}
+    if (!formData.get('images') || formData.get('images').length<1) {
+      setValiImage({...valiImage, error: true});
+      ans = false;
+    } else {setValiImage({...valiImage, error: false});}
     if (!formData.get('tagId')) {
       setValiTagId({...valiTagId, error: true});
       ans = false;
@@ -226,6 +233,7 @@ export default function AdUploadFormMUI({
       </div>
 
       <div className={'AdUploadFormMUI-row'}>
+        <p>Ad Title</p>
         <MUITextField
           identifier={'adTitle'} onChange={handleInputChange}
           error={valiAdTitle.error} helperText={valiAdTitle.error?valiAdTitle.helperText:''}
@@ -237,10 +245,12 @@ export default function AdUploadFormMUI({
       </div>
 
       <div className={'AdUploadFormMUI-row'}>
+        <p>Picture(s)</p>
         <AdUploadFormDragDrop identifier={"images"} onChange={handleInputChange}/>
       </div>
 
       <div className={'AdUploadFormMUI-row'}>
+        <p>Select a tag</p>
         <MUITagSelect
           identifier={'tagId'} options={getTextbookData().map(op => {return {label: op.title, id: op.id};})}
           onChange={handleInputChange}
@@ -249,6 +259,7 @@ export default function AdUploadFormMUI({
       </div>
 
       <div className={'AdUploadFormMUI-row'}>
+        <p>Price to sell at</p>
         <MUINumber
           identifier={'price'} onChange={handleInputChange}
           error={valiPrice.error} helperText={valiPrice.error?valiPrice.helperText:''}
@@ -256,6 +267,7 @@ export default function AdUploadFormMUI({
       </div>
 
       <div className={'AdUploadFormMUI-row'}>
+        <p>Comment</p>
         <MUITextField
           identifier={'comment'} size={'multiline'} onChange={handleInputChange}
           error={valiComment.error} helperText={valiComment.error?valiComment.helperText:''}
