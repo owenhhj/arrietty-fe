@@ -6,7 +6,7 @@ import {useState, useEffect, useRef} from "react";
 import {dataFetch} from "../common/common";
 
 function SearchBar({
-  callback=null
+                     callback = null
                    }) {
   const ROOT = 'https://localhost:8000/';
   const ref = useRef();  // to bind text suggestion window
@@ -20,9 +20,15 @@ function SearchBar({
   const [showKeywordSuggest, setShowKeywordSuggest] = useState(false);
   const [keywordSuggest, setKeywordSuggest] = useState(['textbook1', 'textbook2', 'test']);
 
-  // todo fetch tags onMount
   useEffect(() => {
-    setTagOptions(['furniture', 'stationary', 'electronic', 'free']);
+    // setTagOptions(['furniture', 'stationary', 'electronic', 'free']);
+    dataFetch(
+      `${ROOT}otherTag?id=`,
+      {method: 'GET'},
+      res => {
+        setTagOptions(res.map(ob => ob.name));
+      }
+    );
   }, []);
 
   useEffect(() => {
@@ -37,28 +43,28 @@ function SearchBar({
     });
   }, [ref]);
 
-  // fixme cannot refresh: async setState, works without auto refresh here
+  // todo adTypeChange cannot refresh
   const handleAdTypeChange = () => {
-    setAdType(1-adType);
+    setAdType(1 - adType);
     // handleSubmit();
-  }
+  };
 
   const handleKeywordSuggest = (i) => {
     let temp = keywordSuggest[i];
     setKeyword(temp);
     document.getElementById('inputKeyword').value = temp;
     setShowKeywordSuggest(false);
-  }
+  };
 
   const handleFilterPrice = (e) => {
     filterPrice = e;
     handleSubmit();
-  }
+  };
 
   const handleFilterTag = (e) => {
     filterTag = e;
     handleSubmit();
-  }
+  };
 
   // potential delay --> setInterval as `adListing` scrolling?
   const handleKeywordInput = (e) => {
@@ -76,15 +82,15 @@ function SearchBar({
           setShowKeywordSuggest(true);
         },
         null
-      )
+      );
     }
-  }
+  };
 
   const handleKeyDown = (e) => {
     if (e.key === 'Enter') {
       handleSubmit();
     }
-  }
+  };
 
   const handleSubmit = () => {
     setShowKeywordSuggest(false);
@@ -98,9 +104,9 @@ function SearchBar({
       'priceOrder': priceOrders[filterPrice.priceOrder],
       'minPrice': filterPrice.priceRange[0],
       'maxPrice': filterPrice.priceRange[1],
-      'tag': tags.join(',').length>0 ? tags.join(',') : null
+      'tag': tags.join(',').length > 0 ? tags.join(',') : null
     });
-  }
+  };
 
   return (
     <div className={'SearchBar card'}>
@@ -118,8 +124,13 @@ function SearchBar({
           </div>
 
           <div className={'search-input'} ref={ref}>
-            <input id={'inputKeyword'} type="text" placeholder={'want to purchase...'} onChange={handleKeywordInput} onKeyDown={handleKeyDown}/>
-            {showKeywordSuggest && <SearchBarKeywordSuggest suggestions={keywordSuggest} callback={handleKeywordSuggest}/>}
+            <input
+              id={'inputKeyword'} type="text" placeholder={'want to purchase...'}
+              onChange={handleKeywordInput} onKeyDown={handleKeyDown}
+            />
+            {showKeywordSuggest && (
+              <SearchBarKeywordSuggest suggestions={keywordSuggest} callback={handleKeywordSuggest}/>
+            )}
           </div>
           <div className={'search-button clickable'} onClick={handleSubmit}>
             <img src="./search_black_48dp.svg" alt=""/>
@@ -134,7 +145,7 @@ function SearchBar({
             <p>Filters</p>
           </div>
           <SearchBarFilterPrice callback={handleFilterPrice}/>
-          {adType!==0 && <SearchBarFilterTag options={tagOptions} callback={handleFilterTag}/>}
+          {adType !== 0 && <SearchBarFilterTag options={tagOptions} callback={handleFilterTag}/>}
         </div>
       </div>
 

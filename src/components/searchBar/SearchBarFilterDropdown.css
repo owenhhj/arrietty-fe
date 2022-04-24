@@ -32,20 +32,25 @@ hr {
 }
 
 .dropdown-price .row-order {
-    margin: 0.3rem 0 0.3rem 0;
+    margin: 0.5em 0 0.5em 0;
+    padding: 0.2em 0.4em 0.2em 0.4em;
     display: flex;
     align-items: center;
+    background-color: #36c0c9;
+    border-radius: 3px;
+    color: #FFFFFF;
 }
 
 .dropdown-price .row-order img {
     margin: 0 0 0 0.3em;
     height: 1.2em;
     width: 1.2em;
-    filter: invert(21%) sepia(20%) saturate(0%) hue-rotate(193deg) brightness(92%) contrast(100%);
+    filter: invert(100%) sepia(100%) saturate(0%) hue-rotate(183deg) brightness(102%) contrast(101%);
+    /*filter: invert(21%) sepia(20%) saturate(0%) hue-rotate(193deg) brightness(92%) contrast(100%);*/
 }
 
 .dropdown-price .row-input {
-    margin: 0.3rem 0 0.3rem 0;
+    margin: 0.5rem 0 0.5rem 0;
     display: flex;
     align-items: center;
     justify-content: space-around;
@@ -66,7 +71,7 @@ hr {
 }
 
 .row-buttons {
-    margin: 0.3rem 0 0.3rem 0;
+    margin: 0.5rem 0 0.5rem 0;
     display: flex;
     align-items: center;
     justify-content: space-evenly;
@@ -98,7 +103,7 @@ hr {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin: 0.4em 0.4em 0.2em 0.4em;
+    margin: 0.5em 0.4em 0.5em 0.4em;
 }
 
 .dropdown-tag .row-options .option-entry {
@@ -108,6 +113,7 @@ hr {
 .dropdown-tag .row-options .option-entry p {
     height: 1.5em;
     width: 6.5em;
+    text-align: center;
     border-radius: 3px;
     border-style: solid;
     border-width: 1px;
