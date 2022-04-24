@@ -16,8 +16,9 @@ export function MUITextField({
                                placeholder = '',
                                styleBox = {},
                                styleInput = {},
-  error=false,
-  helperText='Invalid entry',
+                               error = false,
+                               helperText = 'Invalid entry',
+                               readOnly = false,
                                onChange
                              }) {
   const styleBoxDefault = {
@@ -31,6 +32,8 @@ export function MUITextField({
     padding: 0
   };
 
+  const inputProps = {readOnly: readOnly};
+
   const handleInputChange = (e) => {
     onChange(identifier, e.target.value);
   };
@@ -40,7 +43,6 @@ export function MUITextField({
       <Box
         component="form"
         sx={{
-          // '& > :not(style)': {m: 1, width: '25ch'},
           '& > :not(style)': {m: 1, width: '100%'},
         }}
         noValidate
@@ -49,18 +51,18 @@ export function MUITextField({
       >
         {size === 'normal' && (
           <TTextField label={label} variant={'standard'} placeholder={placeholder}
-            // value={value}
                       style={{...styleInputDefault, ...styleInput}}
-                      error={error} helperText={error?helperText:null}
+                      error={error} helperText={error ? helperText : null}
+                      InputProps={inputProps}
                       onChange={handleInputChange}
           />
         )}
         {size === 'multiline' && (
           <TTextField label={label} variant={'outlined'} placeholder={placeholder}
-            // value={value}
                       style={{...styleInputDefault, ...styleInput}}
                       multiline minRows={minRows} maxRows={maxRows}
-                      error={error} helperText={error?helperText:null}
+                      error={error} helperText={error ? helperText : null}
+                      InputProps={inputProps}
                       onChange={handleInputChange}
           />
         )}
@@ -76,8 +78,8 @@ export function MUINumber({
                             placeholder = '',
                             styleBox = {},
                             styleInput = {},
-                            error=false,
-                            helperText='Invalid entry',
+                            error = false,
+                            helperText = 'Invalid entry',
                             onChange
                           }) {
   const styleBoxDefault = {
@@ -95,7 +97,6 @@ export function MUINumber({
       <Box
         component="form"
         sx={{
-          // '& > :not(style)': {m: 1, width: '25ch'},
           '& > :not(style)': {m: 1, width: '100%'},
         }}
         noValidate
@@ -109,7 +110,7 @@ export function MUINumber({
                     InputLabelProps={{
                       // shrink: true,
                     }}
-                    error={error} helperText={error?helperText:null}
+                    error={error} helperText={error ? helperText : null}
                     onChange={handleInputChange}
         />
       </Box>
@@ -121,8 +122,8 @@ export function MUICheckbox({
                               identifier,
                               label = '',
                               value = false,
-                              error=false,
-                              helperText='Invalid entry',
+                              error = false,
+                              helperText = 'Invalid entry',
                               onChange
                             }) {
   const [checked, setChecked] = useState(false);
@@ -143,7 +144,7 @@ export function MUICheckbox({
       <FormControlLabel
         control={<Checkbox
           defaultChecked={false} style={{...styleCheckboxDefault}} onChange={handleInputChange}
-          error={error} helperText={error?helperText:null}
+          error={error} helperText={error ? helperText : null}
         />}
         label={label}/>
     </>
@@ -154,12 +155,12 @@ export function MUITagSelect({
                                identifier,
                                options = [],
                                label = '',
-                               error=false,
-                               helperText='Invalid entry',
+                               error = false,
+                               helperText = 'Invalid entry',
                                onChange
                              }) {
   const handleInputChange = (newOption) => {
-    onChange(identifier, newOption?newOption.id:null);
+    onChange(identifier, newOption ? newOption.id : null);
   };
 
   return (
@@ -169,14 +170,14 @@ export function MUITagSelect({
         size={'small'}
         options={options}
         sx={{width: '20em'}}
-        isOptionEqualToValue={(option, value) => option.id===value.id}  // to avoid some error
+        isOptionEqualToValue={(option, value) => option.id === value.id}  // to avoid some error
         onChange={(e, newOption) => {
           handleInputChange(newOption);
         }}
         renderInput={(params) => (
           <TTextField
             {...params} label={label}
-            error={error} helperText={error?helperText:null}
+            error={error} helperText={error ? helperText : null}
           />
         )}
       />
@@ -187,7 +188,7 @@ export function MUITagSelect({
 export function MUIButton({
                             label = 'Submit',
                             variant = 2,  // 'text', 'contained', 'outlined'
-  onClick
+                            onClick
                           }) {
   const buttonVariants = ['text', 'contained', 'outlined'];
 
@@ -200,7 +201,7 @@ export function MUIButton({
   return (
     <>
       <Button
-        sx={{...buttonSxs[variant], width:'6em', height:'2.5em'}}
+        sx={{...buttonSxs[variant], width: `${label.length - 1}em`, height: '2.5em'}}
         variant={buttonVariants[variant]}
         onClick={onClick}
       >
@@ -213,14 +214,14 @@ export function MUIButton({
 export function MUIButtonGroup({
                                  labels = ['submit', 'cancel'],
                                  selected = 0,
-  buttonStyle={},
+                                 buttonStyle = {},
                                  onChange
                                }) {
   const buttonVariants = ['text', 'contained'];
 
   const buttonSxs = [
-    {color: '#36C0C9', width:'6em', height:'2.5em'},
-    {backgroundColor: '#36C0C9', width:'6em', height:'2.5em'}
+    {color: '#36C0C9', width: '6em', height: '2.5em'},
+    {backgroundColor: '#36C0C9', width: '6em', height: '2.5em'}
   ];
 
   return (
@@ -230,9 +231,11 @@ export function MUIButtonGroup({
           return (
             <Button
               key={index}
-              sx={{...buttonSxs[index===selected?1:0], ...buttonStyle}}
-              variant={buttonVariants[index===selected?1:0]}
-              onClick={()=>{onChange(index)}}
+              sx={{...buttonSxs[index === selected ? 1 : 0], ...buttonStyle}}
+              variant={buttonVariants[index === selected ? 1 : 0]}
+              onClick={() => {
+                onChange(index)
+              }}
             >
               {label}
             </Button>

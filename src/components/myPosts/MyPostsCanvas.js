@@ -22,7 +22,10 @@ const customStyles = {
   },
 };
 
-const fakeMyAds = [{id: 666, adTitle:'title', isTextbook: true, tagId: 12, imageIds:'', price:444, comment: 'comment', numberOfTaps: 3, createTime:'Apr 6'}];
+const fakeMyAds = [
+  {id: 666, adTitle:'title', isTextbook: true, tagId: 12, imageIds:'', price:444, comment: 'comment', numberOfTaps: 3, createTime:'Apr 6'},
+  {id: 777, adTitle:'title', isTextbook: false, tagId: 12, imageIds:'', price:444, comment: 'comment', numberOfTaps: 3, createTime:'Apr 6'},
+];
 
 function MyPostsCanvas() {
   const ROOT = 'https://localhost:8000/';
@@ -31,8 +34,8 @@ function MyPostsCanvas() {
   const [idToEdit, setIdToEdit] = useState(-1);
 
   useEffect(() => {
-    // refreshData();
-    setMyAds(fakeMyAds)
+    refreshData();
+    // setMyAds(fakeMyAds)
   }, []);
 
   useEffect(() => {
@@ -48,6 +51,7 @@ function MyPostsCanvas() {
       `${ROOT}myAdvertisement`,
       {method: 'GET'},
       (res) => {
+        console.log('refreshData myAds', res)
         setMyAds(res);
       },
       (err) => {

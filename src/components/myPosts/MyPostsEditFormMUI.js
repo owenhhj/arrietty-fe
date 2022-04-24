@@ -3,6 +3,7 @@ import {useEffect, useRef, useState} from "react";
 import {MUIButton, MUINumber, MUITextField} from "../common/MUIComponents";
 import AdUploadFormDragDrop from "../adUploadForm/AdUploadFormDragDrop";
 import TextbookSearchShowSelected from "../adUploadForm/TextbookSearchShowSelected";
+import {dataFetch} from "../common/common";
 
 let formData = new FormData();
 
@@ -11,8 +12,9 @@ function MyPostsEditFormMUI({
                               toClose,
                               toSubmit
                             }) {
+  const ROOT = 'https://localhost:8000/';
   const ref = useRef(null);
-  const [valiAdTitle, setValiAdTitle] = useState({error: false, helperText: 'invalid entry...'});
+  const [tagName, setTagName] = useState('nulltag');
   const [valiImage, setValiImage] = useState({error: false, helperText: 'one or more pictures needed...'})
   const [valiPrice, setValiPrice] = useState({error: false, helperText: 'invalid entry...'});
   const [valiComment, setValiComment] = useState({error: false, helperText: 'invalid entry...'});
@@ -26,6 +28,20 @@ function MyPostsEditFormMUI({
       document.removeEventListener('mousedown', handleClickOutside);
     });
   }, [ref]);
+
+  useEffect(() => {
+    if (!adDataOriginal.isTextbook) {
+      dataFetch(
+        `${ROOT}otherTag?id=${adDataOriginal.tagId}`,
+        {method: 'GET'},
+        res => {
+          console.log('tagId get returned', res)
+          setTagName(res);
+        },
+        null
+      )
+    }
+  }, []);
 
   const getTextbookData = () => {
     let needed = ['isbn', 'author', 'edition', 'publisher', 'relatedCourse', 'originalPrice'];
@@ -51,9 +67,7 @@ function MyPostsEditFormMUI({
   };
 
   const handleResetVali = (identifier) => {
-    if (identifier==='adTitle') {
-      setValiAdTitle({...valiAdTitle, error: false});
-    } else if (identifier==='images') {
+    if (identifier==='images') {
       setValiImage({...valiImage, error: false});
     } else if (identifier==='price') {
       setValiPrice({...valiPrice, error: false});
@@ -62,8 +76,30 @@ function MyPostsEditFormMUI({
     }
   };
 
+  const handleValidate = () => {
+    let ans = true;
+    if (!formData.get('images') || formData.get('images').length<1) {
+      setValiImage({...valiImage, error: true});
+      ans = false;
+    } else {setValiImage({...valiImage, error: false});}
+    if (formData.get('price') && (
+      !/^[0-9]+$/.test((formData.get('price')).toString()) ||
+      Number(formData.get('price'))<=0 || Number(formData.get('price'))>=1000
+    )) {
+      setValiPrice({...valiPrice, error: true});
+      ans = false;
+    } else {setValiPrice({...valiPrice, error: false});}
+    if (formData.get('comment') && formData.get('comment').length>=100) {
+      setValiComment({...valiComment, error: true});
+      ans = false;
+    } else {setValiComment({...valiComment, error: false});}
+    return ans;
+  };
+
   const handleFormSubmit = () => {
-    toSubmit(formData);
+    if (handleValidate()) {
+      toSubmit(formData);
+    }
   };
 
   return (
@@ -77,16 +113,16 @@ function MyPostsEditFormMUI({
         <p>Ad Title</p>
         <MUITextField
           identifier={'adTitle'} onChange={handleInputChange}
-          error={valiAdTitle.error} helperText={valiAdTitle.error?valiAdTitle.helperText:''}
+          placeholder={adDataOriginal.adTitle} readOnly={true}
         />
       </div>
       <div className={'AdUploadFormMUI-row'}>
-        <MUIButton label={adDataOriginal.isTextbook?'textbook':'other'}/>
+        <MUIButton label={adDataOriginal.isTextbook?'textbook':'other'} variant={1}/>
       </div>
 
       <div className={'AdUploadFormMUI-row'}>
         <p>Picture(s)</p>
-        {/*<AdUploadFormDragDrop identifier={"images"} onChange={handleInputChange}/>*/}
+        <AdUploadFormDragDrop identifier={"images"} imageIdsOriginal={adDataOriginal.imageIds} onChange={handleInputChange}/>
         {valiImage.error && (
           <div className={'AdUploadFormMUI-row-pledge-alert'}>
             <p>{valiImage.helperText}</p>
@@ -95,12 +131,10 @@ function MyPostsEditFormMUI({
       </div>
 
       <div className={'AdUploadFormMUI-row'}>
-        <p>Selected tag</p>
-        {/*<MUITagSelect*/}
-        {/*  identifier={'tagId'} options={getTextbookData().map(op => {return {label: op.title, id: op.id};})}*/}
-        {/*  onChange={handleInputChange}*/}
-        {/*  error={valiTagId.error} helperText={valiTagId.error?valiTagId.helperText:''}*/}
-        {/*/>*/}
+        <p>Selected {adDataOriginal.isTextbook?'textbook':'tag'}</p>
+        {!adDataOriginal.isTextbook && (
+          <MUIButton label={tagName}/>
+        )}
         {adDataOriginal.isTextbook && (
           <TextbookSearchShowSelected selectedTextbook={getTextbookData()}/>
         )}
@@ -110,6 +144,7 @@ function MyPostsEditFormMUI({
         <p>Price to sell at</p>
         <MUINumber
           identifier={'price'} onChange={handleInputChange}
+          placeholder={adDataOriginal.price}
           error={valiPrice.error} helperText={valiPrice.error?valiPrice.helperText:''}
         />
       </div>
@@ -118,6 +153,7 @@ function MyPostsEditFormMUI({
         <p>Comment</p>
         <MUITextField
           identifier={'comment'} size={'multiline'} onChange={handleInputChange}
+          placeholder={adDataOriginal.comment}
           error={valiComment.error} helperText={valiComment.error?valiComment.helperText:''}
         />
       </div>
