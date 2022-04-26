@@ -1,4 +1,5 @@
 import Button from "../common/Button";
+import {MUIButton} from "../common/MUIComponents";
 
 
 export default function AdminBulletinListing(
@@ -35,8 +36,10 @@ export default function AdminBulletinListing(
           {content}
         </p>
         <div className={"admin-bulletin-listing-btn-row"}>
-          <Button buttonStyle={"btn--primary"} buttonSize={"btn--small"} text={"Edit"} onClick={handleEdit}/>
-          <Button buttonStyle={"btn--warning"} buttonSize={"btn--small"} text={"Delete"} onClick={handleDelete}/>
+          <MUIButton size={'small'} variant={1} label={'edit'} onClick={handleEdit}/>
+          <MUIButton size={'small'} variant={2} label={'delete'}
+                     buttonStyle={{color: 'red', borderColor: 'red'}} onClick={handleEdit}
+          />
         </div>
       </div>
 

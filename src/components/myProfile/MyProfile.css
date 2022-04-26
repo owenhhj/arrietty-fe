@@ -191,13 +191,17 @@
 
 
 .profile-edit-row{
-    height: 4rem;
+    /*height: 4rem;*/
+    width: 90%;
+    margin: 0.5em 0 0.5em 0;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     align-items: center;
 }
 
-
+.profile-edit-row p {
+    width: 100%;
+}
 
 
 .MyProfileEdit3 {

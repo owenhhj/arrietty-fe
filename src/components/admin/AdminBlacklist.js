@@ -2,6 +2,7 @@ import './AdminBlacklist.css';
 import {useEffect, useState} from "react";
 import {dataFetch} from "../common/common";
 import {showGeneralNoti} from "../common/GeneralNotiProvider";
+import {MUIButton, MUITextField} from "../common/MUIComponents";
 
 const fakeUsers = ['hh1234', 'yz5678', 'hh1234', 'yz5678', 'hh1234',
   'yz5678', 'hh1234', 'yz5678', 'hh1234', 'yz5678', 'hh1234', 'yz5678',
@@ -41,9 +42,8 @@ export default function AdminBlacklist() {
     );
   };
 
-  const handleBlacklistInput = (e) => {
-    e.preventDefault();
-    setNetIdInput(e.target.value);
+  const handleBlacklistInput = (identifier, v) => {
+    setNetIdInput(v);
   };
 
   const handleBlacklistSubmit = (e) => {
@@ -88,9 +88,9 @@ export default function AdminBlacklist() {
 
         <div className={'AdminBlacklist-card-input-row'}>
           <div className={'AdminBlacklist-card-input card'}>
-            {/*todo use mui autocomplete with all users list*/}
-            <input type="text" onChange={handleBlacklistInput}/>
-            <button onClick={handleBlacklistSubmit}>Add</button>
+            {/*todo use mui tag select (MUIComponents.js) with all users list*/}
+            <MUITextField identifier={'inputNetId'} onChange={handleBlacklistInput}/>
+            <MUIButton size={'small'} variant={1} label={'add'} onClick={handleBlacklistSubmit}/>
           </div>
         </div>
 
