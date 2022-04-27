@@ -3,7 +3,7 @@ import {useState} from "react"
 import {dataFetch} from "../common/common";
 import {MUIButton, MUITagSelect, MUITextField} from "../common/MUIComponents";
 
-function getYearOptions() {
+const getYearOptions = () => {
   let ans = [];
   let date = new Date();
   for (let i=date.getFullYear()-2; i<date.getFullYear()+5; i++) {
@@ -13,24 +13,13 @@ function getYearOptions() {
     });
   }
   return ans;
-  // return ["freshman", "sophomore", "junior", "senior"].map((y, index) => {
-  //   return {id: index, label: y};
-  // });
-}
-
-// not in use
-function getMajorOptions() {
-  return ["Computer Science", "Data Science", "Other Majors"].map((y, index) => {
-    return {id: index, label: y};
-  });
-}
+};
 
 function MyProfileEdit(props) {
   const ROOT = 'https://localhost:8000/';
   const editYearOptions = getYearOptions();
-  // const editMajorOptions = getMajorOptions();
+  // const editMajorOptions = getMajorOptions();  // not in use
 
-  // 2-way bind input content to pass to parent
   const [profileDataEdit, setProfileDataEdit] = useState(props.data);
   const [avatarImageSrc, setAvatarImageSrc] = useState("./avatar");
   let formData = {...profileDataEdit};
@@ -71,6 +60,7 @@ function MyProfileEdit(props) {
   };
 
   const handleFormChange = (identifier, value) => {
+    // schoolYear and major are objects
     if (identifier==='schoolYear' || identifier==='major') {
       formData[identifier] = value.label;
       return;
@@ -96,20 +86,19 @@ function MyProfileEdit(props) {
         </div>
         <div className="divAvatar" onClick={handleAvatarEdit}>
           <img className="avatar" src={avatarImageSrc} alt=""/>
-          <div className={"avatar-edit"}>
+          <div className={"avatar-edit non-text"}>
             <p>Edit</p>
           </div>
           <input ref={(r) => {
             avatarFileInputDom = r
           }} onChange={onAvatarImageChange} type={"file"}/>
         </div>
-        <div className="MyProfileDisplay1Name">{profileDataEdit.username}</div>
         <div className="MyProfileDisplay1NetId">{profileDataEdit.netId}</div>
       </div>
+
       <div className="MyProfileEdit2">
 
         <div className={"profile-edit-row"}>
-          {/*<img className={"profile-edit-username"} src={"./username-icon.svg"} alt=""/>*/}
           <p>Username</p>
           <MUITextField
             identifier={'username'} placeholder={profileDataEdit.username}
@@ -117,7 +106,6 @@ function MyProfileEdit(props) {
           />
         </div>
         <div className={"profile-edit-row"}>
-          {/*<img className={"profile-edit-school-year"} src={"./grade-year-icon.svg"} alt=""/>*/}
           <p>Year</p>
           <MUITagSelect
             identifier={'schoolYear'} options={editYearOptions}
@@ -125,16 +113,6 @@ function MyProfileEdit(props) {
             onChange={handleFormChange}
           />
         </div>
-
-        {/*<div className={"profile-edit-row"}>*/}
-        {/*  <p>Major</p>*/}
-        {/*  <MUITagSelect*/}
-        {/*    identifier={'major'} options={editMajorOptions}*/}
-        {/*    style={{width: '100%'}}*/}
-        {/*    onChange={handleFormChange}*/}
-        {/*  />*/}
-        {/*</div>*/}
-
       </div>
 
 

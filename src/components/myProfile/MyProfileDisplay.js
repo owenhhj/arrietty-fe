@@ -1,5 +1,4 @@
 import './MyProfile.css'
-import Button from "../common/Button";
 import React from "react";
 import {MUIButton} from "../common/MUIComponents";
 
@@ -25,20 +24,24 @@ function MyProfileDisplay({
         <div className="divAvatar">
           <img  className="avatar" src={"./avatar"} alt=""/>
         </div>
-        <div className="MyProfileDisplay1Name">{data.username}</div>
         <div className="MyProfileDisplay1NetId">{data.netId}</div>
       </div>
 
       <div className="MyProfileDisplay2">
         <div className="MyProfileDisplay2Text">
           <div>
-            <span className="field-name">School year:</span>
+            <span className="field-name">Name:</span>
+            <span className={"field-value"}>{data.username}</span>
+          </div>
+          <div>
+            <span className="field-name">Class:</span>
             <span className={"field-value"}>{data.schoolYear}</span>
           </div>
 
         </div>
+        {/* todo 放div右上角 */}
         <div className="divEditIcon">
-          <img className="editIcon" onClick={handleCallback} src={"./pencil-icon.svg"} alt=""/>
+          <img className="editIcon clickable" onClick={handleCallback} src={"./pencil-icon.svg"} alt=""/>
         </div>
       </div>
 
