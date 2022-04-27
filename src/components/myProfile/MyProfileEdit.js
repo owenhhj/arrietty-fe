@@ -21,7 +21,7 @@ function MyProfileEdit(props) {
   // const editMajorOptions = getMajorOptions();  // not in use
 
   const [profileDataEdit, setProfileDataEdit] = useState(props.data);
-  const [avatarImageSrc, setAvatarImageSrc] = useState("./avatar");
+  const [avatarImageSrc, setAvatarImageSrc] = useState("./default_avatar.jpg");
   let formData = {...profileDataEdit};
   let avatarFileInputDom;
   const handleFormSubmit = () => {
@@ -61,6 +61,7 @@ function MyProfileEdit(props) {
 
   const handleFormChange = (identifier, value) => {
     // schoolYear and major are objects
+    console.log('handleFormChange', identifier, value)
     if (identifier==='schoolYear' || identifier==='major') {
       formData[identifier] = value.label;
       return;

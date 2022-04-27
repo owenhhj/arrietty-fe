@@ -6,14 +6,15 @@ function MyProfileDisplay({
   data=null,
   callback=null
                           }) {
+  const ROOT = 'https://localhost:8000/';
   const handleCallback = (e) => {
     e.preventDefault()
-    callback({action: "switch"})
-  }
+    callback({action: "switch"});
+  };
 
   const handleNewAdBtnClick = ()=>{
-    callback({action: "addNewAd"})
-  }
+    callback({action: "addNewAd"});
+  };
 
   return (
     <div className="MyProfileDisplay">
@@ -22,7 +23,13 @@ function MyProfileDisplay({
           <img className="avatarStripe" src={`./avatar_stripe.jpg`} alt=""/>
         </div>
         <div className="divAvatar">
-          <img  className="avatar" src={"./avatar"} alt=""/>
+          {!data.avatarImageId && (
+            <img className="avatar" src={"./default_avatar.jpg"} alt=""/>
+          )}
+          {/* fixme disp fetched avatar? disp updated edit avatar? */}
+          {data.avatarImageId && (
+            <img className={'avatar'} src={`${ROOT}image?id=${data.avatarImageId}`} alt=""/>
+          )}
         </div>
         <div className="MyProfileDisplay1NetId">{data.netId}</div>
       </div>

@@ -5,15 +5,16 @@ import MyProfileEdit from "./MyProfileEdit";
 import {showGeneralNoti} from "../common/GeneralNotiProvider";
 import {useState, useEffect} from "react";
 import {dataFetch} from "../common/common";
+import {getSiteInfo} from "../common/SiteInfoProvider";
 
 function MyProfile({callback}) {
   const ROOT = 'https://localhost:8000/';
-  const [myProfileData, setMyProfileData] = useState(MyProfile.defaultProps.profileData)
-  const [pageShow, setPageShow] = useState(0)  // 0: show disp, 1: show edit
+  const [myProfileData, setMyProfileData] = useState(getSiteInfo());
+  const [pageShow, setPageShow] = useState(0);  // 0: show disp, 1: show edit
 
   useEffect(() => {
     dataFetch(
-      ROOT+"profile?userId=",
+      `${ROOT}profile?userId=`,
       {method:"GET"},
       setMyProfileData,
       null
