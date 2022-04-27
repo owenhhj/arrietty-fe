@@ -16,8 +16,8 @@ function NotificationCard({
     <div className={'NotificationCard card'}>
 
       <div className={'NotiCard-col-1'}>
-        {/*<img src={`${ROOT}image?id=${avatarImageId}`} alt=""/>*/}
-        <img src="./default_avatar.jpg" alt=""/>
+        <img src={`${ROOT}image?id=${avatarImageId}`} alt=""/>
+        {/*<img src="./default_avatar.jpg" alt=""/>*/}
       </div>
 
       <div className={'NotiCard-col-2'}>
