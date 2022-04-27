@@ -30,18 +30,20 @@ function MyProfileDisplay({
       <div className="MyProfileDisplay2">
         <div className="MyProfileDisplay2Text">
           <div>
-            <span className="field-name">Name:</span>
-            <span className={"field-value"}>{data.username}</span>
+            <p>
+              <span className="field-name">Name:</span>
+              <span className={"field-value"}>{data.username}</span>
+            </p>
           </div>
           <div>
-            <span className="field-name">Class:</span>
-            <span className={"field-value"}>{data.schoolYear}</span>
+            <p>
+              <span className="field-name">Class:</span>
+              <span className={"field-value"}>{data.schoolYear}</span>
+            </p>
           </div>
-
         </div>
-        {/* todo 放div右上角 */}
         <div className="divEditIcon">
-          <img className="editIcon clickable" onClick={handleCallback} src={"./pencil-icon.svg"} alt=""/>
+          <img className="profile-edit-icon clickable" onClick={handleCallback} src={"./pencil-icon.svg"} alt=""/>
         </div>
       </div>
 
