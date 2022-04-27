@@ -1,5 +1,7 @@
 # Bugs to fix:
 
+myprofile不需要bio/major，保留schoolYear变成integer，并加在出现profile的地方：22'
+
 search listing 删除loading
 
 add form API 改为add非update

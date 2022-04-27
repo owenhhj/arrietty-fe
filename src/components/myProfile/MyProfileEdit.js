@@ -1,19 +1,24 @@
 import "./MyProfile.css"
 import {useState} from "react"
 import {dataFetch} from "../common/common";
-import Input from "../common/Input";
-import Button from "../common/Button";
 import {MUIButton, MUITagSelect, MUITextField} from "../common/MUIComponents";
 
 function getYearOptions() {
-  // let date = new Date();
-  // for (let i=date.getFullYear()-2; i<date.getFullYear()+5; i++) {ans.push(i)}
-  return ["freshman", "sophomore", "junior", "senior"].map((y, index) => {
-    return {id: index, label: y};
-  });
+  let ans = [];
+  let date = new Date();
+  for (let i=date.getFullYear()-2; i<date.getFullYear()+5; i++) {
+    ans.push({
+      id: i,
+      label: i
+    });
+  }
+  return ans;
+  // return ["freshman", "sophomore", "junior", "senior"].map((y, index) => {
+  //   return {id: index, label: y};
+  // });
 }
 
-// todo more majors from back-end or defined here?
+// not in use
 function getMajorOptions() {
   return ["Computer Science", "Data Science", "Other Majors"].map((y, index) => {
     return {id: index, label: y};
@@ -21,9 +26,9 @@ function getMajorOptions() {
 }
 
 function MyProfileEdit(props) {
-  const editYearOptions = getYearOptions();
-  const editMajorOptions = getMajorOptions();
   const ROOT = 'https://localhost:8000/';
+  const editYearOptions = getYearOptions();
+  // const editMajorOptions = getMajorOptions();
 
   // 2-way bind input content to pass to parent
   const [profileDataEdit, setProfileDataEdit] = useState(props.data);
@@ -120,21 +125,14 @@ function MyProfileEdit(props) {
             onChange={handleFormChange}
           />
         </div>
-        <div className={"profile-edit-row"}>
-          <p>Major</p>
-          <MUITagSelect
-            identifier={'major'} options={editMajorOptions}
-            style={{width: '100%'}}
-            onChange={handleFormChange}
-          />
-          {/*<img className={"profile-edit-major"} src={"./major-icon.svg"} alt=""/>*/}
-        </div>
 
-        {/* `bio` not in use */}
         {/*<div className={"profile-edit-row"}>*/}
-        {/*  /!*<img className={"profile-edit-bio"} src={"./bio-icon.svg"} alt=""/>*!/*/}
-        {/*  <Input type="text" identifier="bio" prompt={"Bio"} placeholder={profileDataEdit.bio}*/}
-        {/*         onChange={handleFormChange}/>*/}
+        {/*  <p>Major</p>*/}
+        {/*  <MUITagSelect*/}
+        {/*    identifier={'major'} options={editMajorOptions}*/}
+        {/*    style={{width: '100%'}}*/}
+        {/*    onChange={handleFormChange}*/}
+        {/*  />*/}
         {/*</div>*/}
 
       </div>

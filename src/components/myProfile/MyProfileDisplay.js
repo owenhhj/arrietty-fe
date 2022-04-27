@@ -32,19 +32,9 @@ function MyProfileDisplay({
       <div className="MyProfileDisplay2">
         <div className="MyProfileDisplay2Text">
           <div>
-            <span className="fieldName">School year:</span>
+            <span className="field-name">School year:</span>
             <span className={"field-value"}>{data.schoolYear}</span>
           </div>
-          <div>
-            <span className="fieldName">Major:</span>
-            <span className={"field-value"}>{data.major}</span>
-          </div>
-
-          {/* `bio` not in use */}
-          {/*<div>*/}
-          {/*  <span className="fieldName">Bio:</span>*/}
-          {/*  <span className={"field-value"}>{data.bio}</span>*/}
-          {/*</div>*/}
 
         </div>
         <div className="divEditIcon">

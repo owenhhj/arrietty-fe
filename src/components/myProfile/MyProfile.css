@@ -1,15 +1,12 @@
 .MyProfile {
-    width: 14rem;
+    width: 16rem;
     text-align: left;
-    border-radius: 5px;
 }
 
 .MyProfile * {
     font-family: 'Roboto', sans-serif;
     color: #202020;
 }
-
-
 
 .MyProfileDisplay1 {
     text-align: center;
@@ -137,7 +134,7 @@
     width: 1rem;
 }
 
-.fieldName {
+.field-name {
     margin: 0;
     font-size: 0.75rem;
     font-weight: bold;

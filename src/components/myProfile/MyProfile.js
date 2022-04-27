@@ -43,7 +43,7 @@ function MyProfile({callback}) {
       {pageShow === 0 && <MyProfileDisplay data={myProfileData} callback={callbackHandler}/>}
       {pageShow === 1 && <MyProfileEdit data={myProfileData} callback={callbackHandler}/>}
     </div>
-  )
+  );
 }
 
 MyProfile.defaultProps = {
