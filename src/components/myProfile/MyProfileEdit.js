@@ -44,7 +44,7 @@ function MyProfileEdit(props) {
       let form = new FormData();
       form.append("file", avatarFileInputDom.files[0]);
       dataFetch(
-        ROOT + "avatar",
+        `${ROOT}avatar`,
         {
           method: 'POST',
           body: form
