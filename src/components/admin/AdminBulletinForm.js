@@ -1,7 +1,5 @@
 import Modal from "react-modal";
 import "./AdminBulletinForm.css";
-import Input from "../common/Input";
-import Button from "../common/Button";
 import {useEffect, useRef} from "react";
 import {MUIButton, MUITextField} from "../common/MUIComponents";
 
