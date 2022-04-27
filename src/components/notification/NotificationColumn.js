@@ -14,7 +14,7 @@ const fakeNotis = [
 function NotificationColumn() {
   const ROOT = 'https://localhost:8000/';
   const pageTitle = 'Notifications';
-  const [notis, setNotis] = useState(fakeNotis);
+  const [notis, setNotis] = useState([]);
 
   useEffect(() => {
     dataFetch(
