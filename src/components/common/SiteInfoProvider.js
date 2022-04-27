@@ -9,14 +9,12 @@ const SiteInfoContext = createContext();  // `getSiteInfo` to get the object
 const SetSiteInfoContext = createContext();  // `setSiteInfo` to set the object
 
 const defaultSiteInfo = {
-  // lastModAd: 0,
-  // lastModNoti: 0,
   isAdmin: false,
   netId: 'sh2013',
-  username: 'Bruh',
+  username: 'Qilin',
 };
 
-// children --> all components wrapped in this provider, in `index.js`
+// `children` --> all components wrapped in this provider, in `index.js`
 function SiteInfoProvider({children}) {
   const ROOT = 'https://localhost:8000/';
   const [siteInfo, setSiteInfo] = useState(defaultSiteInfo);
