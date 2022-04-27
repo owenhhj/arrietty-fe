@@ -1,15 +1,12 @@
 .MyProfile {
-    width: 14rem;
+    width: 16rem;
     text-align: left;
-    border-radius: 5px;
 }
 
 .MyProfile * {
     font-family: 'Roboto', sans-serif;
     color: #202020;
 }
-
-
 
 .MyProfileDisplay1 {
     text-align: center;
@@ -94,17 +91,9 @@
     opacity: 0.7;
 }
 
-
-
-.MyProfileDisplay1Name {
-    color: black;
-    font-size: 1rem;
-    font-weight: bold;
-}
-
 .MyProfileDisplay1NetId {
-    font-size: 0.75rem;
-    margin: 0.2rem;
+    font-size: 1rem;
+    margin: 0.2em;
     font-weight: normal;
 }
 
@@ -112,12 +101,14 @@
     border-top: 1px solid #DADADA;
     border-bottom: 1px solid #DADADA;
     display: flex;
-    vertical-align: middle;
+    flex-direction: row;
+    /*align-items: center;*/
+    justify-content: space-between;
 }
 
 .MyProfileDisplay2Text {
-    width: 90%;
-    padding-left: 0.5rem;
+    width: 80%;
+    margin-left: 0.5rem;
 }
 
 .MyProfileDisplay2Text * {
@@ -125,30 +116,30 @@
 }
 
 .divEditIcon {
-    margin-top:0.5rem;
-    width: 10%;
-    height: 25px;
-    text-align: center;
-    cursor: pointer;
+    margin: 0.2rem 0.2rem 0 0;
+    display: flex;
 }
 
-.editIcon {
-    height: 1rem;
-    width: 1rem;
+.divEditIcon img {
+    height: 1.2rem;
+    width: 1.2rem;
+    padding: 0.3rem;
 }
 
-.fieldName {
+.field-name {
+    width: 3.5em;
     margin: 0;
-    font-size: 0.75rem;
+    font-size: 0.9rem;
     font-weight: bold;
-    color: #595959;
+    color: #666666;
     display: inline-block;
 }
 
 .field-value {
-    font-size: 0.75rem;
+    /*margin-left: 0;*/
+    font-size: 1rem;
     font-weight: normal;
-    color: #595959;
+    color: #444444;
     display: inline-block;
 }
 
@@ -171,17 +162,17 @@
 }
 
 .new-ad-btn {
-    height: 2.5rem;
+    margin: 0.5em 0 0.5em 0;
     display: flex;
     align-items: center;
     justify-content: center;
-
 }
 
 /* MyProfileEdit below */
 
 .MyProfileEdit2 {
-    border-top: 1px solid #DADADA;
+    margin: 0.3em 0 0.3em 0;
+    padding: 0.2em 0 0.2em 0;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -189,16 +180,22 @@
     border-bottom: 1px solid #DADADA;
 }
 
-
 .profile-edit-row{
-    height: 4rem;
+    /*height: 4rem;*/
+    width: 90%;
+    margin: 0.3em 0 0.3em 0;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     align-items: center;
 }
 
+.profile-edit-row p {
+    width: 100%;
+    font-size: 0.9rem;
+    color: #666666;
+}
 
-
+/**/
 
 .MyProfileEdit3 {
     height: 2.5rem;

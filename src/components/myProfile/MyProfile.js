@@ -39,11 +39,11 @@ function MyProfile({callback}) {
   }
 
   return (
-    <div className="MyProfile card">
+    <div className="MyProfile card non-text">
       {pageShow === 0 && <MyProfileDisplay data={myProfileData} callback={callbackHandler}/>}
       {pageShow === 1 && <MyProfileEdit data={myProfileData} callback={callbackHandler}/>}
     </div>
-  )
+  );
 }
 
 MyProfile.defaultProps = {
@@ -61,4 +61,4 @@ MyProfile.defaultProps = {
   },
 }
 
-export default MyProfile
+export default MyProfile;

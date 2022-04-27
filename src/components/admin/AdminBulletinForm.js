@@ -1,8 +1,7 @@
 import Modal from "react-modal";
 import "./AdminBulletinForm.css";
-import Input from "../common/Input";
-import Button from "../common/Button";
 import {useEffect, useRef} from "react";
+import {MUIButton, MUITextField} from "../common/MUIComponents";
 
 export default function AdminBulletinForm(
   {
@@ -68,12 +67,16 @@ export default function AdminBulletinForm(
     <Modal isOpen={isOpen} style={modalStyles}>
       <div className={"admin-bulletin-form card"} ref={ref}>
         <div className={"admin-bulletin-form-container"}>
-          <Input identifier={"title"} type={"text"} prompt={"Title"} defaultValue={title} inputSize={"large"}
-                 onChange={handleFormInputChange}/>
-          <Input identifier={"content"} type={"text"} prompt={"Content"} defaultValue={content}
-                 inputSize={"extra-large"} onChange={handleFormInputChange}/>
+          <div className={'AdminBlacklist-subtitle'}>
+            <p>Title</p>
+          </div>
+          <MUITextField identifier={'title'} styleBox={{width: '100%'}} onChange={handleFormInputChange}/>
+          <div className={'AdminBlacklist-subtitle'}>
+            <p>Content</p>
+          </div>
+          <MUITextField identifier={'title'} size={'multiline'} minRows={20} maxRows={20} styleBox={{width: '100%'}} onChange={handleFormInputChange}/>
         </div>
-        <Button buttonStyle={"btn--primary"} buttonSize={"btn--medium"} text={"Publish"} onClick={handlePublish}/>
+        <MUIButton variant={1} label={'Publish'} onClick={handlePublish}/>
         <div className={'cancel-btn'} onClick={handleCancel}>
           <img src="./close_black_48dp.svg" alt=""/>
         </div>

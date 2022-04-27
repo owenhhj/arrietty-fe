@@ -32,7 +32,7 @@ function AdUploadForm({
     //   console.log('>>>>>>>', pair[0], pair[1]);
     // }
     dataFetch(
-      `${ROOT}advertisement?action=update`,
+      `${ROOT}advertisement?action=add`,
       {
         method: 'POST',
         body: f

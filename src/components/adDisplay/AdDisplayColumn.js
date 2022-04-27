@@ -119,13 +119,12 @@ function AdDisplayColumn() {
       })}
 
       {/* dummy below */}
-
       {/*<AdDisplayCard/>*/}
       {/*<AdDisplayCard/>*/}
       {/*<AdDisplayCard/>*/}
 
-      <div style={{width: 'auto', height:'300px'}}>
-        {isLoading!==0 && <div><p>{loadingMsg[isLoading]}</p></div>}
+      <div style={{width: 'auto', height:'200px'}}>
+        {/*{isLoading!==0 && <div><p>{loadingMsg[isLoading]}</p></div>}*/}
       </div>
     </div>
   );

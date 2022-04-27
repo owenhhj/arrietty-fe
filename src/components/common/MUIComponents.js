@@ -155,6 +155,7 @@ export function MUITagSelect({
                                identifier,
                                options = [],
                                label = '',
+                               style = {},
                                error = false,
                                helperText = 'Invalid entry',
                                onChange
@@ -169,7 +170,7 @@ export function MUITagSelect({
         disablePortal
         size={'small'}
         options={options}
-        sx={{width: '20em'}}
+        sx={{width: '20em', ...style}}
         isOptionEqualToValue={(option, value) => option.id === value.id}  // to avoid some error
         onChange={(e, newOption) => {
           handleInputChange(newOption);
@@ -195,7 +196,7 @@ export function MUIButton({
   const buttonVariants = ['text', 'contained', 'outlined'];
 
   const buttonSxs = [
-    {},
+    {color: '#36C0C9'},
     {backgroundColor: '#36C0C9'},
     {color: '#36C0C9', borderColor: '#36C0C9'}
   ];
