@@ -5,24 +5,35 @@ import MyProfileEdit from "./MyProfileEdit";
 import {showGeneralNoti} from "../common/GeneralNotiProvider";
 import {useState, useEffect} from "react";
 import {dataFetch} from "../common/common";
+import {getSiteInfo} from "../common/SiteInfoProvider";
 
 function MyProfile({callback}) {
   const ROOT = 'https://localhost:8000/';
-  const [myProfileData, setMyProfileData] = useState(MyProfile.defaultProps.profileData)
-  const [pageShow, setPageShow] = useState(0)  // 0: show disp, 1: show edit
+  const [myProfileData, setMyProfileData] = useState(getSiteInfo());
+  const [avatarSrc, setAvatarSrc] = useState(  // pass state hook between components
+    myProfileData.avatarImageId ? `${ROOT}image?id=${myProfileData.avatarImageId}` : "./default_avatar.jpg"
+  );
+  const [pageShow, setPageShow] = useState(0);  // 0: disp, 1: edit
 
   useEffect(() => {
-    dataFetch(
-      ROOT+"profile?userId=",
-      {method:"GET"},
-      setMyProfileData,
-      null
-    );
+    refreshData();
   }, []);
 
   const dispatch = showGeneralNoti();
   const handleShowNoti = (msg, good) => {
     dispatch({action: "add", body: {msg: msg, good: good}});
+  };
+
+  const refreshData = () => {
+    dataFetch(
+      `${ROOT}profile?userId=`,
+      {method:"GET"},
+      (res) => {
+        setMyProfileData(res);
+        setAvatarSrc(res.avatarImageId ? `${ROOT}image?id=${res.avatarImageId}` : "./default_avatar.jpg");
+      },
+      null
+    );
   };
 
   // handle data from children: disp & edit
@@ -40,25 +51,17 @@ function MyProfile({callback}) {
 
   return (
     <div className="MyProfile card non-text">
-      {pageShow === 0 && <MyProfileDisplay data={myProfileData} callback={callbackHandler}/>}
-      {pageShow === 1 && <MyProfileEdit data={myProfileData} callback={callbackHandler}/>}
+      {pageShow === 0 && (
+        <MyProfileDisplay data={myProfileData} avatarSrc={avatarSrc} callback={callbackHandler}/>
+      )}
+      {pageShow === 1 && (
+        <MyProfileEdit
+          profilePrev={myProfileData} avatarSrc={avatarSrc} setAvatarSrc={setAvatarSrc}
+          callback={callbackHandler}
+        />
+      )}
     </div>
   );
-}
-
-MyProfile.defaultProps = {
-  title: "MyProfile (display & edit)",
-  profileData: {
-    id: 1,
-    netId: "abc1234",
-    username: "My Name",
-    schoolYear: "My Year",
-    major: "My Major",
-    bio: "My Bio",
-    avatarImageUrl:"./avatar",
-    numPosts: 0,
-    numNoti: 0
-  },
 }
 
 export default MyProfile;

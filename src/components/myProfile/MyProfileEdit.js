@@ -15,32 +15,51 @@ const getYearOptions = () => {
   return ans;
 };
 
-function MyProfileEdit(props) {
+let profileEdit = {};
+let avatarFileInputDom;
+
+function MyProfileEdit({
+  profilePrev,
+  avatarSrc,
+  setAvatarSrc,
+  callback
+                       }) {
   const ROOT = 'https://localhost:8000/';
   const editYearOptions = getYearOptions();
-  // const editMajorOptions = getMajorOptions();  // not in use
+  const [avatarImageSrc, setAvatarImageSrc] = useState(avatarSrc);
+  const [valiUsername, setValiUsername] = useState({error: false, helperText: 'between 1 and 40 letters...'});
+  // let profileEdit = {...profilePrev};  // defined outside so that `valiUsername` won't force refresh component
+  // let avatarFileInputDom;
 
-  const [profileDataEdit, setProfileDataEdit] = useState(props.data);
-  const [avatarImageSrc, setAvatarImageSrc] = useState("./avatar");
-  let formData = {...profileDataEdit};
-  let avatarFileInputDom;
   const handleFormSubmit = () => {
+    let temp = profileEdit;
+
+    if ((!profilePrev.username && !temp.username) || (temp.username && temp.username.length>40)) {
+      setValiUsername({...valiUsername, error: true});
+      return;
+    } else if (!temp.username) {
+      temp.username = profilePrev.username;
+    }
+
+    if (!temp.schoolYear) {
+      temp.schoolYear = profilePrev.schoolYear;
+    }
+
     dataFetch(
-      ROOT + "profile",
+      `${ROOT}profile`,
       {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify(formData)
+        body: JSON.stringify(temp)
       },
       (x) => {
-        setProfileDataEdit(formData);
-        props.callback({action: "update", body: formData});
+        callback({action: 'update', body: temp});
       },
       null
     );
 
     // todo image size check
-    if (avatarFileInputDom.files && avatarFileInputDom.files[0]) {
+    if (avatarFileInputDom.files && avatarFileInputDom.files[0]) {  // run this only when uploaded new img
       let form = new FormData();
       form.append("file", avatarFileInputDom.files[0]);
       dataFetch(
@@ -49,10 +68,8 @@ function MyProfileEdit(props) {
           method: 'POST',
           body: form
         },
-        (x) => {
-          formData.avatarImageUrl = avatarImageSrc;
-          props.callback({action: "update", body: formData});
-          window.location.reload();
+        (res) => {
+          setAvatarSrc(avatarImageSrc);
         },
         null
       );
@@ -60,12 +77,10 @@ function MyProfileEdit(props) {
   };
 
   const handleFormChange = (identifier, value) => {
-    // schoolYear and major are objects
-    if (identifier==='schoolYear' || identifier==='major') {
-      formData[identifier] = value.label;
-      return;
+    if (identifier==='username') {
+      setValiUsername({...valiUsername, error: false});
     }
-    formData[identifier] = value;
+    profileEdit[identifier] = value;
   };
 
   const handleAvatarEdit = () => {
@@ -86,14 +101,14 @@ function MyProfileEdit(props) {
         </div>
         <div className="divAvatar" onClick={handleAvatarEdit}>
           <img className="avatar" src={avatarImageSrc} alt=""/>
-          <div className={"avatar-edit non-text"}>
+          <div className={"avatar-edit clickable"}>
             <p>Edit</p>
           </div>
           <input ref={(r) => {
             avatarFileInputDom = r
           }} onChange={onAvatarImageChange} type={"file"}/>
         </div>
-        <div className="MyProfileDisplay1NetId">{profileDataEdit.netId}</div>
+        <div className="MyProfileDisplay1NetId">{profilePrev.netId}</div>
       </div>
 
       <div className="MyProfileEdit2">
@@ -101,12 +116,13 @@ function MyProfileEdit(props) {
         <div className={"profile-edit-row"}>
           <p>Username</p>
           <MUITextField
-            identifier={'username'} placeholder={profileDataEdit.username}
+            identifier={'username'} placeholder={profilePrev.username?profilePrev.username:''}
             styleBox={{width: '100%'}} onChange={handleFormChange}
+            error={valiUsername.error} helperText={valiUsername.error?valiUsername.helperText:''}
           />
         </div>
         <div className={"profile-edit-row"}>
-          <p>Year</p>
+          <p>Class</p>
           <MUITagSelect
             identifier={'schoolYear'} options={editYearOptions}
             style={{width: '100%'}}
@@ -115,10 +131,9 @@ function MyProfileEdit(props) {
         </div>
       </div>
 
-
       <div className="MyProfileEdit3">
         <MUIButton variant={1} size={'small'} label={'submit'} onClick={handleFormSubmit}/>
-        <MUIButton variant={2} size={'small'} label={'cancel'} onClick={()=>{props.callback({action: 'switch'})}}/>
+        <MUIButton variant={2} size={'small'} label={'cancel'} onClick={()=>{callback({action: 'switch'})}}/>
       </div>
 
     </div>

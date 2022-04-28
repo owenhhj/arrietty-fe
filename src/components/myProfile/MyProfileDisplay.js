@@ -3,17 +3,18 @@ import React from "react";
 import {MUIButton} from "../common/MUIComponents";
 
 function MyProfileDisplay({
-  data=null,
-  callback=null
+  data,
+  avatarSrc,
+  callback
                           }) {
   const handleCallback = (e) => {
     e.preventDefault()
-    callback({action: "switch"})
-  }
+    callback({action: "switch"});
+  };
 
   const handleNewAdBtnClick = ()=>{
-    callback({action: "addNewAd"})
-  }
+    callback({action: "addNewAd"});
+  };
 
   return (
     <div className="MyProfileDisplay">
@@ -22,7 +23,7 @@ function MyProfileDisplay({
           <img className="avatarStripe" src={`./avatar_stripe.jpg`} alt=""/>
         </div>
         <div className="divAvatar">
-          <img  className="avatar" src={"./avatar"} alt=""/>
+          <img className={'avatar'} src={avatarSrc} alt=""/>
         </div>
         <div className="MyProfileDisplay1NetId">{data.netId}</div>
       </div>
@@ -32,13 +33,13 @@ function MyProfileDisplay({
           <div>
             <p>
               <span className="field-name">Name:</span>
-              <span className={"field-value"}>{data.username?data.username:''}</span>
+              <span className={"field-value"}>{data.username ? data.username : ''}</span>
             </p>
           </div>
           <div>
             <p>
               <span className="field-name">Class:</span>
-              <span className={"field-value"}>{data.schoolYear?data.schoolYear:''}</span>
+              <span className={"field-value"}>{data.schoolYear ? `CO ${data.schoolYear}` : ''}</span>
             </p>
           </div>
         </div>

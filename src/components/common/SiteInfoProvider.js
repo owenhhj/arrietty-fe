@@ -9,7 +9,7 @@ const SiteInfoContext = createContext();  // `getSiteInfo` to get the object
 const SetSiteInfoContext = createContext();  // `setSiteInfo` to set the object
 
 const defaultSiteInfo = {
-  isAdmin: false,
+  isAdmin: true,  // fixme
   netId: 'sh2013',
   username: 'Qilin',
 };
@@ -25,7 +25,8 @@ function SiteInfoProvider({children}) {
       ROOT+"profile?userId=",
       {method: 'GET'},
       (res) => {
-        setSiteInfo({...defaultSiteInfo, ...res});
+        console.log(res)
+        setSiteInfo({...siteInfo, ...res});
       },
       null
     );
