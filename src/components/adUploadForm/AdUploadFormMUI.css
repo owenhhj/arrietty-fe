@@ -3,6 +3,15 @@
     width: 38rem;
     height: min-content;
     padding: 1rem 2rem 1rem 2rem;
+    position: relative;
+}
+
+.icon-close {
+    height: 2rem;
+    width: 2rem;
+    position: absolute;
+    right: 0.5rem;
+    top: 0.5rem;
 }
 
 .AdUploadFormMUI-row-title {

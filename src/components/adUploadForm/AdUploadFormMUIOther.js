@@ -14,11 +14,11 @@ export default function AdUploadFormMUIOther({
   const ROOT = 'https://localhost:8000/';
   const ref = useRef(null);
   const [otherTagData, setOtherTagData] = useState([]);
-  const [valiAdTitle, setValiAdTitle] = useState({error: false, helperText: 'invalid ad title...'});
+  const [valiAdTitle, setValiAdTitle] = useState({error: false, helperText: 'ad title invalid...'});
   const [valiImage, setValiImage] = useState({error: false, helperText: 'one or more pictures needed...'})
   const [valiTagId, setValiTagId] = useState({error: false, helperText: 'tag unselected...'});
-  const [valiPrice, setValiPrice] = useState({error: false, helperText: 'price in range (0, 1000)...'});
-  const [valiComment, setValiComment] = useState({error: false, helperText: 'invalid comment...'});
+  const [valiPrice, setValiPrice] = useState({error: false, helperText: 'within 1~999RMB...'});
+  const [valiComment, setValiComment] = useState({error: false, helperText: 'comment of suitable length needed...'});
   const [valiPledge, setValiPledge] = useState({error: false, helperText: 'pledge not confirmed...'});
   const adType = 1;  // adType managed by parent, not here
   const adTypes = ['textbook', 'other'];
@@ -123,6 +123,8 @@ export default function AdUploadFormMUIOther({
 
   return (
     <div className={'AdUploadFormMUI card'} ref={ref}>
+
+      <img className={'icon-close clickable'} src="./close_black_48dp.svg" alt=""/>
 
       <div className={'AdUploadFormMUI-row-title non-text'}>
         <p>New Advertisement</p>

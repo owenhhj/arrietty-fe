@@ -83,7 +83,7 @@ export function MUINumber({
                             onChange
                           }) {
   const styleBoxDefault = {
-    width: '6em',
+    width: '8em',
     margin: 0,
     padding: 0
   };
@@ -170,7 +170,7 @@ export function MUITagSelect({
         disablePortal
         size={'small'}
         options={options}
-        sx={{width: '20em', ...style}}
+        sx={{width: '62%', ...style}}
         isOptionEqualToValue={(option, value) => option.id === value.id}  // to avoid some error
         onChange={(e, newOption) => {
           handleInputChange(newOption);
