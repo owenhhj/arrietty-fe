@@ -11,7 +11,11 @@ getSiteInfo()+isAdmin ERROR!!!
 
     重新放置newAd的位置避免在哪都能点
 
+新建ad后端报错：JVM版本重装
 
+清除所有console.log console.warn
+
+修复所有fixme todo
 
 
 ssh root@arrietty.shanghai.nyu.edu
