@@ -104,6 +104,8 @@ function MyPostsEditFormMUI({
   return (
     <div className={'AdUploadFormMUI card'} ref={ref}>
 
+      <img className={'icon-close clickable'} src="./close_black_48dp.svg" alt=""/>
+
       <div className={'AdUploadFormMUI-row-title non-text'}>
         <p>Edit Advertisement</p>
       </div>
