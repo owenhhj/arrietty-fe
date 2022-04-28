@@ -15,32 +15,38 @@ const getYearOptions = () => {
   return ans;
 };
 
-function MyProfileEdit(props) {
+function MyProfileEdit({
+  profilePrev={},
+  avatarSrc,
+  setAvatarSrc,
+  callback
+                       }) {
   const ROOT = 'https://localhost:8000/';
   const editYearOptions = getYearOptions();
   // const editMajorOptions = getMajorOptions();  // not in use
 
-  const [profileDataEdit, setProfileDataEdit] = useState(props.data);
-  const [avatarImageSrc, setAvatarImageSrc] = useState("./default_avatar.jpg");
-  let formData = {...profileDataEdit};
+  const [avatarImageSrc, setAvatarImageSrc] = useState(avatarSrc);
+  let profileEdit = {...profilePrev};
   let avatarFileInputDom;
+
   const handleFormSubmit = () => {
+    let temp = profileEdit;
+
     dataFetch(
-      ROOT + "profile",
+      `${ROOT}profile`,
       {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify(formData)
+        body: JSON.stringify(temp)
       },
       (x) => {
-        setProfileDataEdit(formData);
-        props.callback({action: "update", body: formData});
+        callback({action: 'update', body: temp});
       },
       null
     );
 
     // todo image size check
-    if (avatarFileInputDom.files && avatarFileInputDom.files[0]) {
+    if (avatarFileInputDom.files && avatarFileInputDom.files[0]) {  // run this `if` only when input img exists
       let form = new FormData();
       form.append("file", avatarFileInputDom.files[0]);
       dataFetch(
@@ -49,10 +55,8 @@ function MyProfileEdit(props) {
           method: 'POST',
           body: form
         },
-        (x) => {
-          formData.avatarImageUrl = avatarImageSrc;
-          props.callback({action: "update", body: formData});
-          window.location.reload();
+        (res) => {
+          setAvatarSrc(avatarImageSrc);
         },
         null
       );
@@ -60,13 +64,7 @@ function MyProfileEdit(props) {
   };
 
   const handleFormChange = (identifier, value) => {
-    // schoolYear and major are objects
-    console.log('handleFormChange', identifier, value)
-    if (identifier==='schoolYear' || identifier==='major') {
-      formData[identifier] = value.label;
-      return;
-    }
-    formData[identifier] = value;
+    profileEdit[identifier] = value;
   };
 
   const handleAvatarEdit = () => {
@@ -94,7 +92,7 @@ function MyProfileEdit(props) {
             avatarFileInputDom = r
           }} onChange={onAvatarImageChange} type={"file"}/>
         </div>
-        <div className="MyProfileDisplay1NetId">{profileDataEdit.netId}</div>
+        <div className="MyProfileDisplay1NetId">{profilePrev.netId}</div>
       </div>
 
       <div className="MyProfileEdit2">
@@ -102,7 +100,7 @@ function MyProfileEdit(props) {
         <div className={"profile-edit-row"}>
           <p>Username</p>
           <MUITextField
-            identifier={'username'} placeholder={profileDataEdit.username}
+            identifier={'username'} placeholder={profilePrev.username}
             styleBox={{width: '100%'}} onChange={handleFormChange}
           />
         </div>
@@ -119,7 +117,7 @@ function MyProfileEdit(props) {
 
       <div className="MyProfileEdit3">
         <MUIButton variant={1} size={'small'} label={'submit'} onClick={handleFormSubmit}/>
-        <MUIButton variant={2} size={'small'} label={'cancel'} onClick={()=>{props.callback({action: 'switch'})}}/>
+        <MUIButton variant={2} size={'small'} label={'cancel'} onClick={()=>{callback({action: 'switch'})}}/>
       </div>
 
     </div>

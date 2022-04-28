@@ -3,10 +3,10 @@ import React from "react";
 import {MUIButton} from "../common/MUIComponents";
 
 function MyProfileDisplay({
-  data=null,
-  callback=null
+  data,
+  avatarSrc,
+  callback
                           }) {
-  const ROOT = 'https://localhost:8000/';
   const handleCallback = (e) => {
     e.preventDefault()
     callback({action: "switch"});
@@ -23,13 +23,7 @@ function MyProfileDisplay({
           <img className="avatarStripe" src={`./avatar_stripe.jpg`} alt=""/>
         </div>
         <div className="divAvatar">
-          {!data.avatarImageId && (
-            <img className="avatar" src={"./default_avatar.jpg"} alt=""/>
-          )}
-          {/* fixme disp fetched avatar? disp updated edit avatar? */}
-          {data.avatarImageId && (
-            <img className={'avatar'} src={`${ROOT}image?id=${data.avatarImageId}`} alt=""/>
-          )}
+          <img className={'avatar'} src={avatarSrc} alt=""/>
         </div>
         <div className="MyProfileDisplay1NetId">{data.netId}</div>
       </div>
