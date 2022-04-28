@@ -42,6 +42,7 @@ function AdUploadForm({
         handleSwitchAdType(0);
       },
       (err) => {
+        console.warn(err);
         handleNoti('Ad Upload Failure', false);
       }
     );
