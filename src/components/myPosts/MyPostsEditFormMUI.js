@@ -3,7 +3,6 @@ import {useEffect, useRef, useState} from "react";
 import {MUIButton, MUINumber, MUITextField} from "../common/MUIComponents";
 import AdUploadFormDragDrop from "../adUploadForm/AdUploadFormDragDrop";
 import TextbookSearchShowSelected from "../adUploadForm/TextbookSearchShowSelected";
-import {dataFetch} from "../common/common";
 
 let formData = new FormData();
 
@@ -12,9 +11,7 @@ function MyPostsEditFormMUI({
                               toClose,
                               toSubmit
                             }) {
-  const ROOT = 'https://localhost:8000/';
   const ref = useRef(null);
-  const [tagName, setTagName] = useState('nulltag');
   const [valiImage, setValiImage] = useState({error: false, helperText: 'one or more pictures needed...'})
   const [valiPrice, setValiPrice] = useState({error: false, helperText: 'invalid entry...'});
   const [valiComment, setValiComment] = useState({error: false, helperText: 'invalid entry...'});
@@ -28,19 +25,6 @@ function MyPostsEditFormMUI({
       document.removeEventListener('mousedown', handleClickOutside);
     });
   }, [ref]);
-
-  useEffect(() => {
-    if (adDataOriginal.adType!=='textbook') {
-      dataFetch(
-        `${ROOT}otherTag?id=${adDataOriginal.tagId}`,
-        {method: 'GET'},
-        res => {
-          setTagName(res);
-        },
-        null
-      )
-    }
-  }, []);
 
   const getTextbookData = () => {
     let needed = ['isbn', 'author', 'edition', 'publisher', 'relatedCourse', 'originalPrice'];
@@ -134,7 +118,7 @@ function MyPostsEditFormMUI({
       <div className={'AdUploadFormMUI-row'}>
         <p>Selected {adDataOriginal.adType}</p>
         {adDataOriginal.adType!=='textbook' && (
-          <MUIButton label={tagName}/>
+          <MUIButton label={adDataOriginal.otherTag ? adDataOriginal.otherTag : 'other'}/>
         )}
         {adDataOriginal.adType==='textbook' && (
           <TextbookSearchShowSelected selectedTextbook={getTextbookData()}/>
