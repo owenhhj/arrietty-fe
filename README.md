@@ -4,8 +4,6 @@ getSiteInfo()+isAdmin ERROR!!!
 
     getSiteInfo包括username/year，不可能随edit更新
 
-notification too long ago
-
     全局loading动态小组件（转圈）
     刚登录时 等待setSiteInfo isAdmin
 

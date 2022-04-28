@@ -1,19 +1,33 @@
 
-// s = "Apr 5, 2022, 12:00:00 PM"; fixme really bad imp
+// s = "Apr 5, 2022, 12:00:00 PM";
 export const translateTimeAgo = (s) => {
   let diff = (Date.now() - Date.parse(s)) / 1000 / 60;  // difference in minutes
-  if (diff < 15) {
-    return 'just now';
-  } else if (diff < 60) {
-    return '1 hour ago';
-  } else if (diff/60 < 12) {
-    return '12h ago';
-  } else if (diff/60 < 24) {
-    return '1 day ago';
-  } else if (diff/60/24 < 7) {
-    return '1 week ago';
+  // if (diff < 15) {
+  //   return 'just now';
+  // } else if (diff < 60) {
+  //   return '1 hour ago';
+  // } else if (diff/60 < 12) {
+  //   return '12h ago';
+  // } else if (diff/60 < 24) {
+  //   return '1 day ago';
+  // } else if (diff/60/24 < 7) {
+  //   return '1 week ago';
+  // } else {
+  //   return 'too long ago';
+  // }
+  if (diff/60/24/7 > 1) {
+    let temp = Math.floor(diff/60/24/7);
+    return `${temp} week${temp>1?'s':''} ago`;
+  } else if (diff/60/24 > 1) {
+    let temp = Math.floor(diff/60/24);
+    return `${temp} day${temp>1?'s':''} ago`;
+  } else if (diff/60 > 1) {
+    let temp = Math.floor(diff/60);
+    return `${temp} hour${temp>1?'s':''} ago`;
+  } else if (diff > 15) {
+    return `30min ago`;
   } else {
-    return 'too long ago';
+    return `just now`;
   }
 };
 
