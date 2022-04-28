@@ -13,7 +13,7 @@ function MyProfile({callback}) {
   const [avatarSrc, setAvatarSrc] = useState(  // pass state hook between components
     myProfileData.avatarImageId ? `${ROOT}image?id=${myProfileData.avatarImageId}` : "./default_avatar.jpg"
   );
-  const [pageShow, setPageShow] = useState(0);  // 0: show disp, 1: show edit
+  const [pageShow, setPageShow] = useState(0);  // 0: disp, 1: edit
 
   useEffect(() => {
     refreshData();
