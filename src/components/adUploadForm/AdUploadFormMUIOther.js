@@ -38,7 +38,7 @@ export default function AdUploadFormMUIOther({
   useEffect(() => {
     const handleClickOutside = (e) => {
       if (ref.current && !ref.current.contains(e.target)) {
-        toSwitchAdType(0);
+        handleClose();
       }
     }
     document.addEventListener('mousedown', handleClickOutside);
@@ -121,10 +121,14 @@ export default function AdUploadFormMUIOther({
     }
   };
 
+  const handleClose = () => {
+    toSwitchAdType(0);
+  };
+
   return (
     <div className={'AdUploadFormMUI card'} ref={ref}>
 
-      <img className={'icon-close clickable'} src="./close_black_48dp.svg" alt=""/>
+      <img className={'icon-close clickable'} src="./close_black_48dp.svg" alt="" onClick={handleClose}/>
 
       <div className={'AdUploadFormMUI-row-title non-text'}>
         <p>New Advertisement</p>
