@@ -56,7 +56,7 @@ function MyProfile({callback}) {
       )}
       {pageShow === 1 && (
         <MyProfileEdit
-          prevProfile={myProfileData} avatarSrc={avatarSrc} setAvatarSrc={setAvatarSrc}
+          profilePrev={myProfileData} avatarSrc={avatarSrc} setAvatarSrc={setAvatarSrc}
           callback={callbackHandler}
         />
       )}

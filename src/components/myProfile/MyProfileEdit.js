@@ -15,22 +15,35 @@ const getYearOptions = () => {
   return ans;
 };
 
+let profileEdit = {};
+let avatarFileInputDom;
+
 function MyProfileEdit({
-  profilePrev={},
+  profilePrev,
   avatarSrc,
   setAvatarSrc,
   callback
                        }) {
   const ROOT = 'https://localhost:8000/';
   const editYearOptions = getYearOptions();
-  // const editMajorOptions = getMajorOptions();  // not in use
-
   const [avatarImageSrc, setAvatarImageSrc] = useState(avatarSrc);
-  let profileEdit = {...profilePrev};
-  let avatarFileInputDom;
+  const [valiUsername, setValiUsername] = useState({error: false, helperText: 'between 1 and 40 letters...'});
+  // let profileEdit = {...profilePrev};  // defined outside so that `valiUsername` won't force refresh component
+  // let avatarFileInputDom;
 
   const handleFormSubmit = () => {
     let temp = profileEdit;
+
+    if ((!profilePrev.username && !temp.username) || (temp.username && temp.username.length>40)) {
+      setValiUsername({...valiUsername, error: true});
+      return;
+    } else if (!temp.username) {
+      temp.username = profilePrev.username;
+    }
+
+    if (!temp.schoolYear) {
+      temp.schoolYear = profilePrev.schoolYear;
+    }
 
     dataFetch(
       `${ROOT}profile`,
@@ -46,7 +59,7 @@ function MyProfileEdit({
     );
 
     // todo image size check
-    if (avatarFileInputDom.files && avatarFileInputDom.files[0]) {  // run this `if` only when input img exists
+    if (avatarFileInputDom.files && avatarFileInputDom.files[0]) {  // run this only when uploaded new img
       let form = new FormData();
       form.append("file", avatarFileInputDom.files[0]);
       dataFetch(
@@ -64,6 +77,9 @@ function MyProfileEdit({
   };
 
   const handleFormChange = (identifier, value) => {
+    if (identifier==='username') {
+      setValiUsername({...valiUsername, error: false});
+    }
     profileEdit[identifier] = value;
   };
 
@@ -100,12 +116,13 @@ function MyProfileEdit({
         <div className={"profile-edit-row"}>
           <p>Username</p>
           <MUITextField
-            identifier={'username'} placeholder={profilePrev.username}
+            identifier={'username'} placeholder={profilePrev.username?profilePrev.username:''}
             styleBox={{width: '100%'}} onChange={handleFormChange}
+            error={valiUsername.error} helperText={valiUsername.error?valiUsername.helperText:''}
           />
         </div>
         <div className={"profile-edit-row"}>
-          <p>Year</p>
+          <p>Class</p>
           <MUITagSelect
             identifier={'schoolYear'} options={editYearOptions}
             style={{width: '100%'}}
@@ -113,7 +130,6 @@ function MyProfileEdit({
           />
         </div>
       </div>
-
 
       <div className="MyProfileEdit3">
         <MUIButton variant={1} size={'small'} label={'submit'} onClick={handleFormSubmit}/>

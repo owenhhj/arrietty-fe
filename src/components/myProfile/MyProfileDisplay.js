@@ -33,13 +33,13 @@ function MyProfileDisplay({
           <div>
             <p>
               <span className="field-name">Name:</span>
-              <span className={"field-value"}>{data.username?data.username:''}</span>
+              <span className={"field-value"}>{data.username ? data.username : ''}</span>
             </p>
           </div>
           <div>
             <p>
               <span className="field-name">Class:</span>
-              <span className={"field-value"}>{data.schoolYear?data.schoolYear:''}</span>
+              <span className={"field-value"}>{data.schoolYear ? `CO ${data.schoolYear}` : ''}</span>
             </p>
           </div>
         </div>
