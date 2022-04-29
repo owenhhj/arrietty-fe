@@ -5,8 +5,10 @@ import './SearchBar.css';
 import {useState, useEffect, useRef} from "react";
 import {dataFetch} from "../common/common";
 
+const fakeTagOptions = ['furniture', 'stationary', 'electronic', 'free'];
+
 function SearchBar({
-                     callback = null
+                     callback
                    }) {
   const ROOT = 'https://localhost:8000/';
   const ref = useRef();  // to bind text suggestion window
@@ -21,13 +23,14 @@ function SearchBar({
   const [keywordSuggest, setKeywordSuggest] = useState(['textbook1', 'textbook2', 'test']);
 
   useEffect(() => {
-    // setTagOptions(['furniture', 'stationary', 'electronic', 'free']);
+    // setTagOptions(fakeTagOptions);
     dataFetch(
       `${ROOT}otherTag?id=`,
       {method: 'GET'},
       res => {
         setTagOptions(res.map(ob => ob.name));
-      }
+      },
+      null
     );
   }, []);
 
@@ -43,10 +46,11 @@ function SearchBar({
     });
   }, [ref]);
 
-  // todo adTypeChange cannot refresh
+  // todo adTypeChange cannot refresh: component forced to reMount
   const handleAdTypeChange = () => {
-    setAdType(1 - adType);
-    // handleSubmit();
+    let newType = 1-adType;
+    setAdType(newType);
+    // handleSubmit(newType);
   };
 
   const handleKeywordSuggest = (i) => {
@@ -92,19 +96,19 @@ function SearchBar({
     }
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = (newType=null) => {
     setShowKeywordSuggest(false);
     let tags = [];
     filterTag.selectedOptions.forEach(idx => {
       tags.push(tagOptions[Number(idx)])
-    })
+    });
     callback({
       'adType': adTypes[adType],
       'keyword': keyword,
       'priceOrder': priceOrders[filterPrice.priceOrder],
       'minPrice': filterPrice.priceRange[0],
       'maxPrice': filterPrice.priceRange[1],
-      'tag': tags.join(',').length > 0 ? tags.join(',') : null
+      'tag': tags.length>0 ? tags.join(',') : null
     });
   };
 
