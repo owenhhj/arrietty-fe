@@ -1,5 +1,7 @@
 # Bugs to fix:
 
+searchBar adTypeChange 刷新 & adTypeChange-->filterUpdate
+
 getSiteInfo()+isAdmin ERROR!!!
 
     getSiteInfo包括username/year，不可能随edit更新
@@ -8,8 +10,6 @@ getSiteInfo()+isAdmin ERROR!!!
     刚登录时 等待setSiteInfo isAdmin
 
 其它页面的profile改成display only并从父级获取profile信息？避免多次fetch
-
-    重新放置newAd的位置避免在哪都能点
 
 新建ad后端报错：JVM版本重装
 
