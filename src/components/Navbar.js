@@ -104,13 +104,15 @@ function Navbar({isAdmin}) {
     }
   }
 
-
   return (
     <nav className="navbar">
       <div className="navbar-container">
         <Link to="/home" className="navbar-logo">
-          <img className="navbar-logo-icon" src="./logo-icon.svg" alt=""/>
+          {/*<img className="navbar-logo-icon" src="./logo-icon.svg" alt=""/>*/}
           &nbsp;  Arrietty
+        </Link>
+        <Link to="/home" className="navbar-logo navbar-logo-thumbnail">
+          &nbsp;  A
         </Link>
         <div className="menu-icon" onClick={handleClick}>
           <i className={click ? 'fas fa-times' : 'fas fa-bars'}/>
