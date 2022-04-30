@@ -20,7 +20,7 @@ function App() {
     <div className="App" id={"app-root"}>
 
       <BrowserRouter>
-        {/*<Navbar isAdmin={isAdmin}/>*/}
+        <Navbar isAdmin={isAdmin}/>
         <Routes>
           <Route path="/" element={<RouteHome/>} exact/>
           <Route path="/home" element={<RouteHome/>} exact/>

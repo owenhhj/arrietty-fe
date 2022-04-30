@@ -33,7 +33,7 @@ const fakeMyAds = [
 
 function MyPostsCanvas() {
   const ROOT = 'https://localhost:8000/';
-  const [myAds, setMyAds] = useState(fakeMyAds);
+  const [myAds, setMyAds] = useState([]);
   const [showEditAdForm, setShowEditAdForm] = useState(false);
   const [idToEdit, setIdToEdit] = useState(-1);
 

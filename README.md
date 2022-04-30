@@ -1,5 +1,9 @@
 # Bugs to fix:
 
+更换avatarstripe
+
+整个site在过窄的时候不显示
+
 searchBar adTypeChange 刷新 & adTypeChange-->filterUpdate
 
 getSiteInfo()+isAdmin ERROR!!!
