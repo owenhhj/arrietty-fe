@@ -1,3 +1,4 @@
+import './AdDisplayColumn.css';
 import {useEffect, useState} from "react";
 import SearchBar from "../searchBar/SearchBar";
 import AdDisplayCard from "./AdDisplayCard";
@@ -108,7 +109,7 @@ function AdDisplayColumn() {
   }
 
   return (
-    <div>
+    <div className={'AdDisplayColumn'}>
 
       <SearchBar callback={handleSearchBar}/>
 

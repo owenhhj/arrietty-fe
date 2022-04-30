@@ -1,5 +1,6 @@
 .MyProfile {
-    width: 16rem;
+    /*width: 16rem;*/
+    width: 100%;
 }
 
 .MyProfile * {

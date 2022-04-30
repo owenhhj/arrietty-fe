@@ -68,10 +68,57 @@ p {
     -ms-overflow-style: none;  /* IE 10+ */
 }
 
+/**/
+/**/
+/**/
 
+.home {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 
+/* width = 3cols + 2gaps */
+/* todo refactor variables */
+.home-cols-container {
+    width: 1400px;
+    height: auto;
+    display: grid;
+    grid-template-columns: repeat(3, auto);
+    grid-gap: 50px;
 
+}
 
+@media only screen and (max-width: 1400px) {
+    .home-cols-container {
+        background-color: blue;
+    }
+    .home-cols-container .home-col-bulletin {
+        grid-column: 1;
+    }
+}
 
+@media only screen and (max-width: 800px) {
+    .home-cols-container {
+        background-color: red;
+    }
+    .home-cols-container .home-col-bulletin {
+    }
+}
+
+.home-col-profile {
+    grid-column: 1;
+    width: 250px;
+}
+
+.home-col-ad {
+    grid-column: 2;
+    width: 700px;
+}
+
+.home-col-bulletin {
+    grid-column: 3;
+    width: 350px;
+}
 
 
