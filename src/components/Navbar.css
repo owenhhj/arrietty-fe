@@ -44,10 +44,15 @@
     }
     .navbar-logo-thumbnail {
         display: flex;
+        margin-left: 0;
+    }
+    .nav-menu {
+        margin-right: 0;
     }
 }
 
-@media (max-width: 700px) {
+/* according to Chrome inspector, iPhone SE's width is 375px */
+@media (max-width: 370px) {
     .navbar-logo-thumbnail {
         display: none;
     }
