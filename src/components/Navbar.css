@@ -47,6 +47,12 @@
     }
 }
 
+@media (max-width: 700px) {
+    .navbar-logo-thumbnail {
+        display: none;
+    }
+}
+
 .navbar-logo-icon {
     height: 3rem;
     width: 3rem;
