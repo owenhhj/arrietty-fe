@@ -1,7 +1,6 @@
 import logo from './logo.svg';
 import './App.css';
 import './components/common/common.css';
-import {getSiteInfo} from "./components/common/SiteInfoProvider";
 import {BrowserRouter, Route, Routes} from "react-router-dom";
 import Navbar from "./components/Navbar";
 import RouteHome from "./components/RouteHome";
@@ -11,9 +10,25 @@ import RouteMyPosts from "./components/RouteMyPosts";
 import RouteNotification from "./components/RouteNotification";
 import Modal from "react-modal";
 import {useEffect, useState} from "react";
+import {dataFetch} from "./components/common/common";
 
 function App() {
-  const [isAdmin, setIsAdmin] = useState(false);  // fixme
+  const ROOT = 'https://localhost:8000/';
+  const [isAdmin, setIsAdmin] = useState(false);
+
+  useEffect(() => {
+    dataFetch(
+      `${ROOT}profile?userId=`,
+      {method:"GET"},
+      (res) => {
+        if (res.isAdmin) {
+          setIsAdmin(true);
+        }
+      },
+      null
+    );
+  }, []);
+
   Modal.setAppElement('#root');
 
   return (
