@@ -9,6 +9,9 @@ const fakeBulletin = [
   },
   {
     id: 22, title: 'Welcome to Arrietty-2!', content: 'Make your sells at homeef Make your sells at homeef Make your sells at homeef Make your sells at homeef Make your sells at homeef ewa aewfawef awef e faaefw eweaf!', createTime: 'Apr 5, 2022, 12:00:00 PM'
+  },
+  {
+    id: 33, title: 'Welcome to Arrietty-2!', content: 'Make your sells at homeef Make your sells at homeef Make your sells at homeef Make your sells at homeef Make your sells at homeef ewa aewfawef awef e faaefw eweaf!', createTime: 'Apr 5, 2022, 12:00:00 PM'
   }
 ];
 
@@ -58,18 +61,21 @@ export default function Bulletin() {
         <p>Bulletin</p>
       </div>
 
-      {bullData.map(bull => {
-        return (
-          <div className={'bulletin-entry clickable'} key={bull.id} itemID={bull.id} onClick={()=>{handleShowBullDetail(bull.id)}}>
-            <div className={'bulletin-entry-title'}>
-              <p>· {bull.title}</p>
+      <div className={'bulletin-entries'}>
+        {bullData.map(bull => {
+          return (
+            <div className={'bulletin-entry clickable'} key={bull.id} itemID={bull.id} onClick={()=>{handleShowBullDetail(bull.id)}}>
+              <div className={'bulletin-entry-title'}>
+                <p>· {bull.title}</p>
+              </div>
+              <div className={'bulletin-entry-content'}>
+                <p>{bull.content}</p>
+              </div>
             </div>
-            <div className={'bulletin-entry-content'}>
-              <p>{bull.content}</p>
-            </div>
-          </div>
-        );
-      })}
+          );
+        })}
+      </div>
+
 
       <Modal isOpen={showBullDetail!==-1} style={customStyles}>
         <BulletinDetailCard bull={bullData.filter(bull=>bull.id===showBullDetail)[0]} callback={handleClose}/>

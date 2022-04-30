@@ -1,0 +1,52 @@
+
+.myposts {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.myposts-grid-container {
+    height: auto;
+    margin-top: var(--def-gap);
+    display: grid;
+    grid-template-columns: var(--def-width-profile) var(--def-width-myposts);
+    grid-gap: var(--def-gap);
+}
+
+@media (max-width: 1500px) {
+    .myposts-grid-container {
+        grid-template-columns: var(--def-width-profile) calc(min(var(--def-width-myposts), var(--def-width-shrinked-page) - var(--def-gap) - var(--def-width-profile)));
+        grid-template-rows: auto;
+    }
+}
+
+@media (max-width: 770px) {
+    .myposts-grid-container {
+        grid-template-columns: var(--def-width-shrinked-page);
+        grid-template-rows: auto auto;
+    }
+    .myposts-grid-container .myposts-grid-profile {
+        grid-column: 1;
+        grid-row: 1;
+    }
+    .myposts-grid-container .myposts-grid-canvas {
+        grid-column: 1;
+        grid-row: 2;
+    }
+}
+
+.myposts-grid-profile {
+    grid-column: 1;
+    width: 100%;
+}
+
+.myposts-grid-canvas {
+    grid-column: 2;
+    width: 100%;
+}
+
+
+
+
+
+

@@ -5,6 +5,7 @@ import {showGeneralNoti} from "../common/GeneralNotiProvider";
 import {useEffect, useState} from "react";
 import Modal from "react-modal";
 import MyPostsEditFormMUI from "./MyPostsEditFormMUI";
+import RoutePageTitleCard from "../common/RoutePageTitleCard";
 
 const customStyles = {
   content: {
@@ -24,6 +25,11 @@ const customStyles = {
 const fakeMyAds = [
   {id: 666, adTitle:'title', isTextbook: true, tagId: 12, imageIds:'', price:444, comment: 'comment', numberOfTaps: 3, createTime:'Apr 6'},
   {id: 777, adTitle:'title', isTextbook: false, tagId: 12, imageIds:'', price:444, comment: 'comment', numberOfTaps: 3, createTime:'Apr 6'},
+  {id: 888, adTitle:'title', isTextbook: false, tagId: 12, imageIds:'', price:444, comment: 'comment', numberOfTaps: 3, createTime:'Apr 6'},
+  {id: 999, adTitle:'title', isTextbook: false, tagId: 12, imageIds:'', price:444, comment: 'comment', numberOfTaps: 3, createTime:'Apr 6'},
+  {id: 111, adTitle:'title', isTextbook: false, tagId: 12, imageIds:'', price:444, comment: 'comment', numberOfTaps: 3, createTime:'Apr 6'},
+  {id: 222, adTitle:'title', isTextbook: false, tagId: 12, imageIds:'', price:444, comment: 'comment', numberOfTaps: 3, createTime:'Apr 6'},
+  {id: 333, adTitle:'title', isTextbook: false, tagId: 12, imageIds:'', price:444, comment: 'comment', numberOfTaps: 3, createTime:'Apr 6'},
 ];
 
 function MyPostsCanvas() {
@@ -118,34 +124,38 @@ function MyPostsCanvas() {
   };
 
   return (
-    <div className={'MyPostsCanvas card'}>
-      <div className={'MyPostsCanvas-children'}>
-        <div className={'row-title-card non-text'}>
-          <p>My Advertisements</p>
-        </div>
+    <>
+      <RoutePageTitleCard pageTitle={'My Advertisements'}/>
+      <div className={'MyPostsCanvas card'}>
+        <div className={'MyPostsCanvas-children'}>
+          {/*<div className={'row-title-card non-text'}>*/}
+          {/*  <p>My Advertisements</p>*/}
+          {/*</div>*/}
 
-        <div className={'row-MyPostsListing'}>
-          <div className={'MyPostsListingContainer'}>
-            {myAds.map(ad => {
-              return (
-                <MyPostsCard
-                  key={ad.id} adData={ad}
-                  callbackEdit={handleCallbackEdit} callbackDelete={handleCallbackDelete}
-                />
-              );
-            })}
+          <div className={'row-MyPostsListing'}>
+            <div className={'MyPostsListingContainer'}>
+              {myAds.map(ad => {
+                return (
+                  <MyPostsCard
+                    key={ad.id} adData={ad}
+                    callbackEdit={handleCallbackEdit} callbackDelete={handleCallbackDelete}
+                  />
+                );
+              })}
+            </div>
           </div>
+
+          <Modal isOpen={showEditAdForm} style={customStyles}>
+            <MyPostsEditFormMUI
+              adDataOriginal={myAds.filter(ad=>ad.id===idToEdit)[0]}
+              toClose={()=>setShowEditAdForm(false)} toSubmit={handleEditSubmit}
+            />
+          </Modal>
         </div>
 
-        <Modal isOpen={showEditAdForm} style={customStyles}>
-          <MyPostsEditFormMUI
-            adDataOriginal={myAds.filter(ad=>ad.id===idToEdit)[0]}
-            toClose={()=>setShowEditAdForm(false)} toSubmit={handleEditSubmit}
-          />
-        </Modal>
       </div>
+    </>
 
-    </div>
   );
 }
 

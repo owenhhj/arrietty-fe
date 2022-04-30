@@ -1,3 +1,4 @@
+import './AdDisplayColumn.css';
 import {useEffect, useState} from "react";
 import SearchBar from "../searchBar/SearchBar";
 import AdDisplayCard from "./AdDisplayCard";
@@ -56,7 +57,7 @@ function AdDisplayColumn() {
     // setIsLoading(false);
     let temp = {...e, pageNum: 0};
     setQueryBody(temp);
-    console.log('user search with:', temp);
+    // console.log('user search with:', temp);
     dataFetch(
       `${ROOT}search`,
       {
@@ -108,7 +109,7 @@ function AdDisplayColumn() {
   }
 
   return (
-    <div>
+    <div className={'AdDisplayColumn'}>
 
       <SearchBar callback={handleSearchBar}/>
 
@@ -124,6 +125,7 @@ function AdDisplayColumn() {
       {/*<AdDisplayCard/>*/}
 
       <div style={{width: 'auto', height:'200px'}}>
+        {/* not in use, placeholder only */}
         {/*{isLoading!==0 && <div><p>{loadingMsg[isLoading]}</p></div>}*/}
       </div>
     </div>

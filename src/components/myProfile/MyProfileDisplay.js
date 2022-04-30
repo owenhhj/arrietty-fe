@@ -20,7 +20,7 @@ function MyProfileDisplay({
     <div className="MyProfileDisplay">
       <div className="MyProfileDisplay1">
         <div className="divAvatarStripe">
-          <img className="avatarStripe" src={`./avatar_stripe.jpg`} alt=""/>
+          <img className="avatarStripe" src={`./avatar_stripe.png`} alt=""/>
         </div>
         <div className="divAvatar">
           <img className={'avatar'} src={avatarSrc} alt=""/>

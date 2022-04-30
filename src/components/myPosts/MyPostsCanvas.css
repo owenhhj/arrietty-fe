@@ -1,7 +1,8 @@
 
 .MyPostsCanvas {
-    width: 1000px;
-    height: 700px;
+    width: 100%;
+    height: 500px;
+    margin-top: 20px;
 
     display: flex;
     flex-direction: column;

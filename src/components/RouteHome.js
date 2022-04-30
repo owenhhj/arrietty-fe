@@ -1,16 +1,25 @@
 import MyProfile from "./myProfile/MyProfile";
 import AdDisplayColumn from "./adDisplay/AdDisplayColumn";
-import "./common/common.css";
 import "./RouteHome.css";
 import Bulletin from "./Bulletin";
 
-function RouteHome(){
+function RouteHome() {
 
   return (
-    <div className={"home-page page"}>
-      <MyProfile/>
-      <AdDisplayColumn/>
-      <Bulletin/>
+    <div className={'home'}>
+
+      <div className={'home-grid-container'}>
+        <div className={'home-grid-profile'}>
+          <MyProfile/>
+        </div>
+        <div className={'home-grid-ad'}>
+          <AdDisplayColumn/>
+        </div>
+        <div className={'home-grid-bulletin'}>
+          <Bulletin/>
+        </div>
+      </div>
+
     </div>
   );
 }
