@@ -13,7 +13,7 @@ import Modal from "react-modal";
 import {useEffect, useState} from "react";
 
 function App() {
-  const [isAdmin, setIsAdmin] = useState(getSiteInfo().isAdmin);  // fixme
+  const [isAdmin, setIsAdmin] = useState(false);  // fixme
   Modal.setAppElement('#root');
 
   return (

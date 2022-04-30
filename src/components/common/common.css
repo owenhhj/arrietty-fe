@@ -77,11 +77,14 @@ p {
 /* not be used in @media conditions */
 :root {
     --def-gap: 30px;
+    --def-width-shrinked-page: 90vw;
+
     --def-width-profile: 250px;
     --def-width-ad: 700px;
     --def-width-bulletin: 350px;
     --def-height-row1: 300px;
-    --def-width-shrinked-page: 90vw;
+
+    --def-width-myposts: 1000px;
 }
 
 

@@ -24,11 +24,16 @@ const customStyles = {
 const fakeMyAds = [
   {id: 666, adTitle:'title', isTextbook: true, tagId: 12, imageIds:'', price:444, comment: 'comment', numberOfTaps: 3, createTime:'Apr 6'},
   {id: 777, adTitle:'title', isTextbook: false, tagId: 12, imageIds:'', price:444, comment: 'comment', numberOfTaps: 3, createTime:'Apr 6'},
+  {id: 888, adTitle:'title', isTextbook: false, tagId: 12, imageIds:'', price:444, comment: 'comment', numberOfTaps: 3, createTime:'Apr 6'},
+  {id: 999, adTitle:'title', isTextbook: false, tagId: 12, imageIds:'', price:444, comment: 'comment', numberOfTaps: 3, createTime:'Apr 6'},
+  {id: 111, adTitle:'title', isTextbook: false, tagId: 12, imageIds:'', price:444, comment: 'comment', numberOfTaps: 3, createTime:'Apr 6'},
+  {id: 222, adTitle:'title', isTextbook: false, tagId: 12, imageIds:'', price:444, comment: 'comment', numberOfTaps: 3, createTime:'Apr 6'},
+  {id: 333, adTitle:'title', isTextbook: false, tagId: 12, imageIds:'', price:444, comment: 'comment', numberOfTaps: 3, createTime:'Apr 6'},
 ];
 
 function MyPostsCanvas() {
   const ROOT = 'https://localhost:8000/';
-  const [myAds, setMyAds] = useState([]);
+  const [myAds, setMyAds] = useState(fakeMyAds);
   const [showEditAdForm, setShowEditAdForm] = useState(false);
   const [idToEdit, setIdToEdit] = useState(-1);
 
