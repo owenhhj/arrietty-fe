@@ -15,7 +15,6 @@
 
 @media (max-width: 1400px) {
     .home-grid-container {
-        background-color: lightcoral;
         grid-template-columns: var(--def-width-profile) calc(min(770px, var(--def-width-shrinked-page) - var(--def-gap) - var(--def-width-profile)));
         grid-template-rows: var(--def-height-row1) auto;
     }
@@ -36,7 +35,6 @@
 
 @media (max-width: 770px) {
     .home-grid-container {
-        background-color: lightsteelblue;
         grid-template-columns: var(--def-width-shrinked-page);
         grid-template-rows: auto auto auto;
     }

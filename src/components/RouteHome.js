@@ -6,12 +6,6 @@ import Bulletin from "./Bulletin";
 function RouteHome() {
 
   return (
-    // <div className={"home-page page"}>
-    //   <MyProfile/>
-    //   <AdDisplayColumn/>
-    //   <Bulletin/>
-    // </div>
-
     <div className={'home'}>
 
       <div className={'home-grid-container'}>

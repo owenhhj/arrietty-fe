@@ -15,7 +15,6 @@
 
 @media (max-width: 1500px) {
     .myposts-grid-container {
-        background-color: lightcoral;
         grid-template-columns: var(--def-width-profile) calc(min(var(--def-width-myposts), var(--def-width-shrinked-page) - var(--def-gap) - var(--def-width-profile)));
         grid-template-rows: auto;
     }
@@ -23,7 +22,6 @@
 
 @media (max-width: 770px) {
     .myposts-grid-container {
-        background-color: lightsteelblue;
         grid-template-columns: var(--def-width-shrinked-page);
         grid-template-rows: auto auto;
     }

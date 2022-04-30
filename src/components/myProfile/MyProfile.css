@@ -19,14 +19,18 @@
 .divAvatarStripe {
     height: 3.5rem;
     width: 100%;
+    overflow: hidden;
 }
 
 .avatarStripe {
-    height: 100%;
-    width: 100%;
-    object-fit: cover;
+    /*height: 100%;*/
+    /*width: 100%;*/
+    /*object-fit: cover;*/
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
+    flex-shrink: 0;
+    min-width: 100%;
+    min-height: 100%;
 }
 
 .divAvatar {
