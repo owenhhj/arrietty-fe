@@ -1,5 +1,4 @@
 import './MyProfile.css'
-import '../common/common.css'
 import MyProfileDisplay from "./MyProfileDisplay";
 import MyProfileEdit from "./MyProfileEdit";
 import {showGeneralNoti} from "../common/GeneralNotiProvider";

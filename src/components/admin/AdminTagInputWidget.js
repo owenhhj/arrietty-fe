@@ -1,6 +1,5 @@
 import React, {useState} from "react";
 import './AdminTagInputWidget.css';
-import '../common/common.css'
 import TabContent from "./TabContent";
 
 

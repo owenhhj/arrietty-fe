@@ -1,5 +1,6 @@
 import logo from './logo.svg';
 import './App.css';
+import './components/common/common.css';
 import {getSiteInfo} from "./components/common/SiteInfoProvider";
 import {BrowserRouter, Route, Routes} from "react-router-dom";
 import Navbar from "./components/Navbar";
