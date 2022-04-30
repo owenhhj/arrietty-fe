@@ -3,6 +3,5 @@
   display: flex;
   flex-direction: column;
   text-align: center;
-  align-items: center;    /*在副轴方向上居中*/
-
+  align-items: center;
 }

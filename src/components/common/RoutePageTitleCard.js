@@ -5,7 +5,7 @@ function RoutePageTitleCard({
                             }) {
   const styleDiv = {
     width: '100%',
-    height: '6em',
+    height: '5.5rem',
     backgroundColor: '#F3F3F3',
     display: 'flex',
     alignItems: 'center'
