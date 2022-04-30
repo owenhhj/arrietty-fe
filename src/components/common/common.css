@@ -80,45 +80,69 @@ p {
 
 /* width = 3cols + 2gaps */
 /* todo refactor variables */
-.home-cols-container {
-    width: 1400px;
+.home-grid-container {
     height: auto;
+    margin-top: 30px;
     display: grid;
-    grid-template-columns: repeat(3, auto);
-    grid-gap: 50px;
+    grid-template-columns: 250px 700px 350px;
+    grid-gap: 30px;
 
 }
 
-@media only screen and (max-width: 1400px) {
-    .home-cols-container {
-        background-color: blue;
+@media (max-width: 1400px) {
+    .home-grid-container {
+        background-color: lightcoral;
+        grid-template-columns: 250px calc(min(770px, 90vw - 30px - 250px));
+        grid-template-rows: 300px auto;
     }
-    .home-cols-container .home-col-bulletin {
+    .home-grid-container .home-grid-profile {
+        grid-row: 1/3;
+    }
+    .home-grid-container .home-grid-bulletin {
+        grid-column: 2;
+        grid-row: 1/2;
+    }
+    .home-grid-container .home-grid-bulletin .bulletin {
+        height: 100%;
+    }
+    .home-grid-container .home-grid-ad {
+        grid-row: 2/3;
+    }
+}
+
+@media (max-width: 770px) {
+    .home-grid-container {
+        background-color: lightsteelblue;
+        grid-template-columns: 90vw;
+        grid-template-rows: auto auto auto;
+    }
+    .home-grid-container .home-grid-profile {
         grid-column: 1;
+        grid-row: 1;
+    }
+    .home-grid-container .home-grid-bulletin {
+        grid-column: 1;
+        grid-row: 2;
+    }
+    .home-grid-container .home-grid-ad {
+        grid-column: 1;
+        grid-row: 3;
     }
 }
 
-@media only screen and (max-width: 800px) {
-    .home-cols-container {
-        background-color: red;
-    }
-    .home-cols-container .home-col-bulletin {
-    }
-}
-
-.home-col-profile {
+.home-grid-profile {
     grid-column: 1;
-    width: 250px;
+    width: 100%;
 }
 
-.home-col-ad {
+.home-grid-ad {
     grid-column: 2;
-    width: 700px;
+    width: 100%;
 }
 
-.home-col-bulletin {
+.home-grid-bulletin {
     grid-column: 3;
-    width: 350px;
+    width: 100%;
 }
 
 

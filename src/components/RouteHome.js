@@ -17,14 +17,14 @@ function RouteHome(){
       <div className={'home'}>
 
 
-        <div className={'home-cols-container'}>
-          <div className={'home-col-profile'}>
+        <div className={'home-grid-container'}>
+          <div className={'home-grid-profile'}>
             <MyProfile/>
           </div>
-          <div className={'home-col-ad'}>
+          <div className={'home-grid-ad'}>
             <AdDisplayColumn/>
           </div>
-          <div className={'home-col-bulletin'}>
+          <div className={'home-grid-bulletin'}>
             <Bulletin/>
           </div>
         </div>
