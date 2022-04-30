@@ -2,7 +2,7 @@
 /* logic: both use flex & justify-content */
 
 .AdDisplayCard {
-    width: 700px;
+    width: 100%;
     height: 175px;
 
     background-color: #FFFFFF;
