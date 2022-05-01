@@ -9,7 +9,7 @@ function AdUploadFormDragDrop({
   imageIdsOriginal='',
   onChange  // to pass files to parent onChange
                   }) {
-  const ROOT = 'https://localhost:8000/';
+  const ROOT = process.env.REACT_APP_URL_ROOT;
   const [picURLs, setPicURLs] = useState([]);
   // let pic = [];  // current pic being added
 

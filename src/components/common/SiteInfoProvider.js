@@ -18,7 +18,7 @@ const defaultSiteInfo = {
 
 // `children` --> all components wrapped in this provider, in `index.js`
 function SiteInfoProvider({children}) {
-  const ROOT = 'https://localhost:8000/';
+  const ROOT = process.env.REACT_APP_URL_ROOT;
   const [siteInfo, setSiteInfo] = useState(defaultSiteInfo);
 
   useEffect(() => {

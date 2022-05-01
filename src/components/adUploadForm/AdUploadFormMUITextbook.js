@@ -92,7 +92,7 @@ export default function AdUploadFormMUITextbook({
   toSwitchAdType,
   toSubmit
                                         }) {
-  const ROOT = 'https://localhost:8000/';
+  const ROOT = process.env.REACT_APP_URL_ROOT;
   const ref = useRef(null);
   const [textbookData, setTextbookData] = useState([]);
   const [courseData, setCourseData] = useState([]);

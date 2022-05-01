@@ -18,7 +18,7 @@ const fakeContact = {username:'Nameee eeeaw sfee aew faewf eawf', netId:'abcd123
 function AdDisplayCard({
   adData=fakeAd,  // one piece of adData <--> one advertisement
                        }) {
-  const ROOT = 'https://localhost:8000/';
+  const ROOT = process.env.REACT_APP_URL_ROOT;
   const MY_NETID = getSiteInfo().netId;
   // eslint-disable-next-line no-unused-vars
   const [isMine, setIsMine] = useState(!!adData.userNetId && adData.userNetId===MY_NETID);

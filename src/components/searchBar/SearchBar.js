@@ -10,7 +10,7 @@ const fakeTagOptions = ['furniture', 'stationary', 'electronic', 'free'];
 function SearchBar({
                      callback
                    }) {
-  const ROOT = 'https://localhost:8000/';
+  const ROOT = process.env.REACT_APP_URL_ROOT;
   const ref = useRef();  // to bind text suggestion window
   const priceOrders = [null, 'asc', 'desc'];
   let filterPrice = {'type': 'price', 'priceOrder': 0, 'priceRange': [null, null]};

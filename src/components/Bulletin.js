@@ -16,7 +16,7 @@ const fakeBulletin = [
 ];
 
 export default function Bulletin() {
-  const ROOT = 'https://localhost:8000/';
+  const ROOT = process.env.REACT_APP_URL_ROOT;
   const [bullData, setBullData] = useState(fakeBulletin);
   const [showBullDetail, setShowBullDetail] = useState(-1);
 

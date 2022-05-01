@@ -5,7 +5,7 @@ import AdDisplayCard from "./AdDisplayCard";
 import {dataFetch} from "../common/common";
 
 function AdDisplayColumn() {
-  const ROOT = 'https://localhost:8000/';
+  const ROOT = process.env.REACT_APP_URL_ROOT;
   const [adData, setAdData] = useState([]);  // adListing data
   const [isLoading, setIsLoading] = useState(0);  // index --> loadingMsg[]
   const [queryBody, setQueryBody] = useState({  // save previous query for loadMore

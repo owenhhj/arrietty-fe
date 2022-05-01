@@ -18,7 +18,7 @@ const fakeBulletin = [
 ];
 
 export default function AdminBulletinManageWidget() {
-  const ROOT = 'https://localhost:8000/';
+  const ROOT = process.env.REACT_APP_URL_ROOT;
   const [isFormOpen, setIsFormOpen] = useState(false);
   const [formData, setFormData] = useState({id: null, title: null, content: null});
   const [bulletinList, setBulletinList] = useState(fakeBulletin);

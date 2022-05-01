@@ -9,7 +9,7 @@ function AdUploadForm({
   adTypes=['', 'textbook', 'other'],
   callback
                                  }) {
-  const ROOT = 'https://localhost:8000/';
+  const ROOT = process.env.REACT_APP_URL_ROOT;
   const [adType, setAdType] = useState(1);
 
   const dispatch = showGeneralNoti();

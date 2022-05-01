@@ -24,7 +24,7 @@ const customStyles = {
 };
 
 function MyProfile() {
-  const ROOT = 'https://localhost:8000/';
+  const ROOT = process.env.REACT_APP_URL_ROOT;
   const [myProfileData, setMyProfileData] = useState(getSiteInfo());
   const [avatarSrc, setAvatarSrc] = useState(  // pass state hook between components
     myProfileData.avatarImageId ? `${ROOT}image?id=${myProfileData.avatarImageId}` : "./default_avatar.jpg"

@@ -5,7 +5,7 @@ import {useEffect, useState} from "react";
 import {dataFetch} from "../common/common";
 
 function FavoriteColumn() {
-  const ROOT = 'https://localhost:8000/';
+  const ROOT = process.env.REACT_APP_URL_ROOT;
   const pageTitle = 'Favorite';
   const [favs, setFavs] = useState([]);
 

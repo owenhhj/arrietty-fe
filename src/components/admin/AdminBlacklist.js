@@ -10,7 +10,7 @@ const fakeUsers = ['hh1234', 'yz5678', 'hh1234', 'yz5678', 'hh1234',
   'yz5678'];
 
 export default function AdminBlacklist() {
-  const ROOT = 'https://localhost:8000/';
+  const ROOT = process.env.REACT_APP_URL_ROOT;
   const [netIds, setNetIds] = useState(fakeUsers);
   const [netIdInput, setNetIdInput] = useState('');
 

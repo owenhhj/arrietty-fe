@@ -12,7 +12,7 @@ const pathnameMapper = {
 };
 
 function Navbar({isAdmin}) {
-  const ROOT = 'https://localhost:8000/';
+  const ROOT = process.env.REACT_APP_URL_ROOT;
   const INTERVAL = 30*1000;  // seconds*1000, default 30
   const [click, setClick] = useState(false);
   const [activeTab, setActiveTab] = useState("home");

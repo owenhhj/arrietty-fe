@@ -5,7 +5,7 @@ function MyPostsCard({
   callbackEdit=null,
   callbackDelete=null
                      }) {
-  const ROOT = 'https://localhost:8000/';
+  const ROOT = process.env.REACT_APP_URL_ROOT;
 
   const handleEdit = () => {
     callbackEdit(adData.id);

@@ -24,7 +24,7 @@ function MyProfileEdit({
   setAvatarSrc,
   callback
                        }) {
-  const ROOT = 'https://localhost:8000/';
+  const ROOT = process.env.REACT_APP_URL_ROOT;
   const editYearOptions = getYearOptions();
   const [avatarImageSrc, setAvatarImageSrc] = useState(avatarSrc);
   const [valiUsername, setValiUsername] = useState({error: false, helperText: 'between 1 and 40 letters...'});
