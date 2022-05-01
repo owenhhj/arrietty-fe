@@ -10,13 +10,16 @@ import {getSiteInfo} from "../common/SiteInfoProvider";
 const fakeAd = {
   id: 1, adType: 'textbook', adTitle: 'This is a fake title for an ad but this is very long', price: '1233425',
   comment: 'This is a fake comment for and ad but this is very long very long very long very long very long very long very long very long very long very long very long very long very long very long very long very long very long very long very long very long very long',
-  createTime: "Apr 4, 2022, 12:00:00 AM", isMarked: true, numberOfTaps: 60, imageIds: '3,6,9'
-}
+  createTime: "Apr 4, 2022, 12:00:00 AM", isMarked: true, numberOfTaps: 60, imageIds: '3,6,9',
+  // userNetId: 'sh2013'
+};
 
-const fakeContact = {username:'Nameee eeeaw sfee aew faewf eawf', netId:'abcd12345', avatarImageId:'./default_avatar.jpg'};
+const fakeContact = {
+  username:'Nameee eeeaw sfee aew faewf eawf', netId:'awef1234', avatarImageId:'./default_avatar.jpg'
+};
 
 function AdDisplayCard({
-  adData=fakeAd,  // one piece of adData <--> one advertisement
+  adData,  // one piece of adData <--> one advertisement
                        }) {
   const ROOT = process.env.REACT_APP_URL_ROOT;
   const MARK = process.env.REACT_APP_API_MARK;
@@ -24,7 +27,7 @@ function AdDisplayCard({
   const MY_NETID = getSiteInfo().netId;
   // eslint-disable-next-line no-unused-vars
   const [isMine, setIsMine] = useState(!!adData.userNetId && adData.userNetId===MY_NETID);
-  const [contactInfo, setContactInfo] = useState(fakeContact);
+  const [contactInfo, setContactInfo] = useState({});
   const [tapped, setTapped] = useState(!!adData.userNetId);  // true if field exists
   const [numOfTaps, setNumOfTaps] = useState(0);
   const [marked, setMarked] = useState(!!adData.isMarked);
@@ -39,7 +42,6 @@ function AdDisplayCard({
         netId: adData.userNetId,
         avatarImageId: adData.userAvatarImageId
       };
-      // console.log('AdDisplayCard onMount set contactInfo to:', temp);
       setContactInfo(temp);
     }
     if (!!adData.numberOfTaps && Number(adData.numberOfTaps)>=0) {
@@ -119,7 +121,7 @@ function AdDisplayCard({
   }
 
   const handleDetailCard = () => {
-    // the only action now is to close the card
+    // the only action for now is to close the card
     setShowDetailCard(false);
   }
 
