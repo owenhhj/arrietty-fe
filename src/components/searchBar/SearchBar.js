@@ -118,7 +118,7 @@ function SearchBar({
       <div className={'row-input-container'}>
         <div className={'row-input'}>
 
-          <div className={'choose-tag clickable'} onClick={handleAdTypeChange}>
+          <div className={'choose-tag clickable-btn'} onClick={handleAdTypeChange}>
             <div className={'choose-tag-p-container'}>
               <p>{adTypes[adType]}</p>
             </div>
@@ -136,7 +136,7 @@ function SearchBar({
               <SearchBarKeywordSuggest suggestions={keywordSuggest} callback={handleKeywordSuggest}/>
             )}
           </div>
-          <div className={'search-button clickable'} onClick={handleSubmit}>
+          <div className={'search-button clickable-icon'} onClick={handleSubmit}>
             <img src="./search_black_48dp.svg" alt=""/>
           </div>
         </div>

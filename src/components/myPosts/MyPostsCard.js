@@ -31,10 +31,10 @@ function MyPostsCard({
           <hr/>
           <div className={'row-buttons'}>
             <div className={'btn-edit'}>
-              <p className={'clickable'} onClick={handleEdit}>edit</p>
+              <p className={'clickable-btn'} onClick={handleEdit}>edit</p>
             </div>
             <div className={'btn-delete'}>
-              <p className={'clickable'} onClick={handleDelete}>delete</p>
+              <p className={'clickable-btn'} onClick={handleDelete}>delete</p>
             </div>
           </div>
         </div>

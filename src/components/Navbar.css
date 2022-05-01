@@ -42,13 +42,18 @@
     .navbar-logo {
         display: none;
     }
-    .navbar-logo-thumbnail {
-        display: flex;
-        margin-left: 0;
+    /* whether or not site logo is reduced to thumbnail */
+    /*.navbar-logo-thumbnail {*/
+    /*    display: flex;*/
+    /*    margin-left: 0;*/
+    /*}*/
+    .navbar-container {
+        justify-content: flex-end;
     }
-    .nav-menu {
-        margin-right: 0;
+    .navbar-container .nav-menu {
+        /*margin-right: 0;*/
     }
+    /* whether or not site logo is reduced to thumbnail */
 }
 
 /* according to Chrome inspector, iPhone SE's width is 375px */

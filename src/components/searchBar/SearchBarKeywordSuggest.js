@@ -27,7 +27,7 @@ function SuggestionEntry({
   }
 
   return (
-    <div className={'SuggestionEntry clickable'} onClick={handleChoose}>
+    <div className={'SuggestionEntry clickable-btn'} onClick={handleChoose}>
       <p>{suggestion}</p>
     </div>
   );

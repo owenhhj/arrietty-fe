@@ -64,7 +64,7 @@ export default function Bulletin() {
       <div className={'bulletin-entries'}>
         {bullData.map(bull => {
           return (
-            <div className={'bulletin-entry clickable'} key={bull.id} itemID={bull.id} onClick={()=>{handleShowBullDetail(bull.id)}}>
+            <div className={'bulletin-entry clickable-btn'} key={bull.id} itemID={bull.id} onClick={()=>{handleShowBullDetail(bull.id)}}>
               <div className={'bulletin-entry-title'}>
                 <p>· {bull.title}</p>
               </div>

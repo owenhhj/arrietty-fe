@@ -55,22 +55,32 @@ function MyProfile() {
       {method:"GET"},
       (res) => {
         setMyProfileData(res);
-        setAvatarSrc(res.avatarImageId ? `${ROOT}image?id=${res.avatarImageId}` : "./default_avatar.jpg");
+        // setAvatarSrc(res.avatarImageId ? `${ROOT}image?id=${res.avatarImageId}` : "./default_avatar.jpg");
       },
       null
+    );
+    dataFetch(
+      `${ROOT}avatar`,
+      {method: 'GET'},
+      res => {
+        setAvatarSrc(res);
+      },
+      err => {
+        setAvatarSrc('./default_avatar.jpg');
+      }
     );
   };
 
   // handle data from children: disp & edit
   function callbackHandler(data) {
     if (data.action === "update") {
-      setMyProfileData(data.body);
+      // setMyProfileData(data.body);
+      refreshData();
       setPageShow(0);
       handleShowNoti('Profile edit success', true);
     } else if (data.action === "switch") {
       setPageShow(1-pageShow)
     } else if (data.action === "addNewAd") {
-      // callback(true);
       setShowNewAdForm(true);
     }
   }

@@ -4,12 +4,14 @@ import {dataFetch} from "./common";
 ////////// HOW TO USE
 // import {getSiteInfo};
 // const MY_NETID = getSiteInfo().netId;
+////////// Caution: if called somewhere before `SiteInfoProvider` is rendered, may not get real data...
+////////// pending improvements
 
 const SiteInfoContext = createContext();  // `getSiteInfo` to get the object
 const SetSiteInfoContext = createContext();  // `setSiteInfo` to set the object
 
 const defaultSiteInfo = {
-  isAdmin: true,  // fixme
+  isAdmin: false,
   netId: 'sh2013',
   username: 'Qilin',
 };
@@ -20,12 +22,11 @@ function SiteInfoProvider({children}) {
   const [siteInfo, setSiteInfo] = useState(defaultSiteInfo);
 
   useEffect(() => {
-    console.log('SiteInfoProvider useEffect fetching once');
     dataFetch(
       ROOT+"profile?userId=",
       {method: 'GET'},
       (res) => {
-        console.log(res)
+        // console.log('SiteInfoProvider fetched:', res);
         setSiteInfo({...siteInfo, ...res});
       },
       null

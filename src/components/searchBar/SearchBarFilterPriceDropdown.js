@@ -47,7 +47,7 @@ function SearchBarFilterPriceDropdown({
 
   return (
     <div className={'SearchBarFilterDropdown dropdown-price'}>
-      <div className={'row-order clickable'} onClick={handleOrderChange}>
+      <div className={'row-order clickable-btn'} onClick={handleOrderChange}>
         <p>Order: {priceOrders[priceOrder]}</p>
         {priceOrder!==0 && <img src="./sort_black_48dp.svg" alt="" style={{transform: priceOrder===1?'scaleY(-1)':'none'}}/>}
       </div>
@@ -59,8 +59,8 @@ function SearchBarFilterPriceDropdown({
       </div>
       <hr/>
       <div className={'row-buttons'}>
-        <p className={'primary clickable'} onClick={handleDone}>Done</p>
-        <p className={'clickable'} onClick={handleReset}>Reset</p>
+        <p className={'primary clickable-btn'} onClick={handleDone}>Done</p>
+        <p className={'clickable-btn'} onClick={handleReset}>Reset</p>
       </div>
     </div>
   );

@@ -44,7 +44,7 @@ function MyProfileDisplay({
           </div>
         </div>
         <div className="divEditIcon">
-          <img className="profile-edit-icon clickable" onClick={handleCallback} src={"./pencil-icon.svg"} alt=""/>
+          <img className="profile-edit-icon clickable-icon" onClick={handleCallback} src={"./pencil-icon.svg"} alt=""/>
         </div>
       </div>
 

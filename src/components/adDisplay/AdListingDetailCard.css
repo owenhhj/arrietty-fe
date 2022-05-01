@@ -1,9 +1,4 @@
-.ad-listing-detail-container {
-    display: flex;
-}
-.ad-listing-detail-container::-webkit-scrollbar {
-    display: none;
-}
+
 .image-slider-container {
     height: 100%;
     width: 55%;

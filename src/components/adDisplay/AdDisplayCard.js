@@ -128,7 +128,7 @@ function AdDisplayCard({
         onMouseEnter={handleHover} onMouseLeave={handleHoverLeave} onMouseMove={handleMouseMove}
         onClick={handleShowDetail}
       >
-        <div className={'col-1 clickable'}>
+        <div className={'col-1 clickable-btn'}>
 
           <img src={`${ROOT}image?id=${adData.imageIds.split(',')[0]}`} alt=""/>
           {/*<img src="./default_cover.jpg" alt=""/>*/}
@@ -186,14 +186,14 @@ function AdDisplayCard({
           <div className={'col-3-buttons-container'}>
             <div className={'col-3-buttons'}>
               {!isMine &&
-                <div className={'tap-mark clickable'} onClick={handleTap} style={{backgroundColor: tapped?"#DDDDDD":""}}>
+                <div className={'tap-mark clickable-btn'} onClick={handleTap} style={{backgroundColor: tapped?"#DDDDDD":""}}>
                   <img src="./touch_app_black_48dp.svg" alt=""/>
                   {numOfTaps<=0 && <p>Tap</p>}
                   {numOfTaps>0 && <p>{numOfTaps}</p>}
                 </div>
               }
               {!isMine &&
-                <div className={'tap-mark clickable'} onClick={handleMark}>
+                <div className={'tap-mark clickable-btn'} onClick={handleMark}>
                   {!marked && <img src="bookmark_border_black_48dp.svg" alt=""/>}
                   {marked && <img src="bookmark_black_48dp.svg" alt=""/>}
                   <p>Mark</p>

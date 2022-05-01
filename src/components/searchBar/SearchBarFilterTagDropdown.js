@@ -52,8 +52,8 @@ function SearchBarFilterTagDropdown({
       </div>
       <hr/>
       <div className={'row-buttons'}>
-        <p className={'primary clickable'} onClick={handleDone}>Done</p>
-        <p className={'clickable'} onClick={handleReset}>Reset</p>
+        <p className={'primary clickable-btn'} onClick={handleDone}>Done</p>
+        <p className={'clickable-btn'} onClick={handleReset}>Reset</p>
       </div>
     </div>
   );
@@ -74,7 +74,7 @@ function OptionEntry({
   }
 
   return (
-    <div className={'option-entry clickable'}>
+    <div className={'option-entry clickable-btn'}>
       <p index={index} onClick={handleClick} className={selfSelected?'selected':''}>{option}</p>
     </div>
   );
