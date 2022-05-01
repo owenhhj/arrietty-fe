@@ -69,7 +69,7 @@ function MyProfileEdit({
           body: form
         },
         (res) => {
-          setAvatarSrc(avatarImageSrc);
+          // setAvatarSrc(avatarImageSrc);  // changed to re-fetch from back end
         },
         null
       );
