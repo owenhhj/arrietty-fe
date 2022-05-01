@@ -25,6 +25,7 @@ const customStyles = {
 
 function MyProfile() {
   const ROOT = process.env.REACT_APP_URL_ROOT;
+  const PROFILE = process.env.REACT_APP_API_PROFILE;
   const [myProfileData, setMyProfileData] = useState(getSiteInfo());
   const [avatarSrc, setAvatarSrc] = useState(  // pass state hook between components
     myProfileData.avatarImageId ? `${ROOT}image?id=${myProfileData.avatarImageId}` : "./default_avatar.jpg"
@@ -51,7 +52,7 @@ function MyProfile() {
 
   const refreshData = () => {
     dataFetch(
-      `${ROOT}profile?userId=`,
+      `${ROOT}${PROFILE}?userId=`,
       {method: "GET"},
       (res) => {
         setMyProfileData(res);

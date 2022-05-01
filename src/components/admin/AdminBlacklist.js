@@ -11,12 +11,14 @@ const fakeUsers = ['hh1234', 'yz5678', 'hh1234', 'yz5678', 'hh1234',
 
 export default function AdminBlacklist() {
   const ROOT = process.env.REACT_APP_URL_ROOT;
+  const BLACKLIST = process.env.REACT_APP_API_BLACKLIST;
+  const BLACKLIST_EDIT = process.env.REACT_APP_API_BLACKLIST_EDIT;
   const [netIds, setNetIds] = useState(fakeUsers);
   const [netIdInput, setNetIdInput] = useState('');
 
   useEffect(() => {
     dataFetch(
-      `${ROOT}blacklist`,
+      `${ROOT}${BLACKLIST}`,
       {method: 'GET'},
       (res) => {
         setNetIds(res);
@@ -33,7 +35,7 @@ export default function AdminBlacklist() {
 
   const refreshData = () => {
     dataFetch(
-      `${ROOT}blacklist`,
+      `${ROOT}${BLACKLIST}`,
       {method: 'GET'},
       (res) => {
         setNetIds(res);
@@ -50,7 +52,7 @@ export default function AdminBlacklist() {
     e.preventDefault();
     let temp = netIdInput;
     dataFetch(
-      `${ROOT}updateBlacklist?action=add&netId=${temp}`,
+      `${ROOT}${BLACKLIST_EDIT}?action=add&netId=${temp}`,
       {method: 'POST'},
       (res) => {
         handleShowNoti(`Add ${temp} to blacklist success`, true);
@@ -64,7 +66,7 @@ export default function AdminBlacklist() {
 
   const handleBlacklistDelete = (e) => {
     dataFetch(
-      `${ROOT}updateBlacklist?action=delete&netId=${e}`,
+      `${ROOT}${BLACKLIST_EDIT}?action=delete&netId=${e}`,
       {method: 'POST'},
       (res) => {
         handleShowNoti(`Remove ${e} from blacklist success`, true);

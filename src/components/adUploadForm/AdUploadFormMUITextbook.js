@@ -93,6 +93,8 @@ export default function AdUploadFormMUITextbook({
   toSubmit
                                         }) {
   const ROOT = process.env.REACT_APP_URL_ROOT;
+  const COURSE = process.env.REACT_APP_API_COURSE;
+  const TEXTBOOK = process.env.REACT_APP_API_TEXTBOOK;
   const ref = useRef(null);
   const [textbookData, setTextbookData] = useState([]);
   const [courseData, setCourseData] = useState([]);
@@ -111,13 +113,13 @@ export default function AdUploadFormMUITextbook({
 
   useEffect(() => {
     dataFetch(
-      `${ROOT}textbook?id=`,
+      `${ROOT}${TEXTBOOK}?id=`,
       {method:"GET"},
       setTextbookData,
       null
     );
     dataFetch(
-      `${ROOT}course?id=`,
+      `${ROOT}${COURSE}?id=`,
       {method:"GET"},
       setCourseData,
       null

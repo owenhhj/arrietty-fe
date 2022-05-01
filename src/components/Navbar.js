@@ -13,6 +13,8 @@ const pathnameMapper = {
 
 function Navbar({isAdmin}) {
   const ROOT = process.env.REACT_APP_URL_ROOT;
+  const LAST_MOD = process.env.REACT_APP_API_LAST_MOD;
+  const NEW_NOTI = process.env.REACT_APP_API_NEW_NOTIFICATION;
   const INTERVAL = 30*1000;  // seconds*1000, default 30
   const [click, setClick] = useState(false);
   const [activeTab, setActiveTab] = useState("home");
@@ -29,7 +31,7 @@ function Navbar({isAdmin}) {
     let currPath = window.location.pathname.slice(1,);
     setActiveTab(currPath in pathnameMapper ? pathnameMapper[currPath] : 'home');
     dataFetch(
-      `${ROOT}lastModified`,
+      `${ROOT}${LAST_MOD}`,
       {method: 'GET'},
       (res) => {
         let temp = Date.parse(res);
@@ -56,7 +58,7 @@ function Navbar({isAdmin}) {
 
   const updateRedDotHome = () => {
     dataFetch(
-      `${ROOT}lastModified`,
+      `${ROOT}${LAST_MOD}`,
       {method: 'GET'},
       (res) => {
         let temp = Date.parse(res);
@@ -73,7 +75,7 @@ function Navbar({isAdmin}) {
 
   const updateRedDotNoti = () => {
     dataFetch(
-      `${ROOT}hasNew`,
+      `${ROOT}${NEW_NOTI}`,
       {method: 'GET'},
       (res) => {
         if (res) {

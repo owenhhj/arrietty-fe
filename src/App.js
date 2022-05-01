@@ -13,11 +13,12 @@ import {dataFetch} from "./components/common/common";
 
 function App() {
   const ROOT = process.env.REACT_APP_URL_ROOT;
+  const PROFILE = process.env.REACT_APP_API_PROFILE;
   const [isAdmin, setIsAdmin] = useState(false);
 
   useEffect(() => {
     dataFetch(
-      `${ROOT}profile?userId=`,
+      `${ROOT}${PROFILE}?userId=`,
       {method:"GET"},
       (res) => {
         if (res.isAdmin) {

@@ -19,6 +19,8 @@ function AdDisplayCard({
   adData=fakeAd,  // one piece of adData <--> one advertisement
                        }) {
   const ROOT = process.env.REACT_APP_URL_ROOT;
+  const MARK = process.env.REACT_APP_API_MARK;
+  const TAP = process.env.REACT_APP_API_TAP;
   const MY_NETID = getSiteInfo().netId;
   // eslint-disable-next-line no-unused-vars
   const [isMine, setIsMine] = useState(!!adData.userNetId && adData.userNetId===MY_NETID);
@@ -67,7 +69,8 @@ function AdDisplayCard({
     if (!!adData.userNetId || tapped) {  // double check for state
       handleShowNoti('Cannot withdraw tap', false);
     } else {
-      dataFetch(`${ROOT}tap?id=${adData.id}`,
+      dataFetch(
+        `${ROOT}${TAP}?id=${adData.id}`,
         {},
         (res) => {
           setContactInfo(res);
@@ -86,7 +89,7 @@ function AdDisplayCard({
     e.stopPropagation();  // prevent clicking the card below at the same time
     if (marked) {
       dataFetch(
-        `${ROOT}mark?id=${adData.id}&status=off`,
+        `${ROOT}${MARK}?id=${adData.id}&status=off`,
         {method: 'GET'},
         () => {
           setMarked(false);
@@ -98,7 +101,7 @@ function AdDisplayCard({
       );
     } else {
       dataFetch(
-        `${ROOT}mark?id=${adData.id}&status=on`,
+        `${ROOT}${MARK}?id=${adData.id}&status=on`,
         {method: 'GET'},
         () => {
           setMarked(true);

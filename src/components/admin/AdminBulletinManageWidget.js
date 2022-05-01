@@ -19,6 +19,7 @@ const fakeBulletin = [
 
 export default function AdminBulletinManageWidget() {
   const ROOT = process.env.REACT_APP_URL_ROOT;
+  const BULLETIN = process.env.REACT_APP_API_BULLETIN;
   const [isFormOpen, setIsFormOpen] = useState(false);
   const [formData, setFormData] = useState({id: null, title: null, content: null});
   const [bulletinList, setBulletinList] = useState(fakeBulletin);
@@ -35,7 +36,7 @@ export default function AdminBulletinManageWidget() {
 
   const refreshData = () => {
     dataFetch(
-      `${ROOT}bulletin`,
+      `${ROOT}${BULLETIN}`,
       {method: "GET"},
       (data) => {
         setBulletinList(data);
@@ -50,7 +51,7 @@ export default function AdminBulletinManageWidget() {
       setIsFormOpen(true);
     } else if (call.action === "delete") {
       dataFetch(
-        `${ROOT}bulletin?action=delete`,
+        `${ROOT}${BULLETIN}?action=delete`,
         {
           method: "POST",
           headers: {'Content-Type': 'application/json'},
@@ -74,7 +75,7 @@ export default function AdminBulletinManageWidget() {
       setIsFormOpen(false);
     } else if (d.action === "publish") {
       dataFetch(
-        `${ROOT}bulletin?action=update`,
+        `${ROOT}${BULLETIN}?action=update`,
         {
           method: "POST",
           headers: {'Content-Type': 'application/json'},

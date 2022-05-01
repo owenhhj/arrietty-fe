@@ -12,6 +12,7 @@ export default function AdUploadFormMUIOther({
                                           toSubmit
                                         }) {
   const ROOT = process.env.REACT_APP_URL_ROOT;
+  const TAG = process.env.REACT_APP_API_TAG;
   const ref = useRef(null);
   const [otherTagData, setOtherTagData] = useState([]);
   const [valiAdTitle, setValiAdTitle] = useState({error: false, helperText: 'ad title invalid...'});
@@ -28,7 +29,7 @@ export default function AdUploadFormMUIOther({
 
   useEffect(() => {
     dataFetch(
-      `${ROOT}otherTag?id=`,
+      `${ROOT}${TAG}?id=`,
       {method:"GET"},
       setOtherTagData,
       null

@@ -10,6 +10,7 @@ function AdUploadForm({
   callback
                                  }) {
   const ROOT = process.env.REACT_APP_URL_ROOT;
+  const AD = process.env.REACT_APP_API_AD;
   const [adType, setAdType] = useState(1);
 
   const dispatch = showGeneralNoti();
@@ -32,7 +33,7 @@ function AdUploadForm({
     //   console.log('>>>>>>>', pair[0], pair[1]);
     // }
     dataFetch(
-      `${ROOT}advertisement?action=add`,
+      `${ROOT}${AD}?action=add`,
       {
         method: 'POST',
         body: f
