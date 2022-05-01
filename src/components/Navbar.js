@@ -3,6 +3,14 @@ import {Link} from "react-router-dom";
 import './Navbar.css';
 import {dataFetch} from "./common/common";
 
+const pathnameMapper = {
+  home: 'home',
+  myPosts: 'my-posts',
+  favorite: 'favorite',
+  notification: 'notification',
+  admin: 'admin'
+};
+
 function Navbar({isAdmin}) {
   const ROOT = 'https://localhost:8000/';
   const INTERVAL = 30*1000;  // seconds*1000, default 30
@@ -18,6 +26,7 @@ function Navbar({isAdmin}) {
   const adminLink = useRef(null);
 
   useEffect(() => {
+    setActiveTab(pathnameMapper[window.location.pathname.slice(1,)]);
     dataFetch(
       `${ROOT}lastModified`,
       {method: 'GET'},
