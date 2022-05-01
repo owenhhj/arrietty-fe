@@ -26,7 +26,8 @@ function Navbar({isAdmin}) {
   const adminLink = useRef(null);
 
   useEffect(() => {
-    setActiveTab(pathnameMapper[window.location.pathname.slice(1,)]);
+    let currPath = window.location.pathname.slice(1,);
+    setActiveTab(currPath in pathnameMapper ? pathnameMapper[currPath] : 'home');
     dataFetch(
       `${ROOT}lastModified`,
       {method: 'GET'},
