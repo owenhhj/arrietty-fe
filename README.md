@@ -1,8 +1,6 @@
 # Bugs to fix:
 
-navbar读取route
-
-avatar新接口 永远刷新avatar
+avatar新接口 永远刷新avatar --> buggy
 
 searchBar adTypeChange 刷新 & adTypeChange-->filterUpdate
 
