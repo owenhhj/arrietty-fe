@@ -33,7 +33,9 @@ const fakeMyAds = [
 ];
 
 function MyPostsCanvas() {
-  const ROOT = 'https://localhost:8000/';
+  const ROOT = process.env.REACT_APP_URL_ROOT;
+  const AD = process.env.REACT_APP_API_AD;
+  const MY_AD = process.env.REACT_APP_API_MY_AD;
   const [myAds, setMyAds] = useState([]);
   const [showEditAdForm, setShowEditAdForm] = useState(false);
   const [idToEdit, setIdToEdit] = useState(-1);
@@ -53,7 +55,7 @@ function MyPostsCanvas() {
 
   const refreshData = () => {
     dataFetch(
-      `${ROOT}myAdvertisement`,
+      `${ROOT}${MY_AD}`,
       {method: 'GET'},
       (res) => {
         setMyAds(res);
@@ -81,7 +83,7 @@ function MyPostsCanvas() {
     //   console.log('inside temp form:', pair[0], pair[1])
     // }
     dataFetch(
-      `${ROOT}advertisement?action=delete`,
+      `${ROOT}${AD}?action=delete`,
       {
         method: 'POST',
         body: temp
@@ -107,7 +109,7 @@ function MyPostsCanvas() {
       }
     });
     dataFetch(
-      `${ROOT}advertisement?action=update`,
+      `${ROOT}${AD}?action=update`,
       {
         method: 'POST',
         body: f

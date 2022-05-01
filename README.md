@@ -1,6 +1,6 @@
 # Bugs to fix:
 
-avatar新接口 永远刷新avatar --> buggy
+写ReadMe
 
 searchBar adTypeChange 刷新 & adTypeChange-->filterUpdate
 

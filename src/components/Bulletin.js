@@ -16,13 +16,14 @@ const fakeBulletin = [
 ];
 
 export default function Bulletin() {
-  const ROOT = 'https://localhost:8000/';
+  const ROOT = process.env.REACT_APP_URL_ROOT;
+  const BULLETIN = process.env.REACT_APP_API_BULLETIN;
   const [bullData, setBullData] = useState(fakeBulletin);
   const [showBullDetail, setShowBullDetail] = useState(-1);
 
   useEffect(() => {
     dataFetch(
-      `${ROOT}bulletin`,
+      `${ROOT}${BULLETIN}`,
       {method: 'GET'},
       (res) => {
         setBullData(res);

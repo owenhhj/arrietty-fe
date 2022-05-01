@@ -12,13 +12,14 @@ const fakeNotis = [
 ];
 
 function NotificationColumn() {
-  const ROOT = 'https://localhost:8000/';
+  const ROOT = process.env.REACT_APP_URL_ROOT;
+  const NOTI = process.env.REACT_APP_API_NOTIFICATIONS;
   const pageTitle = 'Notifications';
   const [notis, setNotis] = useState([]);
 
   useEffect(() => {
     dataFetch(
-      `${ROOT}getNotification`,
+      `${ROOT}${NOTI}`,
       {method: 'GET'},
       setNotis,
       (e) => {console.warn(e);}

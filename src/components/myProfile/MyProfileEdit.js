@@ -24,7 +24,9 @@ function MyProfileEdit({
   setAvatarSrc,
   callback
                        }) {
-  const ROOT = 'https://localhost:8000/';
+  const ROOT = process.env.REACT_APP_URL_ROOT;
+  const AVATAR = process.env.REACT_APP_API_AVATAR;
+  const PROFILE = process.env.REACT_APP_API_PROFILE;
   const editYearOptions = getYearOptions();
   const [avatarImageSrc, setAvatarImageSrc] = useState(avatarSrc);
   const [valiUsername, setValiUsername] = useState({error: false, helperText: 'between 1 and 40 letters...'});
@@ -46,7 +48,7 @@ function MyProfileEdit({
     }
 
     dataFetch(
-      `${ROOT}profile`,
+      `${ROOT}${PROFILE}`,
       {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
@@ -63,7 +65,7 @@ function MyProfileEdit({
       let form = new FormData();
       form.append("file", avatarFileInputDom.files[0]);
       dataFetch(
-        `${ROOT}avatar`,
+        `${ROOT}${AVATAR}`,
         {
           method: 'POST',
           body: form

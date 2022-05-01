@@ -5,7 +5,8 @@ import AdDisplayCard from "./AdDisplayCard";
 import {dataFetch} from "../common/common";
 
 function AdDisplayColumn() {
-  const ROOT = 'https://localhost:8000/';
+  const ROOT = process.env.REACT_APP_URL_ROOT;
+  const SEARCH = process.env.REACT_APP_API_SEARCH;
   const [adData, setAdData] = useState([]);  // adListing data
   const [isLoading, setIsLoading] = useState(0);  // index --> loadingMsg[]
   const [queryBody, setQueryBody] = useState({  // save previous query for loadMore
@@ -17,7 +18,7 @@ function AdDisplayColumn() {
   useEffect(() => {
     // console.log('onMount search with:', queryBody);
     dataFetch(
-      `${ROOT}search`,
+      `${ROOT}${SEARCH}`,
       {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
@@ -59,7 +60,7 @@ function AdDisplayColumn() {
     setQueryBody(temp);
     // console.log('user search with:', temp);
     dataFetch(
-      `${ROOT}search`,
+      `${ROOT}${SEARCH}`,
       {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
@@ -80,7 +81,7 @@ function AdDisplayColumn() {
   const handleLoadMore = () => {
     // console.log('handleLoadMore with:', queryBody);
     dataFetch(
-      `${ROOT}search`,
+      `${ROOT}${SEARCH}`,
       {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
@@ -120,9 +121,9 @@ function AdDisplayColumn() {
       })}
 
       {/* dummy below */}
-      {/*<AdDisplayCard/>*/}
-      {/*<AdDisplayCard/>*/}
-      {/*<AdDisplayCard/>*/}
+      <AdDisplayCard/>
+      <AdDisplayCard/>
+      <AdDisplayCard/>
 
       <div style={{width: 'auto', height:'200px'}}>
         {/* not in use, placeholder only */}

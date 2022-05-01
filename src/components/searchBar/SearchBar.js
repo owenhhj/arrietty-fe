@@ -10,7 +10,9 @@ const fakeTagOptions = ['furniture', 'stationary', 'electronic', 'free'];
 function SearchBar({
                      callback
                    }) {
-  const ROOT = 'https://localhost:8000/';
+  const ROOT = process.env.REACT_APP_URL_ROOT;
+  const SUGGEST = process.env.REACT_APP_API_SUGGEST;
+  const TAG = process.env.REACT_APP_API_TAG;
   const ref = useRef();  // to bind text suggestion window
   const priceOrders = [null, 'asc', 'desc'];
   let filterPrice = {'type': 'price', 'priceOrder': 0, 'priceRange': [null, null]};
@@ -25,7 +27,7 @@ function SearchBar({
   useEffect(() => {
     // setTagOptions(fakeTagOptions);
     dataFetch(
-      `${ROOT}otherTag?id=`,
+      `${ROOT}${TAG}?id=`,
       {method: 'GET'},
       res => {
         setTagOptions(res.map(ob => ob.name));
@@ -76,7 +78,7 @@ function SearchBar({
     setKeyword(temp);
     if (temp.length > 0) {  // API rejects empty string
       dataFetch(
-        `${ROOT}suggest?type=${adTypes[adType]}&keyword=${temp}`,
+        `${ROOT}${SUGGEST}?type=${adTypes[adType]}&keyword=${temp}`,
         {
           method: 'POST',
           headers: {'Content-Type': 'application/json'},
