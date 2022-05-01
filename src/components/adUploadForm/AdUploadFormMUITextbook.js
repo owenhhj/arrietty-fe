@@ -233,7 +233,7 @@ export default function AdUploadFormMUITextbook({
     <div className={'AdUploadFormMUI card'} ref={ref}>
 
       {/* img css absolute, its parent is relative */}
-      <img className={'icon-close clickable'} src="./close_black_48dp.svg" alt="" onClick={handleClose}/>
+      <img className={'icon-close clickable-icon'} src="./close_black_48dp.svg" alt="" onClick={handleClose}/>
 
       <div className={'AdUploadFormMUI-row-title non-text'}>
         <p>New Advertisement</p>

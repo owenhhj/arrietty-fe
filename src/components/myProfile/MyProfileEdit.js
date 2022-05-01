@@ -101,7 +101,7 @@ function MyProfileEdit({
         </div>
         <div className="divAvatar" onClick={handleAvatarEdit}>
           <img className="avatar" src={avatarImageSrc} alt=""/>
-          <div className={"avatar-edit clickable"}>
+          <div className={"avatar-edit clickable-btn"}>
             <p>Edit</p>
           </div>
           <input ref={(r) => {

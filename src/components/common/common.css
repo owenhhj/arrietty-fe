@@ -17,16 +17,20 @@ hr {
     border: none;
 }
 
-.clickable {
+.clickable-btn {
     cursor: pointer;
 }
 
-.clickable:hover {
+.clickable-btn:hover {
     box-shadow: 0 1px 4px #BBBBBB;
 }
 
-.clickable:active {
+.clickable-btn:active {
     background-color: #F6F6F6;
+}
+
+.clickable-icon {
+    cursor: pointer;
 }
 
 p {
@@ -73,8 +77,8 @@ p {
 /**/
 
 /* to define css variables */
-/* can be used with `var()` anywhere in `root` */
-/* not be used in @media conditions */
+/* can     be used with `var()` anywhere in `root` */
+/* can not be used inside @media conditions */
 :root {
     --def-gap: 30px;
     --def-width-shrinked-page: 90vw;

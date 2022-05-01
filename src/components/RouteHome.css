@@ -13,7 +13,7 @@
     grid-gap: var(--def-gap);
 }
 
-@media (max-width: 1400px) {
+@media (max-width: 1250px) {
     .home-grid-container {
         grid-template-columns: var(--def-width-profile) calc(min(var(--def-width-ad), var(--def-width-shrinked-page) - var(--def-gap) - var(--def-width-profile)));
         grid-template-rows: var(--def-height-row1) auto;

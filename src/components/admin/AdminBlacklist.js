@@ -121,7 +121,7 @@ function AdminBlacklistEach({
   return (
     <div className={'AdminBlacklistEach card non-text'}>
       <p>{netId}</p>
-      <img className={'clickable'} onClick={()=>{callback(netId)}} src="./close_black_48dp.svg" alt=""/>
+      <img className={'clickable-btn'} onClick={()=>{callback(netId)}} src="./close_black_48dp.svg" alt=""/>
     </div>
   );
 }
