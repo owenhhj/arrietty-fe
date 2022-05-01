@@ -52,23 +52,14 @@ function MyProfile() {
   const refreshData = () => {
     dataFetch(
       `${ROOT}profile?userId=`,
-      {method:"GET"},
+      {method: "GET"},
       (res) => {
         setMyProfileData(res);
         // setAvatarSrc(res.avatarImageId ? `${ROOT}image?id=${res.avatarImageId}` : "./default_avatar.jpg");
       },
       null
     );
-    dataFetch(
-      `${ROOT}avatar`,
-      {method: 'GET'},
-      res => {
-        setAvatarSrc(res);
-      },
-      err => {
-        setAvatarSrc('./default_avatar.jpg');
-      }
-    );
+    setAvatarSrc('/avatar');
   };
 
   // handle data from children: disp & edit
