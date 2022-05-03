@@ -106,7 +106,7 @@ function AdDisplayColumn() {
         setIsLoading(0);
         console.warn(e);
       }
-    )
+    );
   }
 
   return (

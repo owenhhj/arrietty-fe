@@ -1,13 +1,18 @@
 import './TextbookSearchShowSelected.css';
 
-function TextbookSearchShowSelected({selectedTextbook}) {
+function TextbookSearchShowSelected({
+                                      selectedTextbook,
+                                      dispTitle = false
+                                    }) {
   return (
     <>
       <div className={"textbook-info"}>
-        <div className={"textbook-info-row"}>
-          <p className={"info-prompt"}>Title: </p>
-          <p className={"info-value"}>{selectedTextbook.textbookTitle}</p>
-        </div>
+        {dispTitle && (
+          <div className={"textbook-info-row"}>
+            <p className={"info-prompt"}>Title: </p>
+            <p className={"info-value"}>{selectedTextbook.textbookTitle}</p>
+          </div>
+        )}
         <div className={"textbook-info-row"}>
           <p className={"info-prompt"}>ISBN: </p>
           <p className={"info-value"}>{selectedTextbook.isbn}</p>

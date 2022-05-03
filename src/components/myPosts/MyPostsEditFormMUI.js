@@ -121,7 +121,7 @@ function MyPostsEditFormMUI({
           <MUIButton label={adDataOriginal.otherTag ? adDataOriginal.otherTag : 'other'}/>
         )}
         {adDataOriginal.adType==='textbook' && (
-          <TextbookSearchShowSelected selectedTextbook={getTextbookData()}/>
+          <TextbookSearchShowSelected selectedTextbook={getTextbookData()} dispTitle={true}/>
         )}
       </div>
 
