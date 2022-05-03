@@ -4,10 +4,9 @@
 
 searchBar adTypeChange 刷新 & adTypeChange-->filterUpdate
 
-    getSiteInfo包括username/year，不可能随edit更新
-
     全局loading动态小组件（转圈）
     刚登录时 等待setSiteInfo isAdmin
+    是否能用state做context而自动传递更新
 
 新建ad后端报错：JVM版本重装
 

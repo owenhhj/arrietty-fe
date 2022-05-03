@@ -1,9 +1,10 @@
 import './AdUploadFormMUI.css';
 import {MUITextField, MUINumber, MUICheckbox, MUITagSelect, MUIButtonGroup, MUIButton} from "../common/MUIComponents";
 import {useEffect, useRef, useState} from "react";
-import {dataFetch} from "../common/common";
+import {dataFetch, fileSizeCheck} from "../common/common";
 import AdUploadFormDragDrop from "./AdUploadFormDragDrop";
 import TextbookSearchShowSelected from "./TextbookSearchShowSelected";
+import {showGeneralNoti} from "../common/GeneralNotiProvider";
 
 const fakeOptions = [
   {
@@ -195,8 +196,11 @@ export default function AdUploadFormMUITextbook({
       setValiAdTitle({...valiAdTitle, error: true});
       ans = false;
     } else {setValiAdTitle({...valiAdTitle, error: false});}
-    if (!formData.get('images') || formData.get('images').length<1) {
-      setValiImage({...valiImage, error: true});
+    if (!formData.get('images')) {  // or, formData.getAll('images').length<1
+      setValiImage({error: true, helperText: 'one or more pictures needed...'});
+      ans = false;
+    } else if (!fileSizeCheck(formData.getAll('images'))) {
+      setValiImage({error: true, helperText: `Any picture must be smaller than ${process.env.REACT_APP_DEFAULT_IMAGE_SIZE}MB`});
       ans = false;
     } else {setValiImage({...valiImage, error: false});}
     if (!formData.get('tagId')) {

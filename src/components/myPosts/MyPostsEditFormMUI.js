@@ -3,6 +3,7 @@ import {useEffect, useRef, useState} from "react";
 import {MUIButton, MUINumber, MUITextField} from "../common/MUIComponents";
 import AdUploadFormDragDrop from "../adUploadForm/AdUploadFormDragDrop";
 import TextbookSearchShowSelected from "../adUploadForm/TextbookSearchShowSelected";
+import {fileSizeCheck} from "../common/common";
 
 let formData = new FormData();
 
@@ -13,8 +14,8 @@ function MyPostsEditFormMUI({
                             }) {
   const ref = useRef(null);
   const [valiImage, setValiImage] = useState({error: false, helperText: 'one or more pictures needed...'})
-  const [valiPrice, setValiPrice] = useState({error: false, helperText: 'invalid entry...'});
-  const [valiComment, setValiComment] = useState({error: false, helperText: 'invalid entry...'});
+  const [valiPrice, setValiPrice] = useState({error: false, helperText: 'within 1~999RMB...'});
+  const [valiComment, setValiComment] = useState({error: false, helperText: 'comment of suitable length needed...'});
 
   useEffect(() => {
     const handleClickOutside = (e) => {
@@ -61,8 +62,11 @@ function MyPostsEditFormMUI({
 
   const handleValidate = () => {
     let ans = true;
-    if (!formData.get('images') || formData.get('images').length<1) {
-      setValiImage({...valiImage, error: true});
+    if (!formData.get('images')) {  // or, formData.getAll('images').length<1
+      setValiImage({error: true, helperText: 'one or more pictures needed...'});
+      ans = false;
+    } else if (!fileSizeCheck(formData.getAll('images'))) {
+      setValiImage({error: true, helperText: `Any picture must be smaller than ${process.env.REACT_APP_DEFAULT_IMAGE_SIZE}MB`});
       ans = false;
     } else {setValiImage({...valiImage, error: false});}
     if (formData.get('price') && (
