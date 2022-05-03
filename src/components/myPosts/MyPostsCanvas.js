@@ -90,7 +90,9 @@ function MyPostsCanvas() {
       },
       (res) => {
         handleShowNoti('Ad deletion success', true);
-        refreshData();
+        setTimeout(() => {
+          window.location.reload();
+        }, 1000);
       },
       (err) => {
         console.warn(err);
