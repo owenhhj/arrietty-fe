@@ -27,7 +27,7 @@ function MyPostsEditFormMUI({
   }, [ref]);
 
   const getTextbookData = () => {
-    let needed = ['isbn', 'author', 'edition', 'publisher', 'relatedCourse', 'originalPrice'];
+    let needed = ['textbookTitle', 'isbn', 'author', 'edition', 'publisher', 'relatedCourse', 'originalPrice'];
     let ans = {};
     for (let k in adDataOriginal) {
       if (needed.includes(k)) {
