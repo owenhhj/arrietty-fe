@@ -1,7 +1,8 @@
 import "./MyProfile.css"
 import {useState} from "react"
-import {dataFetch} from "../common/common";
+import {dataFetch, fileSizeCheck} from "../common/common";
 import {MUIButton, MUITagSelect, MUITextField} from "../common/MUIComponents";
+import {showGeneralNoti} from "../common/GeneralNotiProvider";
 
 const getYearOptions = () => {
   let ans = [];
@@ -33,6 +34,11 @@ function MyProfileEdit({
   // let profileEdit = {...profilePrev};  // defined outside so that `valiUsername` won't force refresh component
   // let avatarFileInputDom;
 
+  const dispatch = showGeneralNoti();
+  const handleShowNoti = (msg, good) => {
+    dispatch({action: "add", body: {msg: msg, good: good}});
+  };
+
   const handleFormSubmit = () => {
     let temp = profileEdit;
 
@@ -60,21 +66,24 @@ function MyProfileEdit({
       null
     );
 
-    // todo image size check
     if (avatarFileInputDom.files && avatarFileInputDom.files[0]) {  // run this only when uploaded new img
-      let form = new FormData();
-      form.append("file", avatarFileInputDom.files[0]);
-      dataFetch(
-        `${ROOT}${AVATAR}`,
-        {
-          method: 'POST',
-          body: form
-        },
-        (res) => {
-          // setAvatarSrc(avatarImageSrc);  // changed to re-fetch from back end
-        },
-        null
-      );
+      if (!fileSizeCheck([avatarFileInputDom.files[0]])) {
+        handleShowNoti(`Avatar picture must be smaller than ${process.env.REACT_APP_DEFAULT_IMAGE_SIZE}MB`, false);
+      } else {
+        let form = new FormData();
+        form.append("file", avatarFileInputDom.files[0]);
+        dataFetch(
+          `${ROOT}${AVATAR}`,
+          {
+            method: 'POST',
+            body: form
+          },
+          (res) => {
+            // setAvatarSrc(avatarImageSrc);  // changed to re-fetch from back end
+          },
+          null
+        );
+      }
     }
   };
 
