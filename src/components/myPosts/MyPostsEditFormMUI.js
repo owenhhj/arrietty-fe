@@ -27,7 +27,7 @@ function MyPostsEditFormMUI({
   }, [ref]);
 
   const getTextbookData = () => {
-    let needed = ['isbn', 'author', 'edition', 'publisher', 'relatedCourse', 'originalPrice'];
+    let needed = ['textbookTitle', 'isbn', 'author', 'edition', 'publisher', 'relatedCourse', 'originalPrice'];
     let ans = {};
     for (let k in adDataOriginal) {
       if (needed.includes(k)) {
@@ -121,7 +121,7 @@ function MyPostsEditFormMUI({
           <MUIButton label={adDataOriginal.otherTag ? adDataOriginal.otherTag : 'other'}/>
         )}
         {adDataOriginal.adType==='textbook' && (
-          <TextbookSearchShowSelected selectedTextbook={getTextbookData()}/>
+          <TextbookSearchShowSelected selectedTextbook={getTextbookData()} dispTitle={true}/>
         )}
       </div>
 

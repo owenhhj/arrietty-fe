@@ -19,7 +19,7 @@ const fakeContact = {
 };
 
 function AdDisplayCard({
-  adData,  // one piece of adData <--> one advertisement
+  adData=fakeAd,  // one piece of adData <--> one advertisement
                        }) {
   const ROOT = process.env.REACT_APP_URL_ROOT;
   const MARK = process.env.REACT_APP_API_MARK;
@@ -137,8 +137,9 @@ function AdDisplayCard({
 
           <img src={`${ROOT}image?id=${adData.imageIds.split(',')[0]}`} alt=""/>
           {/*<img src="./default_cover.jpg" alt=""/>*/}
-
-          {/* todo num of pics icon */}
+          <div className={'col-1-num-of-pics'}>
+            <p>{adData.imageIds.split(',').length}</p>
+          </div>
         </div>
 
         <div className={'col-2'}>
