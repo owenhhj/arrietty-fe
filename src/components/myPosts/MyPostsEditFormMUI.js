@@ -13,8 +13,8 @@ function MyPostsEditFormMUI({
                             }) {
   const ref = useRef(null);
   const [valiImage, setValiImage] = useState({error: false, helperText: 'one or more pictures needed...'})
-  const [valiPrice, setValiPrice] = useState({error: false, helperText: 'invalid entry...'});
-  const [valiComment, setValiComment] = useState({error: false, helperText: 'invalid entry...'});
+  const [valiPrice, setValiPrice] = useState({error: false, helperText: 'within 1~999RMB...'});
+  const [valiComment, setValiComment] = useState({error: false, helperText: 'comment of suitable length needed...'});
 
   useEffect(() => {
     const handleClickOutside = (e) => {
