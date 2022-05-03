@@ -121,9 +121,9 @@ function AdDisplayColumn() {
       })}
 
       {/* dummy below */}
-      <AdDisplayCard/>
-      <AdDisplayCard/>
-      <AdDisplayCard/>
+      {/*<AdDisplayCard/>*/}
+      {/*<AdDisplayCard/>*/}
+      {/*<AdDisplayCard/>*/}
 
       <div style={{width: 'auto', height:'200px'}}>
         {/* not in use, placeholder only */}
