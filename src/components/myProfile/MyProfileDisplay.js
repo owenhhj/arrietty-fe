@@ -49,9 +49,11 @@ function MyProfileDisplay({
       </div>
 
       <div className={"new-ad-btn"}>
-        <MUIButton variant={1} label={'New Ad'} size={'small'} buttonStyle={{width: '6em'}} onClick={handleNewAdBtnClick}/>
+        <MUIButton
+          variant={1} label={'Create New Advertisement'} size={'small'} onClick={handleNewAdBtnClick}
+          buttonStyle={{width: '15em'}}
+        />
       </div>
-
 
     </div>
   )

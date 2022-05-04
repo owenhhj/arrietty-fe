@@ -187,22 +187,23 @@ export function MUITagSelect({
 export function MUIButton({
                             label = 'Submit',
                             size = 'medium',
-                            variant = 2,  // 'text', 'contained', 'outlined'
+                            variant = 2,  // defined in `buttonVariants`
                             buttonStyle = {},
                             onClick
                           }) {
-  const buttonVariants = ['text', 'contained', 'outlined'];
+  const buttonVariants = ['text', 'contained', 'outlined', 'outlined'];
 
   const buttonSxs = [
     {color: '#36C0C9'},
-    {backgroundColor: '#36C0C9'},
-    {color: '#36C0C9', borderColor: '#36C0C9'}
+    {backgroundColor: '#36C0C9'},  // submit button
+    {color: '#36C0C9', borderColor: '#36C0C9'},
+    {color: '#D32F2F', borderColor: '#BEBEBE', backgroundColor: '#F3F4F6'}  // cancel button
   ];
 
   return (
     <>
       <Button
-        sx={{...buttonSxs[variant], width: `${label.length - 1}em`, height: '2.5em', ...buttonStyle}}
+        sx={{...buttonSxs[variant], width: `${label.length - 1}em`, height: '2.3em', textTransform: 'none', ...buttonStyle}}
         size={size}
         variant={buttonVariants[variant]}
         onClick={onClick}
