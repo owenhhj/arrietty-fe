@@ -23,9 +23,9 @@ const customStyles = {
 };
 
 const fakeMyAds = [
-  {id: 666, adTitle:'title', isTextbook: true, tagId: 12, imageIds:'', price:444, comment: 'comment', numberOfTaps: 3, createTime:'Apr 6'},
-  {id: 777, adTitle:'title', isTextbook: false, tagId: 12, imageIds:'', price:444, comment: 'comment', numberOfTaps: 3, createTime:'Apr 6'},
-  {id: 888, adTitle:'title', isTextbook: false, tagId: 12, imageIds:'', price:444, comment: 'comment', numberOfTaps: 3, createTime:'Apr 6'},
+  {id: 666, adType: 'textbook', adTitle:'title', isTextbook: true, tagId: 12, imageIds:'', price:444, comment: 'comment', numberOfTaps: 3, createTime:'Apr 6', textbookTitle: 'lol title'},
+  {id: 777, adType: 'textbook', adTitle:'title', isTextbook: true, tagId: 12, imageIds:'', price:444, comment: 'comment', numberOfTaps: 3, createTime:'Apr 6'},
+  {id: 888, adType: 'textbook', adTitle:'title', isTextbook: true, tagId: 12, imageIds:'', price:444, comment: 'comment', numberOfTaps: 3, createTime:'Apr 6'},
   {id: 999, adTitle:'title', isTextbook: false, tagId: 12, imageIds:'', price:444, comment: 'comment', numberOfTaps: 3, createTime:'Apr 6'},
   {id: 111, adTitle:'title', isTextbook: false, tagId: 12, imageIds:'', price:444, comment: 'comment', numberOfTaps: 3, createTime:'Apr 6'},
   {id: 222, adTitle:'title', isTextbook: false, tagId: 12, imageIds:'', price:444, comment: 'comment', numberOfTaps: 3, createTime:'Apr 6'},
@@ -69,12 +69,12 @@ function MyPostsCanvas() {
   const dispatch = showGeneralNoti();
   const handleShowNoti = (msg, good) => {
     dispatch({action: "add", body: {msg: msg, good: good}});
-  }
+  };
 
   const handleCallbackEdit = (id) => {
     setIdToEdit(id);
     setShowEditAdForm(true);
-  }
+  };
 
   const handleCallbackDelete = (id) => {
     let temp = new FormData();
@@ -99,7 +99,7 @@ function MyPostsCanvas() {
         handleShowNoti('Ad deletion failure', false);
       }
     )
-  }
+  };
 
   const handleEditSubmit = (f) => {
     f.set('id', idToEdit);
@@ -132,9 +132,6 @@ function MyPostsCanvas() {
       <RoutePageTitleCard pageTitle={'My Advertisements'}/>
       <div className={'MyPostsCanvas card'}>
         <div className={'MyPostsCanvas-children'}>
-          {/*<div className={'row-title-card non-text'}>*/}
-          {/*  <p>My Advertisements</p>*/}
-          {/*</div>*/}
 
           <div className={'row-MyPostsListing'}>
             <div className={'MyPostsListingContainer'}>

@@ -9,11 +9,11 @@ function MyPostsCard({
 
   const handleEdit = () => {
     callbackEdit(adData.id);
-  }
+  };
 
   const handleDelete = () => {
     callbackDelete(adData.id)
-  }
+  };
 
   return (
     <div style={{display: 'inline-block'}}>

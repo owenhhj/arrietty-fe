@@ -9,33 +9,47 @@ function TextbookSearchShowSelected({
       <div className={"textbook-info"}>
         {dispTitle && (
           <div className={"textbook-info-row"}>
-            <p className={"info-prompt"}>Title: </p>
-            <p className={"info-value"}>{selectedTextbook.textbookTitle}</p>
+            <p>
+              <span className={"info-prompt"}>Title:</span>
+              <span className={"info-value"}>{selectedTextbook.textbookTitle}</span>
+            </p>
           </div>
         )}
         <div className={"textbook-info-row"}>
-          <p className={"info-prompt"}>ISBN: </p>
-          <p className={"info-value"}>{selectedTextbook.isbn}</p>
+          <p>
+            <span className={"info-prompt"}>ISBN:</span>
+            <span className={"info-value"}>{selectedTextbook.isbn}</span>
+          </p>
         </div>
         <div className={"textbook-info-row"}>
-          <p className={"info-prompt"}>Author: </p>
-          <p className={"info-value"}>{selectedTextbook.author}</p>
+          <p>
+            <span className={"info-prompt"}>Author:</span>
+            <span className={"info-value"}>{selectedTextbook.author}</span>
+          </p>
         </div>
         <div className={"textbook-info-row"}>
-          <p className={"info-prompt"}>Edition: </p>
-          <p className={"info-value"}>{selectedTextbook.edition}</p>
+          <p>
+            <span className={"info-prompt"}>Edition:</span>
+            <span className={"info-value"}>{selectedTextbook.edition}</span>
+          </p>
         </div>
         <div className={"textbook-info-row"}>
-          <p className={"info-prompt"}>Publisher: </p>
-          <p className={"info-value"}>{selectedTextbook.publisher}</p>
+          <p>
+            <span className={"info-prompt"}>Publisher:</span>
+            <span className={"info-value"}>{selectedTextbook.publisher}</span>
+          </p>
         </div>
         <div className={"textbook-info-row"}>
-          <p className={"info-prompt"}>Related course: </p>
-          <p className={"info-value"}>{selectedTextbook.relatedCourse}</p>
+          <p>
+            <span className={"info-prompt"}>Related course:</span>
+            <span className={"info-value"}>{selectedTextbook.relatedCourse}</span>
+          </p>
         </div>
         <div className={"textbook-info-row"}>
-          <p className={"info-prompt"}>Original price: </p>
-          <p className={"info-value"}>{selectedTextbook.originalPrice}</p>
+          <p>
+            <span className={"info-prompt"}>Original price:</span>
+            <span className={"info-value"}>{selectedTextbook.originalPrice}</span>
+          </p>
         </div>
       </div>
     </>
