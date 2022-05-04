@@ -13,9 +13,9 @@ function MyPostsEditFormMUI({
                               toSubmit
                             }) {
   const ref = useRef(null);
-  const [valiImage, setValiImage] = useState({error: false, helperText: 'one or more pictures needed...'})
-  const [valiPrice, setValiPrice] = useState({error: false, helperText: 'within 1~999RMB...'});
-  const [valiComment, setValiComment] = useState({error: false, helperText: 'comment of suitable length needed...'});
+  const [valiImage, setValiImage] = useState({error: false, helperText: 'one or more pictures needed...'});
+  const [valiPrice, setValiPrice] = useState({error: false, helperText: 'advertised price between 1RMB and 999RMB...'});
+  const [valiComment, setValiComment] = useState({error: false, helperText: 'comment between 1 and 255 characters...'});
 
   useEffect(() => {
     const handleClickOutside = (e) => {
@@ -71,7 +71,7 @@ function MyPostsEditFormMUI({
     } else {setValiImage({...valiImage, error: false});}
     if (formData.get('price') && (
       !/^[0-9]+$/.test((formData.get('price')).toString()) ||
-      Number(formData.get('price'))<=0 || Number(formData.get('price'))>=1000
+      Number(formData.get('price'))<1 || Number(formData.get('price'))>999
     )) {
       setValiPrice({...valiPrice, error: true});
       ans = false;

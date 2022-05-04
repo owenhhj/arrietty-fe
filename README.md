@@ -1,5 +1,7 @@
 # Bugs to fix:
 
+NYU Accent Blue: `#59B2D1`
+
 写ReadMe
 
 refactor admin inputs

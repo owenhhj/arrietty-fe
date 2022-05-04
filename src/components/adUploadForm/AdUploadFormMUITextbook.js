@@ -4,7 +4,6 @@ import {useEffect, useRef, useState} from "react";
 import {dataFetch, fileSizeCheck} from "../common/common";
 import AdUploadFormDragDrop from "./AdUploadFormDragDrop";
 import TextbookSearchShowSelected from "./TextbookSearchShowSelected";
-import {showGeneralNoti} from "../common/GeneralNotiProvider";
 
 const fakeOptions = [
   {
@@ -86,6 +85,7 @@ const fakeOptions = [
   }
 ];
 
+// local variable (form) declaration moved to the outside to deal with component remount
 let formData = new FormData();
 let pledgeConfirmed = false;
 
@@ -100,17 +100,14 @@ export default function AdUploadFormMUITextbook({
   const [textbookData, setTextbookData] = useState([]);
   const [courseData, setCourseData] = useState([]);
   const [selectedTextbook, setSelectedTextbook] = useState(null);
-  const [valiAdTitle, setValiAdTitle] = useState({error: false, helperText: 'ad title invalid...'});
-  const [valiImage, setValiImage] = useState({error: false, helperText: 'one or more pictures needed...'})
+  const [valiAdTitle, setValiAdTitle] = useState({error: false, helperText: 'ad title between 1 and 31 characters...'});
+  const [valiImage, setValiImage] = useState({error: false, helperText: 'one or more pictures needed...'});
   const [valiTagId, setValiTagId] = useState({error: false, helperText: 'tag unselected...'});
-  const [valiPrice, setValiPrice] = useState({error: false, helperText: 'within 1~999RMB...'});
-  const [valiComment, setValiComment] = useState({error: false, helperText: 'comment of suitable length needed...'});
-  const [valiPledge, setValiPledge] = useState({error: false, helperText: 'pledge not confirmed...'});
+  const [valiPrice, setValiPrice] = useState({error: false, helperText: 'advertised price between 1RMB and 999RMB...'});
+  const [valiComment, setValiComment] = useState({error: false, helperText: 'comment between 1 and 255 characters...'});
+  const [valiPledge, setValiPledge] = useState({error: false, helperText: 'Please sign the pledge!'});
   const adType = 0;  // adType managed by parent, not here
   const adTypes = ['textbook', 'other'];
-  // variable declaration moved to the outside of the component
-  // let formData = new FormData();
-  // let pledgeConfirmed = false;
 
   useEffect(() => {
     dataFetch(
@@ -192,7 +189,7 @@ export default function AdUploadFormMUITextbook({
 
   const handleValidate = () => {
     let ans = true;
-    if (!formData.get('adTitle') || formData.get('adTitle').length<1 || formData.get('adTitle').length>30) {
+    if (!formData.get('adTitle') || formData.get('adTitle').length<1 || formData.get('adTitle').length>31) {
       setValiAdTitle({...valiAdTitle, error: true});
       ans = false;
     } else {setValiAdTitle({...valiAdTitle, error: false});}
@@ -208,11 +205,11 @@ export default function AdUploadFormMUITextbook({
       ans = false;
     } else {setValiTagId({...valiTagId, error: false});}
     if (!formData.get('price') || !/^[0-9]+$/.test((formData.get('price')).toString()) ||
-      Number(formData.get('price'))<=0 || Number(formData.get('price'))>=1000) {
+      Number(formData.get('price'))<1 || Number(formData.get('price'))>999) {
       setValiPrice({...valiPrice, error: true});
       ans = false;
     } else {setValiPrice({...valiPrice, error: false});}
-    if (!formData.get('comment') || formData.get('comment').length>=100) {
+    if (!formData.get('comment') || formData.get('comment').length<1 || formData.get('comment').length>255) {
       setValiComment({...valiComment, error: true});
       ans = false;
     } else {setValiComment({...valiComment, error: false});}
@@ -238,7 +235,6 @@ export default function AdUploadFormMUITextbook({
   return (
     <div className={'AdUploadFormMUI card'} ref={ref}>
 
-      {/* img css absolute, its parent is relative */}
       <img className={'icon-close clickable-icon'} src="./close_black_48dp.svg" alt="" onClick={handleClose}/>
 
       <div className={'AdUploadFormMUI-row-title non-text'}>
@@ -272,8 +268,12 @@ export default function AdUploadFormMUITextbook({
         <MUITagSelect
           identifier={'tagId'} options={getTextbookData().map(op => {return {label: op.title, id: op.id};})}
           onChange={handleInputChange}
-          error={valiTagId.error} helperText={valiTagId.error?valiTagId.helperText:''}
         />
+        {valiTagId.error && (
+          <div className={'AdUploadFormMUI-row-pledge-alert'}>
+            <p>{valiTagId.helperText}</p>
+          </div>
+        )}
         {selectedTextbook && (
           <TextbookSearchShowSelected selectedTextbook={getTextbookData().filter(op => op.id===selectedTextbook)[0]}/>
         )}
@@ -283,8 +283,14 @@ export default function AdUploadFormMUITextbook({
         <p>Price to sell at</p>
         <MUINumber
           identifier={'price'} onChange={handleInputChange}
-          error={valiPrice.error} helperText={valiPrice.error?valiPrice.helperText:''}
+          error={valiPrice.error}
+          // helperText={valiPrice.error?valiPrice.helperText:''}  // too long for MUI built-in prompt to display
         />
+        {valiPrice.error && (
+          <div className={'AdUploadFormMUI-row-pledge-alert'}>
+            <p>{valiPrice.helperText}</p>
+          </div>
+        )}
       </div>
 
       <div className={'AdUploadFormMUI-row'}>
@@ -307,13 +313,9 @@ export default function AdUploadFormMUITextbook({
         )}
       </div>
 
-
       <div className={'AdUploadFormMUI-row-submit'}>
         <MUIButton label={'Submit'} variant={1} onClick={handleSubmit}/>
       </div>
-
-
-
 
     </div>
   );
