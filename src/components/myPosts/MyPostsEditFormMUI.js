@@ -100,10 +100,6 @@ function MyPostsEditFormMUI({
 
       <div className={'AdUploadFormMUI-row'}>
         <p>Ad Title</p>
-        {/*<MUITextField*/}
-        {/*  identifier={'adTitle'} onChange={handleInputChange}*/}
-        {/*  placeholder={adDataOriginal.adTitle} readOnly={true}*/}
-        {/*/>*/}
         <p className={'ad-title-original'}>The Previous Title</p>
       </div>
       <div className={'AdUploadFormMUI-row'}>
