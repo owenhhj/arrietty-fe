@@ -124,14 +124,26 @@ If tapped, the owner's info is displayed.
 
 Clicking on an ad brings up a hovering window using `Modal`, displaying ad info with all pictures of it.
 
-### 4 `src/components/favorite/`
+### 4 `src/components/searchBar/`
+
+
+
+
+
+
+
+
+
+
+
+### 5 `src/components/favorite/`
 
 #### `FavoriteColumn.js`
 
 The major component serving the entire section on the "favorite" page. 
 This component directly calls `AdDisplayCard.js` to render the user's "marked" advertisements.
 
-### 5 `src/components/myPosts/`
+### 6 `src/components/myPosts/`
 
 #### `MyPostsCanvas.js`
 
@@ -146,7 +158,16 @@ For images, previous images are fetched and pushed into the drag-and-drop compon
 After the edit, all pictures in the new version of the advertisement will be posted to the back end, overwriting the database, 
 regardless of whether they are previous pictures or newly uploaded pictures.
 
+### 7 `src/components/notification/`
 
+#### `NotificationColumn.js`
+
+The major component serving the entire section on the "notification" page.
+A user can see, by whom and when, a specific advertisement was "tapped".
+
+### 8 `src/components/admin/`
+
+#### ``
 
 
 

@@ -1,5 +1,7 @@
 # Bugs to fix:
 
+`admin` fetch
+
 `AdListingDetailCard`长宽固定
 
 NYU Accent Blue: `#59B2D1`
@@ -15,8 +17,6 @@ searchBar adTypeChange 刷新 & adTypeChange-->filterUpdate
     全局loading动态小组件（转圈）
     刚登录时 等待setSiteInfo isAdmin
     是否能用state做context而自动传递更新
-
-新建ad后端报错：JVM版本重装
 
 清除所有console.log console.warn
 
