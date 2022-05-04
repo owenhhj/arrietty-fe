@@ -159,12 +159,7 @@ export default function AdminSiteStats() {
           {/*<div className={'AdminSSTodayCard-each'}>*/}
           {/*  <p>#adDelete: {dataToday.adDeleteNum}</p>*/}
           {/*</div>*/}
-          {/*<div className={'AdminSSTodayCard-each'}>*/}
-          {/*  <p>#tap: {dataToday.tapRequestNum}</p>*/}
-          {/*</div>*/}
-          {/*<div className={'AdminSSTodayCard-each'}>*/}
-          {/*  <p>#mark: {dataToday.markRequestNum}</p>*/}
-          {/*</div>*/}
+
         </div>
 
         <div className={'AdminSSWidgetCard-container'}>
