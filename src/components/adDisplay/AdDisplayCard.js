@@ -19,7 +19,7 @@ const fakeContact = {
 };
 
 function AdDisplayCard({
-  adData=fakeAd,  // one piece of adData <--> one advertisement
+  adData,  // one piece of adData <--> one advertisement
                        }) {
   const ROOT = process.env.REACT_APP_URL_ROOT;
   const MARK = process.env.REACT_APP_API_MARK;

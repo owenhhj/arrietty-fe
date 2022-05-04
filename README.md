@@ -1,5 +1,7 @@
 # Bugs to fix:
 
+`AdListingDetailCard`长宽固定
+
 NYU Accent Blue: `#59B2D1`
 
 navbar changed home icon
