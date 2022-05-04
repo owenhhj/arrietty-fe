@@ -3,22 +3,10 @@ import {useEffect, useRef, useState} from "react";
 import {dataFetch} from "./common/common";
 import Modal from "react-modal";
 
-const fakeBulletin = [
-  {
-    id: 11, title: 'Welcome to Arrietty-1 what dads fi feawifo !', content: 'Make your sells at home!', createTime: 'Apr 5, 2022, 12:00:00 PM'
-  },
-  {
-    id: 22, title: 'Welcome to Arrietty-2!', content: 'Make your sells at homeef Make your sells at homeef Make your sells at homeef Make your sells at homeef Make your sells at homeef ewa aewfawef awef e faaefw eweaf!', createTime: 'Apr 5, 2022, 12:00:00 PM'
-  },
-  {
-    id: 33, title: 'Welcome to Arrietty-2!', content: 'Make your sells at homeef Make your sells at homeef Make your sells at homeef Make your sells at homeef Make your sells at homeef ewa aewfawef awef e faaefw eweaf!', createTime: 'Apr 5, 2022, 12:00:00 PM'
-  }
-];
-
 export default function Bulletin() {
   const ROOT = process.env.REACT_APP_URL_ROOT;
   const BULLETIN = process.env.REACT_APP_API_BULLETIN;
-  const [bullData, setBullData] = useState(fakeBulletin);
+  const [bullData, setBullData] = useState([]);
   const [showBullDetail, setShowBullDetail] = useState(-1);
 
   useEffect(() => {

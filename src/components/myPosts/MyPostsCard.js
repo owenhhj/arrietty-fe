@@ -1,19 +1,30 @@
 import './MyPostsCard.css';
+import {useEffect, useState} from "react";
+import {MUIButton} from "../common/MUIComponents";
 
 function MyPostsCard({
-  adData= {},
-  callbackEdit=null,
-  callbackDelete=null
+                       adData = {},
+                       callbackEdit = null,
+                       callbackDelete = null
                      }) {
   const ROOT = process.env.REACT_APP_URL_ROOT;
+  const [adTime, setAdTime] = useState('');
+
+  // 'Apr 5, 2022, 10:20:45 PM'
+  useEffect(() => {
+    let d = new Date(adData.createTime);
+    setAdTime(
+      d.toLocaleString('en', {month: 'short', day: 'numeric', year: 'numeric'})
+    );
+  }, []);
 
   const handleEdit = () => {
     callbackEdit(adData.id);
-  }
+  };
 
   const handleDelete = () => {
     callbackDelete(adData.id)
-  }
+  };
 
   return (
     <div style={{display: 'inline-block'}}>
@@ -26,15 +37,21 @@ function MyPostsCard({
           <hr/>
           <div className={'row-title'}><p>{adData.adTitle}</p></div>
           <div className={'row-price'}><p>{adData.price} RMB</p></div>
-          <div className={'row-time row-price'}><p>{adData.createTime}</p></div>
-          <div className={'row-tapped-by row-price'}><p>Tapped {adData.numberOfTaps} time{adData.numberOfTaps>1?'s':''}</p></div>
+          <div className={'row-time row-price'}><p>{adTime}</p></div>
+          <div className={'row-tapped-by row-price'}>
+            <p>Tapped {adData.numberOfTaps} time{adData.numberOfTaps > 1 ? 's' : ''}</p>
+          </div>
           <hr/>
           <div className={'row-buttons'}>
             <div className={'btn-edit'}>
-              <p className={'clickable-btn'} onClick={handleEdit}>edit</p>
+              <MUIButton
+                label={'Edit'} size={'small'} variant={1} buttonStyle={{height: '2em'}} onClick={handleEdit}
+              />
             </div>
             <div className={'btn-delete'}>
-              <p className={'clickable-btn'} onClick={handleDelete}>delete</p>
+              <MUIButton
+                label={'Delete'} size={'small'} variant={3} buttonStyle={{height: '2em'}} onClick={handleDelete}
+              />
             </div>
           </div>
         </div>

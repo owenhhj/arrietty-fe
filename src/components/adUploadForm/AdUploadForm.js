@@ -29,9 +29,6 @@ function AdUploadForm({
   };
 
   const handleSubmit = (f) => {
-    // for (let pair of f.entries()) {
-    //   console.log('>>>>>>>', pair[0], pair[1]);
-    // }
     dataFetch(
       `${ROOT}${AD}?action=add`,
       {
@@ -41,13 +38,16 @@ function AdUploadForm({
       (res) => {
         handleNoti('Ad Upload Success', true);
         handleSwitchAdType(0);
+        setTimeout(() => {
+          window.location.reload();
+        }, 1000);
       },
       (err) => {
         console.warn(err);
         handleNoti('Ad Upload Failure', false);
       }
     );
-  }
+  };
 
   return (
     <>

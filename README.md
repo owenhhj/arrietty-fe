@@ -1,5 +1,9 @@
 # Bugs to fix:
 
+NYU Accent Blue: `#59B2D1`
+
+navbar changed home icon
+
 写ReadMe
 
 refactor admin inputs

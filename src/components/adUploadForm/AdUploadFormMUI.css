@@ -37,6 +37,12 @@
     cursor: default;
 }
 
+.AdUploadFormMUI-row .ad-title-original {
+    margin: 0;
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
 .AdUploadFormMUI-row-pledge-alert p {
     font-size: 0.8rem;
     margin-left: 0;

@@ -17,7 +17,7 @@ export function MUITextField({
                                styleBox = {},
                                styleInput = {},
                                error = false,
-                               helperText = 'Invalid entry',
+                               helperText = '',
                                readOnly = false,
                                onChange
                              }) {
@@ -76,16 +76,14 @@ export function MUINumber({
                             label = '',
                             value = 0,
                             placeholder = '',
-                            styleBox = {},
+                            styleBox = {},  // e.g. {width: '4em'}
                             styleInput = {},
                             error = false,
-                            helperText = 'Invalid entry',
+                            helperText = '',
                             onChange
                           }) {
   const styleBoxDefault = {
     width: '8em',
-    margin: 0,
-    padding: 0
   };
 
   const handleInputChange = (e) => {
@@ -97,7 +95,7 @@ export function MUINumber({
       <Box
         component="form"
         sx={{
-          '& > :not(style)': {m: 1, width: '100%'},
+          '& > :not(style)': {m: 1, width: '100%', margin: '0'},
         }}
         noValidate
         autoComplete="off"
@@ -123,7 +121,7 @@ export function MUICheckbox({
                               label = '',
                               value = false,
                               error = false,
-                              helperText = 'Invalid entry',
+                              helperText = '',
                               onChange
                             }) {
   const [checked, setChecked] = useState(false);
@@ -157,7 +155,7 @@ export function MUITagSelect({
                                label = '',
                                style = {},
                                error = false,
-                               helperText = 'Invalid entry',
+                               helperText = '',
                                onChange
                              }) {
   const handleInputChange = (newOption) => {
@@ -189,22 +187,23 @@ export function MUITagSelect({
 export function MUIButton({
                             label = 'Submit',
                             size = 'medium',
-                            variant = 2,  // 'text', 'contained', 'outlined'
+                            variant = 2,  // defined in `buttonVariants`
                             buttonStyle = {},
                             onClick
                           }) {
-  const buttonVariants = ['text', 'contained', 'outlined'];
+  const buttonVariants = ['text', 'contained', 'outlined', 'outlined'];
 
   const buttonSxs = [
     {color: '#36C0C9'},
-    {backgroundColor: '#36C0C9'},
-    {color: '#36C0C9', borderColor: '#36C0C9'}
+    {backgroundColor: '#36C0C9'},  // submit button
+    {color: '#36C0C9', borderColor: '#36C0C9'},
+    {color: '#D32F2F', borderColor: '#BEBEBE', backgroundColor: '#F3F4F6'}  // cancel button
   ];
 
   return (
     <>
       <Button
-        sx={{...buttonSxs[variant], width: `${label.length - 1}em`, height: '2.5em', ...buttonStyle}}
+        sx={{...buttonSxs[variant], width: `${label.length - 1}em`, height: '2.3em', textTransform: 'none', ...buttonStyle}}
         size={size}
         variant={buttonVariants[variant]}
         onClick={onClick}
