@@ -71,7 +71,37 @@ Refer to `common/MUIComponents.js`.
 
 ## documentation for sub directories
 
-### 1 `src/components/adDisplay/`
+### 1 `src/components/myProfile`
+
+#### `MyProfile.js`
+
+The major component serving either `MyProfileDisplay` or `MyProfileEdit` at a time.
+
+#### `MyProfileDisplay.js`
+
+To display my profile, also containing the button to create a new ad.
+
+#### `MyProfileEdit.js`
+
+To edit (username and class year) or (avatar picture), posted separately to the back end.
+
+### 2 `src/components/adUploadForm`
+
+#### `AdUploadForm.js`
+
+The pinnacle of the WET _(Write Everything Twice)_ principle in this project, as opposed to DRY _(Don't Repeat Yourself)_.\
+Arrietty supports two types of advertisements, `textbook` or `other`. The latter can be categorized into sub tags such as `furniture`, `electronics`, etc.\
+A button is placed in the upload window to switch ad type. Every time this button is pressed, `React` forces the component to re-mount, leading to unexpected data management issues.
+To cope with this, the otherwise only upload window is duplicated into a `AdUploadFormMUITextbook.js` and a `AdUploadFormMUIOther.js`. 
+When the button is pressed, the whole window is switched between these two.\
+The form variable is defined outside the React component to avoid interference between `handleInputChange`, `handleValidate` and `handleResetVali`, when `React` forces the component to re-mount.
+
+#### `AdUploadFormDragDrop.js`
+
+Drag and drop component for managing the order of pictures when creating a new advertisement, using the `react-beautiful-dnd` library.
+The order of the files in the form object when being submitted to the back end determines the order of the appearance when displayed to other users.
+
+### 3 `src/components/adDisplay/`
 
 #### `AdDisplayColumn.js`
 
