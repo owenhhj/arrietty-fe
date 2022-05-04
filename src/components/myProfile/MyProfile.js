@@ -27,9 +27,7 @@ function MyProfile() {
   const ROOT = process.env.REACT_APP_URL_ROOT;
   const PROFILE = process.env.REACT_APP_API_PROFILE;
   const [myProfileData, setMyProfileData] = useState(getSiteInfo());
-  const [avatarSrc, setAvatarSrc] = useState(  // pass state hook between components
-    myProfileData.avatarImageId ? `${ROOT}image?id=${myProfileData.avatarImageId}` : "./default_avatar.jpg"
-  );
+  const [avatarSrc, setAvatarSrc] = useState('/avatar');
   const [pageShow, setPageShow] = useState(0);  // 0: disp, 1: edit
   const [showNewAdForm, setShowNewAdForm] = useState(false);
 
@@ -56,17 +54,15 @@ function MyProfile() {
       {method: "GET"},
       (res) => {
         setMyProfileData(res);
-        // setAvatarSrc(res.avatarImageId ? `${ROOT}image?id=${res.avatarImageId}` : "./default_avatar.jpg");
       },
       null
     );
-    setAvatarSrc('/avatar');
+    setAvatarSrc('/avatar');  // avatar uses a dedicated API
   };
 
   // handle data from children: disp & edit
-  function callbackHandler(data) {
+  const callbackHandler = (data) => {
     if (data.action === "update") {
-      // setMyProfileData(data.body);
       refreshData();
       setPageShow(0);
       handleShowNoti('Profile edit success', true);
@@ -75,7 +71,7 @@ function MyProfile() {
     } else if (data.action === "addNewAd") {
       setShowNewAdForm(true);
     }
-  }
+  };
 
   return (
     <>

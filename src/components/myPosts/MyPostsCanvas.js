@@ -98,7 +98,7 @@ function MyPostsCanvas() {
         console.warn(err);
         handleShowNoti('Ad deletion failure', false);
       }
-    )
+    );
   };
 
   const handleEditSubmit = (f) => {

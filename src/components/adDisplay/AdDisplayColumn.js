@@ -16,7 +16,6 @@ function AdDisplayColumn() {
   const loadingMsg = ['', 'Loading...', 'No more advertisements...'];
 
   useEffect(() => {
-    // console.log('onMount search with:', queryBody);
     dataFetch(
       `${ROOT}${SEARCH}`,
       {
@@ -51,7 +50,7 @@ function AdDisplayColumn() {
     } else if (document.body.offsetHeight-window.scrollY-window.innerHeight > 100) {
       setIsLoading(0);
     }
-  }
+  };
 
   // user search --> reset queryBody & queryPageNum
   const handleSearchBar = (e) => {
@@ -74,8 +73,8 @@ function AdDisplayColumn() {
       (e) => {
         console.warn(e);
       }
-    )
-  }
+    );
+  };
 
   // scroll to bottom --> auto fetch
   const handleLoadMore = () => {
@@ -107,7 +106,7 @@ function AdDisplayColumn() {
         console.warn(e);
       }
     );
-  }
+  };
 
   return (
     <div className={'AdDisplayColumn'}>
@@ -120,8 +119,7 @@ function AdDisplayColumn() {
         );
       })}
 
-      {/* dummy below */}
-      {/*<AdDisplayCard/>*/}
+      {/* dummy data */}
       {/*<AdDisplayCard/>*/}
 
       <div style={{width: 'auto', height:'200px'}}>
