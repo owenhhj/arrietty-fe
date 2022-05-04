@@ -71,7 +71,7 @@ Refer to `common/MUIComponents.js`.
 
 ## documentation for sub directories
 
-### 1 `src/components/myProfile`
+### 1 `src/components/myProfile/`
 
 #### `MyProfile.js`
 
@@ -85,7 +85,7 @@ To display my profile, also containing the button to create a new ad.
 
 To edit (username and class year) or (avatar picture), posted separately to the back end.
 
-### 2 `src/components/adUploadForm`
+### 2 `src/components/adUploadForm/`
 
 #### `AdUploadForm.js`
 
@@ -123,6 +123,29 @@ If tapped, the owner's info is displayed.
 #### `AdListingDetailCard.js`
 
 Clicking on an ad brings up a hovering window using `Modal`, displaying ad info with all pictures of it.
+
+### 4 `src/components/favorite/`
+
+#### `FavoriteColumn.js`
+
+The major component serving the entire section on the "favorite" page. 
+This component directly calls `AdDisplayCard.js` to render the user's "marked" advertisements.
+
+### 5 `src/components/myPosts/`
+
+#### `MyPostsCanvas.js`
+
+The major component serving the entire section on the "my posts" page.
+A user can edit or delete advertisements uploaded before.
+
+#### `MyPostsEditFormMUI.js`
+
+Yet another WET implementation of the advertisement upload form.\
+Only the images, price and comment are allowed to be edited.
+For images, previous images are fetched and pushed into the drag-and-drop component for managing the ordering. 
+After the edit, all pictures in the new version of the advertisement will be posted to the back end, overwriting the database, 
+regardless of whether they are previous pictures or newly uploaded pictures.
+
 
 
 

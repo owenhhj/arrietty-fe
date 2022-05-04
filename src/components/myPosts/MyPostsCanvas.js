@@ -119,6 +119,9 @@ function MyPostsCanvas() {
       (res)=>{
         handleShowNoti('Ad Edit Success', true);
         setShowEditAdForm(false);
+        setTimeout(() => {
+          window.location.reload();
+        }, 1000);
       },
       (err)=>{
         handleShowNoti('Ad Edit Failure', false);
