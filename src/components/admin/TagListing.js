@@ -34,8 +34,6 @@ export default function TagListing(
             );
         }
         else if (tagType==="textbook"){
-            console.log(tagInfo.courseId);
-            console.log(allCourseTags);
             let relatedCourse = getCourseById(tagInfo.courseId);
             return (
                 <div className={"tag-info-texts"}>

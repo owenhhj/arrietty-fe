@@ -85,7 +85,6 @@ function AdDisplayColumn() {
 
   // scroll to bottom --> auto fetch
   const handleLoadMore = () => {
-    // console.log('handleLoadMore with:', queryBody);
     dataFetch(
       `${ROOT}${SEARCH}`,
       {
