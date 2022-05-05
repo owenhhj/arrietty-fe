@@ -7,7 +7,13 @@ import {dataFetch} from "../common/common";
 
 const fakeTagOptions = ['furniture', 'stationary', 'electronic', 'free'];
 
+// defined outside to deal with React forcing the component to re-mount, may try useState & pass to filter as props
+let filterPrice = {'type': 'price', 'priceOrder': 0, 'priceRange': [null, null]};
+let filterTag = {'type': 'tag', 'selectedOptions': []};
+
 function SearchBar({
+                     adType,
+                     setAdType,
                      callback
                    }) {
   const ROOT = process.env.REACT_APP_URL_ROOT;
@@ -15,12 +21,8 @@ function SearchBar({
   const TAG = process.env.REACT_APP_API_TAG;
   const ref = useRef();  // to bind text suggestion window
   const priceOrders = [null, 'asc', 'desc'];
-  let filterPrice = {'type': 'price', 'priceOrder': 0, 'priceRange': [null, null]};
-  let filterTag = {'type': 'tag', 'selectedOptions': []};
   const [keyword, setKeyword] = useState('');  // if not state --> callback not update
   const [tagOptions, setTagOptions] = useState([]);
-  const adTypes = ['textbook', 'other'];
-  const [adType, setAdType] = useState(0);
   const [showKeywordSuggest, setShowKeywordSuggest] = useState(false);
   const [keywordSuggest, setKeywordSuggest] = useState(['textbook1', 'textbook2', 'test']);
 
@@ -48,11 +50,10 @@ function SearchBar({
     });
   }, [ref]);
 
-  // todo adTypeChange cannot refresh: component forced to reMount
   const handleAdTypeChange = () => {
-    let newType = 1-adType;
+    let newType = adType === 'textbook' ? 'other' : 'textbook';
     setAdType(newType);
-    // handleSubmit(newType);
+    handleSubmit(newType);
   };
 
   const handleKeywordSuggest = (i) => {
@@ -78,7 +79,7 @@ function SearchBar({
     setKeyword(temp);
     if (temp.length > 0) {  // API rejects empty string
       dataFetch(
-        `${ROOT}${SUGGEST}?type=${adTypes[adType]}&keyword=${temp}`,
+        `${ROOT}${SUGGEST}?type=${adType}&keyword=${temp}`,
         {
           method: 'POST',
           headers: {'Content-Type': 'application/json'},
@@ -98,19 +99,19 @@ function SearchBar({
     }
   };
 
-  const handleSubmit = (newType=null) => {
+  const handleSubmit = (newType = null) => {
     setShowKeywordSuggest(false);
     let tags = [];
     filterTag.selectedOptions.forEach(idx => {
       tags.push(tagOptions[Number(idx)])
     });
     callback({
-      'adType': adTypes[adType],
+      'adType': newType ? newType : adType,
       'keyword': keyword,
       'priceOrder': priceOrders[filterPrice.priceOrder],
       'minPrice': filterPrice.priceRange[0],
       'maxPrice': filterPrice.priceRange[1],
-      'tag': tags.length>0 ? tags.join(',') : null
+      'tag': tags.length > 0 ? tags.join(',') : null
     });
   };
 
@@ -122,7 +123,7 @@ function SearchBar({
 
           <div className={'choose-tag clickable-btn'} onClick={handleAdTypeChange}>
             <div className={'choose-tag-p-container'}>
-              <p>{adTypes[adType]}</p>
+              <p>{adType}</p>
             </div>
             <div className={'choose-tag-img-container'}>
               <img src="./change_circle_black_48dp.svg" alt=""/>
@@ -151,7 +152,7 @@ function SearchBar({
             <p>Filters</p>
           </div>
           <SearchBarFilterPrice callback={handleFilterPrice}/>
-          {adType !== 0 && <SearchBarFilterTag options={tagOptions} callback={handleFilterTag}/>}
+          {adType === 'other' && <SearchBarFilterTag options={tagOptions} callback={handleFilterTag}/>}
         </div>
       </div>
 
