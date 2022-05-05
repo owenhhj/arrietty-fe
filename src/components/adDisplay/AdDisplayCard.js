@@ -1,7 +1,7 @@
 import './AdDisplayCard.css';
 import AdDisplayCardHoverMore from "./AdDisplayCardHoverMore";
 import AdListingDetailCard from "./AdListingDetailCard";
-import {translateTimeAgo} from "../common/common";
+import {capFirstLetter, translateTimeAgo} from "../common/common";
 import {showGeneralNoti} from "../common/GeneralNotiProvider";
 import {useEffect, useState} from "react";
 import {dataFetch} from "../common/common";
@@ -150,7 +150,7 @@ function AdDisplayCard({
         <div className={'col-3 non-text'}>
           <div className={'col-3-tags-container'}>
             <div className={'col-3-tags'}>
-              <p className={'tag'}>{adData.adType}</p>
+              <p className={'tag'}>{capFirstLetter(adData.adType)}</p>
               <p className={'last-mod'}>{translateTimeAgo(adData.createTime)}</p>
             </div>
           </div>

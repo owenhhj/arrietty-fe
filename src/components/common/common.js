@@ -31,6 +31,13 @@ export const fileSizeCheck = (files) => {
   return ans;
 };
 
+export const capFirstLetter = (s) => {
+  if (s.length < 1) {
+    return s;
+  }
+  return `${s.charAt(0).toUpperCase()}${s.slice(1,)}`;
+};
+
 export function dataFetch(url, metaData, successHandler, errorHandler) {
   fetch(url, metaData)
     .then(

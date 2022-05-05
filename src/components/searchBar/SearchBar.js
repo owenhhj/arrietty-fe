@@ -3,9 +3,7 @@ import SearchBarFilterTag from "./SearchBarFilterTag";
 import SearchBarKeywordSuggest from "./SearchBarKeywordSuggest";
 import './SearchBar.css';
 import {useState, useEffect, useRef} from "react";
-import {dataFetch} from "../common/common";
-
-const fakeTagOptions = ['furniture', 'stationary', 'electronic', 'free'];
+import {capFirstLetter, dataFetch} from "../common/common";
 
 // defined outside to deal with React forcing the component to re-mount, may try useState & pass to filter as props
 let filterPrice = {'type': 'price', 'priceOrder': 0, 'priceRange': [null, null]};
@@ -24,7 +22,7 @@ function SearchBar({
   const [keyword, setKeyword] = useState('');  // if not state --> callback not update
   const [tagOptions, setTagOptions] = useState([]);
   const [showKeywordSuggest, setShowKeywordSuggest] = useState(false);
-  const [keywordSuggest, setKeywordSuggest] = useState(['textbook1', 'textbook2', 'test']);
+  const [keywordSuggest, setKeywordSuggest] = useState([]);
 
   useEffect(() => {
     // setTagOptions(fakeTagOptions);
@@ -123,7 +121,7 @@ function SearchBar({
 
           <div className={'choose-tag clickable-btn'} onClick={handleAdTypeChange}>
             <div className={'choose-tag-p-container'}>
-              <p>{adType}</p>
+              <p>{capFirstLetter(adType)}</p>
             </div>
             <div className={'choose-tag-img-container'}>
               <img src="./change_circle_black_48dp.svg" alt=""/>

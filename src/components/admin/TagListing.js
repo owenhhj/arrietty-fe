@@ -15,6 +15,8 @@ export default function TagListing(
 ){
     let formData = {...tagData};
 
+    const ROOT = process.env.REACT_APP_URL_ROOT;
+
     const [tagInfo, setTagInfo] = useState({...tagData});
     const [showForm, setShowForm] = useState(createNewTag);
     const [showTagInfoButtons, setShowTagInfoButtons] = useState(false);
@@ -128,7 +130,7 @@ export default function TagListing(
     };
 
     const handleInfoDelete = () => {
-        let url = `https://localhost:8000/${tagType}?action=delete`;
+        let url = `${ROOT}${tagType}?action=delete`;
         let metaData = {
             method: 'POST',
             headers: {
@@ -146,7 +148,7 @@ export default function TagListing(
     };
 
     const handleFormSave = () => {
-        let url = `https://localhost:8000/${tagType}?action=update`;
+        let url = `${ROOT}${tagType}?action=update`;
 
         let metaData = {
             method: 'POST',
