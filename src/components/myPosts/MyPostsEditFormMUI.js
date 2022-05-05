@@ -100,9 +100,10 @@ function MyPostsEditFormMUI({
 
       <div className={'AdUploadFormMUI-row'}>
         <p>Ad Title</p>
-        <p className={'ad-title-original'}>The Previous Title</p>
+        <p className={'ad-title-original'}>{adDataOriginal.adTitle}</p>
       </div>
       <div className={'AdUploadFormMUI-row'}>
+        <p>Ad Type</p>
         <MUIButton label={adDataOriginal.adType} variant={1}/>
       </div>
 

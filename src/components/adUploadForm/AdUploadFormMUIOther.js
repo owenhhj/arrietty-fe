@@ -15,7 +15,7 @@ export default function AdUploadFormMUIOther({
   const TAG = process.env.REACT_APP_API_TAG;
   const ref = useRef(null);
   const [otherTagData, setOtherTagData] = useState([]);
-  const [valiAdTitle, setValiAdTitle] = useState({error: false, helperText: 'ad title between 1 and 31 characters...'});
+  const [valiAdTitle, setValiAdTitle] = useState({error: false, helperText: 'ad title between 1 and 99 characters...'});
   const [valiImage, setValiImage] = useState({error: false, helperText: 'one or more pictures needed...'});
   const [valiTagId, setValiTagId] = useState({error: false, helperText: 'select a tag...'});
   const [valiPrice, setValiPrice] = useState({error: false, helperText: 'advertised price between 1RMB and 999RMB...'});
@@ -83,7 +83,7 @@ export default function AdUploadFormMUIOther({
 
   const handleValidate = () => {
     let ans = true;
-    if (!formData.get('adTitle') || formData.get('adTitle').length<1 || formData.get('adTitle').length>31) {
+    if (!formData.get('adTitle') || formData.get('adTitle').length<1 || formData.get('adTitle').length>99) {
       setValiAdTitle({...valiAdTitle, error: true});
       ans = false;
     } else {setValiAdTitle({...valiAdTitle, error: false});}
