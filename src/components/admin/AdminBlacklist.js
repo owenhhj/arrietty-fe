@@ -11,8 +11,8 @@ const fakeUsers = ['hh1234', 'yz5678', 'hh1234', 'yz5678', 'hh1234',
 
 export default function AdminBlacklist() {
   const ROOT = process.env.REACT_APP_URL_ROOT;
-  const BLACKLIST = process.env.REACT_APP_API_BLACKLIST;
-  const BLACKLIST_EDIT = process.env.REACT_APP_API_BLACKLIST_EDIT;
+  const BLACKLIST = process.env.REACT_APP_API_ADMIN_BLACKLIST;
+  const BLACKLIST_EDIT = process.env.REACT_APP_API_ADMIN_BLACKLIST_EDIT;
   const [netIds, setNetIds] = useState(fakeUsers);
   const [netIdInput, setNetIdInput] = useState('');
 

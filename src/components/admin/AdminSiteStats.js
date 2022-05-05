@@ -1,94 +1,108 @@
 import './AdminSiteStats.css';
 import {useEffect, useState} from "react";
 import Chart from 'chart.js/auto';  // don't remove this
-import {Line, Bar} from 'react-chartjs-2';
-import InputLabel from '@mui/material/InputLabel';
-import MenuItem from '@mui/material/MenuItem';
-import FormControl from '@mui/material/FormControl';
-import Select, { SelectChangeEvent } from '@mui/material/Select';
+import {Line} from 'react-chartjs-2';
+import {dataFetch} from "../common/common";
+// import InputLabel from '@mui/material/InputLabel';
+// import MenuItem from '@mui/material/MenuItem';
+// import FormControl from '@mui/material/FormControl';
+// import Select, { SelectChangeEvent } from '@mui/material/Select';
 
-const fakeSS = [
-  {
-    "id": 1,
-    "totalUserNum": 12,
-    "loginUserNum": 5,
-    "adUploadNum": 20,
-    "adEditNum": 11,
-    "adDeleteNum": 0,
-    "totalAdNum": 50,
-    "tapRequestNum": 14,
-    "markRequestNum": 12,
-    "unmarkRequestNum": 11,
-    "searchRequestNum": 40,
-    "date": "April 03 2022"
-  },
-  {
-    "id": 2,
-    "totalUserNum": 12,
-    "loginUserNum": 5,
-    "adUploadNum": 20,
-    "adEditNum": 11,
-    "adDeleteNum": 0,
-    "totalAdNum": 50,
-    "tapRequestNum": 14,
-    "markRequestNum": 12,
-    "unmarkRequestNum": 11,
-    "searchRequestNum": 40,
-    "date": "April 04 2022"
-  },
-  {
-    "id": 3,
-    "totalUserNum": 12,
-    "loginUserNum": 5,
-    "adUploadNum": 20,
-    "adEditNum": 11,
-    "adDeleteNum": 0,
-    "totalAdNum": 50,
-    "tapRequestNum": 14,
-    "markRequestNum": 12,
-    "unmarkRequestNum": 11,
-    "searchRequestNum": 40,
-    "date": "April 05 2022"
-  },
-  {
-    "id": 4,
-    "totalUserNum": 12,
-    "loginUserNum": 5,
-    "adUploadNum": 20,
-    "adEditNum": 11,
-    "adDeleteNum": 0,
-    "totalAdNum": 50,
-    "tapRequestNum": 14,
-    "markRequestNum": 12,
-    "unmarkRequestNum": 11,
-    "searchRequestNum": 40,
-    "date": "April 06 2022"
-  },
-  {
-    "id": 5,
-    "totalUserNum": 12,
-    "loginUserNum": 5,
-    "adUploadNum": 20,
-    "adEditNum": 11,
-    "adDeleteNum": 0,
-    "totalAdNum": 50,
-    "tapRequestNum": 14,
-    "markRequestNum": 12,
-    "unmarkRequestNum": 11,
-    "searchRequestNum": 40,
-    "date": "April 07 2022"
-  }
-];
+// const fakeSS = [
+//   {
+//     "id": 1,
+//     "totalUserNum": 12,
+//     "loginUserNum": 5,
+//     "adUploadNum": 20,
+//     "adEditNum": 11,
+//     "adDeleteNum": 0,
+//     "totalAdNum": 50,
+//     "tapRequestNum": 14,
+//     "markRequestNum": 12,
+//     "unmarkRequestNum": 11,
+//     "searchRequestNum": 40,
+//     "date": "April 03 2022"
+//   },
+//   {
+//     "id": 2,
+//     "totalUserNum": 12,
+//     "loginUserNum": 5,
+//     "adUploadNum": 20,
+//     "adEditNum": 11,
+//     "adDeleteNum": 0,
+//     "totalAdNum": 50,
+//     "tapRequestNum": 14,
+//     "markRequestNum": 12,
+//     "unmarkRequestNum": 11,
+//     "searchRequestNum": 40,
+//     "date": "April 04 2022"
+//   },
+//   {
+//     "id": 3,
+//     "totalUserNum": 12,
+//     "loginUserNum": 5,
+//     "adUploadNum": 20,
+//     "adEditNum": 11,
+//     "adDeleteNum": 0,
+//     "totalAdNum": 50,
+//     "tapRequestNum": 14,
+//     "markRequestNum": 12,
+//     "unmarkRequestNum": 11,
+//     "searchRequestNum": 40,
+//     "date": "April 05 2022"
+//   },
+//   {
+//     "id": 4,
+//     "totalUserNum": 12,
+//     "loginUserNum": 5,
+//     "adUploadNum": 20,
+//     "adEditNum": 11,
+//     "adDeleteNum": 0,
+//     "totalAdNum": 50,
+//     "tapRequestNum": 14,
+//     "markRequestNum": 12,
+//     "unmarkRequestNum": 11,
+//     "searchRequestNum": 40,
+//     "date": "April 06 2022"
+//   },
+//   {
+//     "id": 5,
+//     "totalUserNum": 12,
+//     "loginUserNum": 5,
+//     "adUploadNum": 20,
+//     "adEditNum": 11,
+//     "adDeleteNum": 0,
+//     "totalAdNum": 50,
+//     "tapRequestNum": 14,
+//     "markRequestNum": 12,
+//     "unmarkRequestNum": 11,
+//     "searchRequestNum": 40,
+//     "date": "April 07 2022"
+//   }
+// ];
 
 // https://www.chartjs.org/docs/latest/getting-started/integration.html
 // https://react-chartjs-2.js.org/examples/line-chart
 export default function AdminSiteStats() {
-  const [data5Days, setData5Days] = useState(fakeSS);
-  const [dataToday, setDataToday] = useState(fakeSS[0]);
+  const ROOT = process.env.REACT_APP_URL_ROOT;
+  const STATS = process.env.REACT_APP_API_ADMIN_STATISTICS;
+  const [data5Days, setData5Days] = useState([]);
+  const [dataToday, setDataToday] = useState({});
   const [chartTypes, setChartTypes] = useState([]);
 
   useEffect(() => {
-    // todo fetch
+    dataFetch(
+      `${ROOT}${STATS}`,
+      {method: 'GET'},
+      (res) => {
+        setData5Days(res);
+        setDataToday(res[0]);
+      },
+      (err) => {
+        console.warn(err);
+        alert('fetch() error');
+      }
+    );
   }, []);
 
   useEffect(() => {

@@ -1,16 +1,12 @@
 # Bugs to fix:
 
-`admin` fetch
-
-`AdListingDetailCard`长宽固定
+`admin` fetch pending testing
 
 NYU Accent Blue: `#59B2D1`
 
 navbar changed home icon
 
 写ReadMe
-
-refactor admin inputs
 
 searchBar adTypeChange 刷新 & adTypeChange-->filterUpdate
 

@@ -4,6 +4,13 @@ import SearchBar from "../searchBar/SearchBar";
 import AdDisplayCard from "./AdDisplayCard";
 import {dataFetch} from "../common/common";
 
+const fakeAd = {
+  id: 1, adType: 'textbook', adTitle: 'This is a fake title for an ad but this is very long', price: '1233425',
+  comment: 'This is a fake comment for and ad but this is very long very long very long very long very long very long very long very long very long very long very long very long very long very long very long very long very long very long very long very long very long',
+  createTime: "Apr 4, 2022, 12:00:00 AM", isMarked: true, numberOfTaps: 60, imageIds: '3,6,9',
+  // userNetId: 'sh2013'
+};
+
 function AdDisplayColumn() {
   const ROOT = process.env.REACT_APP_URL_ROOT;
   const SEARCH = process.env.REACT_APP_API_SEARCH;
@@ -13,7 +20,7 @@ function AdDisplayColumn() {
     'adType': 'textbook',
     'pageNum': 0
   });
-  const loadingMsg = ['', 'Loading...', 'No more advertisements...'];
+  const loadingMsg = ['', 'Loading...', 'No more advertisements...'];  // not in use for now
 
   useEffect(() => {
     dataFetch(
@@ -78,7 +85,6 @@ function AdDisplayColumn() {
 
   // scroll to bottom --> auto fetch
   const handleLoadMore = () => {
-    // console.log('handleLoadMore with:', queryBody);
     dataFetch(
       `${ROOT}${SEARCH}`,
       {
@@ -120,7 +126,7 @@ function AdDisplayColumn() {
       })}
 
       {/* dummy data */}
-      {/*<AdDisplayCard/>*/}
+      {/*<AdDisplayCard adData={fakeAd}/>*/}
 
       <div style={{width: 'auto', height:'200px'}}>
         {/* not in use, placeholder only */}

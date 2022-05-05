@@ -26,7 +26,6 @@ function SiteInfoProvider({children}) {
       ROOT+"profile?userId=",
       {method: 'GET'},
       (res) => {
-        // console.log('SiteInfoProvider fetched:', res);
         setSiteInfo({...siteInfo, ...res});
       },
       null

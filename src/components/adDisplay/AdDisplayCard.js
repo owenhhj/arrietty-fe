@@ -7,17 +7,6 @@ import {useEffect, useState} from "react";
 import {dataFetch} from "../common/common";
 import {getSiteInfo} from "../common/SiteInfoProvider";
 
-const fakeAd = {
-  id: 1, adType: 'textbook', adTitle: 'This is a fake title for an ad but this is very long', price: '1233425',
-  comment: 'This is a fake comment for and ad but this is very long very long very long very long very long very long very long very long very long very long very long very long very long very long very long very long very long very long very long very long very long',
-  createTime: "Apr 4, 2022, 12:00:00 AM", isMarked: true, numberOfTaps: 60, imageIds: '3,6,9',
-  // userNetId: 'sh2013'
-};
-
-const fakeContact = {
-  username:'Nameee eeeaw sfee aew faewf eawf', netId:'awef1234', avatarImageId:'./default_avatar.jpg'
-};
-
 function AdDisplayCard({
   adData,  // one piece of adData <--> one advertisement
                        }) {
@@ -38,7 +27,7 @@ function AdDisplayCard({
   useEffect(() => {
     if (!!adData.userNetId) {
       let temp = {
-        username: adData.username!==null ? adData.username : fakeContact.username,
+        username: adData.username!==null ? adData.username : 'Qilin',
         netId: adData.userNetId,
         avatarImageId: adData.userAvatarImageId
       };
@@ -53,7 +42,7 @@ function AdDisplayCard({
     setHoverPos({xPos: e.pageX+15, yPos: e.pageY+15});
   };
 
-  const handleHover = () => {
+  const handleHoverEnter = () => {
     setHover(true);
   };
 
@@ -118,19 +107,19 @@ function AdDisplayCard({
 
   const handleShowDetail = () => {
     setShowDetailCard(true);
-  }
+  };
 
   const handleDetailCard = () => {
     // the only action for now is to close the card
     setShowDetailCard(false);
-  }
+  };
 
   return (
     <div>
       <AdListingDetailCard isOpen={showDetailCard} adData={adData} callback={handleDetailCard}/>
       <div
         className={'AdDisplayCard card'}
-        onMouseEnter={handleHover} onMouseLeave={handleHoverLeave} onMouseMove={handleMouseMove}
+        onMouseEnter={handleHoverEnter} onMouseLeave={handleHoverLeave} onMouseMove={handleMouseMove}
         onClick={handleShowDetail}
       >
         <div className={'col-1 clickable-btn'}>
@@ -221,18 +210,6 @@ function AdDisplayCard({
 }
 
 export default AdDisplayCard;
-
-export function TapToUnlock() {
-  return (
-      <div className={'col-3-to-unlock-container'}>
-        <div className={'col-3-to-unlock'}>
-          <img src="./lock_black_48dp.svg" alt=""/>
-          <p>Tap to unlock user info</p>
-        </div>
-      </div>
-  );
-}
-
 
 
 
