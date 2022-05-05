@@ -1,5 +1,7 @@
 # Bugs to fix:
 
+navbar no first-time hasNew call
+
 detailcard overflow
 
 'Price to sell at' or 'Intend to sell at'
