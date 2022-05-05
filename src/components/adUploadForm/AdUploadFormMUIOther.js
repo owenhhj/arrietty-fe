@@ -143,6 +143,7 @@ export default function AdUploadFormMUIOther({
         />
       </div>
       <div className={'AdUploadFormMUI-row'}>
+        <p>Ad Type</p>
         <MUIButtonGroup labels={adTypes} selected={adType}
                         buttonStyle={{width: '6.5em', height:'2.8em'}} onChange={handleChangeAdType}/>
       </div>

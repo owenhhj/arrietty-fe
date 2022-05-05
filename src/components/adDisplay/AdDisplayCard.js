@@ -58,7 +58,7 @@ function AdDisplayCard({
   const handleTap = (e) => {
     e.stopPropagation();  // prevent clicking the card below at the same time
     if (!!adData.userNetId || tapped) {  // double check for state
-      handleShowNoti('Cannot withdraw tap', false);
+      handleShowNoti('Cannot withdraw tap', -1);
     } else {
       dataFetch(
         `${ROOT}${TAP}?id=${adData.id}`,
@@ -70,7 +70,7 @@ function AdDisplayCard({
         },
         (err) => {
           console.warn(err);
-          handleShowNoti('Tap failure', false);
+          handleShowNoti('Tap failure', -1);
         }
       );
     }
@@ -87,7 +87,7 @@ function AdDisplayCard({
         },
         (err) => {
           console.warn(err);
-          handleShowNoti('Unmark failure', false);
+          handleShowNoti('Unmark failure', -1);
         }
       );
     } else {
@@ -99,7 +99,7 @@ function AdDisplayCard({
         },
         (err) => {
           console.warn(err);
-          handleShowNoti('Mark failure', false);
+          handleShowNoti('Mark failure', -1);
         }
       );
     }

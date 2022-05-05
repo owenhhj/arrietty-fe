@@ -8,14 +8,15 @@
 
     border-radius: 5px;
     background-color: #FAFAFA;
-    box-shadow: 0 5px 20px #BEBEBE;
+    box-shadow: 0 5px 10px #BEBEBE;
 
     display: flex;
     align-content: center;
+    padding: 0.2em 0.5em;
 }
 
 .GeneralNoti p {
-    font-size: 1.5rem;
+    font-size: 1.2rem;
     margin: 0.5em 0.5em 0.5em 1em;
 }
 
@@ -31,6 +32,11 @@
 
 .img-red {
     filter: invert(26%) sepia(35%) saturate(2932%) hue-rotate(335deg) brightness(92%) contrast(88%);
+}
+
+.img-yellow {
+    filter: invert(74%) sepia(60%) saturate(4199%) hue-rotate(1deg) brightness(106%) contrast(104%);
+    /*filter: invert(100%) sepia(63%) saturate(7500%) hue-rotate(356deg) brightness(101%) contrast(107%);*/
 }
 
 

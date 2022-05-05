@@ -25,7 +25,6 @@ function GeneralNotiProvider({children}) {
 
   return (
     <GeneralNotiContext.Provider value={dispatch}>
-
       {state.map((noti, index) => {return (<GeneralNoti {...noti} dispatch={dispatch} key={index}/>)})}
       {children}
     </GeneralNotiContext.Provider>

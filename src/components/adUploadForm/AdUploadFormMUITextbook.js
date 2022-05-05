@@ -249,6 +249,7 @@ export default function AdUploadFormMUITextbook({
         />
       </div>
       <div className={'AdUploadFormMUI-row'}>
+        <p>Ad Type</p>
         <MUIButtonGroup labels={adTypes} selected={adType}
                         buttonStyle={{width: '6.5em', height:'2.8em'}} onChange={handleChangeAdType}/>
       </div>
@@ -264,7 +265,7 @@ export default function AdUploadFormMUITextbook({
       </div>
 
       <div className={'AdUploadFormMUI-row'}>
-        <p>Select a tag</p>
+        <p>Select a textbook</p>
         <MUITagSelect
           identifier={'tagId'} options={getTextbookData().map(op => {return {label: op.title, id: op.id};})}
           onChange={handleInputChange}

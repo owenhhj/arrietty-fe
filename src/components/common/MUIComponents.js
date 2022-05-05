@@ -234,7 +234,7 @@ export function MUIButtonGroup({
           return (
             <Button
               key={index}
-              sx={{...buttonSxs[index === selected ? 1 : 0], ...buttonStyle}}
+              sx={{...buttonSxs[index === selected ? 1 : 0], textTransform: 'none', ...buttonStyle}}
               variant={buttonVariants[index === selected ? 1 : 0]}
               onClick={() => {
                 onChange(index)

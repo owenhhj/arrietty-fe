@@ -55,11 +55,11 @@ export default function AdminBlacklist() {
       `${ROOT}${BLACKLIST_EDIT}?action=add&netId=${temp}`,
       {method: 'POST'},
       (res) => {
-        handleShowNoti(`Add ${temp} to blacklist success`, true);
+        handleShowNoti(`Add ${temp} to blacklist success`, 1);
         refreshData();
       },
       (err) => {
-        handleShowNoti(`Add ${temp} to blacklist failure`, false);
+        handleShowNoti(`Add ${temp} to blacklist failure`, -1);
       }
     );
   };
@@ -69,11 +69,11 @@ export default function AdminBlacklist() {
       `${ROOT}${BLACKLIST_EDIT}?action=delete&netId=${e}`,
       {method: 'POST'},
       (res) => {
-        handleShowNoti(`Remove ${e} from blacklist success`, true);
+        handleShowNoti(`Remove ${e} from blacklist success`, 1);
         refreshData();
       },
       (err) => {
-        handleShowNoti(`Remove ${e} from blacklist failure`, false);
+        handleShowNoti(`Remove ${e} from blacklist failure`, -1);
       }
     );
   }

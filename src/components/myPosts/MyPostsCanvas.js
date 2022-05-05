@@ -89,14 +89,14 @@ function MyPostsCanvas() {
         body: temp
       },
       (res) => {
-        handleShowNoti('Ad deletion success', true);
+        handleShowNoti('Ad deletion success', 1);
         setTimeout(() => {
           window.location.reload();
         }, 1000);
       },
       (err) => {
         console.warn(err);
-        handleShowNoti('Ad deletion failure', false);
+        handleShowNoti('Ad deletion failure', -1);
       }
     );
   };
@@ -117,14 +117,14 @@ function MyPostsCanvas() {
         body: f
       },
       (res)=>{
-        handleShowNoti('Ad Edit Success', true);
+        handleShowNoti('Ad Edit Success', 1);
         setShowEditAdForm(false);
         setTimeout(() => {
           window.location.reload();
         }, 1000);
       },
       (err)=>{
-        handleShowNoti('Ad Edit Failure', false);
+        handleShowNoti('Ad Edit Failure', -1);
         console.warn(err);
       }
     );
