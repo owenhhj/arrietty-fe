@@ -127,7 +127,7 @@ function AdDisplayColumn() {
       })}
 
       {/* dummy data */}
-      <AdDisplayCard adData={fakeAd}/>
+      {/*<AdDisplayCard adData={fakeAd}/>*/}
 
       <div style={{width: 'auto', height:'200px'}}>
         {/* not in use, placeholder only */}

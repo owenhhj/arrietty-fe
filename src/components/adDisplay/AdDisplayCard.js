@@ -42,7 +42,7 @@ function AdDisplayCard({
     setHoverPos({xPos: e.pageX+15, yPos: e.pageY+15});
   };
 
-  const handleHover = () => {
+  const handleHoverEnter = () => {
     setHover(true);
   };
 
@@ -107,19 +107,19 @@ function AdDisplayCard({
 
   const handleShowDetail = () => {
     setShowDetailCard(true);
-  }
+  };
 
   const handleDetailCard = () => {
     // the only action for now is to close the card
     setShowDetailCard(false);
-  }
+  };
 
   return (
     <div>
       <AdListingDetailCard isOpen={showDetailCard} adData={adData} callback={handleDetailCard}/>
       <div
         className={'AdDisplayCard card'}
-        onMouseEnter={handleHover} onMouseLeave={handleHoverLeave} onMouseMove={handleMouseMove}
+        onMouseEnter={handleHoverEnter} onMouseLeave={handleHoverLeave} onMouseMove={handleMouseMove}
         onClick={handleShowDetail}
       >
         <div className={'col-1 clickable-btn'}>
@@ -210,18 +210,6 @@ function AdDisplayCard({
 }
 
 export default AdDisplayCard;
-
-export function TapToUnlock() {
-  return (
-      <div className={'col-3-to-unlock-container'}>
-        <div className={'col-3-to-unlock'}>
-          <img src="./lock_black_48dp.svg" alt=""/>
-          <p>Tap to unlock user info</p>
-        </div>
-      </div>
-  );
-}
-
 
 
 
