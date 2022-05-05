@@ -14,7 +14,7 @@ function AdUploadForm({
   const [adType, setAdType] = useState(1);
 
   const dispatch = showGeneralNoti();
-  const handleNoti = (msg, good) => {
+  const handleShowNoti = (msg, good) => {
     dispatch({action: "add", body: {msg: msg, good: good}});
   };
 
@@ -36,7 +36,7 @@ function AdUploadForm({
         body: f
       },
       (res) => {
-        handleNoti('Ad Upload Success', 1);
+        handleShowNoti('Ad Upload Success', 1);
         handleSwitchAdType(0);
         setTimeout(() => {
           window.location.reload();
@@ -44,9 +44,9 @@ function AdUploadForm({
       },
       (err) => {
         if (Number(err.responseStatus.errorCode) === 4002) {
-          handleNoti('You can upload no more than 5 ads', 0);
+          handleShowNoti('You can upload no more than 5 ads', 0);
         } else {
-          handleNoti('Ad Upload Failure', -1);
+          handleShowNoti('Ad Upload Failure', -1);
         }
       }
     );
