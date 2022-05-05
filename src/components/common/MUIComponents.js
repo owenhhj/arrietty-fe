@@ -128,9 +128,8 @@ export function MUICheckbox({
   const [checked, setChecked] = useState(false);
 
   const styleCheckboxDefault = {
-    // color: '#57068C',
     color: '#36C0C9'
-  }
+  };
 
   const handleInputChange = (e) => {
     let temp = !checked;
@@ -190,6 +189,7 @@ export function MUIButton({
                             size = 'medium',
                             variant = 2,  // defined in `buttonVariants`
                             buttonStyle = {},
+                            capiFirstLetter = true,
                             onClick
                           }) {
   const buttonVariants = ['text', 'contained', 'outlined', 'outlined'];
@@ -208,7 +208,8 @@ export function MUIButton({
           ...buttonSxs[variant],
           width: `${label.length - 1}em`,
           height: '2.3em',
-          textTransform: 'none', ...buttonStyle
+          textTransform: capiFirstLetter ? 'capitalize' : 'none',
+          ...buttonStyle
         }}
         size={size}
         variant={buttonVariants[variant]}
@@ -229,7 +230,6 @@ export function MUIButtonGroup({
                                }) {
   const buttonVariants = ['text', 'contained'];
 
-  // textTransform: 'capitalize'
   const buttonSxs = [
     {color: '#36C0C9', width: '6em', height: '2.5em'},
     {backgroundColor: '#36C0C9', width: '6em', height: '2.5em'}
@@ -242,13 +242,17 @@ export function MUIButtonGroup({
           return (
             <Button
               key={index}
-              sx={{...buttonSxs[index === selected ? 1 : 0], textTransform: 'none', ...buttonStyle}}
+              sx={{
+                ...buttonSxs[index === selected ? 1 : 0],
+                textTransform: capiFirstLetter ? 'capitalize' : 'none',
+                ...buttonStyle
+              }}
               variant={buttonVariants[index === selected ? 1 : 0]}
               onClick={() => {
                 onChange(index)
               }}
             >
-              {capiFirstLetter ? capFirstLetter(label) : label}
+              {label}
             </Button>
           );
         })}

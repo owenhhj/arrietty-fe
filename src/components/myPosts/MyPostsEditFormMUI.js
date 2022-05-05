@@ -120,7 +120,7 @@ function MyPostsEditFormMUI({
       <div className={'AdUploadFormMUI-row'}>
         <p>Selected {adDataOriginal.adType==='other' ? 'tag' : adDataOriginal.adType}</p>
         {adDataOriginal.adType!=='textbook' && (
-          <MUIButton label={adDataOriginal.otherTag ? adDataOriginal.otherTag : 'other'}/>
+          <MUIButton label={adDataOriginal.otherTag ? adDataOriginal.otherTag : 'other tag'} capiFirstLetter={false}/>
         )}
         {adDataOriginal.adType==='textbook' && (
           <TextbookSearchShowSelected selectedTextbook={getTextbookData()} dispTitle={true}/>

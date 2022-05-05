@@ -4,16 +4,11 @@ import {dataFetch} from "../common/common";
 import {showGeneralNoti} from "../common/GeneralNotiProvider";
 import {MUIButton, MUITextField} from "../common/MUIComponents";
 
-const fakeUsers = ['hh1234', 'yz5678', 'hh1234', 'yz5678', 'hh1234',
-  'yz5678', 'hh1234', 'yz5678', 'hh1234', 'yz5678', 'hh1234', 'yz5678',
-  'hh1234', 'yz5678', 'hh1234', 'yz5678', 'hh1234', 'yz5678', 'hh1234',
-  'yz5678'];
-
 export default function AdminBlacklist() {
   const ROOT = process.env.REACT_APP_URL_ROOT;
   const BLACKLIST = process.env.REACT_APP_API_ADMIN_BLACKLIST;
   const BLACKLIST_EDIT = process.env.REACT_APP_API_ADMIN_BLACKLIST_EDIT;
-  const [netIds, setNetIds] = useState(fakeUsers);
+  const [netIds, setNetIds] = useState([]);
   const [netIdInput, setNetIdInput] = useState('');
 
   useEffect(() => {
