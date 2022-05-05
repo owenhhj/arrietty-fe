@@ -167,8 +167,12 @@ function AdDisplayCard({
               <div className={'col-3-unlocked card'}>
                 <div className={'owner-avatar'}>
 
-                  {/*<img src={contactInfo.avatarImageId} alt=""/>*/}
-                  <img src={`${ROOT}image?id=${contactInfo.avatarImageId}`} alt=""/>
+                  {contactInfo.avatarImageId && (
+                    <img src={`${ROOT}image?id=${contactInfo.avatarImageId}`} alt=""/>
+                  )}
+                  {!contactInfo.avatarImageId && (
+                    <img src={'./default.jpg'} alt=""/>
+                  )}
 
                 </div>
                 <div className={'owner-info'}>

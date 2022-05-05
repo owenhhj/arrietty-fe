@@ -8,21 +8,12 @@ import {showGeneralNoti} from "../common/GeneralNotiProvider";
 import {useNavigate} from "react-router-dom";
 import {MUIButton} from "../common/MUIComponents";
 
-const fakeBulletin = [
-  {
-    id: 11, title: 'Welcome to Arrietty-1 what dads fi feawifo !', content: 'Make your sells at home!', createTime: 'Apr 5, 2022, 12:00:00 PM'
-  },
-  {
-    id: 22, title: 'Welcome to Arrietty-2!', content: 'Make your sells at homeef Make your sells at homeef Make your sells at homeef Make your sells at homeef Make your sells at homeef ewa aewfawef awef e faaefw eweaf!', createTime: 'Apr 5, 2022, 12:00:00 PM'
-  }
-];
-
 export default function AdminBulletinManageWidget() {
   const ROOT = process.env.REACT_APP_URL_ROOT;
   const BULLETIN = process.env.REACT_APP_API_BULLETIN;
   const [isFormOpen, setIsFormOpen] = useState(false);
   const [formData, setFormData] = useState({id: null, title: null, content: null});
-  const [bulletinList, setBulletinList] = useState(fakeBulletin);
+  const [bulletinList, setBulletinList] = useState([]);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -32,7 +23,7 @@ export default function AdminBulletinManageWidget() {
   const dispatch = showGeneralNoti();
   const handleShowNoti = (msg, good) => {
     dispatch({msg: msg, good: good});
-  }
+  };
 
   const refreshData = () => {
     dataFetch(

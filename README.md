@@ -1,5 +1,7 @@
 # Bugs to fix:
 
+detailcard overflow
+
 'Price to sell at' or 'Intend to sell at'
 
 change error.html title to Arrietty
