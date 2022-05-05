@@ -1,6 +1,6 @@
 
 .ad-listing-detail-card {
-    width: 70vw;
+    width: calc(min(70vw, 1000px));
     height: 50vh;
     position: relative;
 
@@ -28,7 +28,7 @@
 @media (max-width: 770px) {
     .ad-listing-detail-card {
         width: 70vw;
-        height: 80vh;
+        height: calc(min(80vh, 800px));
         grid-template-columns: 100%;
         grid-template-rows: 50% 50%;
     }
