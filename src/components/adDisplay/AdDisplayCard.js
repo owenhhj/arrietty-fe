@@ -7,17 +7,6 @@ import {useEffect, useState} from "react";
 import {dataFetch} from "../common/common";
 import {getSiteInfo} from "../common/SiteInfoProvider";
 
-const fakeAd = {
-  id: 1, adType: 'textbook', adTitle: 'This is a fake title for an ad but this is very long', price: '1233425',
-  comment: 'This is a fake comment for and ad but this is very long very long very long very long very long very long very long very long very long very long very long very long very long very long very long very long very long very long very long very long very long',
-  createTime: "Apr 4, 2022, 12:00:00 AM", isMarked: true, numberOfTaps: 60, imageIds: '3,6,9',
-  // userNetId: 'sh2013'
-};
-
-const fakeContact = {
-  username:'Nameee eeeaw sfee aew faewf eawf', netId:'awef1234', avatarImageId:'./default_avatar.jpg'
-};
-
 function AdDisplayCard({
   adData,  // one piece of adData <--> one advertisement
                        }) {
@@ -38,7 +27,7 @@ function AdDisplayCard({
   useEffect(() => {
     if (!!adData.userNetId) {
       let temp = {
-        username: adData.username!==null ? adData.username : fakeContact.username,
+        username: adData.username!==null ? adData.username : 'Qilin',
         netId: adData.userNetId,
         avatarImageId: adData.userAvatarImageId
       };

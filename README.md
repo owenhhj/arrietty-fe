@@ -1,6 +1,6 @@
 # Bugs to fix:
 
-`admin` fetch
+`admin` fetch pending testing
 
 `AdListingDetailCard`长宽固定
 
