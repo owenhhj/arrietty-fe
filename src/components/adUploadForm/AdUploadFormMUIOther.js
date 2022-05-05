@@ -17,7 +17,7 @@ export default function AdUploadFormMUIOther({
   const [otherTagData, setOtherTagData] = useState([]);
   const [valiAdTitle, setValiAdTitle] = useState({error: false, helperText: 'ad title between 1 and 31 characters...'});
   const [valiImage, setValiImage] = useState({error: false, helperText: 'one or more pictures needed...'});
-  const [valiTagId, setValiTagId] = useState({error: false, helperText: 'tag unselected...'});
+  const [valiTagId, setValiTagId] = useState({error: false, helperText: 'select a tag...'});
   const [valiPrice, setValiPrice] = useState({error: false, helperText: 'advertised price between 1RMB and 999RMB...'});
   const [valiComment, setValiComment] = useState({error: false, helperText: 'comment between 1 and 255 characters...'});
   const [valiPledge, setValiPledge] = useState({error: false, helperText: 'Please sign the pledge!'});
