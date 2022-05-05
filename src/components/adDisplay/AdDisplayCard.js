@@ -8,7 +8,7 @@ import {dataFetch} from "../common/common";
 import {getSiteInfo} from "../common/SiteInfoProvider";
 
 function AdDisplayCard({
-  adData,  // one piece of adData <--> one advertisement
+  adData
                        }) {
   const ROOT = process.env.REACT_APP_URL_ROOT;
   const MARK = process.env.REACT_APP_API_MARK;
@@ -18,6 +18,7 @@ function AdDisplayCard({
   const [isMine, setIsMine] = useState(!!adData.userNetId && adData.userNetId===MY_NETID);
   const [contactInfo, setContactInfo] = useState({});
   const [tapped, setTapped] = useState(!!adData.userNetId);  // true if field exists
+  console.log('ad by', adData.userNetId);
   const [numOfTaps, setNumOfTaps] = useState(0);
   const [marked, setMarked] = useState(!!adData.isMarked);
   const [hover, setHover] = useState(false);

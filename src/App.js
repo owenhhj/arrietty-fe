@@ -37,7 +37,7 @@ function App() {
       <BrowserRouter>
         <Navbar isAdmin={isAdmin}/>
         <Routes>
-          <Route path="/" element={<RouteHome/>} exact/>
+          {/*<Route path="/" element={<RouteHome/>} exact/>*/}
           <Route path="/home" element={<RouteHome/>} exact/>
           <Route path="/myPosts" element={<RouteMyPosts/>} exact/>
           <Route path="/notification" element={<RouteNotification/>} exact/>

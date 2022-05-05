@@ -25,7 +25,6 @@ function SearchBar({
   const [keywordSuggest, setKeywordSuggest] = useState([]);
 
   useEffect(() => {
-    // setTagOptions(fakeTagOptions);
     dataFetch(
       `${ROOT}${TAG}?id=`,
       {method: 'GET'},
