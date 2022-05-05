@@ -5,86 +5,6 @@ import {dataFetch, fileSizeCheck} from "../common/common";
 import AdUploadFormDragDrop from "./AdUploadFormDragDrop";
 import TextbookSearchShowSelected from "./TextbookSearchShowSelected";
 
-const fakeOptions = [
-  {
-    "id": 1,
-    "title": "textbook1",
-    "isbn": "123-456",
-    "author": "Owen H",
-    "publisher": "Owen's Publisher",
-    "edition": "3",
-    "originalPrice": 100,
-    "courseId": 1,
-    "relatedCourse": "coursecode1"
-  },
-  {
-    "id": 2,
-    "title": "textbook2",
-    "isbn": "223-456",
-    "author": "Owen H2",
-    "publisher": "Owen's Publisher2",
-    "edition": "3",
-    "originalPrice": 100,
-    "courseId": 2,
-    "relatedCourse": "coursecode2"
-  },
-  {
-    "id": 3,
-    "title": "test",
-    "isbn": "223-45623",
-    "author": "test",
-    "publisher": "test Publisher2",
-    "edition": "3",
-    "originalPrice": 200,
-    "courseId": 2,
-    "relatedCourse": "coursecode2"
-  },
-  {
-    "id": 4,
-    "title": "Computation Theory",
-    "isbn": "123-433983489",
-    "author": "Robert",
-    "publisher": "Publisher",
-    "edition": "666",
-    "originalPrice": 9,
-    "courseId": 4,
-    "relatedCourse": "CSCISHU-101"
-  },
-  {
-    "id": 5,
-    "title": "Computer Networking",
-    "isbn": "456-32934",
-    "author": "P.S.",
-    "publisher": "NYUSH",
-    "edition": "4",
-    "originalPrice": 999,
-    "courseId": 5,
-    "relatedCourse": "CSCISHU-301"
-  },
-  {
-    "id": 6,
-    "title": "Linear Algebra Book",
-    "isbn": "324-658348",
-    "author": "Mr. Linear",
-    "publisher": "Algebra",
-    "edition": "6",
-    "originalPrice": 314,
-    "courseId": 7,
-    "relatedCourse": "MATHSHU-201"
-  },
-  {
-    "id": 7,
-    "title": "Intro to Computer Science Book",
-    "isbn": "5443-2387932457",
-    "author": "Robert",
-    "publisher": "ICS Publisher Company",
-    "edition": "6",
-    "originalPrice": 200,
-    "courseId": 5,
-    "relatedCourse": "CSCISHU-301"
-  }
-];
-
 // local variable (form) declaration moved to the outside to deal with component remount
 let formData = new FormData();
 let pledgeConfirmed = false;
@@ -100,9 +20,9 @@ export default function AdUploadFormMUITextbook({
   const [textbookData, setTextbookData] = useState([]);
   const [courseData, setCourseData] = useState([]);
   const [selectedTextbook, setSelectedTextbook] = useState(null);
-  const [valiAdTitle, setValiAdTitle] = useState({error: false, helperText: 'ad title between 1 and 31 characters...'});
+  const [valiAdTitle, setValiAdTitle] = useState({error: false, helperText: 'ad title between 1 and 99 characters...'});
   const [valiImage, setValiImage] = useState({error: false, helperText: 'one or more pictures needed...'});
-  const [valiTagId, setValiTagId] = useState({error: false, helperText: 'tag unselected...'});
+  const [valiTagId, setValiTagId] = useState({error: false, helperText: 'select a textbook...'});
   const [valiPrice, setValiPrice] = useState({error: false, helperText: 'advertised price between 1RMB and 999RMB...'});
   const [valiComment, setValiComment] = useState({error: false, helperText: 'comment between 1 and 255 characters...'});
   const [valiPledge, setValiPledge] = useState({error: false, helperText: 'Please sign the pledge!'});
@@ -189,7 +109,7 @@ export default function AdUploadFormMUITextbook({
 
   const handleValidate = () => {
     let ans = true;
-    if (!formData.get('adTitle') || formData.get('adTitle').length<1 || formData.get('adTitle').length>31) {
+    if (!formData.get('adTitle') || formData.get('adTitle').length<1 || formData.get('adTitle').length>99) {
       setValiAdTitle({...valiAdTitle, error: true});
       ans = false;
     } else {setValiAdTitle({...valiAdTitle, error: false});}
@@ -249,6 +169,7 @@ export default function AdUploadFormMUITextbook({
         />
       </div>
       <div className={'AdUploadFormMUI-row'}>
+        <p>Ad Type</p>
         <MUIButtonGroup labels={adTypes} selected={adType}
                         buttonStyle={{width: '6.5em', height:'2.8em'}} onChange={handleChangeAdType}/>
       </div>
@@ -264,7 +185,7 @@ export default function AdUploadFormMUITextbook({
       </div>
 
       <div className={'AdUploadFormMUI-row'}>
-        <p>Select a tag</p>
+        <p>Select a textbook</p>
         <MUITagSelect
           identifier={'tagId'} options={getTextbookData().map(op => {return {label: op.title, id: op.id};})}
           onChange={handleInputChange}

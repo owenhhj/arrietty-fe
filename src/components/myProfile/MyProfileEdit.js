@@ -68,7 +68,7 @@ function MyProfileEdit({
 
     if (avatarFileInputDom.files && avatarFileInputDom.files[0]) {  // run this only when uploaded new img
       if (!fileSizeCheck([avatarFileInputDom.files[0]])) {
-        handleShowNoti(`Avatar picture must be smaller than ${process.env.REACT_APP_DEFAULT_IMAGE_SIZE}MB`, false);
+        handleShowNoti(`Avatar picture must be smaller than ${process.env.REACT_APP_DEFAULT_IMAGE_SIZE}MB`, -1);
       } else {
         let form = new FormData();
         form.append("file", avatarFileInputDom.files[0]);

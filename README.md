@@ -4,8 +4,6 @@
 
 NYU Accent Blue: `#59B2D1`
 
-navbar changed home icon
-
 写ReadMe
 
     全局loading动态小组件（转圈）

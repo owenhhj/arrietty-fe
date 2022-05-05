@@ -65,7 +65,7 @@ function MyProfile() {
     if (data.action === "update") {
       refreshData();
       setPageShow(0);
-      handleShowNoti('Profile edit success', true);
+      handleShowNoti('Profile edit success', 1);
     } else if (data.action === "switch") {
       setPageShow(1-pageShow)
     } else if (data.action === "addNewAd") {

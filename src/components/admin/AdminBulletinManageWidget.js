@@ -82,11 +82,11 @@ export default function AdminBulletinManageWidget() {
           body: JSON.stringify(d.data)
         },
         (res) => {
-          handleShowNoti('Add bulletin success', true);
+          handleShowNoti('Add bulletin success', 1);
           setTimeout(refreshData, 1000);
         },
         (err) => {
-          handleShowNoti('Add bulletin failure', false);
+          handleShowNoti('Add bulletin failure', -1);
         }
       );
       setIsFormOpen(false);
