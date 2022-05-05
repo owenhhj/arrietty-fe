@@ -104,7 +104,7 @@ function MyPostsEditFormMUI({
       </div>
       <div className={'AdUploadFormMUI-row'}>
         <p>Ad Type</p>
-        <MUIButton label={adDataOriginal.adType} variant={1}/>
+        <MUIButton label={adDataOriginal.adType} variant={2}/>
       </div>
 
       <div className={'AdUploadFormMUI-row'}>

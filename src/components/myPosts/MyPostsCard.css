@@ -3,8 +3,9 @@
     width: 210px;
     height: 350px;
 
-    margin-right: 0.8rem;
-    margin-left: 0.2rem;
+    margin-right: 1rem;
+    margin-left: 0.5rem;
+    margin-bottom: 1rem;
 
     display: flex;
     flex-direction: column;

@@ -36,15 +36,18 @@ function AdUploadForm({
         body: f
       },
       (res) => {
-        handleNoti('Ad Upload Success', true);
+        handleNoti('Ad Upload Success', 1);
         handleSwitchAdType(0);
         setTimeout(() => {
           window.location.reload();
         }, 1000);
       },
       (err) => {
-        console.warn(err);
-        handleNoti('Ad Upload Failure', false);
+        if (Number(err.responseStatus.errorCode) === 4002) {
+          handleNoti('You can upload no more than 5 ads', 0);
+        } else {
+          handleNoti('Ad Upload Failure', -1);
+        }
       }
     );
   };
