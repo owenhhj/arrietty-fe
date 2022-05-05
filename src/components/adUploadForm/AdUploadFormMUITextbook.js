@@ -69,6 +69,7 @@ export default function AdUploadFormMUITextbook({
   };
 
   const handleChangeAdType = (i) => {
+    // be careful: `adTypes` here is capitalized, back-end only accepts lower cased
     toSwitchAdType(1);
   };
 

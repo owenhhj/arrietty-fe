@@ -4,6 +4,7 @@ import {Autocomplete, ButtonGroup, Checkbox, FormControlLabel, InputAdornment} f
 import {TTextField} from "./MUIComponentsThemed";
 import {useState} from "react";
 import Button from "@mui/material/Button";
+import {capFirstLetter} from "./common";
 
 // README props without default values are required from parent, others can be omitted
 export function MUITextField({
@@ -203,7 +204,12 @@ export function MUIButton({
   return (
     <>
       <Button
-        sx={{...buttonSxs[variant], width: `${label.length - 1}em`, height: '2.3em', textTransform: 'none', ...buttonStyle}}
+        sx={{
+          ...buttonSxs[variant],
+          width: `${label.length - 1}em`,
+          height: '2.3em',
+          textTransform: 'none', ...buttonStyle
+        }}
         size={size}
         variant={buttonVariants[variant]}
         onClick={onClick}
@@ -218,10 +224,12 @@ export function MUIButtonGroup({
                                  labels = ['submit', 'cancel'],
                                  selected = 0,
                                  buttonStyle = {},
+                                 capiFirstLetter = true,
                                  onChange
                                }) {
   const buttonVariants = ['text', 'contained'];
 
+  // textTransform: 'capitalize'
   const buttonSxs = [
     {color: '#36C0C9', width: '6em', height: '2.5em'},
     {backgroundColor: '#36C0C9', width: '6em', height: '2.5em'}
@@ -240,7 +248,7 @@ export function MUIButtonGroup({
                 onChange(index)
               }}
             >
-              {label}
+              {capiFirstLetter ? capFirstLetter(label) : label}
             </Button>
           );
         })}

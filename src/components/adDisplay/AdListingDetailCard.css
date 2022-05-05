@@ -64,6 +64,15 @@
     font-weight: bold;
 }
 
+.grid-details-content-row-2 p {
+    white-space: normal;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
 .grid-details-content-row-3 {
     margin: 0.5em 0 0 0;
 }

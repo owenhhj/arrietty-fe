@@ -5,7 +5,7 @@ import AdDisplayCard from "./AdDisplayCard";
 import {dataFetch} from "../common/common";
 
 const fakeAd = {
-  id: 1, adType: 'textbook', adTitle: 'This is a fake title for an ad but this is very long', price: '1233425',
+  id: 1, adType: 'textbook', adTitle: 'This is a fake title for an ad bu aifiwae f fiawf  an ad bu aifiwae f fiawf  an ad bu aifiwae f fiawf  an ad bu aifiwae f fiawf iawi t this is very long', price: '1233425',
   comment: 'This is a fake comment for and ad but this is very long very long very long very long very long very long very long very long very long very long very long very long very long very long very long very long very long very long very long very long very long',
   createTime: "Apr 4, 2022, 12:00:00 AM", isMarked: true, numberOfTaps: 60, imageIds: '3,6,9',
   // userNetId: 'sh2013'
