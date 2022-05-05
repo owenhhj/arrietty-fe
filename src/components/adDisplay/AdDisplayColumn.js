@@ -11,13 +11,16 @@ const fakeAd = {
   // userNetId: 'sh2013'
 };
 
-function AdDisplayColumn() {
+function AdDisplayColumn({
+                           adTypeOnMount = 'textbook'
+                         }) {
   const ROOT = process.env.REACT_APP_URL_ROOT;
   const SEARCH = process.env.REACT_APP_API_SEARCH;
   const [adData, setAdData] = useState([]);  // adListing data
   const [isLoading, setIsLoading] = useState(0);  // index --> loadingMsg[]
+  const [adType, setAdType] = useState(adTypeOnMount);
   const [queryBody, setQueryBody] = useState({  // save previous query for loadMore
-    'adType': 'textbook',
+    'adType': adTypeOnMount,
     'pageNum': 0
   });
   const loadingMsg = ['', 'Loading...', 'No more advertisements...'];  // not in use for now
@@ -37,7 +40,7 @@ function AdDisplayColumn() {
         setQueryBody(temp);
       },
       null
-      );
+    );
   }, []);
 
   useEffect(() => {
@@ -52,9 +55,9 @@ function AdDisplayColumn() {
   }, [isLoading]);
 
   const handleScroll = () => {
-    if (document.body.offsetHeight-window.scrollY-window.innerHeight < 5) {
+    if (document.body.offsetHeight - window.scrollY - window.innerHeight < 5) {
       setIsLoading(1);
-    } else if (document.body.offsetHeight-window.scrollY-window.innerHeight > 100) {
+    } else if (document.body.offsetHeight - window.scrollY - window.innerHeight > 100) {
       setIsLoading(0);
     }
   };
@@ -64,7 +67,6 @@ function AdDisplayColumn() {
     // setIsLoading(false);
     let temp = {...e, pageNum: 0};
     setQueryBody(temp);
-    // console.log('user search with:', temp);
     dataFetch(
       `${ROOT}${SEARCH}`,
       {
@@ -117,7 +119,7 @@ function AdDisplayColumn() {
   return (
     <div className={'AdDisplayColumn'}>
 
-      <SearchBar callback={handleSearchBar}/>
+      <SearchBar adType={adType} setAdType={setAdType} callback={handleSearchBar}/>
 
       {adData.map((ad, index) => {
         return (
@@ -128,7 +130,7 @@ function AdDisplayColumn() {
       {/* dummy data */}
       {/*<AdDisplayCard adData={fakeAd}/>*/}
 
-      <div style={{width: 'auto', height:'200px'}}>
+      <div style={{width: 'auto', height: '200px'}}>
         {/* not in use, placeholder only */}
         {/*{isLoading!==0 && <div><p>{loadingMsg[isLoading]}</p></div>}*/}
       </div>
