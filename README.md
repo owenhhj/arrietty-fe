@@ -1,5 +1,9 @@
 # Bugs to fix:
 
+'Price to sell at' or 'Intend to sell at'
+
+change error.html title to Arrietty
+
 `admin` fetch pending testing
 
 NYU Accent Blue: `#59B2D1`
