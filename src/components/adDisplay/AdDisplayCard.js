@@ -91,7 +91,6 @@ function AdDisplayCard({
           }
         },
         (err) => {
-          console.warn(err);
           handleShowNoti('Unmark failure', -1);
         }
       );
@@ -103,12 +102,11 @@ function AdDisplayCard({
           setMarked(true);
         },
         (err) => {
-          console.warn(err);
           handleShowNoti('Mark failure', -1);
         }
       );
     }
-  }
+  };
 
   const handleShowDetail = () => {
     setShowDetailCard(true);
