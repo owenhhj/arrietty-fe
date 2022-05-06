@@ -126,10 +126,12 @@ function AdDisplayCard({
       >
         <div className={'col-1 clickable-btn'}>
 
-          <img src={`${ROOT}${IMAGE}?id=${adData.imageIds.split(',')[0]}`} alt=""/>
-          {/*<img src="./default_cover.jpg" alt=""/>*/}
+          {adData.imageIds && <img src={`${ROOT}${IMAGE}?id=${adData.imageIds.split(',')[0]}`} alt=""/>}
+          {!adData.imageIds && <img src="./default_cover.jpg" alt=""/>}
+
           <div className={'col-1-num-of-pics'}>
-            <p>{adData.imageIds.split(',').length}</p>
+            {adData.imageIds && <p>{adData.imageIds.split(',').length}</p>}
+            {!adData.imageIds && <p>0</p>}
           </div>
         </div>
 
@@ -139,7 +141,7 @@ function AdDisplayCard({
           </div>
           <div className={'col-2-price'}>
             <p className={'price-selling'}>{adData.price} RMB</p>
-            <p className={'price-original'}>{adData.originalPrice} RMB</p>
+            {adData.adType==='textbook' && <p className={'price-original'}>{adData.originalPrice} RMB</p>}
           </div>
           <div className={'col-2-hr'}>
             <hr/>
