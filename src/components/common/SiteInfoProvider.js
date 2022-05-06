@@ -12,8 +12,8 @@ const SetSiteInfoContext = createContext();  // `setSiteInfo` to set the object
 
 const defaultSiteInfo = {
   isAdmin: false,
-  netId: 'sh2013',
-  username: 'Qilin',
+  netId: '',
+  username: '',
 };
 
 // `children` --> all components wrapped in this provider, in `index.js`
