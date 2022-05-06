@@ -1,5 +1,4 @@
 import "./AdminBulletinManageWidget.css";
-import Button from "../common/Button";
 import AdminBulletinListing from "./AdminBulletinListing";
 import {useEffect, useState} from "react";
 import AdminBulletinForm from "./AdminBulletinForm";

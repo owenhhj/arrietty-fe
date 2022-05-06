@@ -14,6 +14,7 @@ export function MUITextField({
                                identifier,
                                label = '',
                                value = '',
+                               defaultValue = '',
                                placeholder = '',
                                styleBox = {},
                                styleInput = {},
@@ -51,7 +52,7 @@ export function MUITextField({
         style={{...styleBoxDefault, ...styleBox}}
       >
         {size === 'normal' && (
-          <TTextField label={label} variant={'standard'} placeholder={placeholder}
+          <TTextField label={label} variant={'standard'} placeholder={placeholder} defaultValue={defaultValue}
                       style={{...styleInputDefault, ...styleInput}}
                       error={error} helperText={error ? helperText : null}
                       InputProps={inputProps}
@@ -59,7 +60,7 @@ export function MUITextField({
           />
         )}
         {size === 'multiline' && (
-          <TTextField label={label} variant={'outlined'} placeholder={placeholder}
+          <TTextField label={label} variant={'outlined'} placeholder={placeholder} defaultValue={defaultValue}
                       style={{...styleInputDefault, ...styleInput}}
                       multiline minRows={minRows} maxRows={maxRows}
                       error={error} helperText={error ? helperText : null}
