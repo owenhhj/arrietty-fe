@@ -76,7 +76,6 @@ function AdDisplayColumn({
         body: JSON.stringify(temp)
       },
       (r) => {
-        console.log('SB succ fetched #res:', r.length);
         setAdData(r);
         temp.pageNum++;
         setQueryBody(temp);

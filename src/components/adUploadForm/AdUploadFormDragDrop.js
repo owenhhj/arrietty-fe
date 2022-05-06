@@ -10,6 +10,7 @@ function AdUploadFormDragDrop({
   onChange  // to pass files to parent onChange
                   }) {
   const ROOT = process.env.REACT_APP_URL_ROOT;
+  const IMAGE = process.env.REACT_APP_API_IMAGE;
   const [picURLs, setPicURLs] = useState([]);
   // let pic = [];  // current pic being added
 
@@ -26,7 +27,7 @@ function AdUploadFormDragDrop({
     let tempPics = [];
     for (let i = 0; i<ids.length; i++) {
       let id = ids[i];
-      let res = await fetch(`${ROOT}image?id=${id}`);
+      let res = await fetch(`${ROOT}${IMAGE}?id=${id}`);
       let imgFile = new File([await res.blob()], `adImgOri${id}`);
       let tempPic = {
         'name': `adImgOri${id}`,

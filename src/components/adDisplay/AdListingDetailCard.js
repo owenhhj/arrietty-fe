@@ -8,6 +8,8 @@ export default function AdListingDetailCard({
                                               adData,
                                               callback
                                             }) {
+  const ROOT = process.env.REACT_APP_URL_ROOT;
+  const IMAGE = process.env.REACT_APP_API_IMAGE;
   const ref = useRef(null);
   const [imageIndex, setImageIndex] = useState(0);
 
@@ -58,7 +60,8 @@ export default function AdListingDetailCard({
     for (let i = 0; i < imageIds.length; i++) {
       ret.push(
         {
-          src: `./image?id=${imageIds[i]}`,
+          // src: `./image?id=${imageIds[i]}`,
+          src: `${ROOT}${IMAGE}?id=${imageIds[i]}`,
           title: `image#${imageIds[i]}`
         }
       );
