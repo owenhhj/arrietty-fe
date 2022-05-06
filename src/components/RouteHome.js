@@ -1,7 +1,7 @@
 import MyProfile from "./myProfile/MyProfile";
 import AdDisplayColumn from "./adDisplay/AdDisplayColumn";
 import "./RouteHome.css";
-import Bulletin from "./Bulletin";
+import Bulletin from "./bulletinDisplay/Bulletin";
 
 function RouteHome() {
 

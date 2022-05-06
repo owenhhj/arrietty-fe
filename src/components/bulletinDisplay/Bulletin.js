@@ -1,6 +1,6 @@
 import "./Bulletin.css";
 import {useEffect, useRef, useState} from "react";
-import {dataFetch} from "./common/common";
+import {dataFetch} from "../common/common";
 import Modal from "react-modal";
 
 export default function Bulletin() {
