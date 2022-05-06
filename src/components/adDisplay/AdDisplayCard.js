@@ -8,7 +8,8 @@ import {dataFetch} from "../common/common";
 import {getSiteInfo} from "../common/SiteInfoProvider";
 
 function AdDisplayCard({
-  adData
+  adData,
+  unmarkSelf=null  // from FavoriteColumn
                        }) {
   const ROOT = process.env.REACT_APP_URL_ROOT;
   const IMAGE = process.env.REACT_APP_API_IMAGE;
@@ -85,6 +86,9 @@ function AdDisplayCard({
         {method: 'GET'},
         () => {
           setMarked(false);
+          if (unmarkSelf) {
+            unmarkSelf(adData.id);
+          }
         },
         (err) => {
           console.warn(err);
