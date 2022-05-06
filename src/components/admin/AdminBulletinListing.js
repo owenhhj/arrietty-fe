@@ -1,6 +1,4 @@
-import Button from "../common/Button";
 import {MUIButton} from "../common/MUIComponents";
-
 
 export default function AdminBulletinListing(
   {
@@ -10,24 +8,25 @@ export default function AdminBulletinListing(
     createTime,
     callback
   }
-){
+) {
 
-  const handleEdit = ()=>{
-    callback({action:"edit", data:{id:id, title:title, content:content}});
-  }
+  const handleEdit = () => {
+    callback({action: "edit", data: {id: id, title: title, content: content}});
+  };
 
-  const handleDelete = ()=>{
-    callback({action:"delete", data:{id:id, title:title, content:content}});
-  }
+  const handleDelete = () => {
+    callback({action: "delete", data: {id: id, title: title, content: content}});
+  };
 
-  const getDate = ()=>{
+  const getDate = () => {
     let m = new Date(Date.parse(createTime));
-    return m.getUTCFullYear() +"/"+ (m.getUTCMonth()+1) +"/"+ m.getUTCDate();
-  }
+    return m.getUTCFullYear() + "/" + (m.getUTCMonth() + 1) + "/" + m.getUTCDate();
+  };
 
   return (
     <div className={"admin-bulletin-listing card"}>
       <div className={"admin-bulletin-listing-container"}>
+
         <div className={"admin-bulletin-listing-row1"}>
           <div className={"admin-bulletin-listing-title"}>{title}</div>
           <div className={"admin-bulletin-listing-create-time"}>{getDate()}</div>
@@ -36,13 +35,12 @@ export default function AdminBulletinListing(
           {content}
         </p>
         <div className={"admin-bulletin-listing-btn-row"}>
-          <MUIButton size={'small'} variant={1} label={'edit'} onClick={handleEdit}/>
-          <MUIButton size={'small'} variant={2} label={'delete'}
-                     buttonStyle={{color: 'red', borderColor: 'red'}} onClick={handleEdit}
-          />
+          <MUIButton size={'small'} variant={1} label={'Edit'} onClick={handleEdit}/>
+          <MUIButton size={'small'} variant={3} label={'Delete'} onClick={handleDelete}/>
         </div>
-      </div>
 
+      </div>
     </div>
   );
 }
+

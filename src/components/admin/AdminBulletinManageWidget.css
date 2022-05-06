@@ -41,7 +41,7 @@
 
 
 .admin-bulletin-listing {
-    height: 50vh;
+    height: 30vh;
     width: 100%;
     display: flex;
     justify-content: center;
@@ -89,6 +89,8 @@
     text-align: justify;
     height: 60%;
     margin: 0;
+
+    white-space: break-spaces;
 }
 
 .admin-bulletin-listing-btn-row {

@@ -8,7 +8,8 @@ import {dataFetch} from "../common/common";
 import {getSiteInfo} from "../common/SiteInfoProvider";
 
 function AdDisplayCard({
-  adData
+  adData,
+  unmarkSelf=null  // from FavoriteColumn
                        }) {
   const ROOT = process.env.REACT_APP_URL_ROOT;
   const IMAGE = process.env.REACT_APP_API_IMAGE;
@@ -70,7 +71,6 @@ function AdDisplayCard({
           setNumOfTaps(numOfTaps+1);
         },
         (err) => {
-          console.warn(err);
           handleShowNoti('Tap failure', -1);
         }
       );
@@ -85,9 +85,11 @@ function AdDisplayCard({
         {method: 'GET'},
         () => {
           setMarked(false);
+          if (unmarkSelf) {
+            unmarkSelf(adData.id);
+          }
         },
         (err) => {
-          console.warn(err);
           handleShowNoti('Unmark failure', -1);
         }
       );
@@ -99,12 +101,11 @@ function AdDisplayCard({
           setMarked(true);
         },
         (err) => {
-          console.warn(err);
           handleShowNoti('Mark failure', -1);
         }
       );
     }
-  }
+  };
 
   const handleShowDetail = () => {
     setShowDetailCard(true);
