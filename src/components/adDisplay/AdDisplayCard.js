@@ -11,6 +11,7 @@ function AdDisplayCard({
   adData
                        }) {
   const ROOT = process.env.REACT_APP_URL_ROOT;
+  const IMAGE = process.env.REACT_APP_API_IMAGE;
   const MARK = process.env.REACT_APP_API_MARK;
   const TAP = process.env.REACT_APP_API_TAP;
   const MY_NETID = getSiteInfo().netId;
@@ -18,7 +19,6 @@ function AdDisplayCard({
   const [isMine, setIsMine] = useState(!!adData.userNetId && adData.userNetId===MY_NETID);
   const [contactInfo, setContactInfo] = useState({});
   const [tapped, setTapped] = useState(!!adData.userNetId);  // true if field exists
-  console.log('ad by', adData.userNetId);
   const [numOfTaps, setNumOfTaps] = useState(0);
   const [marked, setMarked] = useState(!!adData.isMarked);
   const [hover, setHover] = useState(false);
@@ -125,7 +125,7 @@ function AdDisplayCard({
       >
         <div className={'col-1 clickable-btn'}>
 
-          <img src={`${ROOT}image?id=${adData.imageIds.split(',')[0]}`} alt=""/>
+          <img src={`${ROOT}${IMAGE}?id=${adData.imageIds.split(',')[0]}`} alt=""/>
           {/*<img src="./default_cover.jpg" alt=""/>*/}
           <div className={'col-1-num-of-pics'}>
             <p>{adData.imageIds.split(',').length}</p>
@@ -169,10 +169,10 @@ function AdDisplayCard({
                 <div className={'owner-avatar'}>
 
                   {contactInfo.avatarImageId && (
-                    <img src={`${ROOT}image?id=${contactInfo.avatarImageId}`} alt=""/>
+                    <img src={`${ROOT}${IMAGE}?id=${contactInfo.avatarImageId}`} alt=""/>
                   )}
                   {!contactInfo.avatarImageId && (
-                    <img src={'./default.jpg'} alt=""/>
+                    <img src={'./default_avatar.jpg'} alt=""/>
                   )}
 
                 </div>

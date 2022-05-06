@@ -22,9 +22,8 @@ function SuggestionEntry({
                          }) {
   const handleChoose = (e) => {
     e.preventDefault();
-    console.log('SuggestionEntry choosing index:', index, suggestion);
     callback(index);
-  }
+  };
 
   return (
     <div className={'SuggestionEntry clickable-btn'} onClick={handleChoose}>

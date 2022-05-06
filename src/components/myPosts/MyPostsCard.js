@@ -8,6 +8,7 @@ function MyPostsCard({
                        callbackDelete = null
                      }) {
   const ROOT = process.env.REACT_APP_URL_ROOT;
+  const IMAGE = process.env.REACT_APP_API_IMAGE;
   const [adTime, setAdTime] = useState('');
 
   // 'Apr 5, 2022, 10:20:45 PM'
@@ -31,7 +32,7 @@ function MyPostsCard({
       <div className={'MyPostsCard card'}>
         <div className={'rows-container'}>
           <div className={'row-thumbnail'}>
-            <img src={`${ROOT}image?id=${adData.imageIds.split(',')[0]}`} alt=""/>
+            <img src={`${ROOT}${IMAGE}?id=${adData.imageIds.split(',')[0]}`} alt=""/>
             {/*<img src={adData.imageIds} alt=""/>*/}
           </div>
           <hr/>

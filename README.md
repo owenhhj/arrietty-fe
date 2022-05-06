@@ -2,7 +2,7 @@
 
 navbar no first-time hasNew call
 
-detailcard overflow
+redo all Modal styles based on adDetailCard
 
 'Price to sell at' or 'Intend to sell at'
 

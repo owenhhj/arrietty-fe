@@ -29,9 +29,6 @@ function FavoriteColumn() {
         );
       })}
 
-      {/*dummy*/}
-      {/*<AdDisplayCard/>*/}
-
     </div>
   );
 }

@@ -2,32 +2,33 @@ import './NotificationCard.css';
 import {translateTimeAgo} from "../common/common";
 
 function NotificationCard({
-  id=1,
-  username='CenturyAve',
-  netId='ca1555',
-  avatarImageId=2,
-  adTitle='Random Ad Title to Sell Something',
-  // adTitle='',
-  createTime="Apr 5, 2022, 12:00:00 PM"
+                            id,
+                            username,
+                            netId,
+                            avatarImageId,
+                            adTitle,
+                            createTime
                           }) {
   const ROOT = process.env.REACT_APP_URL_ROOT;
+  const IMAGE = process.env.REACT_APP_API_IMAGE;
 
   return (
     <div className={'NotificationCard card'}>
 
       <div className={'NotiCard-col-1'}>
-        <img src={`${ROOT}image?id=${avatarImageId}`} alt=""/>
-        {/*<img src="./default_avatar.jpg" alt=""/>*/}
+        {avatarImageId && <img src={`${ROOT}${IMAGE}?id=${avatarImageId}`} alt=""/>}
+        {!avatarImageId && <img src="./default_avatar.jpg" alt=""/>}
       </div>
 
       <div className={'NotiCard-col-2'}>
         <p>
-          <span className={'username'}>{username}</span> <span className={'netId'}>({netId})</span> tapped on your advertisement <span className={'adTitle'}>"{adTitle}"</span>
+          <span className={'username'}>{username}</span> <span className={'netId'}>({netId})</span> tapped on your
+          advertisement <span className={'adTitle'}>"{adTitle}"</span>
         </p>
       </div>
 
       <div className={'NotiCard-col-3'}>
-        <p>{translateTimeAgo(createTime)}</p>
+        {createTime && <p>{translateTimeAgo(createTime)}</p>}
       </div>
 
     </div>

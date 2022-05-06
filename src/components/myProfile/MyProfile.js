@@ -25,9 +25,10 @@ const customStyles = {
 
 function MyProfile() {
   const ROOT = process.env.REACT_APP_URL_ROOT;
+  const IMAGE = process.env.REACT_APP_API_IMAGE;
   const PROFILE = process.env.REACT_APP_API_PROFILE;
   const [myProfileData, setMyProfileData] = useState(getSiteInfo());
-  const [avatarSrc, setAvatarSrc] = useState('/avatar');
+  const [avatarSrc, setAvatarSrc] = useState('./default_avatar.jpg');
   const [pageShow, setPageShow] = useState(0);  // 0: disp, 1: edit
   const [showNewAdForm, setShowNewAdForm] = useState(false);
 
@@ -54,10 +55,15 @@ function MyProfile() {
       {method: "GET"},
       (res) => {
         setMyProfileData(res);
+        if (res.avatarImageId) {
+          setAvatarSrc(`${ROOT}${IMAGE}?id=${res.avatarImageId}`);
+        } else {
+          setAvatarSrc('./default_avatar.jpg');
+        }
       },
       null
     );
-    setAvatarSrc('/avatar');  // avatar uses a dedicated API
+    // setAvatarSrc('/avatar');  // dedicated API, to be deprecated
   };
 
   // handle data from children: disp & edit

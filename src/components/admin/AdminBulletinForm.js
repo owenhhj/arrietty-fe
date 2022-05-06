@@ -32,7 +32,7 @@ export default function AdminBulletinForm(
       left: "30vw",
       top: "10vh",
       width: "40vw",
-      height: "80vh",
+      height: "min-content",
       border: "none",
       background: "transparent"
     },
@@ -46,13 +46,13 @@ export default function AdminBulletinForm(
 
   const handleFormInputChange = (k, v) => {
     data[k] = v;
-  }
+  };
 
   const handleCancel = () => {
     callback(
       {action: "cancel"}
     );
-  }
+  };
 
   const handlePublish = () => {
     callback(
@@ -61,7 +61,7 @@ export default function AdminBulletinForm(
         data: data
       }
     );
-  }
+  };
 
   return (
     <Modal isOpen={isOpen} style={modalStyles}>
@@ -74,7 +74,8 @@ export default function AdminBulletinForm(
           <div className={'AdminBlacklist-subtitle'}>
             <p>Content</p>
           </div>
-          <MUITextField identifier={'title'} size={'multiline'} minRows={20} maxRows={20} styleBox={{width: '100%'}} onChange={handleFormInputChange}/>
+          <MUITextField identifier={'content'} size={'multiline'} minRows={15} maxRows={20} styleBox={{width: '100%'}}
+                        onChange={handleFormInputChange}/>
         </div>
         <MUIButton variant={1} label={'Publish'} onClick={handlePublish}/>
         <div className={'cancel-btn'} onClick={handleCancel}>
