@@ -57,6 +57,7 @@ function SearchBar({
     let temp = keywordSuggest[i];
     setKeyword(temp);
     document.getElementById('inputKeyword').value = temp;
+    handleSubmit(null, temp);
     setShowKeywordSuggest(false);
   };
 
@@ -96,7 +97,7 @@ function SearchBar({
     }
   };
 
-  const handleSubmit = (newType = null) => {
+  const handleSubmit = (newType = null, newKeyword = null) => {
     setShowKeywordSuggest(false);
     let tags = [];
     filterTag.selectedOptions.forEach(idx => {
@@ -104,7 +105,7 @@ function SearchBar({
     });
     callback({
       'adType': newType ? newType : adType,
-      'keyword': keyword,
+      'keyword': newKeyword ? newKeyword : keyword,
       'priceOrder': priceOrders[filterPrice.priceOrder],
       'minPrice': filterPrice.priceRange[0],
       'maxPrice': filterPrice.priceRange[1],

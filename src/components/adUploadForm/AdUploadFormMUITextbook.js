@@ -23,7 +23,7 @@ export default function AdUploadFormMUITextbook({
   const [valiAdTitle, setValiAdTitle] = useState({error: false, helperText: 'ad title between 1 and 99 characters...'});
   const [valiImage, setValiImage] = useState({error: false, helperText: 'one or more pictures needed...'});
   const [valiTagId, setValiTagId] = useState({error: false, helperText: 'select a textbook...'});
-  const [valiPrice, setValiPrice] = useState({error: false, helperText: 'advertised price between 1RMB and 999RMB...'});
+  const [valiPrice, setValiPrice] = useState({error: false, helperText: 'advertised price between 0RMB and 999RMB...'});
   const [valiComment, setValiComment] = useState({error: false, helperText: 'comment between 1 and 255 characters...'});
   const [valiPledge, setValiPledge] = useState({error: false, helperText: 'Please sign the pledge!'});
   const adType = 0;  // adType managed by parent, not here
