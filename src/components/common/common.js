@@ -38,6 +38,20 @@ export const capFirstLetter = (s) => {
   return `${s.charAt(0).toUpperCase()}${s.slice(1,)}`;
 };
 
+export const getModalStyles = (cus={}) => {
+  return {
+    content: {
+      position: "absolute",
+      alignItems: 'center',
+      display: 'flex',
+      justifyContent: 'center',
+      border: "none",
+      background: "transparent",
+      ...cus
+    }
+  };
+};
+
 export function dataFetch(url, metaData, successHandler, errorHandler) {
   fetch(url, metaData)
     .then(

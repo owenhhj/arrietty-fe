@@ -2,6 +2,7 @@ import "./AdListingDetailCard.css";
 import Modal from "react-modal";
 import ImageSlider from 'ac-react-simple-image-slider';
 import {useState, useRef, useEffect} from "react";
+import {getModalStyles} from "../common/common";
 
 export default function AdListingDetailCard({
                                               isOpen,
@@ -12,17 +13,6 @@ export default function AdListingDetailCard({
   const IMAGE = process.env.REACT_APP_API_IMAGE;
   const ref = useRef(null);
   const [imageIndex, setImageIndex] = useState(0);
-
-  const modalStyles = {
-    content: {
-      position: "absolute",
-      alignItems: 'center',
-      display: 'flex',
-      justifyContent: 'center',
-      border: "none",
-      background: "transparent"
-    },
-  };
 
   const sliderWrapperStyles = {};
 
@@ -71,7 +61,7 @@ export default function AdListingDetailCard({
 
   return (
     <>
-      <Modal isOpen={isOpen} style={modalStyles}>
+      <Modal isOpen={isOpen} style={getModalStyles()}>
         <div className={'ad-listing-detail-card card'} ref={ref}>
 
           <div className={'grid-images'}>

@@ -49,7 +49,7 @@
     flex-direction: column;
     justify-content: flex-start;
 
-    overflow: scroll;
+    overflow-y: scroll;
 }
 
 .grid-details .grid-details-content hr {
