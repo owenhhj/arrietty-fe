@@ -71,7 +71,6 @@ function AdDisplayCard({
           setNumOfTaps(numOfTaps+1);
         },
         (err) => {
-          console.warn(err);
           handleShowNoti('Tap failure', -1);
         }
       );
