@@ -1,5 +1,7 @@
 # Bugs to fix:
 
+default_cover.jpg --> copyright
+
 navbar no first-time hasNew call
 
 redo all Modal styles based on adDetailCard

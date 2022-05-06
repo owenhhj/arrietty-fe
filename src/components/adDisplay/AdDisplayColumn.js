@@ -4,14 +4,6 @@ import SearchBar from "../searchBar/SearchBar";
 import AdDisplayCard from "./AdDisplayCard";
 import {dataFetch} from "../common/common";
 
-const fakeAd = {
-  id: 1, adType: 'textbook', adTitle: 'This is a fake title for an ad bu aifiwae f fiawf  an ad bu aifiwae f fiawf  an ad bu aifiwae f fiawf  an ad bu aifiwae f fiawf iawi t this is very long', price: '1233425',
-  comment: 'This is a fake comment for and ad but this is aeijfiewf ifawei fiawoe fjaiweof jiew af ajiwoef very long veis is a fake comment for and ad but this is aeijfiewf ifawei fiawoe fjaiweof jiew af ajiwoef very long veis is a fake comment for and ad but this is aeijfiewf ifawei fiawoe fjaiweof jiew af ajiwoef very long veis is a fake comment for and ad but this is aeijfiewf ifawei fiawoe fjaiweof jiew af ajiwoef very long veis is a fake comment for and ad but this is aeijfiewf ifawei fiawoe fjaiweof jiew af ajiwoef very long veis is a fake comment for and ad but this is aeijfiewf ifawei fiawoe fjaiweof jiew af ajiwoef very long veis is a fake comment for and ad but this is aeijfiewf ifawei fiawoe fjaiweof jiew af ajiwoef very long very long very long very long very long very long very long very long very long very long very long very long very long very long very long very long very long very long very long very long very long',
-  // comment: '这是不该出现的中文详情，但还是有人会写。这是不该出现的中文详情，但还是有人会写。这是不该出现的中文详情，但还是有人会写。这是不该出现的中文详情，但还是有人会写。这是不该出现的中文详情，但还是有人会写。这是不该出现的中文详情，但还是有人会写。这是不该出现的中文详情，但还是有人会写。这是不该出现的中文详情，但还是有人会写。这是不该出现的中文详情，但还是有人会写。这是不该出现的中文详情，但还是有人会写。这是不该出现的中文详情，但还是有人会写。这是不该出现的中文详情，但还是有人会写。这是不该出现的中文详情，但还是有人会写。这是不该出现的中文详情，但还是有人会写。这是不该出现的中文详情，但还是有人会写。这是不该出现的中文详情，但还是有人会写。这是不该出现的中文详情，但还是有人会写。这是不该出现的中文详情，但还是有人会写。这是不该出现的中文详情，但还是有人会写。这是不该出现的中文详情，但还是有人会写。',
-  createTime: "Apr 4, 2022, 12:00:00 AM", isMarked: true, numberOfTaps: 60, imageIds: '3,6,9',
-  // userNetId: 'sh2013'
-};
-
 function AdDisplayColumn({
                            adTypeOnMount = 'textbook'
                          }) {
@@ -138,6 +130,14 @@ function AdDisplayColumn({
     </div>
   );
 }
+
+const fakeAd = {
+  id: 1, adType: 'other', adTitle: 'This is a fake title for an ad bu aifiwae f fiawf  an ad bu aifiwae f fiawf  an ad bu aifiwae f fiawf  an ad bu aifiwae f fiawf iawi t this is very long', price: '1233425',
+  comment: 'This is a fake comment for and ad but this is aeijfiewf ifawei fiawoe fjaiweof jiew af ajiwoef very long veis is a fake comment for and ad but this is aeijfiewf ifawei fiawoe fjaiweof jiew af ajiwoef very long veis is a fake comment for and ad but this is aeijfiewf ifawei fiawoe fjaiweof jiew af ajiwoef very long veis is a fake comment for and ad but this is aeijfiewf ifawei fiawoe fjaiweof jiew af ajiwoef very long veis is a fake comment for and ad but this is aeijfiewf ifawei fiawoe fjaiweof jiew af ajiwoef very long veis is a fake comment for and ad but this is aeijfiewf ifawei fiawoe fjaiweof jiew af ajiwoef very long veis is a fake comment for and ad but this is aeijfiewf ifawei fiawoe fjaiweof jiew af ajiwoef very long very long very long very long very long very long very long very long very long very long very long very long very long very long very long very long very long very long very long very long very long',
+  // comment: '这是不该出现的中文详情，但还是有人会写。这是不该出现的中文详情，但还是有人会写。这是不该出现的中文详情，但还是有人会写。这是不该出现的中文详情，但还是有人会写。这是不该出现的中文详情，但还是有人会写。这是不该出现的中文详情，但还是有人会写。这是不该出现的中文详情，但还是有人会写。这是不该出现的中文详情，但还是有人会写。这是不该出现的中文详情，但还是有人会写。这是不该出现的中文详情，但还是有人会写。这是不该出现的中文详情，但还是有人会写。这是不该出现的中文详情，但还是有人会写。这是不该出现的中文详情，但还是有人会写。这是不该出现的中文详情，但还是有人会写。这是不该出现的中文详情，但还是有人会写。这是不该出现的中文详情，但还是有人会写。这是不该出现的中文详情，但还是有人会写。这是不该出现的中文详情，但还是有人会写。这是不该出现的中文详情，但还是有人会写。这是不该出现的中文详情，但还是有人会写。',
+  createTime: "Apr 4, 2022, 12:00:00 AM", isMarked: true, numberOfTaps: 60,
+  // userNetId: 'sh2013'
+};
 
 export default AdDisplayColumn;
 

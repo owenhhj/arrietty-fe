@@ -65,30 +65,33 @@ export default function AdListingDetailCard({
         <div className={'ad-listing-detail-card card'} ref={ref}>
 
           <div className={'grid-images'}>
-            <ImageSlider
-              height={'90%'} width={'90%'}
-              data={getImageData()}
-              autoPlay={false} showDots={false} showArrows={true} infinite={true}
-              elementWrapperStyles={sliderWrapperStyles} itemStyles={sliderImageStyles}
-              leftArrowComponent={
-                <svg onClick={handleClickLeftArrow} width="30" height="30" viewBox="0 0 30 30" fill="none"
-                     xmlns="http://www.w3.org/2000/svg">
-                  <path d="M18.41 10.41L17 9L11 15L17 21L18.41 19.59L13.83 15L18.41 10.41Z" fill="white"/>
-                </svg>
-              }
-              rightArrowComponent={
-                <svg onClick={handleClickRightArrow} width="30" height="30" viewBox="0 0 30 30" fill="none"
-                     xmlns="http://www.w3.org/2000/svg">
-                  <path d="M11.59 10.41L13 9L19 15L13 21L11.59 19.59L16.17 15L11.59 10.41Z" fill="white"/>
-                </svg>
-              }
-            />
+            {adData.imageIds && (
+              <ImageSlider
+                height={'90%'} width={'90%'}
+                data={getImageData()}
+                autoPlay={false} showDots={false} showArrows={true} infinite={true}
+                elementWrapperStyles={sliderWrapperStyles} itemStyles={sliderImageStyles}
+                leftArrowComponent={
+                  <svg onClick={handleClickLeftArrow} width="30" height="30" viewBox="0 0 30 30" fill="none"
+                       xmlns="http://www.w3.org/2000/svg">
+                    <path d="M18.41 10.41L17 9L11 15L17 21L18.41 19.59L13.83 15L18.41 10.41Z" fill="white"/>
+                  </svg>
+                }
+                rightArrowComponent={
+                  <svg onClick={handleClickRightArrow} width="30" height="30" viewBox="0 0 30 30" fill="none"
+                       xmlns="http://www.w3.org/2000/svg">
+                    <path d="M11.59 10.41L13 9L19 15L13 21L11.59 19.59L16.17 15L11.59 10.41Z" fill="white"/>
+                  </svg>
+                }
+              />
+            )}
+            {!adData.imageIds && <img src="./default_cover.jpg" alt=""/>}
           </div>
 
           <div className={'grid-details'}>
             <div className={'grid-details-content'}>
               <div className={'grid-details-content-row-1'}>
-                <p>{`${imageIndex + 1}/${adData.imageIds.split(",").length}`}</p>
+                {adData.imageIds && <p>{`${imageIndex + 1}/${adData.imageIds.split(",").length}`}</p>}
               </div>
               <hr/>
               <div className={'grid-details-content-row-2'}>

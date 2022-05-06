@@ -71,7 +71,7 @@ function MyPostsEditFormMUI({
     } else {setValiImage({...valiImage, error: false});}
     if (formData.get('price') && (
       !/^[0-9]+$/.test((formData.get('price')).toString()) ||
-      Number(formData.get('price'))<1 || Number(formData.get('price'))>999
+      Number(formData.get('price'))<0 || Number(formData.get('price'))>999
     )) {
       setValiPrice({...valiPrice, error: true});
       ans = false;
