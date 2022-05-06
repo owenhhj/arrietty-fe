@@ -1,6 +1,4 @@
-import Button from "../common/Button";
 import {MUIButton} from "../common/MUIComponents";
-
 
 export default function AdminBulletinListing(
   {
@@ -10,20 +8,20 @@ export default function AdminBulletinListing(
     createTime,
     callback
   }
-){
+) {
 
-  const handleEdit = ()=>{
-    callback({action:"edit", data:{id:id, title:title, content:content}});
-  }
+  const handleEdit = () => {
+    callback({action: "edit", data: {id: id, title: title, content: content}});
+  };
 
-  const handleDelete = ()=>{
-    callback({action:"delete", data:{id:id, title:title, content:content}});
-  }
+  const handleDelete = () => {
+    callback({action: "delete", data: {id: id, title: title, content: content}});
+  };
 
-  const getDate = ()=>{
+  const getDate = () => {
     let m = new Date(Date.parse(createTime));
-    return m.getUTCFullYear() +"/"+ (m.getUTCMonth()+1) +"/"+ m.getUTCDate();
-  }
+    return m.getUTCFullYear() + "/" + (m.getUTCMonth() + 1) + "/" + m.getUTCDate();
+  };
 
   return (
     <div className={"admin-bulletin-listing card"}>
@@ -45,3 +43,4 @@ export default function AdminBulletinListing(
     </div>
   );
 }
+
