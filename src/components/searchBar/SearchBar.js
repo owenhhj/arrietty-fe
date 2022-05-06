@@ -73,7 +73,7 @@ function SearchBar({
 
   // potential delay --> setInterval as `adListing` scrolling?
   const handleKeywordInput = (e) => {
-    let temp = e.target.value;
+    let temp = e.target.value ? (e.target.value).trim() : '';
     setKeyword(temp);
     if (temp.length > 0) {  // API rejects empty string
       dataFetch(
