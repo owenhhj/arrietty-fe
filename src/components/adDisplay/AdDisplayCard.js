@@ -120,7 +120,7 @@ function AdDisplayCard({
     <div>
       <AdListingDetailCard isOpen={showDetailCard} adData={adData} callback={handleDetailCard}/>
       <div
-        className={'AdDisplayCard card'}
+        className={'AdDisplayCard card non-text'}
         onMouseEnter={handleHoverEnter} onMouseLeave={handleHoverLeave} onMouseMove={handleMouseMove}
         onClick={handleShowDetail}
       >

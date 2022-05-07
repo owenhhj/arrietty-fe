@@ -1,15 +1,13 @@
 import {MUIButton} from "../common/MUIComponents";
+import {convertTimeBackToFront} from "../common/common";
 
-export default function AdminBulletinListing(
-  {
-    id,
-    title,
-    content,
-    createTime,
-    callback
-  }
-) {
-
+export default function AdminBulletinListing({
+                                               id,
+                                               title,
+                                               content,
+                                               createTime,
+                                               callback
+                                             }) {
   const handleEdit = () => {
     callback({action: "edit", data: {id: id, title: title, content: content}});
   };
@@ -19,8 +17,8 @@ export default function AdminBulletinListing(
   };
 
   const getDate = () => {
-    let m = new Date(Date.parse(createTime));
-    return m.getUTCFullYear() + "/" + (m.getUTCMonth() + 1) + "/" + m.getUTCDate();
+    let d = convertTimeBackToFront(createTime);
+    return d.toLocaleString('en-US');
   };
 
   return (
