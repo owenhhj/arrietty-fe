@@ -107,8 +107,8 @@ function SearchBar({
       'adType': newType ? newType : adType,
       'keyword': newKeyword ? newKeyword : keyword,
       'priceOrder': priceOrders[filterPrice.priceOrder],
-      'minPrice': filterPrice.priceRange[0],
-      'maxPrice': filterPrice.priceRange[1],
+      'minPrice': filterPrice.priceRange[0] ? filterPrice.priceRange[0] : -1,  // back-end not accept both null
+      'maxPrice': filterPrice.priceRange[1] ? filterPrice.priceRange[1] : 100000,  // lazy avoidance here
       'tag': tags.length > 0 ? tags.join(',') : null
     });
   };
