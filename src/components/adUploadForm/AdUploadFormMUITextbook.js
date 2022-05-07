@@ -23,7 +23,7 @@ export default function AdUploadFormMUITextbook({
   const [valiAdTitle, setValiAdTitle] = useState({error: false, helperText: 'ad title between 1 and 99 characters...'});
   const [valiImage, setValiImage] = useState({error: false, helperText: 'one or more pictures needed...'});
   const [valiTagId, setValiTagId] = useState({error: false, helperText: 'select a textbook...'});
-  const [valiPrice, setValiPrice] = useState({error: false, helperText: 'advertised price between 1RMB and 999RMB...'});
+  const [valiPrice, setValiPrice] = useState({error: false, helperText: 'advertised price between 0RMB and 9999RMB...'});
   const [valiComment, setValiComment] = useState({error: false, helperText: 'comment between 1 and 255 characters...'});
   const [valiPledge, setValiPledge] = useState({error: false, helperText: 'Please sign the pledge!'});
   const adType = 0;  // adType managed by parent, not here
@@ -126,7 +126,7 @@ export default function AdUploadFormMUITextbook({
       ans = false;
     } else {setValiTagId({...valiTagId, error: false});}
     if (!formData.get('price') || !/^[0-9]+$/.test((formData.get('price')).toString()) ||
-      Number(formData.get('price'))<0 || Number(formData.get('price'))>999) {
+      Number(formData.get('price'))<0 || Number(formData.get('price'))>9999) {
       setValiPrice({...valiPrice, error: true});
       ans = false;
     } else {setValiPrice({...valiPrice, error: false});}
@@ -163,16 +163,17 @@ export default function AdUploadFormMUITextbook({
       </div>
 
       <div className={'AdUploadFormMUI-row'}>
+        <p>Ad Type</p>
+        <MUIButtonGroup labels={adTypes} selected={adType}
+                        buttonStyle={{width: '6.5em', height:'2.8em'}} onChange={handleChangeAdType}/>
+      </div>
+
+      <div className={'AdUploadFormMUI-row'}>
         <p>Ad Title</p>
         <MUITextField
           identifier={'adTitle'} onChange={handleInputChange}
           error={valiAdTitle.error} helperText={valiAdTitle.error?valiAdTitle.helperText:''}
         />
-      </div>
-      <div className={'AdUploadFormMUI-row'}>
-        <p>Ad Type</p>
-        <MUIButtonGroup labels={adTypes} selected={adType}
-                        buttonStyle={{width: '6.5em', height:'2.8em'}} onChange={handleChangeAdType}/>
       </div>
 
       <div className={'AdUploadFormMUI-row'}>

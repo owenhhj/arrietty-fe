@@ -70,12 +70,18 @@ export default function AdminBulletinForm(
           <div className={'AdminBlacklist-subtitle'}>
             <p>Title</p>
           </div>
-          <MUITextField identifier={'title'} styleBox={{width: '100%'}} onChange={handleFormInputChange}/>
+          <MUITextField
+            identifier={'title'} styleBox={{width: '100%'}} onChange={handleFormInputChange}
+            defaultValue={title}
+          />
           <div className={'AdminBlacklist-subtitle'}>
             <p>Content</p>
           </div>
-          <MUITextField identifier={'content'} size={'multiline'} minRows={15} maxRows={20} styleBox={{width: '100%'}}
-                        onChange={handleFormInputChange}/>
+          <MUITextField
+            identifier={'content'} size={'multiline'} minRows={15} maxRows={20} styleBox={{width: '100%'}}
+            onChange={handleFormInputChange}
+            defaultValue={content}
+          />
         </div>
         <MUIButton variant={1} label={'Publish'} onClick={handlePublish}/>
         <div className={'cancel-btn'} onClick={handleCancel}>

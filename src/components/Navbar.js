@@ -15,7 +15,7 @@ function Navbar({isAdmin}) {
   const ROOT = process.env.REACT_APP_URL_ROOT;
   const LAST_MOD = process.env.REACT_APP_API_LAST_MOD;
   const NEW_NOTI = process.env.REACT_APP_API_NEW_NOTIFICATION;
-  const INTERVAL = 30*1000;  // seconds*1000, default 30
+  const INTERVAL = process.env.REACT_APP_DEFAULT_REFRESH_INTERVAL * 1000;  // sec * 1000ms
   const [click, setClick] = useState(false);
   const [activeTab, setActiveTab] = useState("home");
   const [lastModHome, setLastModHome] = useState(0);
@@ -46,14 +46,18 @@ function Navbar({isAdmin}) {
     let intervalID = setInterval(() => {
       updateRedDotHome();
     }, INTERVAL);
-    return () => {clearInterval(intervalID)}
+    return () => {
+      clearInterval(intervalID)
+    }
   }, [lastModHome, showDotHome]);
 
   useEffect(() => {
     let intervalID = setInterval(() => {
       updateRedDotNoti();
     }, INTERVAL);
-    return () => {clearInterval(intervalID)}
+    return () => {
+      clearInterval(intervalID)
+    }
   }, [showDotNoti]);
 
   const updateRedDotHome = () => {
@@ -98,10 +102,13 @@ function Navbar({isAdmin}) {
 
   const getClickHandler = (tabName) => {
     return (e) => {
+      if (tabName === activeTab) {  // already on this page --> refresh this page
+        window.location.reload();
+        return;
+      }
       setActiveTab(tabName);
       if (tabName === "home") {
         setShowDotHome(false);
-        // setShowDotHome(0);  // fixme
         homeLink.current.click();
       } else if (tabName === "my-posts") {
         myPostsLink.current.click();

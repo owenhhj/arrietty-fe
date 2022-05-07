@@ -1,7 +1,11 @@
 import "./Bulletin.css";
 import {useEffect, useRef, useState} from "react";
-import {dataFetch} from "../common/common";
+import {dataFetch, getModalStyles} from "../common/common";
 import Modal from "react-modal";
+
+const fakeBull = [
+  {id: 1, title: 'hey', content: 'what'},
+];
 
 export default function Bulletin() {
   const ROOT = process.env.REACT_APP_URL_ROOT;
@@ -17,7 +21,7 @@ export default function Bulletin() {
         setBullData(res);
       },
       null
-    )
+    );
   }, []);
 
   const handleShowBullDetail = (id) => {
@@ -26,21 +30,6 @@ export default function Bulletin() {
 
   const handleClose = () => {
     setShowBullDetail(-1);
-  }
-
-  const customStyles = {
-    content: {
-      position: "absolute",
-      left:0,
-      top:"5rem",
-      width:"100vw",
-      height:"calc(100vh-2rem)",
-      "overflow-y": "scroll",
-      background: "transparent",
-      display: "flex",
-      "justify-content":"center",
-      border:"none",
-    },
   };
 
   return (
@@ -53,7 +42,9 @@ export default function Bulletin() {
       <div className={'bulletin-entries'}>
         {bullData.map(bull => {
           return (
-            <div className={'bulletin-entry clickable-btn'} key={bull.id} itemID={bull.id} onClick={()=>{handleShowBullDetail(bull.id)}}>
+            <div className={'bulletin-entry clickable-btn'} key={bull.id} itemID={bull.id} onClick={() => {
+              handleShowBullDetail(bull.id)
+            }}>
               <div className={'bulletin-entry-title'}>
                 <p>· {bull.title}</p>
               </div>
@@ -65,23 +56,24 @@ export default function Bulletin() {
         })}
       </div>
 
-
-      <Modal isOpen={showBullDetail!==-1} style={customStyles}>
-        <BulletinDetailCard bull={bullData.filter(bull=>bull.id===showBullDetail)[0]} callback={handleClose}/>
+      <Modal isOpen={showBullDetail !== -1} style={getModalStyles()}>
+        <BulletinDetailCard bull={bullData.filter(bull => bull.id === showBullDetail)[0]} callback={handleClose}/>
       </Modal>
     </div>
   );
 }
 
 function BulletinDetailCard({
-  bull={},
-  callback=null
+                              bull = {},
+                              callback = null
                             }) {
   const ref = useRef(null);
 
   useEffect(() => {
     const handleClickOutside = (e) => {
-      if (ref.current && !ref.current.contains(e.target)) {callback();}
+      if (ref.current && !ref.current.contains(e.target)) {
+        callback();
+      }
     };
     document.addEventListener('mousedown', handleClickOutside);
     return (() => {
@@ -90,14 +82,15 @@ function BulletinDetailCard({
   }, [ref]);
 
   return (
-    <div className={'BulletinDetailCard card'} ref={ref}>
+    <div className={'BulletinDetailCard card non-text'} ref={ref}>
       <div className={'BulletinDetailCard-title'}>
         <p>{bull.title}</p>
       </div>
-      <hr style={{width: '85%'}}/>
+      <hr/>
       <div className={'BulletinDetailCard-content'}>
         <p>{bull.content}</p>
       </div>
+      <img className={'icon-close clickable-icon'} src="./close_black_48dp.svg" alt="" onClick={callback}/>
     </div>
   );
 }

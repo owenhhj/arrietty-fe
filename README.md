@@ -1,5 +1,7 @@
 # Bugs to fix:
 
+timezone 12h difference
+
 default_cover.jpg --> copyright
 
 navbar no first-time hasNew call

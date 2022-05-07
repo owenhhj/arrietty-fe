@@ -50,13 +50,14 @@ function SearchBar({
   const handleAdTypeChange = () => {
     let newType = adType === 'textbook' ? 'other' : 'textbook';
     setAdType(newType);
-    handleSubmit(newType);
+    setKeyword('')
+    handleSubmit(newType, '');
   };
 
   const handleKeywordSuggest = (i) => {
     let temp = keywordSuggest[i];
     setKeyword(temp);
-    document.getElementById('inputKeyword').value = temp;
+    handleSubmit(null, temp);
     setShowKeywordSuggest(false);
   };
 
@@ -72,7 +73,7 @@ function SearchBar({
 
   // potential delay --> setInterval as `adListing` scrolling?
   const handleKeywordInput = (e) => {
-    let temp = e.target.value;
+    let temp = e.target.value ? e.target.value : '';
     setKeyword(temp);
     if (temp.length > 0) {  // API rejects empty string
       dataFetch(
@@ -96,18 +97,18 @@ function SearchBar({
     }
   };
 
-  const handleSubmit = (newType = null) => {
+  const handleSubmit = (newType = null, newKeyword = null) => {
     setShowKeywordSuggest(false);
     let tags = [];
     filterTag.selectedOptions.forEach(idx => {
       tags.push(tagOptions[Number(idx)])
     });
     callback({
-      'adType': newType ? newType : adType,
-      'keyword': keyword,
+      'adType': newType !== null ? newType : adType,
+      'keyword': (newKeyword !== null ? newKeyword : keyword).trim(),
       'priceOrder': priceOrders[filterPrice.priceOrder],
-      'minPrice': filterPrice.priceRange[0],
-      'maxPrice': filterPrice.priceRange[1],
+      'minPrice': filterPrice.priceRange[0] ? filterPrice.priceRange[0] : -1,  // back-end not accept both null
+      'maxPrice': filterPrice.priceRange[1] ? filterPrice.priceRange[1] : 100000,  // lazy avoidance here
       'tag': tags.length > 0 ? tags.join(',') : null
     });
   };
@@ -130,13 +131,14 @@ function SearchBar({
           <div className={'search-input'} ref={ref}>
             <input
               id={'inputKeyword'} type="text" placeholder={'want to purchase...'}
+              value={keyword}
               onChange={handleKeywordInput} onKeyDown={handleKeyDown}
             />
             {showKeywordSuggest && (
               <SearchBarKeywordSuggest suggestions={keywordSuggest} callback={handleKeywordSuggest}/>
             )}
           </div>
-          <div className={'search-button clickable-icon'} onClick={handleSubmit}>
+          <div className={'search-button clickable-icon'} onClick={() => {handleSubmit()}}>
             <img src="./search_black_48dp.svg" alt=""/>
           </div>
         </div>

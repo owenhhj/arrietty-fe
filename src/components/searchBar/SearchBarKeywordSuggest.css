@@ -1,6 +1,7 @@
 
 .SearchBarTextSuggest {
     position: absolute;
+    z-index: 99999999999999;
 
     width: 25em;
     height: min-content;
@@ -22,18 +23,16 @@
 /**/
 
 .SuggestionEntry {
-    /*border-style: solid;*/
-    z-index: 100;
-
     text-align: left;
-    margin: 0.1em 0.1em 0.1em 0.1em;
+    margin: 0.2em;
     padding: 0 0.1em 0 0.1em;
+    border-radius: 3px;
 }
 
 .SuggestionEntry:hover {
     border-style: solid;
     border-width: 1px;
-    border-color: #BEBEBE;
+    border-color: #CCCCCC;
 }
 
 .SuggestionEntry p {

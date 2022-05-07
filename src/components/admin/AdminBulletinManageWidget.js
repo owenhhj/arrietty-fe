@@ -1,5 +1,4 @@
 import "./AdminBulletinManageWidget.css";
-import Button from "../common/Button";
 import AdminBulletinListing from "./AdminBulletinListing";
 import {useEffect, useState} from "react";
 import AdminBulletinForm from "./AdminBulletinForm";
@@ -7,6 +6,10 @@ import {dataFetch} from "../common/common";
 import {showGeneralNoti} from "../common/GeneralNotiProvider";
 import {useNavigate} from "react-router-dom";
 import {MUIButton} from "../common/MUIComponents";
+
+const fakeBull = [
+  {id: 50, title: 'fake bulletin title', content: 'aife jawe foiawjeie jawe foiawjeie jawe foiawjeie jawe foiawjeie jawe foiawjeie jawe foiawjeie jawe foiawjeie jawe foiawjeie jawe foiawjeie jawe foiawjeie jawe foiawjeie jawe foiawjeie jawe foiawjeie jawe foiawjeie jawe foiawjeie jawe foiawjeie jawe foiawjeie jawe foiawjeie jawe foiawjeie jawe foiawjeio fja', createTime: 'May 5, 2022, 8:20:20 AM'}
+];
 
 export default function AdminBulletinManageWidget() {
   const ROOT = process.env.REACT_APP_URL_ROOT;
@@ -17,8 +20,9 @@ export default function AdminBulletinManageWidget() {
   const navigate = useNavigate();
 
   useEffect(() => {
-      refreshData();
-    }, []);
+    // setBulletinList(fakeBull);
+    refreshData();
+  }, []);
 
   const dispatch = showGeneralNoti();
   const handleShowNoti = (msg, good) => {
