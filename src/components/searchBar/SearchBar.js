@@ -57,7 +57,6 @@ function SearchBar({
   const handleKeywordSuggest = (i) => {
     let temp = keywordSuggest[i];
     setKeyword(temp);
-    document.getElementById('inputKeyword').value = temp;
     handleSubmit(null, temp);
     setShowKeywordSuggest(false);
   };
@@ -74,7 +73,7 @@ function SearchBar({
 
   // potential delay --> setInterval as `adListing` scrolling?
   const handleKeywordInput = (e) => {
-    let temp = e.target.value ? (e.target.value).trim() : '';
+    let temp = e.target.value ? e.target.value : '';
     setKeyword(temp);
     if (temp.length > 0) {  // API rejects empty string
       dataFetch(
@@ -106,7 +105,7 @@ function SearchBar({
     });
     callback({
       'adType': newType !== null ? newType : adType,
-      'keyword': newKeyword !== null ? newKeyword : keyword,
+      'keyword': (newKeyword !== null ? newKeyword : keyword).trim(),
       'priceOrder': priceOrders[filterPrice.priceOrder],
       'minPrice': filterPrice.priceRange[0] ? filterPrice.priceRange[0] : -1,  // back-end not accept both null
       'maxPrice': filterPrice.priceRange[1] ? filterPrice.priceRange[1] : 100000,  // lazy avoidance here
