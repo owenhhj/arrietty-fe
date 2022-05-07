@@ -18,7 +18,7 @@ export default function AdUploadFormMUIOther({
   const [valiAdTitle, setValiAdTitle] = useState({error: false, helperText: 'ad title between 1 and 99 characters...'});
   const [valiImage, setValiImage] = useState({error: false, helperText: 'one or more pictures needed...'});
   const [valiTagId, setValiTagId] = useState({error: false, helperText: 'select a tag...'});
-  const [valiPrice, setValiPrice] = useState({error: false, helperText: 'advertised price between 0RMB and 999RMB...'});
+  const [valiPrice, setValiPrice] = useState({error: false, helperText: 'advertised price between 0RMB and 9999RMB...'});
   const [valiComment, setValiComment] = useState({error: false, helperText: 'comment between 1 and 255 characters...'});
   const [valiPledge, setValiPledge] = useState({error: false, helperText: 'Please sign the pledge!'});
   const adType = 1;  // adType managed by parent, not here
@@ -99,7 +99,7 @@ export default function AdUploadFormMUIOther({
       ans = false;
     } else {setValiTagId({...valiTagId, error: false});}
     if (!formData.get('price') || !/^[0-9]+$/.test((formData.get('price')).toString()) ||
-      Number(formData.get('price'))<0 || Number(formData.get('price'))>999) {
+      Number(formData.get('price'))<0 || Number(formData.get('price'))>9999) {
       setValiPrice({...valiPrice, error: true});
       ans = false;
     } else {setValiPrice({...valiPrice, error: false});}

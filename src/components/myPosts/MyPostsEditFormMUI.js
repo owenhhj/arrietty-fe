@@ -14,7 +14,7 @@ function MyPostsEditFormMUI({
                             }) {
   const ref = useRef(null);
   const [valiImage, setValiImage] = useState({error: false, helperText: 'one or more pictures needed...'});
-  const [valiPrice, setValiPrice] = useState({error: false, helperText: 'advertised price between 0RMB and 999RMB...'});
+  const [valiPrice, setValiPrice] = useState({error: false, helperText: 'advertised price between 0RMB and 9999RMB...'});
   const [valiComment, setValiComment] = useState({error: false, helperText: 'comment between 1 and 255 characters...'});
 
   useEffect(() => {
@@ -71,7 +71,7 @@ function MyPostsEditFormMUI({
     } else {setValiImage({...valiImage, error: false});}
     if (formData.get('price') && (
       !/^[0-9]+$/.test((formData.get('price')).toString()) ||
-      Number(formData.get('price'))<0 || Number(formData.get('price'))>999
+      Number(formData.get('price'))<0 || Number(formData.get('price'))>9999
     )) {
       setValiPrice({...valiPrice, error: true});
       ans = false;
