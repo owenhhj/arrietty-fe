@@ -50,7 +50,8 @@ function SearchBar({
   const handleAdTypeChange = () => {
     let newType = adType === 'textbook' ? 'other' : 'textbook';
     setAdType(newType);
-    handleSubmit(newType);
+    setKeyword('')
+    handleSubmit(newType, '');
   };
 
   const handleKeywordSuggest = (i) => {
@@ -104,8 +105,8 @@ function SearchBar({
       tags.push(tagOptions[Number(idx)])
     });
     callback({
-      'adType': newType ? newType : adType,
-      'keyword': newKeyword ? newKeyword : keyword,
+      'adType': newType !== null ? newType : adType,
+      'keyword': newKeyword !== null ? newKeyword : keyword,
       'priceOrder': priceOrders[filterPrice.priceOrder],
       'minPrice': filterPrice.priceRange[0] ? filterPrice.priceRange[0] : -1,  // back-end not accept both null
       'maxPrice': filterPrice.priceRange[1] ? filterPrice.priceRange[1] : 100000,  // lazy avoidance here
@@ -131,6 +132,7 @@ function SearchBar({
           <div className={'search-input'} ref={ref}>
             <input
               id={'inputKeyword'} type="text" placeholder={'want to purchase...'}
+              value={keyword}
               onChange={handleKeywordInput} onKeyDown={handleKeyDown}
             />
             {showKeywordSuggest && (
