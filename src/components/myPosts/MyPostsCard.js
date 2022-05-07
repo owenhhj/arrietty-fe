@@ -1,6 +1,7 @@
 import './MyPostsCard.css';
 import {useEffect, useState} from "react";
 import {MUIButton} from "../common/MUIComponents";
+import {convertTimeBackToFront} from "../common/common";
 
 function MyPostsCard({
                        adData = {},
@@ -13,7 +14,7 @@ function MyPostsCard({
 
   // 'Apr 5, 2022, 10:20:45 PM'
   useEffect(() => {
-    let d = new Date(adData.createTime);
+    let d = convertTimeBackToFront(adData.createTime);
     setAdTime(
       d.toLocaleString('en', {month: 'short', day: 'numeric', year: 'numeric'})
     );
