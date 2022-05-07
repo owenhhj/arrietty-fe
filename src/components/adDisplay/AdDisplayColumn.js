@@ -6,7 +6,7 @@ import {dataFetch} from "../common/common";
 
 const loadingMsg = ['', 'Loading...', 'No more advertisements...'];  // not in use for now
 
-function AdDisplayColumn({
+export default function AdDisplayColumn({
                            adTypeOnMount = 'textbook'
                          }) {
   const ROOT = process.env.REACT_APP_URL_ROOT;
@@ -120,7 +120,8 @@ function AdDisplayColumn({
       })}
 
       {/* dummy data */}
-      {/*<AdDisplayCard adData={fakeAd}/>*/}
+      {/*<AdDisplayCard adData={fakeAd1}/>*/}
+      {/*<AdDisplayCard adData={fakeAd2}/>*/}
 
       <div style={{width: 'auto', height: '200px'}}>
         {/* not in use, placeholder only */}
@@ -130,15 +131,23 @@ function AdDisplayColumn({
   );
 }
 
-const fakeAd = {
+const fakeAd1 = {
   id: 1, adType: 'textbook', adTitle: 'This is a fake title for an ad bu aifiwae f fiawf  an ad bu aifiwae f fiawf  an ad bu aifiwae f fiawf  an ad bu aifiwae f fiawf iawi t this is very long', price: '1233425',
   comment: 'This is a fake comment for and ad but this is aeijfiewf ifawei fiawoe fjaiweof jiew af ajiwoef very long veis is a fake comment for and ad but this is aeijfiewf ifawei fiawoe fjaiweof jiew af ajiwoef very long veis is a fake comment for and ad but this is aeijfiewf ifawei fiawoe fjaiweof jiew af ajiwoef very long veis is a fake comment for and ad but this is aeijfiewf ifawei fiawoe fjaiweof jiew af ajiwoef very long veis is a fake comment for and ad but this is aeijfiewf ifawei fiawoe fjaiweof jiew af ajiwoef very long veis is a fake comment for and ad but this is aeijfiewf ifawei fiawoe fjaiweof jiew af ajiwoef very long veis is a fake comment for and ad but this is aeijfiewf ifawei fiawoe fjaiweof jiew af ajiwoef very long very long very long very long very long very long very long very long very long very long very long very long very long very long very long very long very long very long very long very long very long',
   // comment: '这是不该出现的中文详情，但还是有人会写。这是不该出现的中文详情，但还是有人会写。这是不该出现的中文详情，但还是有人会写。这是不该出现的中文详情，但还是有人会写。这是不该出现的中文详情，但还是有人会写。这是不该出现的中文详情，但还是有人会写。这是不该出现的中文详情，但还是有人会写。这是不该出现的中文详情，但还是有人会写。这是不该出现的中文详情，但还是有人会写。这是不该出现的中文详情，但还是有人会写。这是不该出现的中文详情，但还是有人会写。这是不该出现的中文详情，但还是有人会写。这是不该出现的中文详情，但还是有人会写。这是不该出现的中文详情，但还是有人会写。这是不该出现的中文详情，但还是有人会写。这是不该出现的中文详情，但还是有人会写。这是不该出现的中文详情，但还是有人会写。这是不该出现的中文详情，但还是有人会写。这是不该出现的中文详情，但还是有人会写。这是不该出现的中文详情，但还是有人会写。',
-  createTime: "Apr 4, 2022, 12:00:00 AM", isMarked: true, numberOfTaps: 60,
+  createTime: "Apr 4, 2022, 12:00:00 AM", isMarked: true, numberOfTaps: 11,
   // userNetId: 'sh2013'
 };
 
-export default AdDisplayColumn;
+const fakeAd2 = {
+  id: 2, adType: 'other', adTitle: 'This is a fake title for an ad bu aifiwae f fiawf  an ad bu aifiwae f fiawf  an ad bu aifiwae f fiawf  an ad bu aifiwae f fiawf iawi t this is very long', price: '1233425',
+  comment: 'This is a fake comment for and ad but this is aeijfiewf ifawei fiawoe fjaiweof jiew af ajiwoef very long veis is a fake comment for and ad but this is aeijfiewf ifawei fiawoe fjaiweof jiew af ajiwoef very long veis is a fake comment for and ad but this is aeijfiewf ifawei fiawoe fjaiweof jiew af ajiwoef very long veis is a fake comment for and ad but this is aeijfiewf ifawei fiawoe fjaiweof jiew af ajiwoef very long veis is a fake comment for and ad but this is aeijfiewf ifawei fiawoe fjaiweof jiew af ajiwoef very long veis is a fake comment for and ad but this is aeijfiewf ifawei fiawoe fjaiweof jiew af ajiwoef very long veis is a fake comment for and ad but this is aeijfiewf ifawei fiawoe fjaiweof jiew af ajiwoef very long very long very long very long very long very long very long very long very long very long very long very long very long very long very long very long very long very long very long very long very long',
+  // comment: '这是不该出现的中文详情，但还是有人会写。这是不该出现的中文详情，但还是有人会写。这是不该出现的中文详情，但还是有人会写。这是不该出现的中文详情，但还是有人会写。这是不该出现的中文详情，但还是有人会写。这是不该出现的中文详情，但还是有人会写。这是不该出现的中文详情，但还是有人会写。这是不该出现的中文详情，但还是有人会写。这是不该出现的中文详情，但还是有人会写。这是不该出现的中文详情，但还是有人会写。这是不该出现的中文详情，但还是有人会写。这是不该出现的中文详情，但还是有人会写。这是不该出现的中文详情，但还是有人会写。这是不该出现的中文详情，但还是有人会写。这是不该出现的中文详情，但还是有人会写。这是不该出现的中文详情，但还是有人会写。这是不该出现的中文详情，但还是有人会写。这是不该出现的中文详情，但还是有人会写。这是不该出现的中文详情，但还是有人会写。这是不该出现的中文详情，但还是有人会写。',
+  createTime: "Apr 8, 2022, 12:00:00 AM", isMarked: false, numberOfTaps: 20,
+  // userNetId: 'sh2013'
+};
+
+
 
 
 
