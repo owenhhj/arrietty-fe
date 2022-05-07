@@ -137,7 +137,7 @@ function SearchBar({
               <SearchBarKeywordSuggest suggestions={keywordSuggest} callback={handleKeywordSuggest}/>
             )}
           </div>
-          <div className={'search-button clickable-icon'} onClick={handleSubmit}>
+          <div className={'search-button clickable-icon'} onClick={() => {handleSubmit()}}>
             <img src="./search_black_48dp.svg" alt=""/>
           </div>
         </div>

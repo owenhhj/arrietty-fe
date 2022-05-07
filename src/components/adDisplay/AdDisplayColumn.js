@@ -4,6 +4,8 @@ import SearchBar from "../searchBar/SearchBar";
 import AdDisplayCard from "./AdDisplayCard";
 import {dataFetch} from "../common/common";
 
+const loadingMsg = ['', 'Loading...', 'No more advertisements...'];  // not in use for now
+
 function AdDisplayColumn({
                            adTypeOnMount = 'textbook'
                          }) {
@@ -16,7 +18,6 @@ function AdDisplayColumn({
     'adType': adTypeOnMount,
     'pageNum': 0
   });
-  const loadingMsg = ['', 'Loading...', 'No more advertisements...'];  // not in use for now
 
   useEffect(() => {
     dataFetch(
@@ -55,9 +56,7 @@ function AdDisplayColumn({
     }
   };
 
-  // user search --> reset queryBody & queryPageNum
   const handleSearchBar = (e) => {
-    // setIsLoading(false);
     let temp = {...e, pageNum: 0};
     setQueryBody(temp);
     dataFetch(
