@@ -95,8 +95,9 @@ export default function AdminSiteStats() {
       `${ROOT}${STATS}`,
       {method: 'GET'},
       (res) => {
-        setData5Days(res);
-        setDataToday(res[0]);
+        let temp = res.sort((d1, d2) => Date.parse(d1.date) - Date.parse(d2.date));
+        setData5Days(temp);
+        setDataToday(temp[temp.length-1]);
       },
       (err) => {
         console.warn(err);
