@@ -163,16 +163,17 @@ export default function AdUploadFormMUITextbook({
       </div>
 
       <div className={'AdUploadFormMUI-row'}>
+        <p>Ad Type</p>
+        <MUIButtonGroup labels={adTypes} selected={adType}
+                        buttonStyle={{width: '6.5em', height:'2.8em'}} onChange={handleChangeAdType}/>
+      </div>
+
+      <div className={'AdUploadFormMUI-row'}>
         <p>Ad Title</p>
         <MUITextField
           identifier={'adTitle'} onChange={handleInputChange}
           error={valiAdTitle.error} helperText={valiAdTitle.error?valiAdTitle.helperText:''}
         />
-      </div>
-      <div className={'AdUploadFormMUI-row'}>
-        <p>Ad Type</p>
-        <MUIButtonGroup labels={adTypes} selected={adType}
-                        buttonStyle={{width: '6.5em', height:'2.8em'}} onChange={handleChangeAdType}/>
       </div>
 
       <div className={'AdUploadFormMUI-row'}>
