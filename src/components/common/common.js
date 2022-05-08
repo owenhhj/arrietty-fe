@@ -55,6 +55,7 @@ export const getModalStyles = (cus = {}) => {
       justifyContent: 'center',
       border: "none",
       background: "transparent",
+      overflowY: 'hidden',
       ...cus
     }
   };
