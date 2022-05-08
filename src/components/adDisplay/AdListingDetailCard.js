@@ -69,7 +69,8 @@ export default function AdListingDetailCard({
               <ImageSlider
                 height={'90%'} width={'90%'}
                 data={getImageData()}
-                autoPlay={false} showDots={false} showArrows={true} infinite={true}
+                autoPlay={false} showDots={false} infinite={true}
+                showArrows={adData.imageIds.split(",").length > 1}
                 elementWrapperStyles={sliderWrapperStyles} itemStyles={sliderImageStyles}
                 leftArrowComponent={
                   <svg onClick={handleClickLeftArrow} width="30" height="30" viewBox="0 0 30 30" fill="none"
