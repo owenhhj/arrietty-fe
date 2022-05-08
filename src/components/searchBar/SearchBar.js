@@ -103,9 +103,10 @@ function SearchBar({
     filterTag.selectedOptions.forEach(idx => {
       tags.push(tagOptions[Number(idx)])
     });
+    let tempKeyword = (newKeyword !== null ? newKeyword : keyword).trim();
     callback({
       'adType': newType !== null ? newType : adType,
-      'keyword': (newKeyword !== null ? newKeyword : keyword).trim(),
+      'keyword': tempKeyword.length > 0 ? tempKeyword : null,  // back-end not accept ''
       'priceOrder': priceOrders[filterPrice.priceOrder],
       'minPrice': filterPrice.priceRange[0] ? filterPrice.priceRange[0] : -1,  // back-end not accept both null
       'maxPrice': filterPrice.priceRange[1] ? filterPrice.priceRange[1] : 100000,  // lazy avoidance here
