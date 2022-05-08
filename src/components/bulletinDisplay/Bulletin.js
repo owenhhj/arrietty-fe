@@ -17,7 +17,7 @@ export default function Bulletin() {
   const [showBullDetail, setShowBullDetail] = useState(-1);
 
   useEffect(() => {
-    setBullData(fakeBull)
+    // setBullData(fakeBull);
     refreshData();
   }, []);
 
