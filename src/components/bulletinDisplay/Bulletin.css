@@ -87,8 +87,8 @@
 /**/
 
 .BulletinDetailCard {
-    width: 40em;
-    height: 40em;
+    width: calc(min(40em, 70vw));
+    height: calc(min(40em, 80vh));
     position: relative;
 
     display: flex;
@@ -101,22 +101,25 @@
 
 .BulletinDetailCard hr {
     width: 80%;
-    margin: 0.5em 0;
+    margin: 1em 0;
 }
 
 .BulletinDetailCard-title {
     width: 80%;
-    margin-top: 2em;
+    margin-top: 2.5em;
     margin-bottom: 0.5em;
+    border-bottom: 1px solid #DADADA;
 }
 
 .BulletinDetailCard-title p {
     font-size: 1.5rem;
     font-weight: bold;
+    margin-bottom: 0.5em;
 }
 
 .BulletinDetailCard-content {
     width: 80%;
+    margin-bottom: 2em;
 }
 
 .BulletinDetailCard-content p {

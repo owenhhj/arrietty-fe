@@ -4,7 +4,10 @@ import {dataFetch, getModalStyles} from "../common/common";
 import Modal from "react-modal";
 
 const fakeBull = [
-  {id: 1, title: 'hey', content: 'what'},
+  {
+    id: 1, title: 'Hey! Welcome to Arrietty! Hey! Welcome to Arrietty! Hey! Welcome to Arrietty!',
+    content: 'This is a place to post advertisements! This is a place to post advertisements! This is a place to post advertisements! This is a place to post advertisements! This is a place to post advertisements! This is a place to post advertisements! This is a place to post advertisements! This is a place to post advertisements! This is a place to post advertisements! This is a place to post advertisements! This is a place to post advertisements! This is a place to post advertisements! This is a place to post advertisements! This is a place to post advertisements! This is a place to post advertisements! This is a place to post advertisements! This is a place to post advertisements! This is a place to post advertisements! This is a place to post advertisements! This is a place to post advertisements! This is a place to post advertisements! This is a place to post advertisements! This is a place to post advertisements! This is a place to post advertisements! This is a place to post advertisements! This is a place to post advertisements! This is a place to post advertisements! This is a place to post advertisements! This is a place to post advertisements! This is a place to post advertisements! This is a place to post advertisements! This is a place to post advertisements! This is a place to post advertisements! This is a place to post advertisements! This is a place to post advertisements! This is a place to post advertisements! This is a place to post advertisements! This is a place to post advertisements! This is a place to post advertisements! This is a place to post advertisements! This is a place to post advertisements! This is a place to post advertisements! This is a place to post advertisements! This is a place to post advertisements! This is a place to post advertisements! This is a place to post advertisements! This is a place to post advertisements! This is a place to post advertisements! This is a place to post advertisements! This is a place to post advertisements! This is a place to post advertisements!'
+  },
 ];
 
 export default function Bulletin() {
@@ -14,6 +17,11 @@ export default function Bulletin() {
   const [showBullDetail, setShowBullDetail] = useState(-1);
 
   useEffect(() => {
+    // setBullData(fakeBull);
+    refreshData();
+  }, []);
+
+  const refreshData = () => {
     dataFetch(
       `${ROOT}${BULLETIN}`,
       {method: 'GET'},
@@ -22,7 +30,7 @@ export default function Bulletin() {
       },
       null
     );
-  }, []);
+  };
 
   const handleShowBullDetail = (id) => {
     setShowBullDetail(id);
@@ -83,14 +91,17 @@ function BulletinDetailCard({
 
   return (
     <div className={'BulletinDetailCard card non-text'} ref={ref}>
+
       <div className={'BulletinDetailCard-title'}>
         <p>{bull.title}</p>
       </div>
-      <hr/>
+
       <div className={'BulletinDetailCard-content'}>
         <p>{bull.content}</p>
       </div>
+
       <img className={'icon-close clickable-icon'} src="./close_black_48dp.svg" alt="" onClick={callback}/>
+
     </div>
   );
 }
