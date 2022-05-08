@@ -142,7 +142,10 @@ export default function TagListing(
             url,
             metaData,
             (data)=>{callback("delete", formData)},
-            null
+          (err) => {
+              alert(err['responseStatus']['message']);
+              callback('cancel', null);
+          }
         );
 
     };
@@ -164,7 +167,10 @@ export default function TagListing(
                 url,
                 metaData,
                 (data)=>{callback("insert", data)},
-                null
+                (err) => {
+                    alert(err['responseStatus']['message']);
+                    callback('cancel', null);
+                }
             );
         }
         // update an existing tag
@@ -173,7 +179,10 @@ export default function TagListing(
                 url,
                 metaData,
                 (data)=>{setTagInfo({...formData})},
-                null
+              (err) => {
+                  alert(err['responseStatus']['message']);
+                  callback('cancel', null);
+              }
             );
         }
 
