@@ -92,7 +92,7 @@ export function dataFetch(url, metaData, successHandler, errorHandler) {
 }
 
 function defaultErrorHandler(response) {
-  alert(response["responseStatus"]["message"]);
+  // alert(response["responseStatus"]["message"]);
 }
 
 
