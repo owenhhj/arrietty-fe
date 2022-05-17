@@ -4,13 +4,6 @@ import NotificationCard from "./NotificationCard";
 import {useEffect, useState} from "react";
 import {dataFetch} from "../common/common";
 
-const fakeNotis = [
-  {id: 1, username:'aejf', netId: 'ca12343', adTitle: 'faoefj ', createTime: 'Apr 5, 2022, 12:00:00 PM'},
-  {id: 2, username:'aejfojawef feaw fae ', netId: 'ca12343', adTitle: 'faoefj oawf oiajewoi fjoiawjeo', createTime: 'Apr 5, 2022, 12:00:00 PM'},
-  {id: 3, username:'aejfojawef feaw fae ', netId: 'ca12343', adTitle: 'faoefj oawf oia fawejifoiawefj ojaweoi fjoi faewoi foiawej foafwe ijioawej fiojajewoi fjoiawjeo', createTime: 'Apr 5, 2022, 12:00:00 PM'},
-  {id: 4, username:'aejfojawef feaw fae ', netId: 'ca12343', adTitle: 'faoefj oawf oiajewoi fjoiawjeo', createTime: 'Apr 5, 2022, 12:00:00 PM'},
-];
-
 function NotificationColumn() {
   const ROOT = process.env.REACT_APP_URL_ROOT;
   const NOTI = process.env.REACT_APP_API_NOTIFICATIONS;

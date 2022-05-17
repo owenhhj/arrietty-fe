@@ -3,13 +3,6 @@ import {useEffect, useRef, useState} from "react";
 import {dataFetch, getModalStyles} from "../common/common";
 import Modal from "react-modal";
 
-const fakeBull = [
-  {
-    id: 1, title: 'Hey! Welcome to Arrietty! Hey! Welcome to Arrietty! Hey! Welcome to Arrietty!',
-    content: 'This is a place to post advertisements! This is a place to post advertisements! This is a place to post advertisements! This is a place to post advertisements! This is a place to post advertisements! This is a place to post advertisements! This is a place to post advertisements! This is a place to post advertisements! This is a place to post advertisements! This is a place to post advertisements! This is a place to post advertisements! This is a place to post advertisements! This is a place to post advertisements! This is a place to post advertisements! This is a place to post advertisements! This is a place to post advertisements! This is a place to post advertisements! This is a place to post advertisements! This is a place to post advertisements! This is a place to post advertisements! This is a place to post advertisements! This is a place to post advertisements! This is a place to post advertisements! This is a place to post advertisements! This is a place to post advertisements! This is a place to post advertisements! This is a place to post advertisements! This is a place to post advertisements! This is a place to post advertisements! This is a place to post advertisements! This is a place to post advertisements! This is a place to post advertisements! This is a place to post advertisements! This is a place to post advertisements! This is a place to post advertisements! This is a place to post advertisements! This is a place to post advertisements! This is a place to post advertisements! This is a place to post advertisements! This is a place to post advertisements! This is a place to post advertisements! This is a place to post advertisements! This is a place to post advertisements! This is a place to post advertisements! This is a place to post advertisements! This is a place to post advertisements! This is a place to post advertisements! This is a place to post advertisements! This is a place to post advertisements! This is a place to post advertisements! This is a place to post advertisements!'
-  },
-];
-
 export default function Bulletin() {
   const ROOT = process.env.REACT_APP_URL_ROOT;
   const BULLETIN = process.env.REACT_APP_API_BULLETIN;
@@ -17,7 +10,6 @@ export default function Bulletin() {
   const [showBullDetail, setShowBullDetail] = useState(-1);
 
   useEffect(() => {
-    // setBullData(fakeBull);
     refreshData();
   }, []);
 

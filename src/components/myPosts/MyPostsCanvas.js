@@ -22,13 +22,6 @@ const customStyles = {
   },
 };
 
-const fakeMyAds = [
-  {id: 666, adType: 'textbook', adTitle:'tiitle', isTextbook: true, tagId: 12, imageIds:'', price:444, comment: 'comment', numberOfTaps: 3, createTime: 'May 7, 2022, 10:20:45 PM', textbookTitle: 'lol title'},
-  {id: 777, adType: 'textbook', adTitle:'title', isTextbook: true, tagId: 12, imageIds:'', price:444, comment: 'comment', numberOfTaps: 3, createTime:'May 7, 2022, 10:20:45 AM'},
-  // {id: 111, adType: 'other', adTitle:'title', isTextbook: false, tagId: 12, imageIds:'', price:444, comment: 'comment', numberOfTaps: 3, createTime:'Apr 6'},
-  // {id: 222, adType: 'other', adTitle:'title', isTextbook: false, tagId: 12, imageIds:'', price:444, comment: 'comment', numberOfTaps: 3, createTime:'Apr 6'},
-];
-
 function MyPostsCanvas() {
   const ROOT = process.env.REACT_APP_URL_ROOT;
   const AD = process.env.REACT_APP_API_AD;
@@ -39,7 +32,6 @@ function MyPostsCanvas() {
 
   useEffect(() => {
     refreshData();
-    // setMyAds(fakeMyAds);
   }, []);
 
   useEffect(() => {
