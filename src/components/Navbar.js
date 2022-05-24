@@ -144,7 +144,7 @@ function Navbar({isAdmin}) {
                 d="M8 42V18L24.1 6L40 18V42H28.3V27.75H19.65V42ZM11 39H16.65V24.75H31.3V39H37V19.5L24.1 9.75L11 19.5ZM24 24.35Z"
                 fill={activeTab === "home" ? "#191919" : "#595959"}
               />
-              {showDotHome && <circle cx="38" cy="15" r="6" stroke="black" strokeWidth="1" fill="red"/>}
+              {showDotHome && <circle cx="38" cy="15" r="5" stroke="none" fill="red"/>}
             </svg>
 
             <Link ref={homeLink} to="/home" className={`nav-links${activeTab === "home" ? "-clicked" : ""}`}
@@ -190,7 +190,7 @@ function Navbar({isAdmin}) {
               <path
                 d="M25.0002 45.8333C27.2918 45.8333 29.1668 43.9583 29.1668 41.6666H20.8335C20.8335 43.9583 22.7085 45.8333 25.0002 45.8333ZM37.5002 33.3333V22.9166C37.5002 16.5208 34.1043 11.1666 28.1252 9.74992V8.33325C28.1252 6.60409 26.7293 5.20825 25.0002 5.20825C23.271 5.20825 21.8752 6.60409 21.8752 8.33325V9.74992C15.9168 11.1666 12.5002 16.4999 12.5002 22.9166V33.3333L8.3335 37.4999V39.5833H41.6668V37.4999L37.5002 33.3333ZM33.3335 35.4166H16.6668V22.9166C16.6668 17.7499 19.8127 13.5416 25.0002 13.5416C30.1877 13.5416 33.3335 17.7499 33.3335 22.9166V35.4166Z"
                 fill={activeTab === "notification" ? "#191919" : "#595959"}/>
-              {showDotNoti && <circle cx="38" cy="15" r="6" stroke="black" strokeWidth="1" fill="red"/>}
+              {showDotNoti && <circle cx="38" cy="15" r="5" stroke="none" fill="red"/>}
             </svg>
 
             <Link ref={notificationLink} to="/notification"

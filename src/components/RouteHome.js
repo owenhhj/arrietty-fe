@@ -3,7 +3,9 @@ import AdDisplayColumn from "./adDisplay/AdDisplayColumn";
 import "./RouteHome.css";
 import Bulletin from "./bulletinDisplay/Bulletin";
 
-function RouteHome() {
+function RouteHome({
+  MY_NETID
+                   }) {
 
   return (
     <div className={'home'}>
@@ -13,7 +15,7 @@ function RouteHome() {
           <MyProfile/>
         </div>
         <div className={'home-grid-ad'}>
-          <AdDisplayColumn/>
+          <AdDisplayColumn MY_NETID={MY_NETID}/>
         </div>
         <div className={'home-grid-bulletin'}>
           <Bulletin/>
