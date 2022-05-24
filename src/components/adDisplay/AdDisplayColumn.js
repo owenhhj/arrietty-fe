@@ -7,6 +7,7 @@ import {dataFetch} from "../common/common";
 const loadingMsg = ['', 'Loading...', 'No more advertisements...'];  // not in use for now
 
 export default function AdDisplayColumn({
+                                          MY_NETID,
                                           adTypeOnMount = 'textbook'
                                         }) {
   const ROOT = process.env.REACT_APP_URL_ROOT;
@@ -115,7 +116,7 @@ export default function AdDisplayColumn({
 
       {adData.map((ad, index) => {
         return (
-          <AdDisplayCard key={ad.id} adData={ad}/>
+          <AdDisplayCard key={ad.id} adData={ad} MY_NETID={MY_NETID}/>
         );
       })}
 

@@ -5,17 +5,16 @@ import {capFirstLetter, translateTimeAgo} from "../common/common";
 import {showGeneralNoti} from "../common/GeneralNotiProvider";
 import {useEffect, useState} from "react";
 import {dataFetch} from "../common/common";
-import {getSiteInfo} from "../common/SiteInfoProvider";
 
 function AdDisplayCard({
   adData,
+  MY_NETID,
   unmarkSelf=null  // from FavoriteColumn
                        }) {
   const ROOT = process.env.REACT_APP_URL_ROOT;
   const IMAGE = process.env.REACT_APP_API_IMAGE;
   const MARK = process.env.REACT_APP_API_MARK;
   const TAP = process.env.REACT_APP_API_TAP;
-  const MY_NETID = getSiteInfo().netId;
   // eslint-disable-next-line no-unused-vars
   const [isMine, setIsMine] = useState(!!adData.userNetId && adData.userNetId===MY_NETID);
   const [contactInfo, setContactInfo] = useState({});

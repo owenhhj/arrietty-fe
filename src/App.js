@@ -14,6 +14,7 @@ import {dataFetch} from "./components/common/common";
 function App() {
   const ROOT = process.env.REACT_APP_URL_ROOT;
   const PROFILE = process.env.REACT_APP_API_PROFILE;
+  const [MY_NETID, setMY_NETID] = useState('');
   const [isAdmin, setIsAdmin] = useState(false);
 
   useEffect(() => {
@@ -21,6 +22,7 @@ function App() {
       `${ROOT}${PROFILE}?userId=`,
       {method:"GET"},
       (res) => {
+        setMY_NETID(res.netId);
         if (res.isAdmin) {
           setIsAdmin(true);
         }
@@ -37,8 +39,8 @@ function App() {
       <BrowserRouter>
         <Navbar isAdmin={isAdmin}/>
         <Routes>
-          <Route path="/" element={<RouteHome/>} exact/>
-          <Route path="/home" element={<RouteHome/>} exact/>
+          <Route path="/" element={<RouteHome MY_NETID={MY_NETID}/>} exact/>
+          <Route path="/home" element={<RouteHome MY_NETID={MY_NETID}/>} exact/>
           <Route path="/myPosts" element={<RouteMyPosts/>} exact/>
           <Route path="/notification" element={<RouteNotification/>} exact/>
           <Route path="/favorite" element={<RouteFavorite/>} exact/>

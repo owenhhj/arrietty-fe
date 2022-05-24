@@ -62,6 +62,12 @@ export default function AdUploadFormMUIOther({
       });
       return;
     }
+    if (identifier==='tagId') {
+      if (value === null) {
+        formData.delete('tagId');
+        return;
+      }
+    }
     formData.set(identifier, value);
   };
 

@@ -88,6 +88,10 @@ export default function AdUploadFormMUITextbook({
     }
     if (identifier==='tagId') {
       setSelectedTextbook(value);
+      if (value === null) {
+        formData.delete('tagId');
+        return;
+      }
     }
     formData.set(identifier, value);
   };
