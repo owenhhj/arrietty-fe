@@ -201,7 +201,8 @@ export default function AdUploadFormMUIOther({
 
       <div className={'AdUploadFormMUI-row'}>
         <MUICheckbox
-          identifier={'pledge'} label={'I confirm that the ad information is accurate'} onChange={handleInputChange}
+          identifier={'pledge'} onChange={handleInputChange}
+          label={'I confirm that my advertisement complies with the policies of Arrietty and I understand that posting inappropriate content may result in a permanent ban.'}
           error={valiPledge.error} helperText={valiPledge.error?valiPledge.helperText:''}
         />
         {valiPledge.error && (
@@ -211,13 +212,9 @@ export default function AdUploadFormMUIOther({
         )}
       </div>
 
-
       <div className={'AdUploadFormMUI-row-submit'}>
         <MUIButton label={'Submit'} variant={1} onClick={handleSubmit}/>
       </div>
-
-
-
 
     </div>
   );

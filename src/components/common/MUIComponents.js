@@ -142,10 +142,13 @@ export function MUICheckbox({
     <>
       <FormControlLabel
         control={<Checkbox
-          defaultChecked={false} style={{...styleCheckboxDefault}} onChange={handleInputChange}
+          defaultChecked={false} onChange={handleInputChange}
+          style={{...styleCheckboxDefault}}
           error={error} helperText={error ? helperText : null}
         />}
-        label={label}/>
+        label={label}
+        style={{alignItems: 'start'}}
+      />
     </>
   );
 }
